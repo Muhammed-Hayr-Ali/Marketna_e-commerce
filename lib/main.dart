@@ -4,6 +4,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   debugPrint('Initializing app...');
   /// Initialize GetStorage
+  /// TEXT
   await GetStorage.init();
   /// Initialize Supabase
   await Supabase.initialize(
