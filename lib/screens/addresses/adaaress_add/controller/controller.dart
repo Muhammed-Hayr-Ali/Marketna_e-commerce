@@ -55,19 +55,29 @@ class AddAddressController extends GetxController {
     return await Geolocator.getCurrentPosition();
   }
 
+  /// Adds a new address for the current user.
+  ///
+  /// This function collects the user's input from form fields and determines
+  /// the device's current location to create a new address entry. It then
+  /// inserts the address into the database and provides feedback to the user.
   Future<void> addAddress() async {
+    // Set loading state to true
     isLoading.value = true;
 
+    // Get the current user ID
     final userId = _supabase.auth.currentUser!.id;
 
+    // Determine the current position
     final position = await _determinePosition();
 
+    // Validate form inputs
     if (!formKey.currentState!.validate()) {
       isLoading.value = false;
       return;
     }
 
     try {
+      // Create an Address object with user input and location data
       final address = Address(
         customerId: userId,
         addressName: addressNameController.text,
@@ -84,19 +94,24 @@ class AddAddressController extends GetxController {
         },
       );
 
+      // Insert the address into the database
       await _supabase
           .from(KEYS.ADDRESSES_TABLE)
           .insert(address.toJson())
           .whenComplete(() {
+            // Show success notification
             CustomNotification.showSnackbar(
               message: 'address_added_successfully',
             );
+            // Dispose controllers and reinitialize data
             _disposeControllers();
-            _.initialize();
+            _.loadAddresses();
           });
     } catch (error) {
+      // Handle errors and show error notification
       CustomNotification.showSnackbar(message: 'data_sending_error');
     } finally {
+      // Set loading state to false
       isLoading.value = false;
     }
   }

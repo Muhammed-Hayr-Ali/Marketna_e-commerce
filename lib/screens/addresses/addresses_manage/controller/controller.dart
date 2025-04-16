@@ -7,21 +7,29 @@ class ManageAddressesController extends GetxController {
 
   @override
   void onInit() {
-    initialize();
+    loadAddresses();
     super.onInit();
   }
 
-  Future<void> initialize() async {
+  /// Loads the addresses for the current user.
+  ///
+  /// This function fetches the list of addresses associated with the current user
+  /// from the database and updates the [addresses] observable list.
+  Future<void> loadAddresses() async {
+    // Get the current user ID
+    final customerId = _supabase.auth.currentUser!.id;
+
     try {
-      final customerId = _supabase.auth.currentUser!.id;
+      // Query the database for addresses linked to the current user
       final response = await _supabase
           .from(KEYS.ADDRESSES_TABLE)
           .select()
           .eq('customer_id', customerId);
-      addresses.value = response.map((e) => Address.fromJson(e)).toList();
-    } catch (error) {
-      debugPrint(error.toString());
+
+      // Update the addresses list with the fetched data
+      addresses.assignAll(response.map((e) => Address.fromJson(e)));
     } finally {
+      // Set loading state to false
       isLoading.value = false;
     }
   }

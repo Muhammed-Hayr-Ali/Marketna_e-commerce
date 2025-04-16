@@ -10,12 +10,12 @@ import 'package:get/get.dart';
 class Localization extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-    'ar': Arabic().keys,
-    'en': English().keys,
-    'fr': French().keys,
-    'de': German().keys,
-    'tr': Turkish().keys,
-    'ku': Kurdish().keys,
-    'fa': Farsi().keys,
-  };
+        'ar': Arabic().keys,
+        'en': English().keys,
+        'fr': French().keys,
+        'de': German().keys,
+        'tr': Turkish().keys,
+        'ku': Kurdish().keys,
+        'fa': Farsi().keys,
+      };
 }
