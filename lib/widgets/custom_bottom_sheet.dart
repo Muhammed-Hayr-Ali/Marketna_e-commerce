@@ -1,6 +1,6 @@
 import 'package:application/utils/import.dart';
 
-custombottomSheet({required List<Widget> children, String? title}) {
+custombottomSheet<T>({required List<Widget> children, String? title}) {
   return Get.bottomSheet(
     elevation: 0,
     Container(

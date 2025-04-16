@@ -10,79 +10,143 @@ class LoginController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool loginWithIsLoading = false.obs;
 
-  void login() async {
+  /// Signs the user in with an email and password.
+  ///
+  /// This function will check if the form is valid and the email and password are not empty.
+  /// If the form is valid, it will call the `signInWithPassword` method of the `supabase` client
+  /// and navigate to the `mainScreen` route. If an error occurs, it will show a snackbar with
+  /// the error message. Finally, it will set the `isLoading` to false.
+  Future<void> login() async {
+    // Check if the form is valid
     if (!formKey.currentState!.validate()) return;
+
+    // Set loading state
     isLoading.value = true;
 
+    // Get email and password from controllers
+    // Trim whitespace from email and password
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    // Attempt to sign in with Supabase using email and password
+    // If successful, navigate to main screen
     try {
-      await supabase.auth.signInWithPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      await supabase.auth.signInWithPassword(email: email, password: password);
       Get.offAllNamed(AppRoutes.mainScreen);
     } on AuthException catch (error) {
-      debugPrint(error.message);
+      // Show error message in a snackbar
       CustomNotification.showSnackbar(message: error.message);
+      debugPrint(error.message);
+    } catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${'An error occurred:'.tr} $error',
+      );
+      debugPrint(error.toString());
     } finally {
+      // Reset loading state
       isLoading.value = false;
     }
   }
 
+  /// Signs the user in with Google.
+  ///
+  /// This function initiates a Google Sign-In flow, retrieves the access and ID tokens,
+  /// and uses them to authenticate with the Supabase backend. If successful, it navigates
+  /// to the main screen. If an error occurs, a snackbar with the error message is displayed.
   Future<void> googleSignIn() async {
+    // Set loading state
     loginWithIsLoading.value = true;
     try {
-      final GoogleSignIn googleSignIn = GoogleSignIn(
-        serverClientId: KEYS.WEB_CLIENT_ID,
-      );
-      final googleUser = await googleSignIn.signIn();
-      final googleAuth = await googleUser!.authentication;
-      final accessToken = googleAuth.accessToken;
-      final idToken = googleAuth.idToken;
-      if (accessToken == null) {
-        throw 'No Access Token found.';
+      // Initialize GoogleSignIn with the server client ID
+      final googleSignIn = GoogleSignIn(serverClientId: KEYS.WEB_CLIENT_ID);
+
+      // Attempt to sign in the user
+      final user = await googleSignIn.signIn();
+      final authentication = await user!.authentication;
+
+      // Retrieve access and ID tokens
+      final accessToken = authentication.accessToken;
+      final idToken = authentication.idToken;
+
+      // Ensure tokens are not null
+      if (accessToken == null || idToken == null) {
+        throw 'Missing Tokens';
       }
-      if (idToken == null) {
-        throw 'No ID Token found.';
-      }
-      await supabase.auth.signInWithIdToken(
+
+      // Sign in with Supabase using OAuth provider and tokens
+      final AuthResponse authResponse = await supabase.auth.signInWithIdToken(
         provider: OAuthProvider.google,
         idToken: idToken,
         accessToken: accessToken,
       );
-      _updateUser();
+
+      // Check if the session is null
+      if (authResponse.session == null) {
+        throw 'session_is_null';
+      }
+      // Navigate to main screen
       Get.offAllNamed(AppRoutes.mainScreen);
     } on AuthApiException catch (error) {
-      debugPrint(error.message);
+      // Show error message in a snackbar
       CustomNotification.showSnackbar(message: error.message);
+      debugPrint(error.message);
     } finally {
+      // Reset loading state
       loginWithIsLoading.value = false;
     }
   }
 
-  // Sign in with Twitter
+  /// Signs the user in with Twitter.
+  ///
+  /// This function initiates a Twitter OAuth flow, and uses the authorization code
+  /// to authenticate with the Supabase backend. If successful, it navigates to the
+  /// main screen. If an error occurs, a snackbar with the error message is displayed.
+  ///
+  /// The `signInWithOAuth` method will return a session if the user is found and the
+  /// password is correct. If the user is not found or the password is incorrect, it
+  /// will throw an `AuthException` with a message indicating the error.
+  ///
+  /// The `mainScreen` route is a route that displays the main screen of the app.
   Future<void> signInWithTwitter() async {
+    // Set loading state
     loginWithIsLoading.value = true;
 
+    // Attempt to sign in with Supabase using Twitter OAuth
+    // If successful, navigate to main screen
     try {
-      final response = await supabase.auth.signInWithOAuth(
+      await supabase.auth.signInWithOAuth(
         OAuthProvider.twitter,
         redirectTo: kIsWeb ? null : 'marketna.scheme://marketna-host',
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
-
-      if (response) {
-        _updateUser();
-        debugPrint('User signed in successfully');
-      }
     } on AuthException catch (error) {
+      /// Show error message in a snackbar
       CustomNotification.showSnackbar(message: error.message);
+      debugPrint(error.message);
+    } catch (error) {
+      /// Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${'An error occurred:'.tr} $error',
+      );
+      debugPrint(error.toString());
     } finally {
+      // Reset loading state
       loginWithIsLoading.value = false;
     }
   }
 
+  /// Signs the user in with GitHub.
+  ///
+  /// This function initiates a GitHub OAuth flow, and uses the authorization code
+  /// to authenticate with the Supabase backend. If successful, it navigates to the
+  /// main screen. If an error occurs, a snackbar with the error message is displayed.
   Future<void> signInWithGithub() async {
+    // Set loading state
     loginWithIsLoading.value = true;
+
+    // Attempt to sign in with Supabase using GitHub OAuth
+    // If successful, navigate to main screen
     try {
       await supabase.auth.signInWithOAuth(
         OAuthProvider.github,
@@ -91,30 +155,9 @@ class LoginController extends GetxController {
       );
     } on AuthException catch (error) {
       CustomNotification.showSnackbar(message: error.message);
+      debugPrint(error.message);
     } finally {
       loginWithIsLoading.value = false;
     }
-  }
-
-  Future<void> _updateUser() async {
-    final user = supabase.auth.currentUser;
-    if (user == null) return;
-    await supabase
-        .from('profiles')
-        .update({
-          'display_name': _getUserName(user),
-          'avatar':
-              user.userMetadata!['picture'] ?? user.userMetadata!['avatar_url'],
-        })
-        .eq('id', user.id);
-  }
-
-  String _getUserName(User? user) {
-    if (user == null) return '';
-    return user.userMetadata!['name'] ??
-        user.userMetadata!['display_name'] ??
-        user.userMetadata!['full_name'] ??
-        user.userMetadata!['user_name'] ??
-        '';
   }
 }

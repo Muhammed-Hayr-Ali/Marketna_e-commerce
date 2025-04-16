@@ -55,7 +55,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       width: double.infinity,
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
-                      onPressed: _.resendAnOTP,
+                      onPressed: _.resendOTP,
                       child: CustomText('send'.tr, color: AppColors.white),
                     ),
                   ],

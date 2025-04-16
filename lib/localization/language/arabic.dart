@@ -111,7 +111,7 @@ class Arabic {
     'profile_updated_successfully': 'تم تحديث الملف الشخصي بنجاح.',
     'Exception: no_internet_connection': 'خطأ: لا يوجد اتصال بالإنترنت.',
     'user_already_registered': 'المستخدم مسجل بالفعل.',
-    'invalid_login_credentials': 'بيانات تسجيل الدخول غير صحيحة.',
+    'Invalid login credentials': 'بيانات تسجيل الدخول غير صحيحة.',
     'user_is_banned': 'لقد تم حظر حسابك.',
     'are_you_sure_logout': 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
     'password_updated_successfully_response': 'تم تعديل كلمة المرور بنجاح.',
@@ -134,6 +134,10 @@ class Arabic {
         'تم رفض أذونات الموقع. يرجى تفعيل أذونات الموقع.',
     'Location_permissions_denied_request_permissions.':
         'تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.',
+    'data_loading_error':
+        'حدث خطأ أثناء تحميل البيانات. يرجى المحاولة مرة أخرى.',
+    'An error occurred:': 'حدث خطأ:',
+    'session_is_null' : 'تعذر الحصول على معلومات الجلسة.',
 
     /// وقت وتاريخ
     'today': 'اليوم',

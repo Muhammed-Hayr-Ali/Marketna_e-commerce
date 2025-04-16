@@ -1,5 +1,5 @@
 class AppStorageKey {
   AppStorageKey._();
 
-  static const String firstTime = 'first Time';
+  static const String firstTimeLaunch = 'firstTimeLaunch';
 }

@@ -28,6 +28,10 @@ class ManageAddressesController extends GetxController {
 
       // Update the addresses list with the fetched data
       addresses.assignAll(response.map((e) => Address.fromJson(e)));
+    } catch (error) {
+      // Handle errors and show error notification
+      CustomNotification.showSnackbar(message: 'data_loading_error');
+      debugPrint(error.toString());
     } finally {
       // Set loading state to false
       isLoading.value = false;

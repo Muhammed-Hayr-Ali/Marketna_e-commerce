@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomText(
-                                    _main.getUserName(_.user),
+                                    _main.getAvatarUrl(_.user!.appMetadata)?? '',
                                     fontSize: 22,
                                     fontWeight: FontWeight.w500,
                                   ),

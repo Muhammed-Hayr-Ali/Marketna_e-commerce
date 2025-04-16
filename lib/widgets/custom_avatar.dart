@@ -72,7 +72,7 @@ class CustomAvatar extends StatelessWidget {
   }
 
   Widget _getImageWidget() {
-    if (path == null || path!.isEmpty) {
+    if (path == null || path == null) {
       return _defaultAvatar();
     }
 

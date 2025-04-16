@@ -11,7 +11,7 @@ class EditProfileScreen extends StatelessWidget {
   }
 
   void _selectDate() async {
-    final result = await _main.openDateBirth(initialDate: _.dateBirth);
+    final result = await _main.openDateOfBirth(initialDate: _.dateBirth);
     if (result == null) return;
     debugPrint(result.toString());
     _.updateDateBirth(result.toString().substring(0, 10));
@@ -58,8 +58,9 @@ class EditProfileScreen extends StatelessWidget {
                           CustomAvatar(
                             sourceImage: SourceImage.networkImage,
                             size: 100,
-                            path: _main.getAvatarUrl(_.user!.userMetadata!),
-                            onTap: _.selectImage,
+                            path:
+                                _main.getAvatarUrl(_.user!.userMetadata!),
+                            onTap: _.selectImageSource,
                             childColor: Colors.grey.shade200,
                             child: SvgPicture.asset(
                               AppAssets.camera,
@@ -89,7 +90,6 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 20),
-
                 Form(
                   key: _.formKey,
                   child: GetBuilder<EditProfileController>(
@@ -122,7 +122,7 @@ class EditProfileScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                   ),
                                   GestureDetector(
-                                    onTap: _.copyToClipboard,
+                                    onTap: _.copyEmailToClipboard,
                                     child: Icon(Icons.copy),
                                   ),
                                 ],

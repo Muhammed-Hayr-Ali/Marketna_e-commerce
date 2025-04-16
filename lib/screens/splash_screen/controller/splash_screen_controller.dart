@@ -11,64 +11,113 @@ class SplashScreenController extends GetxController {
     initializeApp();
   }
 
+  /// Initializes the application by checking the internet connection and
+  /// handling the first launch of the app (by navigating to the onboarding
+  /// screen if it is the first time the app is launched). If an error occurs
+  /// during the initialization, it will be handled by the [_handleError]
+  /// method.
+  ///
+  /// This method is called when the controller is initialized, and it is
+  /// expected to be called only once.
   Future<void> initializeApp() async {
     try {
       loading.value = true;
-      await _checkInternetConnection();
-      await _handleFirstTimeLaunch();
+      await _checkInternet();
+      await _handleFirstLaunch();
     } catch (error) {
-      _handleInitializationError(error);
+      _handleError(error);
     } finally {}
   }
 
-  Future<void> _checkInternetConnection() async {
-    debugPrint('Checking internet connection...');
-    final isConnected = await InternetConnectionChecker.instance.hasConnection;
-    if (!isConnected) {
-      loading.value = false;
-      throw Exception('no_internet_connection'); // لإيقاف عملية التهيئة
-    }
+  /// Checks if there is an internet connection available.
+  ///
+  /// If there is no internet connection available, it will throw an
+  /// [Exception] with the message 'No internet connection'. If there is an
+  /// internet connection available, this method will just return without
+  /// throwing any exceptions.
+  ///
+  /// When this method is called, it will set the [loading] variable to false,
+  /// so the loading indicator will be hidden.
+  Future<void> _checkInternet() async {
+  final hasInternetConnection = await InternetConnectionChecker.instance.hasConnection;
+  if (!hasInternetConnection) {
+    loading.value = false;
+    throw Exception('No internet connection');
   }
+}
 
-  Future<void> _handleFirstTimeLaunch() async {
-    debugPrint('Checking first time launch...');
-    final isFirstTime = await localStorage.read(
-      key: AppStorageKey.firstTime,
+  /// Checks if the app is launched for the first time and navigates to the
+  /// onboarding screen if it is the first time, or checks if the user is
+  /// authenticated if it is not the first time.
+  ///
+  /// If the app is launched for the first time, this method will navigate to
+  /// the onboarding screen and set the first time launch flag to false in
+  /// the local storage. If the app is not launched for the first time, this
+  /// method will check if the user is authenticated and navigate to the main
+  /// screen if the user is authenticated, or navigate to the login screen if
+  /// the user is not authenticated.
+  Future<void> _handleFirstLaunch() async {
+    final isFirstTimeLaunch = await localStorage.read<bool>(
+      key: AppStorageKey.firstTimeLaunch,
       defaultValue: true,
     );
-    if (isFirstTime == true) {
+    if (isFirstTimeLaunch == null || isFirstTimeLaunch) {
       _navigateToScreen(AppRoutes.onboardingScreen);
-      await localStorage.write(key: AppStorageKey.firstTime, value: false);
+      await localStorage.write(
+        key: AppStorageKey.firstTimeLaunch,
+        value: false,
+      );
     } else {
-      _checkAuthentication();
+      await _checkAuthentication();
     }
   }
 
+  /// Checks if the user is authenticated and navigates to the main screen
+  /// if authenticated, or the login screen if not authenticated.
+  ///
+  /// This method will try to fetch the user from the Supabase client. If the
+  /// user is found, it will navigate to the main screen. If the user is not
+  /// found, it will navigate to the login screen instead.
   Future<void> _checkAuthentication() async {
-    debugPrint('Checking authentication...');
-    bool isAuth = await _fetchUserIdentities();
-    _navigateToScreen(isAuth ? AppRoutes.mainScreen : AppRoutes.loginScreen);
+    final isAuthenticated = await _hasAuthenticatedUser();
+    _navigateToScreen(isAuthenticated ? AppRoutes.mainScreen : AppRoutes.loginScreen);
   }
 
-  Future<bool> _fetchUserIdentities() async {
-    debugPrint('Fetching user identities...');
+  /// Checks if the user is authenticated.
+  ///
+  /// This method will try to fetch the user from the Supabase client. If the
+  /// user is found, it will return true. If the user is not found, it will
+  /// return false and print an error message to the console.
+  ///
+  /// This method is used to check if the user is authenticated before
+  /// navigating to the main screen. If the user is not authenticated, it
+  /// will navigate to the login screen instead.
+  Future<bool> _hasAuthenticatedUser() async {
     try {
-      final identities = await supabase.auth.getUserIdentities();
-      debugPrint('User identities fetched successfully');
-      return identities.isNotEmpty;
+     await supabase.auth.getUser();
+      return true;
     } on AuthException catch (e) {
-      debugPrint('Error fetching user identities: ${e.message}');
+      debugPrint('Error fetching user: ${e.message}');
       return false;
     }
   }
 
-  void _navigateToScreen(String route) {
-    debugPrint('Navigating to $route...');
-    Get.offAllNamed(route);
+/// Navigates to the specified route using GetX's `Get.offAllNamed` method.
+/// 
+/// This method will remove all existing routes from the stack and replace
+/// them with the new route specified by [routeName]. It is typically used
+/// for navigating to a new screen and clearing the navigation history so
+/// that the user cannot go back to the previous screens.
+/// 
+/// - Parameter routeName: The name of the route to navigate to.
+
+  void _navigateToScreen(String routeName) {
+    Get.offAllNamed(routeName);
   }
 
-  void _handleInitializationError(Object error) {
-    debugPrint('Error initializing app: $error');
+  /// Handles any errors that occur during the initialization of the app.
+  /// If an error occurs, a snackbar with the error message is displayed.
+  void _handleError(dynamic error) {
     CustomNotification.showSnackbar(message: error.toString());
   }
 

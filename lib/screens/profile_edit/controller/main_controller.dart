@@ -6,11 +6,18 @@ class EditProfileMainController {
   final supabase = Supabase.instance.client;
   final GetStorage _storage = GetStorage();
 
-  String getAvatarUrl(Map<String, dynamic> userMetadata) {
+  /// Gets the avatar URL from the user's metadata.
+  ///
+  /// This function takes a [Map] of user metadata and returns the value of the
+  /// 'avatarUrl', 'picture', or 'avatar_url' key. If none of these keys is
+  /// present, it returns an empty string.
+  ///
+  /// [userMetadata] A map of user metadata as returned by the Supabase client.
+  /// [returns] The avatar URL or an empty string if none is present.
+  String? getAvatarUrl(Map<String, dynamic> userMetadata) {
     return userMetadata['avatar'] ??
-        userMetadata['picture'] ??
         userMetadata['avatar_url'] ??
-        '';
+        userMetadata['picture'];
   }
 
   String getUserName(User? user) {
@@ -23,12 +30,33 @@ class EditProfileMainController {
         '';
   }
 
+  /*************  ✨ Windsurf Command ⭐  *************/
+  /// Returns the file extension of the given [fileName].
+  ///
+  /// This function takes a file name and returns its extension. If the file name
+  /// does not contain a '.', it returns an empty string.
+  ///
+  /// [fileName] A file name.
+  /// [returns] The file extension or an empty string if none is present.
+  /// *****  ee203165-c947-4d1c-8a8d-5e5469f985a8  ******
+  String getFileExtension(String fileName) {
+    final split = fileName.split('.');
+    return split.length > 1 ? '.${split.last}' : '';
+  }
+
+  /// Removes the text after the '@' symbol in the given input string.
+  ///
+  /// This function searches for the '@' character in the input string.
+  /// If found, it returns the substring from the beginning of the input
+  /// up to (but not including) the '@' character. If the '@' character
+  /// is not found, it returns the input string unchanged.
+  ///
+  /// - Parameter input: The string to process.
+  /// - Returns: The substring before the '@' character, or the original
+  ///   string if '@' is not present.
   String removeTextAfterAt(String input) {
-    int atIndex = input.indexOf('@');
-    if (atIndex != -1) {
-      return input.substring(0, atIndex);
-    }
-    return input;
+    final atIndex = input.indexOf('@');
+    return atIndex == -1 ? input : input.substring(0, atIndex);
   }
 
   void updateProfileError(String account) {
@@ -38,9 +66,28 @@ class EditProfileMainController {
     );
   }
 
-  DateTimePickerLocale getLocale() {
-    final locale = _storage.read('locale') ?? Get.deviceLocale!.languageCode;
-    switch (locale) {
+  /// Retrieves the locale setting for the DateTimePicker.
+  ///
+  /// This function reads the locale code from local storage. If no locale code
+  /// is stored, it defaults to the device's language code. It then maps the
+  /// locale code to a corresponding `DateTimePickerLocale` value.
+  ///
+  /// Supported locale codes include:
+  /// - 'ar' for Arabic
+  /// - 'en' for English (United States)
+  /// - 'fr' for French
+  /// - 'de' for German
+  /// - 'tr' for Turkish
+  ///
+  /// If the locale code is not recognized, it defaults to English (United States).
+  ///
+  /// Returns a `DateTimePickerLocale` corresponding to the stored or device locale.
+
+  DateTimePickerLocale _getLocale() {
+    final String localeCode =
+        _storage.read<String>('locale') ?? Get.deviceLocale!.languageCode;
+
+    switch (localeCode) {
       case 'ar':
         return DateTimePickerLocale.ar;
       case 'en':
@@ -56,33 +103,43 @@ class EditProfileMainController {
     }
   }
 
+  /// Displays a bottom sheet for selecting an image source.
+  ///
+  /// This function presents a bottom sheet with options to select an image
+  /// from the camera, the gallery, or to delete the image. It returns a
+  /// [Future] that resolves with the user's selection as a string: 'camera',
+  /// 'gallery', or 'delete'.
+  ///
+  /// Returns a [Future<String?>] that resolves to the selected image source
+  /// or null if no selection is made.
+
   Future<String?> openSelectImageSource() async {
-    return await custombottomSheet(
+    return custombottomSheet(
       title: 'select_image_source',
       children: [
         CustomButton(
           width: double.infinity,
           onPressed: () => Get.back(result: 'camera'),
-          child: CustomText('camera', fontSize: 12),
+          child: const CustomText('camera', fontSize: 12),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
           onPressed: () => Get.back(result: 'gallery'),
-          child: CustomText('gallery', fontSize: 12),
+          child: const CustomText('gallery', fontSize: 12),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
           onPressed: () => Get.back(result: 'delete'),
-          child: CustomText('delete_image', fontSize: 12),
+          child: const CustomText('delete_image', fontSize: 12),
         ),
       ],
     );
   }
 
   Future<String> openGenderBottomSheet(String? value) async {
-    return await custombottomSheet(
+    return await custombottomSheet<String?>(
           title: 'select_gender',
           children: [
             TextButton(
@@ -120,14 +177,28 @@ class EditProfileMainController {
         'not_specified';
   }
 
-  Future<DateTime?> openDateBirth({String? initialDate}) {
-    final Completer<DateTime> completer = Completer<DateTime>();
+  /// Opens a bottom sheet with a date picker and a confirm button.
+  ///
+  /// The picker is limited to dates between 1920 and 10 years ago.
+  /// The initial date is either the [initialDate] parameter or the current date.
+  ///
+  /// When the user selects a date and clicks the confirm button, the future
+  /// returned by this function completes with the selected date.
+  ///
+  /// If the user cancels the bottom sheet, the future completes with null.
+  ///
+  /// The bottom sheet is decorated with the 'choose_your_date_of_birth' title.
+  ///
+  Future<DateTime?> openDateOfBirth({String? initialDate}) {
+    final completer = Completer<DateTime>();
     DateTime? selectedDate;
 
     custombottomSheet(
       title: 'choose_your_date_of_birth',
       children: [
         DatePickerWidget(
+          locale: _getLocale(),
+          looping: false,
           firstDate: DateTime(1920),
           lastDate: DateTime.now().subtract(const Duration(days: 365 * 10)),
           initialDate:
@@ -136,9 +207,7 @@ class EditProfileMainController {
                   : DateTime.now(),
           dateFormat: 'yyyy-MM-dd',
           pickerTheme: DateTimePickerTheme(),
-          onChange: (DateTime date, _) {
-            selectedDate = date;
-          },
+          onChange: (date, _) => selectedDate = date,
         ),
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -146,7 +215,7 @@ class EditProfileMainController {
             width: double.infinity,
             onPressed: () {
               if (selectedDate != null) {
-                completer.complete(selectedDate!);
+                completer.complete(selectedDate);
               }
               Get.back();
             },

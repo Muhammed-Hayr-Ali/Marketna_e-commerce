@@ -110,6 +110,7 @@ class AddAddressController extends GetxController {
     } catch (error) {
       // Handle errors and show error notification
       CustomNotification.showSnackbar(message: 'data_sending_error');
+      debugPrint(error.toString());
     } finally {
       // Set loading state to false
       isLoading.value = false;
