@@ -32,7 +32,7 @@ class LoginController extends GetxController {
     loginWithIsLoading.value = true;
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn(
-        serverClientId: AppConstants.webClientId,
+        serverClientId: Keys.WEB_CLIENT_ID,
       );
       final googleUser = await googleSignIn.signIn();
       final googleAuth = await googleUser!.authentication;

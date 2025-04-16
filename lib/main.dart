@@ -7,8 +7,8 @@ void main() async {
   await GetStorage.init();
   /// Initialize Supabase
   await Supabase.initialize(
-    url: AppConstants.url,
-    anonKey: AppConstants.anonKey,
+    url: Keys.URL,
+    anonKey: Keys.ANON_KEY,
   );
   runApp(const MyApp());
 }
