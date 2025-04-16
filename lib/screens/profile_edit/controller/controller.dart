@@ -50,16 +50,16 @@ class EditProfileController extends GetxController {
     email = currentUser.email;
 
     // Set the country code to the user's country code
-    countryCode = userMetadata?[AppConstants.COUNTRY_CODE];
+    countryCode = userMetadata?[AppConstants.COUNTRY_CODE] ?? '';
 
     // Set the phone controller text to the user's phone number
-    phoneController.text = userMetadata?[AppConstants.PHONE];
+    phoneController.text = userMetadata?[AppConstants.PHONE] ?? '';
 
     // Set the gender to the user's gender
-    gender = userMetadata?[AppConstants.GENDER];
+    gender = userMetadata?[AppConstants.GENDER] ?? '';
 
     // Set the date of birth to the user's date of birth
-    dateBirth = userMetadata?[AppConstants.DATE_BIRTH];
+    dateBirth = userMetadata?[AppConstants.DATE_BIRTH] ?? '';
 
     // Update the UI
     update();

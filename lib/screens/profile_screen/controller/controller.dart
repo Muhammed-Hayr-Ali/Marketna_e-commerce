@@ -18,10 +18,6 @@ class ProfileController extends GetxController {
     initializeUser();
   }
 
-
-
-
-
   /// Signs the user out of the application.
   ///
   /// This function first prompts the user to confirm whether they want to sign out.
@@ -53,8 +49,6 @@ class ProfileController extends GetxController {
       isLoading.value = false;
     }
   }
-
-
 
   /// Initializes the current user.
   ///

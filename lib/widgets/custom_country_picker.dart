@@ -249,9 +249,14 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                     fontWeight: FontWeight.w500,
                   )
                   : CustomText(
-                    widget.initCode ?? '+963',
+                    widget.initCode == '' || widget.initCode == null
+                        ? '+963'
+                        : widget.initCode!,
                     fontWeight: FontWeight.w500,
-                    color: widget.initCode == null ? Colors.grey : Colors.black,
+                    color:
+                        widget.initCode == '' || widget.initCode == null
+                            ? Colors.grey
+                            : Colors.black,
                   ),
         ),
       ),

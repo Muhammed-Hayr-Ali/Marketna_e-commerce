@@ -72,8 +72,9 @@ class ProfileScreen extends StatelessWidget {
                     title: 'my_addresses',
                     icon: AppAssets.mapPoint,
                     onTap:
-                        () =>
-                            _.navigateToScreen(AppRoutes.MANAGER_ADDRESSES_SCREEN),
+                        () => _.navigateToScreen(
+                          AppRoutes.MANAGER_ADDRESSES_SCREEN,
+                        ),
                   ),
                   MenuItem(
                     title: 'my_orders',

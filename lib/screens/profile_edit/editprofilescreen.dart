@@ -58,8 +58,9 @@ class EditProfileScreen extends StatelessWidget {
                           CustomAvatar(
                             sourceImage: SourceImage.networkImage,
                             size: 100,
-                            path:
-                                DataConverter.getAvatarUrl(_.user!.userMetadata!),
+                            path: DataConverter.getAvatarUrl(
+                              _.user!.userMetadata!,
+                            ),
                             onTap: _.selectImageSource,
                             childColor: Colors.grey.shade200,
                             child: SvgPicture.asset(
@@ -172,9 +173,11 @@ class EditProfileScreen extends StatelessWidget {
                                     width: double.infinity,
                                     label: 'gender'.tr,
                                     child: CustomText(
-                                      (_.gender ?? 'not_specified').tr,
+                                      (_.gender == null || _.gender == '')
+                                          ? 'not_specified'
+                                          : _.gender!,
                                       color:
-                                          _.gender == null
+                                          (_.gender == null || _.gender == '')
                                               ? Colors.grey
                                               : Colors.black,
                                       fontWeight: FontWeight.w500,
@@ -191,9 +194,12 @@ class EditProfileScreen extends StatelessWidget {
                                     width: double.infinity,
                                     label: 'date_of_birth'.tr,
                                     child: CustomText(
-                                      _.dateBirth ?? 'dd-mm-yyyy',
+                                      (_.dateBirth == null || _.dateBirth == '')
+                                          ? 'dd-mm-yyyy'
+                                          : _.dateBirth!,
                                       color:
-                                          _.dateBirth == null
+                                          (_.dateBirth == null ||
+                                                  _.dateBirth == '')
                                               ? Colors.grey
                                               : Colors.black,
                                       fontWeight: FontWeight.w500,

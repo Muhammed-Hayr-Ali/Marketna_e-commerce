@@ -2,8 +2,8 @@ import 'package:application/utils/import.dart';
 
 class ManageAddressesController extends GetxController {
   final _supabase = Supabase.instance.client;
-  RxBool isLoading = true.obs;
-  var addresses = <Address>[].obs;
+  bool isLoading = true;
+  List<Address> addresses = [];
 
   @override
   void onInit() {
@@ -26,15 +26,21 @@ class ManageAddressesController extends GetxController {
           .select()
           .eq('customer_id', customerId);
 
+      // Check if the response is empty
+      if (response.isEmpty) return;
+
       // Update the addresses list with the fetched data
-      addresses.assignAll(response.map((e) => Address.fromJson(e)));
+      addresses = List<Address>.from(
+        response.map((address) => Address.fromJson(address)),
+      );
     } catch (error) {
       // Handle errors and show error notification
       CustomNotification.showSnackbar(message: 'data_loading_error');
       debugPrint(error.toString());
     } finally {
       // Set loading state to false
-      isLoading.value = false;
-    }
+      isLoading = false;
+        update();
+  }
   }
 }

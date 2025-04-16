@@ -5,10 +5,6 @@ class ManageAddressesScreen extends StatelessWidget {
 
   final _ = Get.put(ManageAddressesController());
 
-  void _navigateToScreen(String route) {
-    Get.toNamed(route);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,27 +18,29 @@ class ManageAddressesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Obx(
-          () =>
-              _.isLoading.value
-                  ? const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2.0),
-                  )
-                  : _.addresses.isEmpty
-                  ? noAddressesWidget()
-                  : ListView.builder(
-                    itemCount: _.addresses.length,
-                    itemBuilder:
-                        (context, index) => AddressCard(
-                          addressName: _.addresses[index].addressName,
-                          streetAddress: _.addresses[index].streetAddress,
-                          city: _.addresses[index].city,
-                          stateProvince: _.addresses[index].stateProvince,
-                          country: _.addresses[index].country,
-                          phoneNumber: _.addresses[index].phoneNumber,
-                          notes: _.addresses[index].notes,
-                        ),
-                  ),
+        child: GetBuilder<ManageAddressesController>(
+          init: ManageAddressesController(),
+          builder:
+              (_) =>
+                  _.isLoading
+                      ? const Center(
+                        child: CircularProgressIndicator(strokeWidth: 2.0),
+                      )
+                      : _.addresses.isEmpty
+                      ? noAddressesWidget()
+                      : ListView.builder(
+                        itemCount: _.addresses.length,
+                        itemBuilder:
+                            (context, index) => AddressCard(
+                              addressName: _.addresses[index].addressName,
+                              streetAddress: _.addresses[index].streetAddress,
+                              city: _.addresses[index].city,
+                              stateProvince: _.addresses[index].stateProvince,
+                              country: _.addresses[index].country,
+                              phoneNumber: _.addresses[index].phoneNumber,
+                              notes: _.addresses[index].notes,
+                            ),
+                      ),
         ),
       ),
     );
