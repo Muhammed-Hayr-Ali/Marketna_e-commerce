@@ -64,7 +64,7 @@ class UpdatePasswordController extends GetxController {
       await supabase.auth.signOut();
 
       // Navigate to the login screen
-      Get.offAllNamed(AppRoutes.loginScreen);
+      Get.offAllNamed(AppRoutes.LOGIN_SCREEN);
 
       // Show a success message
       CustomNotification.showSnackbar(

@@ -28,7 +28,7 @@ class ForgotPasswordController extends GetxController {
       await supabase.auth.resetPasswordForEmail(emailController.text.trim());
       // Navigate to the update password route
       Get.toNamed(
-        AppRoutes.updatePassword,
+        AppRoutes.UPDATE_PASSWORD,
         arguments: {'email': emailController.text},
       );
     } on AuthException catch (error) {

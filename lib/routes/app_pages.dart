@@ -3,32 +3,32 @@ import 'package:application/utils/import.dart';
 class RouteGet {
   static final List<GetPage> getPages = [
     GetPage(
-      name: AppRoutes.splashScreen,
+      name: AppRoutes.SPLASH_SCREEN,
       page: () => SplashScreen(),
       binding: SplashScreenBinding(),
     ),
 
-    GetPage(name: AppRoutes.loginScreen, page: () => LoginScreen()),
-    GetPage(name: AppRoutes.registerScreen, page: () => SignUpScreen()),
-    GetPage(name: AppRoutes.forgotPassword, page: () => ForgotPasswordScreen()),
-    GetPage(name: AppRoutes.updatePassword, page: () => UpdatePasswordScreen()),
-    GetPage(name: AppRoutes.onboardingScreen, page: () => OnboardingScreen()),
+    GetPage(name: AppRoutes.LOGIN_SCREEN, page: () => LoginScreen()),
+    GetPage(name: AppRoutes.REGISTER_SCREEN, page: () => SignUpScreen()),
+    GetPage(name: AppRoutes.FORGOT_PASSWORD, page: () => ForgotPasswordScreen()),
+    GetPage(name: AppRoutes.UPDATE_PASSWORD, page: () => UpdatePasswordScreen()),
+    GetPage(name: AppRoutes.ONBOARDING_SCREEN, page: () => OnboardingScreen()),
 
-    GetPage(name: AppRoutes.mainScreen, page: () => MainScreen()),
+    GetPage(name: AppRoutes.MAIN_SCREEN, page: () => MainScreen()),
 
-    GetPage(name: AppRoutes.homeScreen, page: () => HomeScreen()),
-    GetPage(name: AppRoutes.favoriteScreen, page: () => FavoriteScreen()),
-    GetPage(name: AppRoutes.cartScreen, page: () => CartScreen()),
+    GetPage(name: AppRoutes.HOME_SCREEN, page: () => HomeScreen()),
+    GetPage(name: AppRoutes.FAVORITE_SCREEN, page: () => FavoriteScreen()),
+    GetPage(name: AppRoutes.CART_SCREEN, page: () => CartScreen()),
     GetPage(
-      name: AppRoutes.notificationScreen,
+      name: AppRoutes.NOTIFICATION_SCREEN,
       page: () => NotificationScreen(),
     ),
-    GetPage(name: AppRoutes.profileScreen, page: () => ProfileScreen()),
-    GetPage(name: AppRoutes.editProfileScreen, page: () => EditProfileScreen()),
+    GetPage(name: AppRoutes.PROFILE_SCREEN, page: () => ProfileScreen()),
+    GetPage(name: AppRoutes.EDIT_PROFILE_SCREEN, page: () => EditProfileScreen()),
     GetPage(
-      name: AppRoutes.manageAddressesScreen,
+      name: AppRoutes.MANAGER_ADDRESSES_SCREEN,
       page: () => ManageAddressesScreen(),
     ),
-    GetPage(name: AppRoutes.addAddressesScreen, page: () => AddAddressScreen()),
+    GetPage(name: AppRoutes.ADD_ADDRESSES_SCREEN, page: () => AddAddressScreen()),
   ];
 }

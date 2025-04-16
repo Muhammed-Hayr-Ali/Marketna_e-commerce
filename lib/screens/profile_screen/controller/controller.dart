@@ -39,7 +39,7 @@ class ProfileController extends GetxController {
     try {
       // Attempt to sign the user out using the Supabase client
       await _supabase.auth.signOut();
-      Get.offAllNamed(AppRoutes.loginScreen);
+      Get.offAllNamed(AppRoutes.LOGIN_SCREEN);
     } on AuthException catch (error) {
       // Handle authentication errors
       CustomNotification.showSnackbar(message: error.message);

@@ -37,7 +37,7 @@ class _OnboardingState extends State<OnboardingScreen> {
   }
 
   void _auth() async {
-    Get.offAllNamed(AppRoutes.loginScreen);
+    Get.offAllNamed(AppRoutes.LOGIN_SCREEN);
   }
 
   @override

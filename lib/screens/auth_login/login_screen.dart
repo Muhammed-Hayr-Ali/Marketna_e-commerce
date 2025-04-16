@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap:
-                              () => _navigateToScreen(AppRoutes.forgotPassword),
+                              () => _navigateToScreen(AppRoutes.FORGOT_PASSWORD),
                           child: CustomText(
                             'forgot_password'.tr,
                             fontSize: 12,
@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                     CustomText('dont_have_account'.tr, fontSize: 12),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: () => _navigateToScreen(AppRoutes.registerScreen),
+                      onTap: () => _navigateToScreen(AppRoutes.REGISTER_SCREEN),
                       child: CustomText(
                         'sign_up'.tr,
                         fontSize: 12,

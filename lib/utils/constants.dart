@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-class AppConstants {
+abstract class AppConstants {
   // ==============================
   // **App**
   // ==============================
@@ -57,4 +57,5 @@ class AppConstants {
   static const String PHONE = 'phone';
   static const String GENDER = 'gender';
   static const String DATE_BIRTH = 'date_birth';
+
 }

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       locale: LocalizationController().language,
  
       getPages: RouteGet.getPages,
-      initialRoute: AppRoutes.splashScreen,
+      initialRoute: AppRoutes.SPLASH_SCREEN,
     );
   }
 }

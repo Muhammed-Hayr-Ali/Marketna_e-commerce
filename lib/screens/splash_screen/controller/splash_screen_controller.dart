@@ -62,7 +62,7 @@ class SplashScreenController extends GetxController {
       defaultValue: true,
     );
     if (isFirstTimeLaunch == null || isFirstTimeLaunch) {
-      _navigateToScreen(AppRoutes.onboardingScreen);
+      _navigateToScreen(AppRoutes.ONBOARDING_SCREEN);
       await localStorage.write(
         key: AppStorageKey.firstTimeLaunch,
         value: false,
@@ -80,7 +80,7 @@ class SplashScreenController extends GetxController {
   /// found, it will navigate to the login screen instead.
   Future<void> _checkAuthentication() async {
     final isAuthenticated = await _hasAuthenticatedUser();
-    _navigateToScreen(isAuthenticated ? AppRoutes.mainScreen : AppRoutes.loginScreen);
+    _navigateToScreen(isAuthenticated ? AppRoutes.MAIN_SCREEN : AppRoutes.LOGIN_SCREEN);
   }
 
   /// Checks if the user is authenticated.

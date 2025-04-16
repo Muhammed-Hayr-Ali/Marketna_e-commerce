@@ -39,7 +39,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       body: Navigator(
         key: Get.nestedKey(1),
-        initialRoute: AppRoutes.homeScreen,
+        initialRoute: AppRoutes.HOME_SCREEN,
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
       bottomNavigationBar: Obx(() {

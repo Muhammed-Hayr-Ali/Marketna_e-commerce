@@ -66,14 +66,14 @@ class ProfileScreen extends StatelessWidget {
                     title: 'edit_profile',
                     icon: AppAssets.profile,
                     onTap:
-                        () => _.navigateToScreen(AppRoutes.editProfileScreen),
+                        () => _.navigateToScreen(AppRoutes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
                     title: 'my_addresses',
                     icon: AppAssets.mapPoint,
                     onTap:
                         () =>
-                            _.navigateToScreen(AppRoutes.manageAddressesScreen),
+                            _.navigateToScreen(AppRoutes.MANAGER_ADDRESSES_SCREEN),
                   ),
                   MenuItem(
                     title: 'my_orders',
