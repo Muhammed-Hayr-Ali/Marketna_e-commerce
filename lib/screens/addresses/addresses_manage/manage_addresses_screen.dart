@@ -1,4 +1,3 @@
-import 'package:application/screens/addresses/addresses_manage/widgets/address_card.dart';
 import 'package:application/utils/import.dart';
 
 class ManageAddressesScreen extends StatelessWidget {
@@ -8,62 +7,6 @@ class ManageAddressesScreen extends StatelessWidget {
 
   void _navigateToScreen(String route) {
     Get.toNamed(route);
-  }
-
-Widget noAddressesWidget() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(AppAssets.noLocation, width: Get.width * 0.4),
-          const SizedBox(height: 24),
-          const CustomText('no_addresses', fontSize: 18),
-          const SizedBox(height: 16),
-          CustomButton(
-            width: 200,
-            buttonColor: AppColors.primaryColor,
-            child: CustomText('add_new_address', color: AppColors.white),
-            onPressed: () => _navigateToScreen(AppRoutes.ADD_ADDRESSES_SCREEN),
-          ),
-        ],
-      ),
-    );
-  }
-  /// A widget for displaying an address card with all of its details.
-  ///
-  /// This widget takes an [AddressModel] and displays its details in a card.
-  /// It shows the address name, street address, city, state/province, country, phone
-  /// number, notes, and location (latitude and longitude).
-  ///
-  /// The purpose of this widget is to provide a quick way to display an address
-  Widget addressesWidget(Address address) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-
-      child: Column(
-        children: [
-          const CustomText('address_name'),
-          CustomText(address.addressName ?? ''),
-          const CustomText('street_address'),
-          CustomText(address.streetAddress ?? ''),
-          const CustomText('city'),
-          CustomText(address.city ?? ''),
-          const CustomText('state/province'),
-          CustomText(address.stateProvince ?? ''),
-          const CustomText('country'),
-          CustomText(address.country ?? ''),
-          const CustomText('phone_number'),
-          CustomText(address.countryCode ?? ''),
-          CustomText(address.phoneNumber ?? ''),
-          const CustomText('notes'),
-          CustomText(address.notes ?? ''),
-          const CustomText('location'),
-          CustomText('latitude ${address.location!['latitude']}'),
-          CustomText('longitude ${address.location!['longitude']}'),
-        ],
-      ),
-    );
   }
 
   @override
@@ -79,39 +22,27 @@ Widget noAddressesWidget() {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: Obx(
-                () =>
-                    _.isLoading.value
-                        ? const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2.0),
-                        )
-                        : _.addresses.isEmpty
-                        ? noAddressesWidget()
-                        : ListView.builder(
-                          itemCount: _.addresses.length,
-                          itemBuilder:
-                              (context, index) => AddressCard(
-                                addressName: _.addresses[index].addressName,
-                                streetAddress: _.addresses[index].streetAddress,
-                                city: _.addresses[index].city,
-                                stateProvince: _.addresses[index].stateProvince,
-                                country: _.addresses[index].country,
-                                phoneNumber: _.addresses[index].phoneNumber,
-                                notes: _.addresses[index].notes,
-                              ),
+        child: Obx(
+          () =>
+              _.isLoading.value
+                  ? const Center(
+                    child: CircularProgressIndicator(strokeWidth: 2.0),
+                  )
+                  : _.addresses.isEmpty
+                  ? noAddressesWidget()
+                  : ListView.builder(
+                    itemCount: _.addresses.length,
+                    itemBuilder:
+                        (context, index) => AddressCard(
+                          addressName: _.addresses[index].addressName,
+                          streetAddress: _.addresses[index].streetAddress,
+                          city: _.addresses[index].city,
+                          stateProvince: _.addresses[index].stateProvince,
+                          country: _.addresses[index].country,
+                          phoneNumber: _.addresses[index].phoneNumber,
+                          notes: _.addresses[index].notes,
                         ),
-              ),
-            ),
-            CustomButton(
-              width: double.infinity,
-              buttonColor: AppColors.primaryColor,
-              child: CustomText('add_new_address', color: AppColors.white),
-              onPressed: () => _navigateToScreen(AppRoutes.ADD_ADDRESSES_SCREEN),
-            ),
-          ],
+                  ),
         ),
       ),
     );

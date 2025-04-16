@@ -90,6 +90,8 @@ export 'package:application/widgets/custom_notification.dart';
 export 'package:application/widgets/custom_text.dart';
 export 'package:application/widgets/custom_text_field.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:application/screens/addresses/addresses_manage/widgets/address_card.dart';
+export 'package:application/screens/addresses/addresses_manage/widgets/no_addresses.dart';
 // ==============================
 // **External Packages**
 // ==============================
