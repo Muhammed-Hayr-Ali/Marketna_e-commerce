@@ -44,51 +44,54 @@ class _OnboardingState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const SizedBox(),
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (value) {
-                setState(() {
-                  selectedPage = value;
-                });
-              },
-              children: [
-                pageBuilder(
-                  image: AppAssets.onBoarding_1,
-                  title: title_1,
-                  subtitle: subtitle_1,
-                ),
-                pageBuilder(
-                  image: AppAssets.onBoarding_2,
-                  title: title_2,
-                  subtitle: subtitle_2,
-                ),
-                pageBuilder(
-                  image: AppAssets.onBoarding_3,
-                  title: title_3,
-                  subtitle: subtitle_3,
-                ),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(),
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (value) {
+                  setState(() {
+                    selectedPage = value;
+                  });
+                },
+                children: [
+                  pageBuilder(
+                    image: AppAssets.onBoarding_1,
+                    title: title_1,
+                    subtitle: subtitle_1,
+                  ),
+                  pageBuilder(
+                    image: AppAssets.onBoarding_2,
+                    title: title_2,
+                    subtitle: subtitle_2,
+                  ),
+                  pageBuilder(
+                    image: AppAssets.onBoarding_3,
+                    title: title_3,
+                    subtitle: subtitle_3,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            child: Column(
-              children: [
-                Indicator(selected: selectedPage, length: 3),
-                const SizedBox(height: 20),
-                CustomButton(
-                  width: double.infinity,
-                  onPressed: selectedPage == 2 ? _auth : _next,
-                  child: CustomText(selectedPage == 2 ? login : next),
-                ),
-              ],
+            SizedBox(
+              child: Column(
+                children: [
+                  Indicator(selected: selectedPage, length: 3),
+                  const SizedBox(height: 20),
+                  CustomButton(
+                    width: double.infinity,
+                    onPressed: selectedPage == 2 ? _auth : _next,
+                    child: CustomText(selectedPage == 2 ? login : next),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
