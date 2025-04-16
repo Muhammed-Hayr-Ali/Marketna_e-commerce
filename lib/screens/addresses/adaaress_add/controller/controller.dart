@@ -75,7 +75,7 @@ class AddAddressController extends GetxController {
       );
 
       await _supabase
-          .from(AppConstants.addressesTable)
+          .from(KEYS.addressesTable)
           .insert(addressModel.toJson())
           .whenComplete(() {
             CustomNotification.showSnackbar(

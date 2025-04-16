@@ -15,7 +15,7 @@ class ManageAddressesController extends GetxController {
     try {
       final customerId = _supabase.auth.currentUser!.id;
       final response = await _supabase
-          .from(AppConstants.addressesTable)
+          .from(KEYS.addressesTable)
           .select()
           .eq('customer_id', customerId);
       addresses.value = response.map((e) => AddressModel.fromJson(e)).toList();

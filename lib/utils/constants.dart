@@ -11,14 +11,4 @@ class AppConstants {
   static const String privacypolicy =
       "https://www.freeprivacypolicy.com/live/00f25697-39a1-4cd6-a756-beec184a6055";
 
-  // ==============================
-  // **Storage**
-  // ==============================
-  static const String usersBucket = 'users';
-  static const String profileFolder = 'profile';
-
-  // ==============================
-  // **Table Name**
-  // ==============================
-  static const String addressesTable = 'addresses';
 }

@@ -9,6 +9,7 @@ void main() async {
   await Supabase.initialize(
     url: KEYS.URL,
     anonKey: KEYS.ANON_KEY,
+    debug: true,
   );
   runApp(const MyApp());
 }

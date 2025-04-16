@@ -90,8 +90,8 @@ class EditProfileController extends GetxController {
           _main.getAvatarUrl(user!.userMetadata!).split('/').last;
       final String folderName = user!.id;
       await supabase.storage
-          .from(AppConstants.usersBucket)
-          .remove(['${AppConstants.profileFolder}/$folderName/$fileName'])
+          .from(KEYS.usersBucket)
+          .remove(['${KEYS.profileFolder}/$folderName/$fileName'])
           .whenComplete(
             () async => await supabase.auth.updateUser(
               UserAttributes(data: {'avatar': null}),
@@ -133,18 +133,18 @@ class EditProfileController extends GetxController {
       final String folderName = user!.id;
 
       await supabase.storage
-          .from(AppConstants.usersBucket)
+          .from(KEYS.usersBucket)
           .upload(
-            '${AppConstants.profileFolder}/$folderName/$fileName',
+            '${KEYS.profileFolder}/$folderName/$fileName',
             File(imagePath!),
           )
           .whenComplete(() async {
             debugPrint('Image uploaded successfully');
 
             String url = supabase.storage
-                .from(AppConstants.usersBucket)
+                .from(KEYS.usersBucket)
                 .getPublicUrl(
-                  '${AppConstants.profileFolder}/$folderName/$fileName',
+                  '${KEYS.profileFolder}/$folderName/$fileName',
                 );
 
             await supabase.auth.updateUser(
