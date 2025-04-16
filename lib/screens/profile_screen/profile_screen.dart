@@ -4,7 +4,7 @@ class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
   final _ = Get.put(ProfileController());
-  final _main = ProfileMainController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

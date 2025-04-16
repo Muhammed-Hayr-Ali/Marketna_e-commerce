@@ -35,4 +35,36 @@ class DataConverter {
       userMetadata[AppConstants.USER_NAME] ??
       userMetadata[AppConstants.PREFERRED_USERNAME] ??
       '';
+
+  /// Removes the text after the '@' symbol in the given input string.
+  ///
+  /// This function searches for the '@' character in the input string.
+  /// If found, it returns the substring from the beginning of the input
+  /// up to (but not including) the '@' character. If the '@' character
+  /// is not found, it returns the input string unchanged.
+  ///
+  /// - Parameter input: The string to process.
+  /// - Returns: The substring before the '@' character, or the original
+  ///   string if '@' is not present.
+  static String removeTextAfterAt(String input) {
+    // Find the index of the '@' character in the input string
+    // If '@' is not found, return the original string
+    if (input.isEmpty) return input;
+    if (input.length == 1) return input;
+    if (input == '@') return input;
+    if (input == ' ') return input;
+
+    final atIndex = input.indexOf('@');
+    return atIndex == -1 ? input : input.substring(0, atIndex);
+  }
+
+  /// Returns the file extension of the given file name if it exists, otherwise returns an empty string.
+  ///
+  /// The file extension is the substring after the last '.' character in the file name.
+  /// If the file name does not contain a '.' character, an empty string is returned.
+  ///
+  static String getFileExtension(String fileName) {
+    final split = fileName.split('.');
+    return split.length > 1 ? '.${split.last}' : '';
+  }
 }

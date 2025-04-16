@@ -44,23 +44,22 @@ class EditProfileController extends GetxController {
     user = currentUser;
 
     // Set the name controller text to the user's name
-    nameController.text =
-        DataConverter.getUserName(currentUser.userMetadata!) ?? '';
+    nameController.text = DataConverter.getUserName(currentUser.userMetadata!);
 
     // Set the email field to the user's email
-    email = currentUser.email ?? '';
+    email = currentUser.email;
 
     // Set the country code to the user's country code
-    countryCode = userMetadata?['country_code'] ?? '';
+    countryCode = userMetadata?[AppConstants.COUNTRY_CODE];
 
     // Set the phone controller text to the user's phone number
-    phoneController.text = userMetadata?['phone'] ?? '';
+    phoneController.text = userMetadata?[AppConstants.PHONE];
 
     // Set the gender to the user's gender
-    gender = userMetadata?['gender'] ?? '';
+    gender = userMetadata?[AppConstants.GENDER];
 
     // Set the date of birth to the user's date of birth
-    dateBirth = userMetadata?['date_birth'] ?? '';
+    dateBirth = userMetadata?[AppConstants.DATE_BIRTH];
 
     // Update the UI
     update();
@@ -82,17 +81,17 @@ class EditProfileController extends GetxController {
 
     switch (selectedSource) {
       /// Selects the image from the camera.
-      case 'camera':
+      case AppConstants.CAMERA:
         _selectImageFromCamera();
         break;
 
       /// Selects the image from the gallery.
-      case 'gallery':
+      case AppConstants.GALLERY:
         _selectImageFromGallery();
         break;
 
       /// Deletes the image.
-      case 'delete':
+      case AppConstants.DELETE:
         _deleteImage(true);
         break;
       default:
@@ -185,7 +184,7 @@ class EditProfileController extends GetxController {
           .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
           .whenComplete(
             () async => await supabase.auth.updateUser(
-              UserAttributes(data: {'avatar': null}),
+              UserAttributes(data: {AppConstants.AVATAR: null}),
             ),
           );
 
@@ -223,7 +222,7 @@ class EditProfileController extends GetxController {
 
     imageIsLoading(true);
     try {
-      final String fileExtension = _main.getFileExtension(imagePath!);
+      final String fileExtension = DataConverter.getFileExtension(imagePath!);
       final String fileName = Uuid().v1() + fileExtension;
       final String folderName = user!.id;
 
@@ -240,7 +239,9 @@ class EditProfileController extends GetxController {
           .from(KEYS.USERS_BUCKET)
           .getPublicUrl('${KEYS.PROFILE_FOLDER}/$folderName/$fileName');
 
-      await supabase.auth.updateUser(UserAttributes(data: {'avatar': url}));
+      await supabase.auth.updateUser(
+        UserAttributes(data: {AppConstants.AVATAR: url}),
+      );
     } on StorageException catch (error) {
       // Show an error message if the upload or update process failed
       debugPrint(error.message.toString());
@@ -314,13 +315,12 @@ class EditProfileController extends GetxController {
       await supabase.auth.updateUser(
         UserAttributes(
           data: {
-            'display_name': nameController.text.trim(),
-            'user_name':
-                email == null ? '' : _main.removeTextAfterAt(email!.trim()),
-            'country_code': countryCode,
-            'phone': phoneController.text.trim(),
-            'gender': gender,
-            'date_birth': dateBirth,
+            AppConstants.DISPLAY_NAME: nameController.text.trim(),
+            AppConstants.NAME: DataConverter.removeTextAfterAt(email!.trim()),
+            AppConstants.COUNTRY_CODE: countryCode,
+            AppConstants.PHONE: phoneController.text.trim(),
+            AppConstants.GENDER: gender,
+            AppConstants.DATE_BIRTH: dateBirth,
           },
         ),
       );

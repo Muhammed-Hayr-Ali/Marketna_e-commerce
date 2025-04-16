@@ -7,34 +7,9 @@ class EditProfileMainController {
   final GetStorage _storage = GetStorage();
 
 
-  /*************  ✨ Windsurf Command ⭐  *************/
-  /// Returns the file extension of the given [fileName].
-  ///
-  /// This function takes a file name and returns its extension. If the file name
-  /// does not contain a '.', it returns an empty string.
-  ///
-  /// [fileName] A file name.
-  /// [returns] The file extension or an empty string if none is present.
-  /// *****  ee203165-c947-4d1c-8a8d-5e5469f985a8  ******
-  String getFileExtension(String fileName) {
-    final split = fileName.split('.');
-    return split.length > 1 ? '.${split.last}' : '';
-  }
 
-  /// Removes the text after the '@' symbol in the given input string.
-  ///
-  /// This function searches for the '@' character in the input string.
-  /// If found, it returns the substring from the beginning of the input
-  /// up to (but not including) the '@' character. If the '@' character
-  /// is not found, it returns the input string unchanged.
-  ///
-  /// - Parameter input: The string to process.
-  /// - Returns: The substring before the '@' character, or the original
-  ///   string if '@' is not present.
-  String removeTextAfterAt(String input) {
-    final atIndex = input.indexOf('@');
-    return atIndex == -1 ? input : input.substring(0, atIndex);
-  }
+
+
 
   void updateProfileError(String account) {
     CustomNotification.showSnackbar(
