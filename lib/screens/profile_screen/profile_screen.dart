@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                                 borderWidth: 4.0,
                                 sourceImage: SourceImage.networkImage,
                                 size: 64,
-                                path: ProfileMainController().getAvatarUrl(
+                                path: DataConverter.getAvatarUrl(
                                   _.user!.userMetadata!,
                                 ),
                               ),
@@ -40,7 +40,9 @@ class ProfileScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomText(
-                                    _main.getAvatarUrl(_.user!.appMetadata)?? '',
+                                    DataConverter.getUserName(
+                                      _.user!.userMetadata!,
+                                    ),
                                     fontSize: 22,
                                     fontWeight: FontWeight.w500,
                                   ),

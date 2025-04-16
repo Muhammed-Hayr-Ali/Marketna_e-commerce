@@ -44,7 +44,8 @@ class EditProfileController extends GetxController {
     user = currentUser;
 
     // Set the name controller text to the user's name
-    nameController.text = _main.getUserName(currentUser);
+    nameController.text =
+        DataConverter.getUserName(currentUser.userMetadata!) ?? '';
 
     // Set the email field to the user's email
     email = currentUser.email ?? '';
@@ -169,8 +170,8 @@ class EditProfileController extends GetxController {
     }
 
     // Get the avatar URL from the user's metadata
-    String? avatarUrl = _main.getAvatarUrl(user!.userMetadata!);
-    if (avatarUrl == null || avatarUrl.isEmpty) return;
+    String? avatarUrl = DataConverter.getAvatarUrl(user!.userMetadata!);
+    if (avatarUrl.isEmpty) return;
 
     imageIsLoading(true);
     try {

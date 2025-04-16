@@ -59,7 +59,7 @@ class EditProfileScreen extends StatelessWidget {
                             sourceImage: SourceImage.networkImage,
                             size: 100,
                             path:
-                                _main.getAvatarUrl(_.user!.userMetadata!),
+                                DataConverter.getAvatarUrl(_.user!.userMetadata!),
                             onTap: _.selectImageSource,
                             childColor: Colors.grey.shade200,
                             child: SvgPicture.asset(
