@@ -90,8 +90,8 @@ class EditProfileController extends GetxController {
           _main.getAvatarUrl(user!.userMetadata!).split('/').last;
       final String folderName = user!.id;
       await supabase.storage
-          .from(KEYS.usersBucket)
-          .remove(['${KEYS.profileFolder}/$folderName/$fileName'])
+          .from(KEYS.USERS_BUCKET)
+          .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
           .whenComplete(
             () async => await supabase.auth.updateUser(
               UserAttributes(data: {'avatar': null}),
@@ -133,19 +133,17 @@ class EditProfileController extends GetxController {
       final String folderName = user!.id;
 
       await supabase.storage
-          .from(KEYS.usersBucket)
+          .from(KEYS.USERS_BUCKET)
           .upload(
-            '${KEYS.profileFolder}/$folderName/$fileName',
+            '${KEYS.PROFILE_FOLDER}/$folderName/$fileName',
             File(imagePath!),
           )
           .whenComplete(() async {
             debugPrint('Image uploaded successfully');
 
             String url = supabase.storage
-                .from(KEYS.usersBucket)
-                .getPublicUrl(
-                  '${KEYS.profileFolder}/$folderName/$fileName',
-                );
+                .from(KEYS.USERS_BUCKET)
+                .getPublicUrl('${KEYS.PROFILE_FOLDER}/$folderName/$fileName');
 
             await supabase.auth.updateUser(
               UserAttributes(data: {'avatar': url}),
@@ -165,7 +163,7 @@ class EditProfileController extends GetxController {
   void copyToClipboard() {
     if (email == null) return;
     Clipboard.setData(ClipboardData(text: email ?? ''));
-    CustomNotification.showToast(message: 'Email_copied');
+    CustomNotification.showToast(message: 'email_copied');
   }
 
   void updateGender(String value) {

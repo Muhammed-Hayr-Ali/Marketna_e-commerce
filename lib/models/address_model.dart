@@ -1,4 +1,4 @@
-class AddressModel {
+class Address {
   final String? customerId;
   final String? addressName;
   final String? streetAddress;
@@ -11,7 +11,7 @@ class AddressModel {
   final Map<String, dynamic>? location;
 
   // Constructor to initialize the fields
-  AddressModel({
+  Address({
     this.customerId,
     this.addressName,
     this.streetAddress,
@@ -25,8 +25,8 @@ class AddressModel {
   });
 
   // Factory method to create an instance from a map
-  factory AddressModel.fromJson(Map<String, dynamic> json) {
-    return AddressModel(
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
       customerId: json['customer_id'],
       addressName: json['address_name'],
       streetAddress: json['street_address'],

@@ -1,65 +1,75 @@
 import 'package:application/utils/import.dart';
 
 class AddAddressController extends GetxController {
+  final _supabase = Supabase.instance.client;
   final _ = Get.find<ManageAddressesController>();
 
-  final _supabase = Supabase.instance.client;
   RxBool isLoading = false.obs;
+
   final formKey = GlobalKey<FormState>();
 
+  String? country;
+  String? stateProvince;
+  String? city;
+  String? countryCode;
   final addressNameController = TextEditingController();
   final streetAddressController = TextEditingController();
-  String country = '';
-  String stateProvince = '';
-  String city = '';
-  String? countryCode;
   final phoneNumberController = TextEditingController();
   final notesController = TextEditingController();
+
+  /// Updates the current country code with the given [code].
+  ///
+  /// This function assigns the provided [code] to the `countryCode` field
+  /// and triggers a UI update by calling the `update()` method.
 
   void updateCountryCode(code) {
     countryCode = code;
     update();
   }
 
+  /// Determine the device's current location.
+  ///
+  /// Requests location service to be enabled if it is not already.
+  /// Requests location permission if it is not already granted.
+  ///
+  /// Throws an error string if the location service is not enabled, or if the
+  /// location permission is denied or denied forever.
   Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Unable_Location_services.');
+      throw 'Unable_Location_services.';
     }
 
-    permission = await Geolocator.checkPermission();
+    final permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location_permissions_denied');
+      final requestedPermission = await Geolocator.requestPermission();
+      if (requestedPermission == LocationPermission.denied) {
+        throw 'Location_permissions_denied';
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location_permissions_denied_request_permissions');
+      throw 'Location_permissions_denied_request_permissions';
     }
 
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> addAdress() async {
-    debugPrint('Add New Address');
-
+  Future<void> addAddress() async {
     isLoading.value = true;
 
     final userId = _supabase.auth.currentUser!.id;
 
-    final selectedlocation = await _determinePosition();
+    final position = await _determinePosition();
 
-    if (!formKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) {
+      isLoading.value = false;
+      return;
+    }
 
     try {
-      final AddressModel addressModel = AddressModel(
+      final address = Address(
         customerId: userId,
-
         addressName: addressNameController.text,
         streetAddress: streetAddressController.text,
         city: city,
@@ -69,38 +79,39 @@ class AddAddressController extends GetxController {
         phoneNumber: phoneNumberController.text,
         notes: notesController.text,
         location: {
-          'latitude': selectedlocation.latitude,
-          'longitude': selectedlocation.longitude,
+          'latitude': position.latitude,
+          'longitude': position.longitude,
         },
       );
 
       await _supabase
-          .from(KEYS.addressesTable)
-          .insert(addressModel.toJson())
+          .from(KEYS.ADDRESSES_TABLE)
+          .insert(address.toJson())
           .whenComplete(() {
             CustomNotification.showSnackbar(
               message: 'address_added_successfully',
             );
-            _dispose();
+            _disposeControllers();
             _.initialize();
           });
     } catch (error) {
-      debugPrint(error.toString());
       CustomNotification.showSnackbar(message: 'data_sending_error');
     } finally {
       isLoading.value = false;
     }
   }
 
-  void _dispose() {
-    debugPrint('Clear Text Controllers');
+  /// Dispose all the controllers used in the form.
+  ///
+  /// This is useful when the user submits the form and the form data should be
+  /// cleared.
+  void _disposeControllers() {
+    // Clear the text fields
     addressNameController.clear();
     streetAddressController.clear();
-    // city = null;
-    // stateProvince = null;
-    // country = null;
     phoneNumberController.clear();
     notesController.clear();
+    // Update the UI to reflect the changes
     update();
   }
 }

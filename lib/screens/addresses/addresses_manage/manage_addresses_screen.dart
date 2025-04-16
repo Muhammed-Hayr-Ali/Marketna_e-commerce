@@ -29,7 +29,14 @@ Widget noAddressesWidget() {
       ),
     );
   }
-  Widget addressesWidget(AddressModel address) {
+  /// A widget for displaying an address card with all of its details.
+  ///
+  /// This widget takes an [AddressModel] and displays its details in a card.
+  /// It shows the address name, street address, city, state/province, country, phone
+  /// number, notes, and location (latitude and longitude).
+  ///
+  /// The purpose of this widget is to provide a quick way to display an address
+  Widget addressesWidget(Address address) {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -8,7 +8,6 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingState extends State<OnboardingScreen> {
-
   final String title_1 = 'Purchase Online';
   final String title_2 = 'Track order';
   final String title_3 = 'Get your order';
@@ -82,6 +81,7 @@ class _OnboardingState extends State<OnboardingScreen> {
                 Indicator(selected: selectedPage, length: 3),
                 const SizedBox(height: 20),
                 CustomButton(
+                  width: double.infinity,
                   onPressed: selectedPage == 2 ? _auth : _next,
                   child: CustomText(selectedPage == 2 ? login : next),
                 ),
