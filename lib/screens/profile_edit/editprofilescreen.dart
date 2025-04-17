@@ -101,7 +101,7 @@ class EditProfileScreen extends StatelessWidget {
 
                             /// name
                             CustomTextField(
-                              label: AppConstants.FULL_NAME,
+                              label: AppConstants.FULL_NAME.tr,
                               hintText: AppConstants.DEFAULT_NAME,
                               controller: _.nameController,
                               validator: (value) => Validators.name(value!),
@@ -112,7 +112,7 @@ class EditProfileScreen extends StatelessWidget {
                             /// email
                             CustomButton(
                               width: double.infinity,
-                              label: AppConstants.EMAIL,
+                              label: AppConstants.EMAIL.tr,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -136,7 +136,7 @@ class EditProfileScreen extends StatelessWidget {
                                 Expanded(
                                   child: CustomTextField(
                                     textDirection: TextDirection.ltr,
-                                    label: AppConstants.PHONE,
+                                    label: AppConstants.PHONE.tr,
                                     hintText: AppConstants.DEFAULT_PHONE,
                                     controller: _.phoneController,
                                     validator:
@@ -192,7 +192,7 @@ class EditProfileScreen extends StatelessWidget {
                                   flex: 1,
                                   child: CustomButton(
                                     width: double.infinity,
-                                    label: AppConstants.DATE_BIRTH,
+                                    label: AppConstants.DATE_OF_BIRTH.tr,
                                     child: CustomText(
                                       (_.dateBirth == null || _.dateBirth == '')
                                           ? AppConstants.DATE_FORMAT
@@ -230,7 +230,9 @@ class EditProfileScreen extends StatelessWidget {
                     buttonColor: AppColors.primaryColor,
                     progressColor: AppColors.white,
                     child: CustomText(
-                      AppConstants.UPDATE, color: AppColors.white),
+                      AppConstants.UPDATE,
+                      color: AppColors.white,
+                    ),
                   ),
                 ),
               ],

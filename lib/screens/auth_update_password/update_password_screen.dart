@@ -70,20 +70,9 @@ class UpdatePasswordScreen extends StatelessWidget {
                       ),
                     ),
 
-                    // CustomTextField(
-                    //   label: 'verification_code'.tr,
-                    //   hintText: ''.tr,
-                    //   controller: _.verificationCodeController,
-                    //   validator: (value) => Validators.verificationCode(value!),
-                    //   keyboardType: TextInputType.phone,
-                    //   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-
-                    //   maxLength: 6,
-                    //   counterText: '',
-                    // ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label:  AppConstants.PASSWORD,
+                      label: AppConstants.PASSWORD.tr,
                       hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.passwordController,
                       validator:
@@ -96,7 +85,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.CONFIRM_PASSWORD,
+                      label: AppConstants.CONFIRM_PASSWORD.tr,
                       hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.confirmPasswordController,
                       validator:
@@ -117,7 +106,9 @@ class UpdatePasswordScreen extends StatelessWidget {
                       progressColor: Colors.white,
                       onPressed: _.updatePassword,
                       child: CustomText(
-                        AppConstants.UPDATE.tr, color: AppColors.white),
+                        AppConstants.UPDATE.tr,
+                        color: AppColors.white,
+                      ),
                     ),
                   ],
                 ),

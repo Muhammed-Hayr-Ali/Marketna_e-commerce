@@ -150,7 +150,8 @@ abstract class AppConstants {
   static const String WELCOME_BACK = 'welcome_back';
   static const String PASSWORD = 'password';
   static const String EXAMPLE_PASSWORD = '●●●●●●●●●';
-  static const String FORGOT_PASSWORD = 'agree_to_terms';
+  static const String FORGOT_PASSWORD = 'forgot_password';
+  static const String DATE_OF_BIRTH = 'date_of_birth';
 
   static const String DONT_HAVE_ACCOUNT = 'dont_have_account';
   static const String SIGN_UP = 'sign_up';

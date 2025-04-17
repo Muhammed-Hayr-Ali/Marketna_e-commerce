@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Color(0xFFE9EEF2),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const CustomText(AppConstants.PICTURE),
+        title: const CustomText(AppConstants.PROFILE),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   MenuItem(
-                    title:AppConstants.EDIT_PROFILE,
+                    title: AppConstants.EDIT_PROFILE,
                     icon: AppAssets.profile,
                     onTap:
                         () => _.navigateToScreen(AppRoutes.EDIT_PROFILE_SCREEN),

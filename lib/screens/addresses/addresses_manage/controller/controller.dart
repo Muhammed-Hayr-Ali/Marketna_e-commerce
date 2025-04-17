@@ -35,12 +35,12 @@ class ManageAddressesController extends GetxController {
       );
     } catch (error) {
       // Handle errors and show error notification
-      CustomNotification.showSnackbar(message: AppConstants.DATA_LOADING_ERROR);
+      //  CustomNotification.showSnackbar(message: AppConstants.DATA_LOADING_ERROR);
       debugPrint(error.toString());
     } finally {
       // Set loading state to false
       isLoading = false;
-        update();
-  }
+      update();
+    }
   }
 }

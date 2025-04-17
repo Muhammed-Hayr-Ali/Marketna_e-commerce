@@ -39,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label:  AppConstants.FULL_NAME,
+                      label: AppConstants.FULL_NAME.tr,
                       hintText: AppConstants.DEFAULT_NAME,
                       controller: _.nameController,
                       validator: (value) => Validators.name(value!),
@@ -47,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label:  AppConstants.EMAIL,
+                      label: AppConstants.EMAIL.tr,
                       hintText: AppConstants.EXAMPLE_EMAIL,
                       controller: _.emailController,
                       validator: (value) => Validators.email(value!),
@@ -55,7 +55,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.PASSWORD,
+                      label: AppConstants.PASSWORD.tr,
                       hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.passwordController,
                       validator:
@@ -68,7 +68,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.CONFIRM_PASSWORD,
+                      label: AppConstants.CONFIRM_PASSWORD.tr,
                       hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.confirmPasswordController,
                       validator:
@@ -88,7 +88,10 @@ class SignUpScreen extends StatelessWidget {
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _.signUp,
-                      child: CustomText(AppConstants.SIGN_UP, color: AppColors.white),
+                      child: CustomText(
+                        AppConstants.SIGN_UP,
+                        color: AppColors.white,
+                      ),
                     ),
                   ],
                 ),

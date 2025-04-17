@@ -41,7 +41,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: AppConstants.EMAIL,
+                      label: AppConstants.EMAIL.tr,
                       hintText: AppConstants.EXAMPLE_EMAIL,
                       controller: _.emailController,
                       validator: (value) => Validators.email(value!),
@@ -56,7 +56,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _.resendOTP,
-                      child: CustomText(AppConstants.SEND.tr, color: AppColors.white),
+                      child: CustomText(
+                        AppConstants.SEND.tr,
+                        color: AppColors.white,
+                      ),
                     ),
                   ],
                 ),
