@@ -20,7 +20,7 @@ class CustomCountryPicker extends StatefulWidget {
     this.showCountryCodeList = true,
     this.showCountryCodeHint = true,
     this.initCode,
-    this.codeLabel,
+    this.codeLabel, this.initCountry, this.initProvince, this.initCity,
   });
 
   final CountryPickerMode countryPickerMode;
@@ -30,6 +30,10 @@ class CustomCountryPicker extends StatefulWidget {
   final bool showCity;
 
   final String? initCode;
+  final String? initCountry;
+  final String? initProvince;
+  final String? initCity;
+  
   final String? codeLabel;
   final String? countryLabel;
   final String? provinceLabel;
@@ -282,8 +286,11 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
           width: double.infinity,
           onPressed: _openCountry,
           child:
-              selectedCountry != null
-                  ? Row(
+              selectedCountry != null && selectedCountry!.name != null &&
+                  selectedCountry!.name != '' 
+                  ?
+                  
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -307,6 +314,20 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                           : SizedBox(),
                     ],
                   )
+                  
+                  : widget.initCountry != null && widget.initCountry != '' ?
+                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(widget.initCountry!),
+                      Icon(Icons.keyboard_arrow_down_rounded),
+                    ],
+                  )
+                  
+                  
+                  
+                  
                   : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -341,8 +362,12 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                 
+                                 
+                                 
                                   CustomText(
                                     selectedProvinceName ??
+                                        widget.initProvince ??
                                         widget.provinceHint ??
                                         'select_province',
                                   ),
@@ -379,6 +404,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                                     children: [
                                       CustomText(
                                         selectedCityName ??
+                                            widget.initCity ??
                                             widget.cityHint ??
                                             'select_city',
                                       ),
