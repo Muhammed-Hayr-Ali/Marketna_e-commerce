@@ -12,7 +12,7 @@ class AddAddressScreen extends StatelessWidget {
           onPressed: Get.back,
           icon: const Icon(Icons.arrow_back_ios),
         ),
-        title: const CustomText('add_new_address'),
+        title: const CustomText(AppConstants.ADD_NEW_ADDRESS),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -26,7 +26,7 @@ class AddAddressScreen extends StatelessWidget {
                   children: [
                     /// address name
                     CustomTextField(
-                      label: 'address_name'.tr,
+                      label: AppConstants.ADDRESS_NAME.tr,
                       controller: _.addressNameController,
                       validator: (value) => Validators.saddressName(value!),
                     ),
@@ -36,7 +36,7 @@ class AddAddressScreen extends StatelessWidget {
 
                     /// street address
                     CustomTextField(
-                      label: 'street_address'.tr,
+                      label: AppConstants.STREET_ADDRESS.tr,
                       controller: _.streetAddressController,
                       validator: (value) => Validators.streetAddress(value!),
                     ),
@@ -65,8 +65,8 @@ class AddAddressScreen extends StatelessWidget {
                         Expanded(
                           child: CustomTextField(
                             textDirection: TextDirection.ltr,
-                            label: 'phone'.tr,
-                            hintText: '991234567',
+                            label: AppConstants.PHONENUMBER.tr,
+                            hintText: AppConstants.DEFAULT_PHONE.tr,
                             controller: _.phoneNumberController,
                             validator: (value) => Validators.phone(value!),
                             keyboardType: TextInputType.phone,
@@ -84,7 +84,7 @@ class AddAddressScreen extends StatelessWidget {
                             builder:
                                 (_) => CustomText(
                                   textDirection: TextDirection.ltr,
-                                  _.countryCode ?? '+963',
+                                  _.countryCode ?? AppConstants.DEFAULT_COUNTRY_CODE,
                                   color:
                                       _.countryCode == null
                                           ? Colors.grey.shade400
@@ -101,7 +101,7 @@ class AddAddressScreen extends StatelessWidget {
                     /// notes
                     CustomTextField(
                       lines: 5,
-                      label: 'notes'.tr,
+                      label: AppConstants.NOTES.tr,
                       controller: _.notesController,
                     ),
                   ],
@@ -119,7 +119,7 @@ class AddAddressScreen extends StatelessWidget {
                   buttonColor: AppColors.primaryColor,
                   progressColor: AppColors.white,
                   onPressed: _.addAddress,
-                  child: CustomText(color: AppColors.white, 'save'),
+                  child: CustomText(color: AppColors.white, AppConstants.SAVE),
                 ),
               ),
             ],

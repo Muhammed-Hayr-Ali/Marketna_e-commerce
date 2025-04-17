@@ -117,5 +117,41 @@ abstract class AppConstants {
   static const String  ARE_YOU_SURE_LOGOUT = 'are_you_sure_logout';
   static const String CANCEL = 'cancel';
   static const String LOGOUT = 'logout';
+  static const String YES = 'yes';
+  static const String NO = 'no';
+  static const String OK = 'ok';
+  static const String DONE = 'done';
+  static const String SKIP = 'skip';
+  static const String NEXT = 'next';
+  static const String BACK = 'back';
+  static const String SAVE = 'save';
+
+
+
+  /// ==============================
+  /// **Screens Text**
+  /// ==============================
+  /// **add address**
+  static const String ADD_NEW_ADDRESS = 'add_new_address';
+  static const String ADDRESS_NAME = 'address_name';
+  static const String STREET_ADDRESS = 'street_address';
+  static const String PHONENUMBER = 'phone';
+  static const String DEFAULT_PHONE = '987654321';
+  static const String DEFAULT_COUNTRY_CODE = '+963';
+  static const String NOTES = 'notes';
+
+  
+  /// **Onboarding**
+  static const String ONBOARDING_TITLE_1 = 'onboarding_title_1';
+  static const String ONBOARDING_TITLE_2 = 'onboarding_title_2';
+  static const String ONBOARDING_TITLE_3 = 'onboarding_title_3';
+  static const String ONBOARDING_SUBTITLE_1 = 'onboarding_subtitle_1';
+  static const String ONBOARDING_SUBTITLE_2 = 'onboarding_subtitle_2';
+  static const String ONBOARDING_SUBTITLE_3 = 'onboarding_subtitle_3';
+  static const String ONBOARDING_BUTTON = 'onboarding_button';
+  static const String ONBOARDING_SKIP = 'onboarding_skip';
+  static const String ONBOARDING_NEXT = 'onboarding_next';
+  static const String ONBOARDING_GET_STARTED = 'onboarding_get_started';
+
 
 }
