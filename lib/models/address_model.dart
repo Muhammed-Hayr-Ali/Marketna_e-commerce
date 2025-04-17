@@ -1,6 +1,6 @@
 class Address {
   // Fields
-  final String? id;
+  final int? id;
   final String? customerId;
   final String? addressName;
   final String? streetAddress;
@@ -47,7 +47,6 @@ class Address {
   // Method to convert the object to a JSON map
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'customer_id': customerId,
       'address_name': addressName,
       'street_address': streetAddress,

@@ -79,6 +79,7 @@ class AddAddressController extends GetxController {
     try {
       // Create an Address object with user input and location data
       final address = Address(
+        id: 56,
         customerId: userId,
         addressName: addressNameController.text,
         streetAddress: streetAddressController.text,

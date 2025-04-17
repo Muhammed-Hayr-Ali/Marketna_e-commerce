@@ -20,18 +20,19 @@ class ManageAddressesScreen extends StatelessWidget {
           init: ManageAddressesController(),
 
           builder:
-              (Controller) =>
-                  Controller.isLoading
+              (controller) =>
+                  controller.isLoading
                       ? const Center(
                         child: CircularProgressIndicator(strokeWidth: 2.0),
                       )
-                      : Controller.addresses.isEmpty
+                      : controller.addresses.isEmpty ||
+                          controller.addresses == []
                       ? noAddressesWidget()
                       : ListView.builder(
-                        itemCount: Controller.addresses.length,
+                        itemCount: controller.addresses.length,
                         itemBuilder:
                             (context, index) => AddressCard(
-                              address: Controller.addresses[index],
+                              address: controller.addresses[index],
                             ),
                       ),
         ),

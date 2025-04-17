@@ -39,7 +39,6 @@ class ManageAddressesController extends GetxController {
       debugPrint(response.toString());
 
       // Check if the response is empty
-      if (response.isEmpty) return;
 
       // Update the addresses list with the fetched data
       addresses = List<Address>.from(
@@ -64,14 +63,12 @@ class ManageAddressesController extends GetxController {
   /// addresses list to reflect the changes in the UI. If an error occurs during
   /// the deletion process, an error message is logged and a notification is shown.
 
-  Future<void> dateAddress(String addressId) async {
+  Future<void> dateAddress(int addressId) async {
     debugPrint('Updating address...');
     bool result = await _main.shouldDeleteAddress();
     if (!result) return; // User chose not to delete the address
-    if (addressId.isEmpty) {
-      debugPrint('Address ID is empty. Cannot delete address.');
-      return;
-    }
+    isLoading = true;
+    update();
     try {
       // Update the address in the database
       await _supabase.from(KEYS.ADDRESSES_TABLE).delete().eq('id', addressId);

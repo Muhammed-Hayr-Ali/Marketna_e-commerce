@@ -43,6 +43,9 @@ class Arabic {
     'privacy_policy': 'سياسة الخصوصية',
     'terms_and_conditions': 'الشروط والأحكام',
     'save': 'حفظ',
+    'yes': 'نعم',
+    'no': 'لا',
+    'ok': 'حسناً',
     'cancel': 'إلغاء',
     'delete': 'حذف',
     'edit': 'تعديل',
@@ -138,8 +141,8 @@ class Arabic {
     'data_loading_error':
         'حدث خطأ أثناء تحميل البيانات. يرجى المحاولة مرة أخرى.',
     'an_error_occurred': 'حدث خطأ:',
-    'session_is_null' : 'تعذر الحصول على معلومات الجلسة.',
-    'google_sign_in_failed' : 'تعذر تسجيل الدخول باستخدام Google.',
+    'session_is_null': 'تعذر الحصول على معلومات الجلسة.',
+    'google_sign_in_failed': 'تعذر تسجيل الدخول باستخدام Google.',
 
     'privacy_policy_cannot_be_opened': 'تعذر فتح رابط سياسة الخصوصية.',
 
