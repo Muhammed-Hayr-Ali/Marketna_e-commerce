@@ -153,6 +153,8 @@ class EditProfileController extends GetxController {
   Future<void> _deleteImage(bool withUpdate) async {
     debugPrint('deleteImage');
 
+    imageIsLoading(true);
+
     // Check if the user is logged in
     if (user == null) return;
 
@@ -160,7 +162,6 @@ class EditProfileController extends GetxController {
     String? avatarUrl = DataConverter.getAvatarUrl(user!.userMetadata!);
     if (avatarUrl.isEmpty) return;
 
-    imageIsLoading(true);
     try {
       // Get the file name from the avatar URL
       final String fileName = avatarUrl.split('/').last;
@@ -172,7 +173,13 @@ class EditProfileController extends GetxController {
           .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
           .whenComplete(
             () async => await supabase.auth.updateUser(
-              UserAttributes(data: {AppConstants.AVATAR: null}),
+              UserAttributes(
+                data: {
+                  AppConstants.AVATAR: null,
+                  AppConstants.AVATAR_URL: null,
+                  AppConstants.PICTURE: null,
+                },
+              ),
             ),
           );
 
@@ -233,7 +240,13 @@ class EditProfileController extends GetxController {
           .getPublicUrl('${KEYS.PROFILE_FOLDER}/$folderName/$fileName');
 
       await supabase.auth.updateUser(
-        UserAttributes(data: {AppConstants.AVATAR: url}),
+        UserAttributes(
+          data: {
+            AppConstants.AVATAR: url,
+            AppConstants.AVATAR_URL: url,
+            AppConstants.PICTURE: url,
+          },
+        ),
       );
     } on StorageException catch (error) {
       // Show an error message if the upload or update process failed
@@ -323,12 +336,13 @@ class EditProfileController extends GetxController {
       );
 
       // Show a snackbar with the message 'Profile updated successfully'
-      CustomNotification.showSnackbar(message: AppConstants.PROFILE_UPDATED_SUCCESSFULLY);
+      CustomNotification.showSnackbar(
+        message: AppConstants.PROFILE_UPDATED_SUCCESSFULLY,
+      );
     } on AuthException catch (error) {
       // Show a snackbar with the error message
       CustomNotification.showSnackbar(message: error.message);
-    } 
-     catch (error) {
+    } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
         message: '${AppConstants.ERROR.tr} $error',

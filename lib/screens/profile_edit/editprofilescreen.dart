@@ -41,52 +41,60 @@ class EditProfileScreen extends StatelessWidget {
                         alignment: Alignment.center,
 
                         children: [
+                          /// image loading
                           Obx(
-                            () => SizedBox(
-                              width: 100,
-                              height: 100,
-                              child:
-                                  _.imageIsLoading.value
-                                      /// is loading
-                                      ? CircularProgressIndicator(
+                            () =>
+                                _.imageIsLoading.value
+                                    /// is loading
+                                    ? SizedBox(
+                                      width: 100,
+                                      height: 100,
+                                      child: CircularProgressIndicator(
                                         strokeWidth: 2,
                                         color: AppColors.primaryColor,
-                                      )
-                                      : null,
-                            ),
+                                      ),
+                                    )
+                                    : SizedBox.shrink(),
                           ),
-                          CustomAvatar(
-                            sourceImage: SourceImage.networkImage,
-                            size: 100,
-                            path: DataConverter.getAvatarUrl(
-                              _.user!.userMetadata!,
-                            ),
-                            onTap: _.selectImageSource,
-                            childColor: Colors.grey.shade200,
-                            child: SvgPicture.asset(
-                              AppAssets.camera,
-                              colorFilter: ColorFilter.mode(
-                                AppColors.admiralBlue,
-                                BlendMode.srcIn,
-                              ),
-                            ),
+
+                          /// image
+                          SizedBox(
+                            child:
+                                /// image path is not null
+                                _.imagePath != null
+                                    ? CustomAvatar(
+                                      sourceImage: SourceImage.localImage,
+                                      size: 100,
+                                      path: _.imagePath!,
+                                      onTap: _.clearImagePath,
+                                      childColor: Colors.grey.shade200,
+                                      child: SvgPicture.asset(
+                                        AppAssets.trashBin,
+                                        colorFilter: ColorFilter.mode(
+                                          Colors.red,
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
+                                    )
+                                    :
+                                    /// image path is nully
+                                    CustomAvatar(
+                                      sourceImage: SourceImage.networkImage,
+                                      size: 100,
+                                      path: DataConverter.getAvatarUrl(
+                                        _.user!.userMetadata!,
+                                      ),
+                                      onTap: _.selectImageSource,
+                                      childColor: Colors.grey.shade200,
+                                      child: SvgPicture.asset(
+                                        AppAssets.camera,
+                                        colorFilter: ColorFilter.mode(
+                                          AppColors.admiralBlue,
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
+                                    ),
                           ),
-                          _.imagePath != null
-                              ? CustomAvatar(
-                                sourceImage: SourceImage.localImage,
-                                size: 100,
-                                path: _.imagePath!,
-                                onTap: _.clearImagePath,
-                                childColor: Colors.grey.shade200,
-                                child: SvgPicture.asset(
-                                  AppAssets.trashBin,
-                                  colorFilter: ColorFilter.mode(
-                                    Colors.red,
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                              )
-                              : SizedBox.shrink(),
                         ],
                       ),
                 ),
