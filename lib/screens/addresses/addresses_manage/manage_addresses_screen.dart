@@ -14,7 +14,10 @@ class ManageAddressesScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
 
-        title: const CustomText('manage_addresses'),
+        title: const CustomText(
+          AppConstants.MANAGE_ADDRESSES,
+  
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),

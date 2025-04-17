@@ -8,17 +8,8 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingState extends State<OnboardingScreen> {
-  final String title_1 = 'Purchase Online';
-  final String title_2 = 'Track order';
-  final String title_3 = 'Get your order';
-  final String subtitle_1 =
-      'Enjoy a unique and easy shopping experience in our application';
-  final String subtitle_2 = 'Track shipments real-time';
-  final String subtitle_3 =
-      'Enjoy your favorite products with confidence and safety';
 
-  final String next = 'Next';
-  final String login = 'Login';
+
 
   int initPage = 0;
   int selectedPage = 0;
@@ -61,18 +52,19 @@ class _OnboardingState extends State<OnboardingScreen> {
                 children: [
                   pageBuilder(
                     image: AppAssets.onBoarding_1,
-                    title: title_1,
-                    subtitle: subtitle_1,
+                    title: AppConstants.ONBOARDING_TITLE_1,
+                    subtitle:AppConstants.ONBOARDING_SUBTITLE_1
+,
                   ),
                   pageBuilder(
                     image: AppAssets.onBoarding_2,
-                    title: title_2,
-                    subtitle: subtitle_2,
+                    title: AppConstants.ONBOARDING_TITLE_2,
+                    subtitle: AppConstants.ONBOARDING_SUBTITLE_2
                   ),
                   pageBuilder(
                     image: AppAssets.onBoarding_3,
-                    title: title_3,
-                    subtitle: subtitle_3,
+                    title: AppConstants.ONBOARDING_TITLE_3,
+                    subtitle: AppConstants.ONBOARDING_SUBTITLE_3
                   ),
                 ],
               ),
@@ -85,7 +77,7 @@ class _OnboardingState extends State<OnboardingScreen> {
                   CustomButton(
                     width: double.infinity,
                     onPressed: selectedPage == 2 ? _auth : _next,
-                    child: CustomText(selectedPage == 2 ? login : next),
+                    child: CustomText(selectedPage == 2 ? AppConstants.LOGIN : AppConstants.NEXT),
                   ),
                 ],
               ),

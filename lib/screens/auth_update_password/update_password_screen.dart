@@ -24,13 +24,13 @@ class UpdatePasswordScreen extends StatelessWidget {
             Column(
               children: [
                 CustomText(
-                  'update_password',
+                  AppConstants.UPDATE_PASSWORD,
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 16.0),
                 CustomText(
-                  'update_password_desc',
+                  AppConstants.UPDATE_PASSWORD_DESC,
                   color: Colors.grey,
                   textAlign: TextAlign.center,
                 ),
@@ -83,8 +83,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                     // ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: 'password'.tr,
-                      hintText: '●●●●●●●●●'.tr,
+                      label:  AppConstants.PASSWORD,
+                      hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.passwordController,
                       validator:
                           (value) => Validators.password(
@@ -96,8 +96,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: 'confirm_password'.tr,
-                      hintText: '●●●●●●●●●'.tr,
+                      label: AppConstants.CONFIRM_PASSWORD,
+                      hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.confirmPasswordController,
                       validator:
                           (value) => Validators.confirmPassword(
@@ -116,7 +116,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _.updatePassword,
-                      child: CustomText('update'.tr, color: AppColors.white),
+                      child: CustomText(
+                        AppConstants.UPDATE.tr, color: AppColors.white),
                     ),
                   ],
                 ),

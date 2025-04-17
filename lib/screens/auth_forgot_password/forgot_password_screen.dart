@@ -22,13 +22,13 @@ class ForgotPasswordScreen extends StatelessWidget {
             Column(
               children: [
                 CustomText(
-                  'reset_password',
+                  AppConstants.RESET_PASSWORD,
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 16.0),
                 CustomText(
-                  'enter_email_for_reset',
+                  AppConstants.ENTER_EMAIL_FOR_RESET,
                   color: Colors.grey,
                   textAlign: TextAlign.center,
                 ),
@@ -41,8 +41,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: 'email'.tr,
-                      hintText: 'example@email.com'.tr,
+                      label: AppConstants.EMAIL,
+                      hintText: AppConstants.EXAMPLE_EMAIL,
                       controller: _.emailController,
                       validator: (value) => Validators.email(value!),
                       keyboardType: TextInputType.emailAddress,
@@ -56,7 +56,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _.resendOTP,
-                      child: CustomText('send'.tr, color: AppColors.white),
+                      child: CustomText(AppConstants.SEND.tr, color: AppColors.white),
                     ),
                   ],
                 ),

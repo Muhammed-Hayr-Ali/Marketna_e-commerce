@@ -26,7 +26,7 @@ class EditProfileScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
 
-        title: const CustomText('edit_profile'),
+        title: const CustomText(AppConstants.EDIT_PROFILE),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -101,8 +101,8 @@ class EditProfileScreen extends StatelessWidget {
 
                             /// name
                             CustomTextField(
-                              label: 'full_name'.tr,
-                              hintText: 'John Doe'.tr,
+                              label: AppConstants.FULL_NAME,
+                              hintText: AppConstants.DEFAULT_NAME,
                               controller: _.nameController,
                               validator: (value) => Validators.name(value!),
                               keyboardType: TextInputType.name,
@@ -112,7 +112,7 @@ class EditProfileScreen extends StatelessWidget {
                             /// email
                             CustomButton(
                               width: double.infinity,
-                              label: 'email'.tr,
+                              label: AppConstants.EMAIL,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -136,8 +136,8 @@ class EditProfileScreen extends StatelessWidget {
                                 Expanded(
                                   child: CustomTextField(
                                     textDirection: TextDirection.ltr,
-                                    label: 'phone'.tr,
-                                    hintText: '991234567',
+                                    label: AppConstants.PHONE,
+                                    hintText: AppConstants.DEFAULT_PHONE,
                                     controller: _.phoneController,
                                     validator:
                                         (value) => Validators.phone(value!),
@@ -171,10 +171,10 @@ class EditProfileScreen extends StatelessWidget {
                                   flex: 1,
                                   child: CustomButton(
                                     width: double.infinity,
-                                    label: 'gender'.tr,
+                                    label: AppConstants.GENDER.tr,
                                     child: CustomText(
                                       (_.gender == null || _.gender == '')
-                                          ? 'not_specified'
+                                          ? AppConstants.NOT_SPECIFIED
                                           : _.gender!,
                                       color:
                                           (_.gender == null || _.gender == '')
@@ -192,10 +192,10 @@ class EditProfileScreen extends StatelessWidget {
                                   flex: 1,
                                   child: CustomButton(
                                     width: double.infinity,
-                                    label: 'date_of_birth'.tr,
+                                    label: AppConstants.DATE_BIRTH,
                                     child: CustomText(
                                       (_.dateBirth == null || _.dateBirth == '')
-                                          ? 'dd-mm-yyyy'
+                                          ? AppConstants.DATE_FORMAT
                                           : _.dateBirth!,
                                       color:
                                           (_.dateBirth == null ||
@@ -229,7 +229,8 @@ class EditProfileScreen extends StatelessWidget {
                     onPressed: _.updateUser,
                     buttonColor: AppColors.primaryColor,
                     progressColor: AppColors.white,
-                    child: CustomText('update', color: AppColors.white),
+                    child: CustomText(
+                      AppConstants.UPDATE, color: AppColors.white),
                   ),
                 ),
               ],

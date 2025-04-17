@@ -44,6 +44,7 @@ abstract class AppConstants {
   // **User Metadata**
   // ==============================
   static const String EMAIL = 'email';
+
   static const String AVATAR = 'avatar';
   static const String AVATAR_URL = 'avatar_url';
   static const String PICTURE = 'picture';
@@ -90,31 +91,31 @@ abstract class AppConstants {
   static const String DATA_SENDING_ERROR = 'data_sending_error';
   static const String DATA_LOADING_ERROR = 'data_loading_error';
   static const String GOOGLE_SIGN_IN_FAILED = 'google_sign_in_failed';
-  static const String PRIVACY_POLICY_CANNOT_BE_OPENED = 'privacy_policy_cannot_be_opened';
-  static const String VERIFICATION_CODE_CANNOT_BE_EMPTY = 'verification_code_cannot_be_empty';
-  static const String VERIFICATION_CODE_INVALID_LENGTH = 'verification_code_invalid_length';
-  static const String PASSWORD_UPDATED_SUCCESSFULLY = 'password_updated_successfully';
+  static const String PRIVACY_POLICY_CANNOT_BE_OPENED =
+      'privacy_policy_cannot_be_opened';
+  static const String VERIFICATION_CODE_CANNOT_BE_EMPTY =
+      'verification_code_cannot_be_empty';
+  static const String VERIFICATION_CODE_INVALID_LENGTH =
+      'verification_code_invalid_length';
+  static const String PASSWORD_UPDATED_SUCCESSFULLY =
+      'password_updated_successfully';
   static const String EMAIL_COPIED = 'email_copied';
-  static const String PROFILE_UPDATED_SUCCESSFULLY = 'profile_updated_successfully';
+  static const String PROFILE_UPDATED_SUCCESSFULLY =
+      'profile_updated_successfully';
 
-
-
-
-
-
-/// ==============================
-/// **Translations**
-/// ==============================
+  /// ==============================
+  /// **Translations**
+  /// ==============================
 
   static const String SELECT_IMAGE_SOURCE = 'select_image_source';
   static const String SELECT_GENDER = 'select_gender';
   static const String NOT_SPECIFIED = 'not_specified';
-  static const String MALE = 'male';  
+  static const String MALE = 'male';
   static const String FEMALE = 'female';
   static const String CHOOSE_YOUR_DATE_OF_BIRTH = 'choose_your_date_of_birth';
   static const String DATE_FORMAT = 'yyyy-MM-dd';
   static const String CONFIRM = 'confirm';
-  static const String  ARE_YOU_SURE_LOGOUT = 'are_you_sure_logout';
+  static const String ARE_YOU_SURE_LOGOUT = 'are_you_sure_logout';
   static const String CANCEL = 'cancel';
   static const String LOGOUT = 'logout';
   static const String YES = 'yes';
@@ -125,13 +126,12 @@ abstract class AppConstants {
   static const String NEXT = 'next';
   static const String BACK = 'back';
   static const String SAVE = 'save';
-
-
+  static const String SEND = 'send';
 
   /// ==============================
   /// **Screens Text**
   /// ==============================
-  /// **add address**
+  /// **Address**
   static const String ADD_NEW_ADDRESS = 'add_new_address';
   static const String ADDRESS_NAME = 'address_name';
   static const String STREET_ADDRESS = 'street_address';
@@ -139,19 +139,53 @@ abstract class AppConstants {
   static const String DEFAULT_PHONE = '987654321';
   static const String DEFAULT_COUNTRY_CODE = '+963';
   static const String NOTES = 'notes';
+  static const String NO_ADDRESSES = 'no_addresses';
+  static const String MANAGE_ADDRESSES = 'manage_addresses';
 
-  
+  /// **Auth**
+  static const String RESET_PASSWORD = 'reset_password';
+  static const String ENTER_EMAIL_FOR_RESET = 'enter_email_for_reset';
+  static const String EXAMPLE_EMAIL = 'example@email.com';
+  static const String LOGIN = 'login';
+  static const String WELCOME_BACK = 'welcome_back';
+  static const String PASSWORD = 'password';
+  static const String EXAMPLE_PASSWORD = '●●●●●●●●●';
+  static const String FORGOT_PASSWORD = 'agree_to_terms';
+
+  static const String DONT_HAVE_ACCOUNT = 'dont_have_account';
+  static const String SIGN_UP = 'sign_up';
+  static const String OR = 'or';
+  static const String SIGN_IN_WITH = 'sign_in_with';
+  static const String CREATE_ACCOUNT = 'create_account';
+  static const String DEFAULT_NAME = 'John Doe';
+  static const String FILL_YOUR_DETAILS = 'fill_your_details';
+  static const String CONFIRM_PASSWORD = 'confirm_password';
+  static const String SIGN_UP_SUCCESS = 'sign_up_success';
+  static const String SIGN_UP_FAILED = 'sign_up_failed';
+  static const String AGREE_TO_TERMS = 'agree_to_terms';
+  static const String PRIVACY_POLICY = 'privacy_policy';
+  static const String UPDATE_PASSWORD = 'update_password';
+  static const String UPDATE_PASSWORD_DESC = 'update_password_desc';
+  static const String UPDATE = 'update';
+
   /// **Onboarding**
-  static const String ONBOARDING_TITLE_1 = 'onboarding_title_1';
-  static const String ONBOARDING_TITLE_2 = 'onboarding_title_2';
-  static const String ONBOARDING_TITLE_3 = 'onboarding_title_3';
-  static const String ONBOARDING_SUBTITLE_1 = 'onboarding_subtitle_1';
-  static const String ONBOARDING_SUBTITLE_2 = 'onboarding_subtitle_2';
-  static const String ONBOARDING_SUBTITLE_3 = 'onboarding_subtitle_3';
-  static const String ONBOARDING_BUTTON = 'onboarding_button';
-  static const String ONBOARDING_SKIP = 'onboarding_skip';
-  static const String ONBOARDING_NEXT = 'onboarding_next';
-  static const String ONBOARDING_GET_STARTED = 'onboarding_get_started';
+  static const String ONBOARDING_TITLE_1 = 'Purchase Online';
+  static const String ONBOARDING_TITLE_2 = 'Track order';
+  static const String ONBOARDING_TITLE_3 = 'Get your order';
+  static const String ONBOARDING_SUBTITLE_1 =
+      'Enjoy a unique and easy shopping experience in our application';
+  static const String ONBOARDING_SUBTITLE_2 = 'Track shipments real-time';
+  static const String ONBOARDING_SUBTITLE_3 =
+      'Enjoy your favorite products with confidence and safety';
+  static const String ONBOARDING_NEXT = 'Next';
 
+  /// **Profile**
+  static const String PROFILE = 'profile';
+  static const String EDIT_PROFILE = 'edit_profile';
+  static const String MY_ADDRESSES = 'my_addresses';
 
+  static const String MY_ORDERS = 'my_orders';
+  static const String SETTINGS = 'settings';
+  static const String SECURITY = 'security';
+  static const String HELP_CENTER = 'help_center';
 }

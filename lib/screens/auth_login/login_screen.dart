@@ -20,10 +20,10 @@ class LoginScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                CustomText('login', fontSize: 22, fontWeight: FontWeight.bold),
+                CustomText(AppConstants.LOGIN, fontSize: 22, fontWeight: FontWeight.bold),
                 const SizedBox(height: 16.0),
                 CustomText(
-                  'welcome_back',
+                 AppConstants.WELCOME_BACK,
                   color: Colors.grey,
                   textAlign: TextAlign.center,
                 ),
@@ -35,16 +35,16 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: 'email'.tr,
-                      hintText: 'example@email.com'.tr,
+                      label: AppConstants.EMAIL,
+                      hintText: AppConstants.EXAMPLE_EMAIL,
                       controller: _.emailController,
                       validator: (value) => Validators.email(value!),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: 'password'.tr,
-                      hintText: '●●●●●●●●●'.tr,
+                      label: AppConstants.PASSWORD,
+                      hintText: AppConstants.EXAMPLE_PASSWORD,
                       controller: _.passwordController,
                       validator: (value) => Validators.passwordOnly(value!),
                       isPasswordField: true,
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                           onTap:
                               () => _navigateToScreen(AppRoutes.FORGOT_PASSWORD),
                           child: CustomText(
-                            'forgot_password'.tr,
+                            AppConstants.FORGOT_PASSWORD,
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                             color: AppColors.primaryColor,
@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _.login,
-                      child: CustomText('login'.tr, color: AppColors.white),
+                      child: CustomText(AppConstants.LOGIN, color: AppColors.white),
                     ),
                   ],
                 ),
@@ -85,12 +85,12 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText('dont_have_account'.tr, fontSize: 12),
+                    CustomText(AppConstants.DONT_HAVE_ACCOUNT, fontSize: 12),
                     const SizedBox(width: 5),
                     GestureDetector(
                       onTap: () => _navigateToScreen(AppRoutes.REGISTER_SCREEN),
                       child: CustomText(
-                        'sign_up'.tr,
+                        AppConstants.SIGN_UP,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: AppColors.primaryColor,
@@ -99,9 +99,9 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12.0),
-                CustomText('or', color: Colors.grey, fontSize: 10.0),
+                CustomText(AppConstants.OR, color: Colors.grey, fontSize: 10.0),
                 const SizedBox(height: 12.0),
-                CustomText('sign_in_with', color: Colors.grey, fontSize: 10.0),
+                CustomText(AppConstants.SIGN_IN_WITH, color: Colors.grey, fontSize: 10.0),
                 const SizedBox(height: 16.0),
 
                 Row(
