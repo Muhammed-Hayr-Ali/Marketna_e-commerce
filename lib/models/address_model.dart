@@ -1,4 +1,6 @@
 class Address {
+  // Fields
+  final String? id;
   final String? customerId;
   final String? addressName;
   final String? streetAddress;
@@ -12,6 +14,7 @@ class Address {
 
   // Constructor to initialize the fields
   Address({
+    this.id,
     this.customerId,
     this.addressName,
     this.streetAddress,
@@ -27,6 +30,7 @@ class Address {
   // Factory method to create an instance from a map
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
+      id: json['id'],
       customerId: json['customer_id'],
       addressName: json['address_name'],
       streetAddress: json['street_address'],
@@ -43,6 +47,7 @@ class Address {
   // Method to convert the object to a JSON map
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'customer_id': customerId,
       'address_name': addressName,
       'street_address': streetAddress,
@@ -59,6 +64,7 @@ class Address {
   @override
   String toString() {
     return 'Address{'
+        'id: $id, '
         'customerId: $customerId, '
         'addressName: $addressName, '
         'streetAddress: $streetAddress, '

@@ -52,6 +52,8 @@ export 'package:application/screens/splash_screen/controller/splash_screen_contr
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/screens/auth_update_password/controller/update_password_controller.dart';
 export 'package:application/screens/auth_update_password/update_password_screen.dart';
+export 'package:application/screens/addresses/addresses_manage/controller/main_controller.dart';
+
 // ==============================
 // **Services**
 // ==============================

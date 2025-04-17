@@ -1,9 +1,7 @@
 import 'package:application/utils/import.dart';
 
 class ManageAddressesScreen extends StatelessWidget {
-  ManageAddressesScreen({super.key});
-
-  final _ = Get.put(ManageAddressesController());
+  const ManageAddressesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,34 +12,26 @@ class ManageAddressesScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
 
-        title: const CustomText(
-          AppConstants.MANAGE_ADDRESSES,
-  
-        ),
+        title: const CustomText(AppConstants.MANAGE_ADDRESSES),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: GetBuilder<ManageAddressesController>(
           init: ManageAddressesController(),
+
           builder:
-              (_) =>
-                  _.isLoading
+              (Controller) =>
+                  Controller.isLoading
                       ? const Center(
                         child: CircularProgressIndicator(strokeWidth: 2.0),
                       )
-                      : _.addresses.isEmpty
+                      : Controller.addresses.isEmpty
                       ? noAddressesWidget()
                       : ListView.builder(
-                        itemCount: _.addresses.length,
+                        itemCount: Controller.addresses.length,
                         itemBuilder:
                             (context, index) => AddressCard(
-                              addressName: _.addresses[index].addressName,
-                              streetAddress: _.addresses[index].streetAddress,
-                              city: _.addresses[index].city,
-                              stateProvince: _.addresses[index].stateProvince,
-                              country: _.addresses[index].country,
-                              phoneNumber: _.addresses[index].phoneNumber,
-                              notes: _.addresses[index].notes,
+                              address: Controller.addresses[index],
                             ),
                       ),
         ),

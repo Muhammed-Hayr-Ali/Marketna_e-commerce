@@ -58,6 +58,7 @@ class Arabic {
     'camera': 'الكاميرا',
     'gallery': 'المعرض',
     'delete_image': 'حذف الصورة',
+    'want_delete_address': 'هل ترغب في حذف هذا العنوان؟',
 
     /// مدخلات المستخدم
     'select_image_source': 'اختر مصدر الصورة',

@@ -1,24 +1,11 @@
 import 'package:application/utils/import.dart';
 
 class AddressCard extends StatelessWidget {
-  final String? addressName;
-  final String? streetAddress;
-  final String? city;
-  final String? stateProvince;
-  final String? country;
-  final String? phoneNumber;
-  final String? notes;
+  final Address address;
 
-  const AddressCard({
-    super.key,
-    this.addressName,
-    this.streetAddress,
-    this.city,
-    this.stateProvince,
-    this.country,
-    this.phoneNumber,
-    this.notes,
-  });
+  AddressCard({super.key, required this.address});
+
+  final _ = Get.find<ManageAddressesController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +19,11 @@ class AddressCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // اسم العنوان
-            if (addressName != null && addressName!.isNotEmpty)
+            if (address.addressName != null && address.addressName!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.location_on, color: AppColors.primaryColor),
                 title: Text(
-                  addressName!,
+                  address.addressName!,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -44,34 +31,35 @@ class AddressCard extends StatelessWidget {
               ),
 
             // العنوان الكامل
-            if (streetAddress != null && streetAddress!.isNotEmpty)
+            if (address.streetAddress != null &&
+                address.streetAddress!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.home, color: Colors.grey),
-                title: Text(streetAddress!),
+                title: Text(address.streetAddress!),
               ),
-            if (city != null && city!.isNotEmpty)
+            if (address.city != null && address.city!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.location_city, color: Colors.grey),
-                title: Text('$city, $stateProvince'),
+                title: Text('${address.city}, ${address.stateProvince}'),
               ),
-            if (country != null && country!.isNotEmpty)
+            if (address.country != null && address.country!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.flag, color: Colors.grey),
-                title: Text(country!),
+                title: Text(address.country!),
               ),
 
             // رقم الهاتف
-            if (phoneNumber != null && phoneNumber!.isNotEmpty)
+            if (address.phoneNumber != null && address.phoneNumber!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.phone, color: Colors.grey),
-                title: Text(phoneNumber!),
+                title: Text(address.phoneNumber!),
               ),
 
             // الملاحظات
-            if (notes != null && notes!.isNotEmpty)
+            if (address.notes != null && address.notes!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.note, color: Colors.grey),
-                title: Text(notes!),
+                title: Text(address.notes!),
               ),
 
             // أزرار التعديل والحذف
@@ -85,9 +73,8 @@ class AddressCard extends StatelessWidget {
                   icon: Icon(Icons.edit, color: AppColors.primaryColor),
                 ),
                 IconButton(
-                  onPressed: () {
-                    // Delete address logic
-                  },
+                  onPressed: () => _.dateAddress(address.id!),
+
                   icon: Icon(Icons.delete, color: Colors.red),
                 ),
               ],

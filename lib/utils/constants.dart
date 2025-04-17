@@ -70,11 +70,7 @@ abstract class AppConstants {
   /// ==============================
   /// **Column**
   /// ==============================
-  static const String CUSTOMER_ID = 'customerId';
-  static const String USER_ID = 'user_id';
-  static const String USER_EMAIL = 'user_email';
-  static const String USER_PASSWORD = 'user_password';
-  static const String USER_PHONE = 'user_phone';
+  static const String CUSTOMER_ID = 'customer_id';
 
   /// ==============================
   /// **Notification**
@@ -141,6 +137,7 @@ abstract class AppConstants {
   static const String NOTES = 'notes';
   static const String NO_ADDRESSES = 'no_addresses';
   static const String MANAGE_ADDRESSES = 'manage_addresses';
+  static const String WANT_DELETE_ADDRESS = 'want_delete_address';
 
   /// **Auth**
   static const String RESET_PASSWORD = 'reset_password';
