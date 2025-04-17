@@ -8,10 +8,11 @@ class AddAddressController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
-  String? country;
-  String? stateProvince;
-  String? city;
+  String? country = 'سوريا';
+  String? province = 'حلب';
+  String? city = 'منبج';
   String? countryCode;
+  String? flag;
   final addressNameController = TextEditingController();
   final streetAddressController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -83,11 +84,12 @@ class AddAddressController extends GetxController {
         customerId: userId,
         addressName: addressNameController.text,
         streetAddress: streetAddressController.text,
-        city: city,
-        stateProvince: stateProvince,
         country: country,
+        province: province,
+        city: city,
         countryCode: countryCode,
         phoneNumber: phoneNumberController.text,
+        flag: countryCode,
         notes: notesController.text,
         location: {
           AppConstants.LATITUDE: position.latitude,

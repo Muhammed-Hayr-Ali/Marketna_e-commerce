@@ -40,7 +40,7 @@ class AddressCard extends StatelessWidget {
             if (address.city != null && address.city!.isNotEmpty)
               ListTile(
                 leading: Icon(Icons.location_city, color: Colors.grey),
-                title: Text('${address.city}, ${address.stateProvince}'),
+                title: Text('${address.city}, ${address.province}'),
               ),
             if (address.country != null && address.country!.isNotEmpty)
               ListTile(

@@ -46,13 +46,16 @@ class AddAddressScreen extends StatelessWidget {
 
                     /// location
                     CustomCountryPicker(
+                      initCountry: _.country,
+                      initProvince: _.province,
+                      initCity: _.city,
                       countryPickerMode: CountryPickerMode.address,
                       onChangedCountry: ({required name, required code}) {
                         _.country = name; // Update the country
                         _.updateCountryCode(code); // Update the country code
                       },
 
-                      onChangedProvince: (value) => _.stateProvince = value,
+                      onChangedProvince: (value) => _.province = value,
                       onChangedCity: (value) => _.city = value,
                     ),
 
@@ -84,7 +87,8 @@ class AddAddressScreen extends StatelessWidget {
                             builder:
                                 (_) => CustomText(
                                   textDirection: TextDirection.ltr,
-                                  _.countryCode ?? AppConstants.DEFAULT_COUNTRY_CODE,
+                                  _.countryCode ??
+                                      AppConstants.DEFAULT_COUNTRY_CODE,
                                   color:
                                       _.countryCode == null
                                           ? Colors.grey.shade400
