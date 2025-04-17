@@ -20,7 +20,10 @@ class CustomCountryPicker extends StatefulWidget {
     this.showCountryCodeList = true,
     this.showCountryCodeHint = true,
     this.initCode,
-    this.codeLabel, this.initCountry, this.initProvince, this.initCity,
+    this.codeLabel,
+    this.initCountry,
+    this.initProvince,
+    this.initCity,
   });
 
   final CountryPickerMode countryPickerMode;
@@ -33,7 +36,7 @@ class CustomCountryPicker extends StatefulWidget {
   final String? initCountry;
   final String? initProvince;
   final String? initCity;
-  
+
   final String? codeLabel;
   final String? countryLabel;
   final String? provinceLabel;
@@ -43,7 +46,7 @@ class CustomCountryPicker extends StatefulWidget {
   final String? provinceHint;
   final String? cityHint;
 
-  final void Function({required String name, required String code})?
+  final void Function({String? name, String? code, String? flag})?
   onChangedCountry;
   final void Function(String)? onChangedProvince;
   final void Function(String)? onChangedCity;
@@ -108,6 +111,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     widget.onChangedCountry?.call(
       code: value.code ?? '',
       name: selectedCountryName ?? '',
+      flag: value.flag ?? '',
     );
 
     Navigator.pop(context);
@@ -286,11 +290,10 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
           width: double.infinity,
           onPressed: _openCountry,
           child:
-              selectedCountry != null && selectedCountry!.name != null &&
-                  selectedCountry!.name != '' 
-                  ?
-                  
-                   Row(
+              selectedCountry != null &&
+                      selectedCountry!.name != null &&
+                      selectedCountry!.name != ''
+                  ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -314,20 +317,14 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                           : SizedBox(),
                     ],
                   )
-                  
-                  : widget.initCountry != null && widget.initCountry != '' ?
-                  
-                  Row(
+                  : widget.initCountry != null && widget.initCountry != ''
+                  ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(widget.initCountry!),
                       Icon(Icons.keyboard_arrow_down_rounded),
                     ],
                   )
-                  
-                  
-                  
-                  
                   : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -362,9 +359,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                 
-                                 
-                                 
                                   CustomText(
                                     selectedProvinceName ??
                                         widget.initProvince ??

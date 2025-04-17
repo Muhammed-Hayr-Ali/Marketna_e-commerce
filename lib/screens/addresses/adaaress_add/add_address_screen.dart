@@ -48,10 +48,10 @@ class AddAddressScreen extends StatelessWidget {
                     CustomCountryPicker(
                       initCountry: _.country,
                       initProvince: _.province,
-                      initCity: _.city,
                       countryPickerMode: CountryPickerMode.address,
-                      onChangedCountry: ({required name, required code}) {
-                        _.country = name; // Update the country
+                      onChangedCountry: ({code, flag, name}) {
+                        _.country = name;
+                        _.flag = flag;
                         _.updateCountryCode(code); // Update the country code
                       },
 
