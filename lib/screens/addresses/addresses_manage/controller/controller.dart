@@ -24,7 +24,7 @@ class ManageAddressesController extends GetxController {
       final response = await _supabase
           .from(KEYS.ADDRESSES_TABLE)
           .select()
-          .eq('customer_id', customerId);
+          .eq(AppConstants.CUSTOMER_ID, customerId);
 
       // Check if the response is empty
       if (response.isEmpty) return;
@@ -35,7 +35,7 @@ class ManageAddressesController extends GetxController {
       );
     } catch (error) {
       // Handle errors and show error notification
-      CustomNotification.showSnackbar(message: 'data_loading_error');
+      CustomNotification.showSnackbar(message: AppConstants.DATA_LOADING_ERROR);
       debugPrint(error.toString());
     } finally {
       // Set loading state to false

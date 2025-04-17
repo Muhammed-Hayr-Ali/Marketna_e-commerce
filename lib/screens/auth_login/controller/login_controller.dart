@@ -40,7 +40,7 @@ class LoginController extends GetxController {
     } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${'An error occurred:'.tr} $error',
+        message: '${AppConstants.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {
@@ -71,7 +71,7 @@ class LoginController extends GetxController {
 
       // Ensure tokens are not null
       if (accessToken == null || idToken == null) {
-        throw 'Missing Tokens';
+        throw AppConstants.GOOGLE_SIGN_IN_FAILED;
       }
 
       // Sign in with Supabase using OAuth provider and tokens
@@ -83,7 +83,7 @@ class LoginController extends GetxController {
 
       // Check if the session is null
       if (authResponse.session == null) {
-        throw 'session_is_null';
+        throw AppConstants.GOOGLE_SIGN_IN_FAILED;
       }
       // Navigate to main screen
       Get.offAllNamed(AppRoutes.MAIN_SCREEN);
@@ -91,6 +91,12 @@ class LoginController extends GetxController {
       // Show error message in a snackbar
       CustomNotification.showSnackbar(message: error.message);
       debugPrint(error.message);
+    } catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
+      debugPrint(error.toString());
     } finally {
       // Reset loading state
       loginWithIsLoading.value = false;
@@ -125,9 +131,9 @@ class LoginController extends GetxController {
       CustomNotification.showSnackbar(message: error.message);
       debugPrint(error.message);
     } catch (error) {
-      /// Handle other errors and show error message in a snackbar
+      // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${'An error occurred:'.tr} $error',
+        message: '${AppConstants.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {
@@ -156,6 +162,12 @@ class LoginController extends GetxController {
     } on AuthException catch (error) {
       CustomNotification.showSnackbar(message: error.message);
       debugPrint(error.message);
+    } catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
+      debugPrint(error.toString());
     } finally {
       loginWithIsLoading.value = false;
     }

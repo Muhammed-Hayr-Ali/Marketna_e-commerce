@@ -29,14 +29,14 @@ class ForgotPasswordController extends GetxController {
       // Navigate to the update password route
       Get.toNamed(
         AppRoutes.UPDATE_PASSWORD,
-        arguments: {'email': emailController.text},
+        arguments: {AppConstants.EMAIL: emailController.text},
       );
     } on AuthException catch (error) {
       // Show a snackbar with the error message
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
       // Handle other errors and show a snackbar with the error message
-      CustomNotification.showSnackbar(message: '${'An error occurred:'.tr} $error');
+      CustomNotification.showSnackbar(message: '${AppConstants.ERROR.tr} $error');
       debugPrint(error.toString());
     } finally {
       // Set the loading state to false

@@ -1,5 +1,6 @@
 class AppStorageKey {
   AppStorageKey._();
 
-  static const String firstTimeLaunch = 'firstTimeLaunch';
+  static const String FIRST_TIME_LAUNCH = 'firstTimeLaunch';
+  static const String LOCALE = 'locale';
 }

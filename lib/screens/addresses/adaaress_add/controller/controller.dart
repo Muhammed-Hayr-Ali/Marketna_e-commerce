@@ -37,19 +37,19 @@ class AddAddressController extends GetxController {
   Future<Position> _determinePosition() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw 'Unable_Location_services.';
+      throw AppConstants.UNABLE_LOCATION_SERVICES;
     }
 
     final permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       final requestedPermission = await Geolocator.requestPermission();
       if (requestedPermission == LocationPermission.denied) {
-        throw 'Location_permissions_denied';
+        throw AppConstants.LOCATION_PERMISSIONS_DENIED;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw 'Location_permissions_denied_request_permissions';
+      throw AppConstants.LOCATION_PERMISSIONS_DENIED_REQUEST_PERMISSIONS;
     }
 
     return await Geolocator.getCurrentPosition();
@@ -89,8 +89,8 @@ class AddAddressController extends GetxController {
         phoneNumber: phoneNumberController.text,
         notes: notesController.text,
         location: {
-          'latitude': position.latitude,
-          'longitude': position.longitude,
+          AppConstants.LATITUDE: position.latitude,
+          AppConstants.LONGITUDE: position.longitude,
         },
       );
 
@@ -101,7 +101,7 @@ class AddAddressController extends GetxController {
           .whenComplete(() {
             // Show success notification
             CustomNotification.showSnackbar(
-              message: 'address_added_successfully',
+              message: AppConstants.ADDRESS_ADDED_SUCCESSFULLY,
             );
             // Dispose controllers and reinitialize data
             _disposeControllers();
@@ -109,7 +109,7 @@ class AddAddressController extends GetxController {
           });
     } catch (error) {
       // Handle errors and show error notification
-      CustomNotification.showSnackbar(message: 'data_sending_error');
+      CustomNotification.showSnackbar(message: AppConstants.DATA_SENDING_ERROR);
       debugPrint(error.toString());
     } finally {
       // Set loading state to false

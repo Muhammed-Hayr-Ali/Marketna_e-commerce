@@ -43,6 +43,7 @@ abstract class AppConstants {
   // ==============================
   // **User Metadata**
   // ==============================
+  static const String EMAIL = 'email';
   static const String AVATAR = 'avatar';
   static const String AVATAR_URL = 'avatar_url';
   static const String PICTURE = 'picture';
@@ -57,5 +58,64 @@ abstract class AppConstants {
   static const String PHONE = 'phone';
   static const String GENDER = 'gender';
   static const String DATE_BIRTH = 'date_birth';
+  static const String LATITUDE = 'latitude';
+  static const String LONGITUDE = 'longitude';
+
+  /// ==============================
+  /// **Shared Preferences**
+  /// ==============================
+  static const String USER_DATA = 'user_data';
+
+  /// ==============================
+  /// **Column**
+  /// ==============================
+  static const String CUSTOMER_ID = 'customerId';
+  static const String USER_ID = 'user_id';
+  static const String USER_EMAIL = 'user_email';
+  static const String USER_PASSWORD = 'user_password';
+  static const String USER_PHONE = 'user_phone';
+
+  /// ==============================
+  /// **Notification**
+  /// ==============================
+
+  static const String ERROR = 'an_error_occurred:';
+  static const String UNABLE_LOCATION_SERVICES = 'Unable_Location_services';
+  static const String LOCATION_PERMISSIONS_DENIED =
+      'Location_permissions_denied';
+  static const String LOCATION_PERMISSIONS_DENIED_REQUEST_PERMISSIONS =
+      'Location_permissions_denied_request_permissions';
+  static const String ADDRESS_ADDED_SUCCESSFULLY = 'address_added_successfully';
+
+  static const String DATA_SENDING_ERROR = 'data_sending_error';
+  static const String DATA_LOADING_ERROR = 'data_loading_error';
+  static const String GOOGLE_SIGN_IN_FAILED = 'google_sign_in_failed';
+  static const String PRIVACY_POLICY_CANNOT_BE_OPENED = 'privacy_policy_cannot_be_opened';
+  static const String VERIFICATION_CODE_CANNOT_BE_EMPTY = 'verification_code_cannot_be_empty';
+  static const String VERIFICATION_CODE_INVALID_LENGTH = 'verification_code_invalid_length';
+  static const String PASSWORD_UPDATED_SUCCESSFULLY = 'password_updated_successfully';
+  static const String EMAIL_COPIED = 'email_copied';
+  static const String PROFILE_UPDATED_SUCCESSFULLY = 'profile_updated_successfully';
+
+
+
+
+
+
+/// ==============================
+/// **Translations**
+/// ==============================
+
+  static const String SELECT_IMAGE_SOURCE = 'select_image_source';
+  static const String SELECT_GENDER = 'select_gender';
+  static const String NOT_SPECIFIED = 'not_specified';
+  static const String MALE = 'male';  
+  static const String FEMALE = 'female';
+  static const String CHOOSE_YOUR_DATE_OF_BIRTH = 'choose_your_date_of_birth';
+  static const String DATE_FORMAT = 'yyyy-MM-dd';
+  static const String CONFIRM = 'confirm';
+  static const String  ARE_YOU_SURE_LOGOUT = 'are_you_sure_logout';
+  static const String CANCEL = 'cancel';
+  static const String LOGOUT = 'logout';
 
 }

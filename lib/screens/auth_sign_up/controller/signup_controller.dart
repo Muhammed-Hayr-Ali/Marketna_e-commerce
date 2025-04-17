@@ -24,17 +24,17 @@ class SignUpController extends GetxController {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
     final displayName = nameController.text.trim();
-    final userName = _removeTextAfterAt(email);
+    final userName = DataConverter.removeTextAfterAt(email);
 
     try {
       await supabase.auth.signUp(
         email: email,
         password: password,
         data: {
-          'display_name': displayName,
-          'name': displayName,
-          'full_name': displayName,
-          'user_name': userName,
+          AppConstants.DISPLAY_NAME: displayName,
+          AppConstants.NAME: displayName,
+          AppConstants.FULL_NAME: displayName,
+          AppConstants.USER_NAME: userName,
         },
       );
 
@@ -42,26 +42,19 @@ class SignUpController extends GetxController {
     } on AuthException catch (error) {
       // Show a snackbar with the error message
       CustomNotification.showSnackbar(message: error.message);
+    } catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
+      debugPrint(error.toString());
     } finally {
       // Reset the loading state
       isLoading.value = false;
     }
   }
 
-  /// Removes the text after the '@' symbol in the given input string.
-  ///
-  /// This function searches for the '@' character in the input string.
-  /// If found, it returns the substring from the beginning of the input
-  /// up to (but not including) the '@' character. If the '@' character
-  /// is not found, it returns the input string unchanged.
-  ///
-  /// - Parameter input: The string to process.
-  /// - Returns: The substring before the '@' character, or the original
-  ///   string if '@' is not present.
-  String _removeTextAfterAt(String input) {
-    final atIndex = input.indexOf('@');
-    return atIndex == -1 ? input : input.substring(0, atIndex);
-  }
+
 
   /// Opens the privacy policy URL in the browser.
   ///
@@ -78,6 +71,7 @@ class SignUpController extends GetxController {
     }
 
     /// If the URL cannot be launched, throw an exception.
-    throw Exception('Could not launch the privacy policy URL.');
+    throw Exception(AppConstants.PRIVACY_POLICY_CANNOT_BE_OPENED);
+    
   }
 }

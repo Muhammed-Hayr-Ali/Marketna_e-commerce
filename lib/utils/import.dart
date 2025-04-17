@@ -29,7 +29,7 @@ export 'package:application/screens/profile_edit/controller/controller.dart';
 export 'package:application/screens/profile_edit/controller/main_controller.dart';
 export 'package:application/screens/profile_edit/editprofilescreen.dart';
 export 'package:application/screens/favorite/favorite_screen.dart';
-export 'package:application/screens/auth_forgot_password/controller/forgot_password_controller.dart';
+export 'package:application/screens/auth_forgot_password/controller/controller.dart';
 export 'package:application/screens/auth_forgot_password/forgot_password_screen.dart';
 export 'package:application/screens/home/home_screen.dart';
 export 'package:application/screens/auth_login/controller/login_controller.dart';

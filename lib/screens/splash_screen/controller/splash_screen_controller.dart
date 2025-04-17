@@ -58,13 +58,13 @@ class SplashScreenController extends GetxController {
   /// the user is not authenticated.
   Future<void> _handleFirstLaunch() async {
     final isFirstTimeLaunch = await localStorage.read<bool>(
-      key: AppStorageKey.firstTimeLaunch,
+      key: AppStorageKey.FIRST_TIME_LAUNCH,
       defaultValue: true,
     );
     if (isFirstTimeLaunch == null || isFirstTimeLaunch) {
       _navigateToScreen(AppRoutes.ONBOARDING_SCREEN);
       await localStorage.write(
-        key: AppStorageKey.firstTimeLaunch,
+        key: AppStorageKey.FIRST_TIME_LAUNCH,
         value: false,
       );
     } else {

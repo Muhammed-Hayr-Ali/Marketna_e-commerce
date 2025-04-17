@@ -8,16 +8,6 @@ class EditProfileMainController {
 
 
 
-
-
-
-  void updateProfileError(String account) {
-    CustomNotification.showSnackbar(
-      message:
-          '${'cant_change_profile'.tr} ${account.replaceAll('twitter', 'X')} ${'account'.tr}',
-    );
-  }
-
   /// Retrieves the locale setting for the DateTimePicker.
   ///
   /// This function reads the locale code from local storage. If no locale code
@@ -37,7 +27,7 @@ class EditProfileMainController {
 
   DateTimePickerLocale _getLocale() {
     final String localeCode =
-        _storage.read<String>('locale') ?? Get.deviceLocale!.languageCode;
+        _storage.read<String>(AppStorageKey.LOCALE) ?? Get.deviceLocale!.languageCode;
 
     switch (localeCode) {
       case 'ar':
@@ -66,25 +56,25 @@ class EditProfileMainController {
   /// or null if no selection is made.
 
   Future<String?> openSelectImageSource() async {
-    return custombottomSheet(
-      title: 'select_image_source',
+    return await custombottomSheet<String?>(
+      title: AppConstants.SELECT_IMAGE_SOURCE,
       children: [
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result: 'camera'),
-          child: const CustomText('camera', fontSize: 12),
+          onPressed: () => Get.back(result: AppConstants.CAMERA),
+          child: const CustomText(AppConstants.CAMERA, fontSize: 12),
         ),
         const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result: 'gallery'),
-          child: const CustomText('gallery', fontSize: 12),
+          onPressed: () => Get.back(result: AppConstants.GALLERY),
+          child: const CustomText(AppConstants.GALLERY, fontSize: 12),
         ),
         const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result: 'delete'),
-          child: const CustomText('delete_image', fontSize: 12),
+          onPressed: () => Get.back(result:  AppConstants.DELETE),
+          child: const CustomText(AppConstants.DELETE, fontSize: 12),
         ),
       ],
     );
@@ -92,41 +82,44 @@ class EditProfileMainController {
 
   Future<String> openGenderBottomSheet(String? value) async {
     return await custombottomSheet<String?>(
-          title: 'select_gender',
+          title: AppConstants.SELECT_GENDER,
           children: [
             TextButton(
-              onPressed: () => Get.back(result: 'not_specified'),
+              onPressed: () => Get.back(result:  AppConstants.NOT_SPECIFIED),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == 'not_specified'
+                  value == AppConstants.NOT_SPECIFIED
                       ? Colors.grey.shade200
                       : Colors.white,
                 ),
               ),
-              child: Row(children: [CustomText('not_specified')]),
+              child: Row(children: [CustomText(AppConstants.NOT_SPECIFIED)]),
             ),
+
+
+
             TextButton(
-              onPressed: () => Get.back(result: 'male'),
+              onPressed: () => Get.back(result: AppConstants.MALE),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == 'male' ? Colors.grey.shade200 : Colors.white,
+                  value == AppConstants.MALE ? Colors.grey.shade200 : Colors.white,
                 ),
               ),
-              child: Row(children: [CustomText('male')]),
+              child: Row(children: [CustomText(AppConstants.MALE)]),
             ),
             TextButton(
-              onPressed: () => Get.back(result: 'female'),
+              onPressed: () => Get.back(result: AppConstants.FEMALE),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == 'female' ? Colors.grey.shade200 : Colors.white,
+                  value == AppConstants.FEMALE ? Colors.grey.shade200 : Colors.white,
                 ),
               ),
-              child: Row(children: [CustomText('female')]),
+              child: Row(children: [CustomText(AppConstants.FEMALE)]),
             ),
           ],
         ) ??
         value ??
-        'not_specified';
+        AppConstants.NOT_SPECIFIED;
   }
 
   /// Opens a bottom sheet with a date picker and a confirm button.
@@ -146,7 +139,7 @@ class EditProfileMainController {
     DateTime? selectedDate;
 
     custombottomSheet(
-      title: 'choose_your_date_of_birth',
+      title: AppConstants.CHOOSE_YOUR_DATE_OF_BIRTH,
       children: [
         DatePickerWidget(
           locale: _getLocale(),
@@ -157,7 +150,7 @@ class EditProfileMainController {
               initialDate != null
                   ? DateTime.tryParse(initialDate)
                   : DateTime.now(),
-          dateFormat: 'yyyy-MM-dd',
+          dateFormat: AppConstants.DATE_FORMAT,
           pickerTheme: DateTimePickerTheme(),
           onChange: (date, _) => selectedDate = date,
         ),
@@ -171,7 +164,7 @@ class EditProfileMainController {
               }
               Get.back();
             },
-            child: CustomText('confirm'.tr),
+            child: CustomText(AppConstants.CONFIRM),
           ),
         ),
       ],

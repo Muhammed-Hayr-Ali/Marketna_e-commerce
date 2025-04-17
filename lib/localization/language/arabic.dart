@@ -136,8 +136,11 @@ class Arabic {
         'تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.',
     'data_loading_error':
         'حدث خطأ أثناء تحميل البيانات. يرجى المحاولة مرة أخرى.',
-    'An error occurred:': 'حدث خطأ:',
+    'an_error_occurred': 'حدث خطأ:',
     'session_is_null' : 'تعذر الحصول على معلومات الجلسة.',
+    'google_sign_in_failed' : 'تعذر تسجيل الدخول باستخدام Google.',
+
+    'privacy_policy_cannot_be_opened': 'تعذر فتح رابط سياسة الخصوصية.',
 
     /// وقت وتاريخ
     'today': 'اليوم',

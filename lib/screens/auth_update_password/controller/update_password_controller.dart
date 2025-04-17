@@ -33,12 +33,12 @@ class UpdatePasswordController extends GetxController {
   Future<void> updatePassword() async {
     if (verificationCode == null) {
       CustomNotification.showSnackbar(
-        message: 'verification_code_cannot_be_empty',
+        message: AppConstants.VERIFICATION_CODE_CANNOT_BE_EMPTY,
       );
       return;
     } else if (verificationCode!.length != 6) {
       CustomNotification.showSnackbar(
-        message: 'verification_code_invalid_length',
+        message: AppConstants.VERIFICATION_CODE_INVALID_LENGTH,
       );
       return;
     }
@@ -68,12 +68,20 @@ class UpdatePasswordController extends GetxController {
 
       // Show a success message
       CustomNotification.showSnackbar(
-        message: 'password_updated_successfully',
+        message: AppConstants.PASSWORD_UPDATED_SUCCESSFULLY,
       );
     } on AuthException catch (error) {
       // Show an error message
       CustomNotification.showSnackbar(message: error.message);
-    } finally {
+    }
+     catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
+      debugPrint(error.toString());
+    } 
+     finally {
       // Reset the loading state
       isLoading.value = false;
     }

@@ -35,10 +35,7 @@ class EditProfileController extends GetxController {
     final userMetadata = currentUser?.userMetadata;
 
     // Check if the user is logged in
-    if (currentUser == null) {
-      debugPrint('User is not logged in');
-      return;
-    }
+    if (currentUser == null) return;
 
     // Set the user object to the current user
     user = currentUser;
@@ -78,7 +75,7 @@ class EditProfileController extends GetxController {
     final String? selectedSource = await _main.openSelectImageSource();
 
     if (selectedSource == null) return;
-
+    debugPrint(selectedSource);
     switch (selectedSource) {
       /// Selects the image from the camera.
       case AppConstants.CAMERA:
@@ -157,16 +154,7 @@ class EditProfileController extends GetxController {
     debugPrint('deleteImage');
 
     // Check if the user is logged in
-    if (user == null) {
-      debugPrint('user_is_not_logged_in');
-      return;
-    }
-
-    // Check if the user has an avatar URL
-    if (user!.userMetadata == null) {
-      debugPrint('user_metadata_is_null');
-      return;
-    }
+    if (user == null) return;
 
     // Get the avatar URL from the user's metadata
     String? avatarUrl = DataConverter.getAvatarUrl(user!.userMetadata!);
@@ -193,6 +181,10 @@ class EditProfileController extends GetxController {
       debugPrint(error.message.toString());
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
       debugPrint(error.toString());
     } finally {
       // If [withUpdate] is true, refresh the UI
@@ -217,6 +209,7 @@ class EditProfileController extends GetxController {
     debugPrint('updateUser');
 
     if (imagePath == null) return;
+
     debugPrint('try delete old image');
     await _deleteImage(false);
 
@@ -247,6 +240,10 @@ class EditProfileController extends GetxController {
       debugPrint(error.message.toString());
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
       debugPrint(error.toString());
     } finally {
       imagePath = null;
@@ -265,7 +262,7 @@ class EditProfileController extends GetxController {
     if (email == null) return;
 
     Clipboard.setData(ClipboardData(text: email!));
-    CustomNotification.showToast(message: 'email_copied');
+    CustomNotification.showToast(message: AppConstants.EMAIL_COPIED);
   }
 
   /// Updates the user's gender.
@@ -326,12 +323,16 @@ class EditProfileController extends GetxController {
       );
 
       // Show a snackbar with the message 'Profile updated successfully'
-      CustomNotification.showSnackbar(message: 'Profile updated successfully');
+      CustomNotification.showSnackbar(message: AppConstants.PROFILE_UPDATED_SUCCESSFULLY);
     } on AuthException catch (error) {
       // Show a snackbar with the error message
       CustomNotification.showSnackbar(message: error.message);
-    } catch (error) {
-      // Print the error to the console
+    } 
+     catch (error) {
+      // Handle other errors and show error message in a snackbar
+      CustomNotification.showSnackbar(
+        message: '${AppConstants.ERROR.tr} $error',
+      );
       debugPrint(error.toString());
     } finally {
       // Reset the form and set the loading state to false

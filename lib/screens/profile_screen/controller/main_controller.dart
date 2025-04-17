@@ -4,19 +4,19 @@ class ProfileMainController {
 
   Future<bool> shouldSignOut() async {
     return await custombottomSheet<bool>(
-          title: 'are_you_sure_logout',
+          title: AppConstants.ARE_YOU_SURE_LOGOUT,
 
           children: [
             CustomButton(
               width: double.infinity,
               onPressed: () => Get.back(result: false),
-              child: CustomText('cancel', fontSize: 12),
+              child: CustomText(AppConstants.CANCEL, fontSize: 12),
             ),
             const SizedBox(height: 16),
             CustomButton(
               width: double.infinity,
               onPressed: () => Get.back(result: true),
-              child: CustomText('logout', fontSize: 12),
+              child: CustomText(AppConstants.LOGOUT, fontSize: 12),
             ),
           ],
         ) ??
