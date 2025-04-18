@@ -67,9 +67,11 @@ class AddressCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                  onPressed: () {
-                    // Navigate to edit screen
-                  },
+                  onPressed:
+                      () => Get.toNamed(
+                        AppRoutes.ADD_ADDRESSES_SCREEN,
+                        arguments: address.id,
+                      ),
                   icon: Icon(Icons.edit, color: AppColors.primaryColor),
                 ),
                 IconButton(

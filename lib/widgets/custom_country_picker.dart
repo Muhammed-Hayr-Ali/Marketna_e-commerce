@@ -18,24 +18,24 @@ class CustomCountryPicker extends StatefulWidget {
     this.onChangedProvince,
     this.onChangedCity,
     this.showCountryCodeList = true,
-    this.showCountryCodeHint = true,
-    this.initCode,
     this.codeLabel,
-    this.initCountry,
-    this.initProvince,
-    this.initCity,
+    this.initCountryCode,
+    // this.initCountry,
+    // this.initProvince,
+    // this.initCity,
+    // this.initFlag,
   });
 
   final CountryPickerMode countryPickerMode;
   final bool showCountryCodeList;
-  final bool showCountryCodeHint;
   final bool showProvince;
   final bool showCity;
 
-  final String? initCode;
-  final String? initCountry;
-  final String? initProvince;
-  final String? initCity;
+  final String? initCountryCode;
+  // final String? initCountry;
+  // final String? initProvince;
+  // final String? initCity;
+  // final String? initFlag;
 
   final String? codeLabel;
   final String? countryLabel;
@@ -103,8 +103,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       provinces = value.province ?? [];
       city = [];
       selectedProvince = null;
-      selectedCity = null;
       selectedProvinceName = null;
+      selectedCity = null;
       selectedCityName = null;
       selectedCountryName = (local == 'ar' ? value.nameAr : value.name) ?? '';
     });
@@ -256,15 +256,15 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                     selectedCountry!.code!,
                     fontWeight: FontWeight.w500,
                   )
-                  : CustomText(
-                    widget.initCode == '' || widget.initCode == null
-                        ? '+963'
-                        : widget.initCode!,
+                  : widget.initCountryCode != null
+                  ? CustomText(
+                    widget.initCountryCode!,
                     fontWeight: FontWeight.w500,
-                    color:
-                        widget.initCode == '' || widget.initCode == null
-                            ? Colors.grey
-                            : Colors.black,
+                  )
+                  : CustomText(
+                    '+963',
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
                   ),
         ),
       ),
@@ -309,19 +309,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                           CustomText(selectedCountryName ?? ''),
                         ],
                       ),
-                      widget.showCountryCodeHint
-                          ? Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: CustomText(selectedCountry!.code ?? ''),
-                          )
-                          : SizedBox(),
-                    ],
-                  )
-                  : widget.initCountry != null && widget.initCountry != ''
-                  ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(widget.initCountry!),
                       Icon(Icons.keyboard_arrow_down_rounded),
                     ],
                   )
@@ -361,7 +348,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                                 children: [
                                   CustomText(
                                     selectedProvinceName ??
-                                        widget.initProvince ??
                                         widget.provinceHint ??
                                         'select_province',
                                   ),
@@ -398,7 +384,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                                     children: [
                                       CustomText(
                                         selectedCityName ??
-                                            widget.initCity ??
                                             widget.cityHint ??
                                             'select_city',
                                       ),

@@ -1,16 +1,21 @@
 import 'package:application/utils/import.dart';
 
 class AddAddressController extends GetxController {
+  // AddAddressController({this.addressId});
+  // final int? addressId;
+
   final _supabase = Supabase.instance.client;
   final _ = Get.find<ManageAddressesController>();
 
   RxBool isLoading = false.obs;
+  bool isLoadingAddress = false;
 
   final formKey = GlobalKey<FormState>();
 
-  String? country = 'سوريا';
-  String? province = 'حلب';
-  String? city = 'منبج';
+  int? addressId;
+  String? country;
+  String? province;
+  String? city;
   String? countryCode;
   String? flag;
   final addressNameController = TextEditingController();
@@ -26,6 +31,46 @@ class AddAddressController extends GetxController {
   void updateCountryCode(code) {
     countryCode = code;
     update();
+  }
+
+  Future<void> getAddressDetails(int id) async {
+    isLoadingAddress = true;
+    update();
+
+    try {
+      // Query the database for addresses linked to the current user
+      final response = await _supabase
+          .from(KEYS.ADDRESSES_TABLE)
+          .select()
+          .eq('id', id);
+      // Check if the response is not empty
+      if (response.isEmpty) {
+        debugPrint('Address not found.');
+        return;
+      }
+
+      // Update the addresses list with the fetched data
+      addressId = id;
+      addressNameController.text = response[0]['address_name'] ?? '';
+      streetAddressController.text = response[0]['street_address'] ?? '';
+      phoneNumberController.text = response[0]['phone_number'] ?? '';
+      notesController.text = response[0]['notes'] ?? '';
+      country = response[0]['country'] ?? '';
+      province = response[0]['province'] ?? '';
+      city = response[0]['city'] ?? '';
+      countryCode = response[0]['country_code'] ?? '';
+      flag = response[0]['flag'] ?? '';
+      // Update the UI with the new data
+      update();
+    } catch (error) {
+      // Handle errors and show error notification
+      CustomNotification.showSnackbar(message: AppConstants.DATA_SENDING_ERROR);
+      debugPrint(error.toString());
+    } finally {
+      // Set loading state to false
+      isLoadingAddress = false;
+      update();
+    }
   }
 
   /// Determine the device's current location.
@@ -56,32 +101,26 @@ class AddAddressController extends GetxController {
     return await Geolocator.getCurrentPosition();
   }
 
-  /// Adds a new address for the current user.
-  ///
-  /// This function collects the user's input from form fields and determines
-  /// the device's current location to create a new address entry. It then
-  /// inserts the address into the database and provides feedback to the user.
+
   Future<void> addAddress() async {
-    // Set loading state to true
     isLoading.value = true;
 
-    // Get the current user ID
-    final userId = _supabase.auth.currentUser!.id;
+    final currentUserId = _supabase.auth.currentUser?.id;
+    if (currentUserId == null) {
+      isLoading.value = false;
+      return;
+    }
 
-    // Determine the current position
-    final position = await _determinePosition();
-
-    // Validate form inputs
     if (!formKey.currentState!.validate()) {
       isLoading.value = false;
       return;
     }
 
     try {
-      // Create an Address object with user input and location data
-      final address = Address(
-        id: 56,
-        customerId: userId,
+      final currentPosition = await _determinePosition();
+
+      final newAddress = Address(
+        customerId: currentUserId,
         addressName: addressNameController.text,
         streetAddress: streetAddressController.text,
         country: country,
@@ -89,33 +128,41 @@ class AddAddressController extends GetxController {
         city: city,
         countryCode: countryCode,
         phoneNumber: phoneNumberController.text,
-        flag: countryCode,
+        flag: flag,
         notes: notesController.text,
         location: {
-          AppConstants.LATITUDE: position.latitude,
-          AppConstants.LONGITUDE: position.longitude,
+          AppConstants.LATITUDE: currentPosition.latitude,
+          AppConstants.LONGITUDE: currentPosition.longitude,
         },
       );
 
-      // Insert the address into the database
-      await _supabase
-          .from(KEYS.ADDRESSES_TABLE)
-          .insert(address.toJson())
-          .whenComplete(() {
-            // Show success notification
-            CustomNotification.showSnackbar(
-              message: AppConstants.ADDRESS_ADDED_SUCCESSFULLY,
-            );
-            // Dispose controllers and reinitialize data
-            _disposeControllers();
-            _.loadAddresses();
-          });
+      if (addressId != null) {
+        await _supabase
+            .from(KEYS.ADDRESSES_TABLE)
+            .update(newAddress.toJson())
+            .eq('id', addressId!)
+            .whenComplete(() {
+              CustomNotification.showSnackbar(
+                message: AppConstants.ADDRESS_ADDED_SUCCESSFULLY,
+              );
+              _.loadAddresses();
+            });
+      } else {
+        await _supabase
+            .from(KEYS.ADDRESSES_TABLE)
+            .insert(newAddress.toJson())
+            .whenComplete(() {
+              CustomNotification.showSnackbar(
+                message: AppConstants.ADDRESS_ADDED_SUCCESSFULLY,
+              );
+              _disposeControllers();
+              _.loadAddresses();
+            });
+      }
     } catch (error) {
-      // Handle errors and show error notification
       CustomNotification.showSnackbar(message: AppConstants.DATA_SENDING_ERROR);
       debugPrint(error.toString());
     } finally {
-      // Set loading state to false
       isLoading.value = false;
     }
   }
