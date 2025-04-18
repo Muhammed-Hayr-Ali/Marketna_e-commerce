@@ -13,6 +13,15 @@ class ManageAddressesScreen extends StatelessWidget {
         ),
 
         title: const CustomText(AppConstants.MANAGE_ADDRESSES),
+
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(AppRoutes.ADD_ADDRESSES_SCREEN);
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),

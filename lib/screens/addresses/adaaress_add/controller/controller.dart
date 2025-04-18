@@ -8,7 +8,6 @@ class AddAddressController extends GetxController {
   final _ = Get.find<ManageAddressesController>();
 
   RxBool isLoading = false.obs;
-  bool isLoadingAddress = false;
 
   final formKey = GlobalKey<FormState>();
 
@@ -33,45 +32,7 @@ class AddAddressController extends GetxController {
     update();
   }
 
-  Future<void> getAddressDetails(int id) async {
-    isLoadingAddress = true;
-    update();
 
-    try {
-      // Query the database for addresses linked to the current user
-      final response = await _supabase
-          .from(KEYS.ADDRESSES_TABLE)
-          .select()
-          .eq('id', id);
-      // Check if the response is not empty
-      if (response.isEmpty) {
-        debugPrint('Address not found.');
-        return;
-      }
-
-      // Update the addresses list with the fetched data
-      addressId = id;
-      addressNameController.text = response[0]['address_name'] ?? '';
-      streetAddressController.text = response[0]['street_address'] ?? '';
-      phoneNumberController.text = response[0]['phone_number'] ?? '';
-      notesController.text = response[0]['notes'] ?? '';
-      country = response[0]['country'] ?? '';
-      province = response[0]['province'] ?? '';
-      city = response[0]['city'] ?? '';
-      countryCode = response[0]['country_code'] ?? '';
-      flag = response[0]['flag'] ?? '';
-      // Update the UI with the new data
-      update();
-    } catch (error) {
-      // Handle errors and show error notification
-      CustomNotification.showSnackbar(message: AppConstants.DATA_SENDING_ERROR);
-      debugPrint(error.toString());
-    } finally {
-      // Set loading state to false
-      isLoadingAddress = false;
-      update();
-    }
-  }
 
   /// Determine the device's current location.
   ///

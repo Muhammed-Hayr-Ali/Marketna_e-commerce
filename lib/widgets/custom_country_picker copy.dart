@@ -20,10 +20,7 @@ class CustomCountryPicker extends StatefulWidget {
     this.showCountryCodeList = true,
     this.codeLabel,
     this.initCountryCode,
-    // this.initCountry,
-    // this.initProvince,
-    // this.initCity,
-    // this.initFlag,
+
   });
 
   final CountryPickerMode countryPickerMode;
@@ -32,10 +29,7 @@ class CustomCountryPicker extends StatefulWidget {
   final bool showCity;
 
   final String? initCountryCode;
-  // final String? initCountry;
-  // final String? initProvince;
-  // final String? initCity;
-  // final String? initFlag;
+
 
   final String? codeLabel;
   final String? countryLabel;
