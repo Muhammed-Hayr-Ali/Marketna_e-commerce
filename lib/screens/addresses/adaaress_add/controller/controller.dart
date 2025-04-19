@@ -5,31 +5,79 @@ class AddAddressController extends GetxController {
   // final int? addressId;
 
   final _supabase = Supabase.instance.client;
+  final _localstorage = AppStorage();
   final _ = Get.find<ManageAddressesController>();
 
-  RxBool isLoading = false.obs;
-
+  /// Form key to validate the address form.
   final formKey = GlobalKey<FormState>();
 
-  int? addressId;
-  String? country;
-  String? province;
-  String? city;
-  String? countryCode;
-  String? flag;
+  /// Text controllers for the address fields.
   final addressNameController = TextEditingController();
   final streetAddressController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final notesController = TextEditingController();
 
-  /// Updates the current country code with the given [code].
-  ///
-  /// This function assigns the provided [code] to the `countryCode` field
-  /// and triggers a UI update by calling the `update()` method.
+  /// Selected country, province, and city variables.
+  String? selectedCountry;
+  String? selectedCountryCode;
+  String? selectedCountryFlag;
+  String? selectedProvince;
+  String? selectedCity;
 
-  void updateCountryCode(code) {
-    countryCode = code;
-    debugPrint(countryCode);
+  String? local = 'en';
+  RxBool isLoading = false.obs;
+
+  int? addressId;
+
+  String? countryErrorMessage;
+  String? provinceErrorMessage;
+  String? cityErrorMessage;
+
+
+  @override
+  void onInit() async {
+    local = await _localstorage.read<String>(
+      key: AppStorageKey.LOCALE,
+      defaultValue: Get.deviceLocale!.languageCode,
+    );
+    super.onInit();
+  }
+
+  /// Initializes the controller and sets the initial values for the address fields.
+  void loadAddress(Address? address) async {
+    if (address == null) return;
+    addressId = address.id;
+    addressNameController.text = address.addressName ?? '';
+    streetAddressController.text = address.streetAddress ?? '';
+    phoneNumberController.text = address.phoneNumber ?? '';
+    notesController.text = address.notes ?? '';
+
+    selectedCountry = address.country;
+    selectedProvince = address.province;
+    selectedCity = address.city;
+    selectedCountryCode = address.countryCode;
+    selectedCountryFlag = address.flag;
+
+    update();
+  }
+
+  Future<void> onChangedCountry(CountryModel value) async {
+    selectedCountry = local != 'ar' ? value.name : value.nameAr;
+    selectedCountryCode = value.code;
+    selectedCountryFlag = value.flag;
+    selectedProvince = null;
+    selectedCity = null;
+    update();
+  }
+
+  void onChangedProvince(Province value) {
+    selectedProvince = local != 'ar' ? value.name : value.nameAr;
+    selectedCity = null;
+    update();
+  }
+
+  void onChangedCity(City value) {
+    selectedCity = value.name;
     update();
   }
 
@@ -70,10 +118,36 @@ class AddAddressController extends GetxController {
       return;
     }
 
-    if (!formKey.currentState!.validate()) {
+    if (selectedCountry == null) {
+      countryErrorMessage = AppConstants.SELECT_COUNTRY_REQUIRED;
+    } else {
+      countryErrorMessage = null;
+      update();
+    }
+
+    if (selectedProvince == null) {
+      provinceErrorMessage = AppConstants.SELECT_PROVINCE_REQUIRED;
+    } else {
+      provinceErrorMessage = null;
+      update();
+    }
+
+    if (selectedCity == null) {
+      cityErrorMessage = AppConstants.SELECT_CITY_REQUIRED;
+    } else {
+      cityErrorMessage = null;
+      update();
+    }
+
+    if (!formKey.currentState!.validate() ||
+        countryErrorMessage != null ||
+        provinceErrorMessage != null ||
+        cityErrorMessage != null) {
       isLoading.value = false;
+      update();
       return;
     }
+
 
     try {
       final currentPosition = await _determinePosition();
@@ -82,12 +156,12 @@ class AddAddressController extends GetxController {
         customerId: currentUserId,
         addressName: addressNameController.text,
         streetAddress: streetAddressController.text,
-        country: country,
-        province: province,
-        city: city,
-        countryCode: countryCode,
+        country: selectedCountry,
+        province: selectedProvince,
+        city: selectedCity,
+        countryCode: selectedCountryCode,
         phoneNumber: phoneNumberController.text,
-        flag: flag,
+        flag: selectedCountryFlag,
         notes: notesController.text,
         location: {
           AppConstants.LATITUDE: currentPosition.latitude,
@@ -136,6 +210,15 @@ class AddAddressController extends GetxController {
     streetAddressController.clear();
     phoneNumberController.clear();
     notesController.clear();
+    selectedCountry = null;
+    selectedCountryCode = null;
+    selectedCountryFlag = null;
+    selectedProvince = null;
+    selectedCity = null;
+    countryErrorMessage = null;
+    provinceErrorMessage = null;
+    cityErrorMessage = null;
+
     // Update the UI to reflect the changes
     update();
   }

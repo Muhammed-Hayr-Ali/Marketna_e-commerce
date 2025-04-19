@@ -6,66 +6,61 @@ class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
     super.key,
     required this.countryPickerMode,
-    this.showProvince = true,
-    this.showCity = true,
-    this.countryLabel,
-    this.provinceLabel,
-    this.cityLabel,
-    this.countryHint,
-    this.provinceHint,
-    this.cityHint,
     this.onChangedCountry,
     this.onChangedProvince,
     this.onChangedCity,
-    this.showCountryCodeList = true,
-    this.codeLabel,
-    this.initCountryCode,
-
+    this.countryErrorMessage,
+    this.provinceErrorMessage,
+    this.cityErrorMessage,
+    this.selectedCountry,
+    this.selectedCountryFlag,
+    this.selectedProvince,
+    this.selectedCity, this.selectedCountryCode,
   });
 
   final CountryPickerMode countryPickerMode;
-  final bool showCountryCodeList;
-  final bool showProvince;
-  final bool showCity;
+  final void Function(CountryModel)? onChangedCountry;
+  final void Function(Province)? onChangedProvince;
+  final void Function(City)? onChangedCity;
 
-  final String? initCountryCode;
+  /// Error: The argument type 'String?' can't be assigned to the parameter type 'String'.
 
+  final String? selectedCountry;
+  final String? selectedCountryCode;
+  final String? selectedCountryFlag;
+  final String? selectedProvince;
+  final String? selectedCity;
 
-  final String? codeLabel;
-  final String? countryLabel;
-  final String? provinceLabel;
-  final String? cityLabel;
-
-  final String? countryHint;
-  final String? provinceHint;
-  final String? cityHint;
-
-  final void Function({String? name, String? code, String? flag})?
-  onChangedCountry;
-  final void Function(String)? onChangedProvince;
-  final void Function(String)? onChangedCity;
+  final String? countryErrorMessage;
+  final String? provinceErrorMessage;
+  final String? cityErrorMessage;
 
   @override
   State<CustomCountryPicker> createState() => _CustomCountryPickerState();
 }
 
 class _CustomCountryPickerState extends State<CustomCountryPicker> {
+  /// Initialize Supabase client
   final _supabase = Supabase.instance.client;
+
+  /// Initialize GetStorage for local storage
   final GetStorage storage = GetStorage();
+
+  /// Initialize local variable for locale
   String? local;
+
+  /// Initialize isLoading variable for loading state
   bool isLoading = false;
 
-  CountryModel? selectedCountry;
+  /// Initialize selectedCountry, selectedProvince, and selectedCity variables
+  bool isCountrySelected = false;
+
   Province? selectedProvince;
   City? selectedCity;
 
   List<CountryModel> countries = [];
   List<Province> provinces = [];
   List<City> city = [];
-
-  String? selectedCountryName;
-  String? selectedProvinceName;
-  String? selectedCityName;
 
   Future<bool> _loadCountries() async {
     setState(() {
@@ -93,20 +88,16 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   void _updateCountry(BuildContext context, CountryModel value) {
     setState(() {
-      selectedCountry = value;
       provinces = value.province ?? [];
       city = [];
       selectedProvince = null;
-      selectedProvinceName = null;
+      // selectedProvinceName = null;
       selectedCity = null;
-      selectedCityName = null;
-      selectedCountryName = (local == 'ar' ? value.nameAr : value.name) ?? '';
+      // selectedCityName = null;
+      // selectedCountryName = (local == 'ar' ? value.nameAr : value.name) ?? '';
+      // selectedCountryFlag = value.flag ?? '';
     });
-    widget.onChangedCountry?.call(
-      code: value.code ?? '',
-      name: selectedCountryName ?? '',
-      flag: value.flag ?? '',
-    );
+    widget.onChangedCountry?.call(value);
 
     Navigator.pop(context);
   }
@@ -116,20 +107,20 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       selectedProvince = value;
       city = value.city ?? [];
       selectedCity = null;
-      selectedCityName = null;
+      // selectedCityName = null;
 
-      selectedProvinceName = (local == 'ar' ? value.nameAr : value.name) ?? '';
+      // selectedProvinceName = (local == 'ar' ? value.nameAr : value.name) ?? '';
     });
-    widget.onChangedProvince?.call(selectedProvinceName ?? '');
+    widget.onChangedProvince?.call(value);
     Navigator.pop(context);
   }
 
   void _updateCity(City value) {
     setState(() {
       selectedCity = value;
-      selectedCityName = value.name ?? '';
+      // selectedCityName = value.name ?? '';
     });
-    widget.onChangedCity?.call(selectedCityName ?? '');
+    widget.onChangedCity?.call(value);
     Get.back();
   }
 
@@ -237,29 +228,21 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   Widget _pickerCodeMode() {
     return CustomButton(
-      label: widget.codeLabel ?? '',
+      label: '',
       isLoading: isLoading,
       onPressed: _openCountry,
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Transform.translate(
           offset: Offset(-1, 1),
-          child:
-              selectedCountry != null
-                  ? CustomText(
-                    selectedCountry!.code!,
-                    fontWeight: FontWeight.w500,
-                  )
-                  : widget.initCountryCode != null
-                  ? CustomText(
-                    widget.initCountryCode!,
-                    fontWeight: FontWeight.w500,
-                  )
-                  : CustomText(
-                    '+963',
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                  ),
+          child: CustomText(
+            widget.selectedCountryCode ?? '+963',
+            fontWeight: FontWeight.w500,
+            color:
+                widget.selectedCountryCode == null
+                    ? Colors.grey.shade400
+                    : Colors.black,
+          ),
         ),
       ),
     );
@@ -270,128 +253,84 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ///Label
-        CustomText(
-          widget.cityLabel ?? 'country',
-          fontSize: 12,
-          color: Colors.grey,
-          fontWeight: FontWeight.w500,
-        ),
-
         ///country
         CustomButton(
+          label: 'country',
+          errorMessage: widget.countryErrorMessage,
           isLoading: isLoading,
           width: double.infinity,
           onPressed: _openCountry,
-          child:
-              selectedCountry != null &&
-                      selectedCountry!.name != null &&
-                      selectedCountry!.name != ''
-                  ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(2),
-                            child: Image.asset(
-                              selectedCountry!.flag!,
-                              width: 20,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                    child:
+                        widget.selectedCountryFlag != null
+                            ? ClipRRect(
+                              borderRadius: BorderRadius.circular(2),
+                              child: Image.asset(
+                                widget.selectedCountryFlag!,
+                                width: 20,
+                              ),
+                            )
+                            : Icon(
+                              Icons.flag,
+                              size: 20,
+                              color: Colors.grey.shade400,
                             ),
-                          ),
-                          SizedBox(width: 8),
-                          CustomText(selectedCountryName ?? ''),
-                        ],
-                      ),
-                      Icon(Icons.keyboard_arrow_down_rounded),
-                    ],
-                  )
-                  : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(widget.countryHint ?? 'select_country'),
-                      Icon(Icons.keyboard_arrow_down_rounded),
-                    ],
                   ),
+                  SizedBox(width: 8),
+                  CustomText(widget.selectedCountry ?? 'select_country'),
+                ],
+              ),
+              Icon(Icons.keyboard_arrow_down_rounded),
+            ],
+          ),
         ),
 
         ///province + city
-        SizedBox(height: widget.showProvince != false ? 16 : 0),
+        SizedBox(height: 16),
         SizedBox(
-          child:
-              widget.showProvince != false
-                  ? Row(
+          child: Row(
+            children: [
+              Expanded(
+                child: CustomButton(
+                  label: 'state/province',
+                  errorMessage: widget.provinceErrorMessage,
+                  width: double.infinity,
+                  onPressed: _openProvince,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ///Label
-                            CustomText(
-                              widget.provinceLabel ?? 'state/province',
-                              fontSize: 12,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            CustomButton(
-                              width: double.infinity,
-                              onPressed: _openProvince,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CustomText(
-                                    selectedProvinceName ??
-                                        widget.provinceHint ??
-                                        'select_province',
-                                  ),
+                      CustomText(widget.selectedProvince ?? 'select_province'),
 
-                                  Icon(Icons.keyboard_arrow_down_rounded),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: widget.showCity != false ? 16 : 0),
-                      widget.showCity != false
-                          ? Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ///Label
-                                CustomText(
-                                  widget.cityLabel ?? 'city',
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                CustomButton(
-                                  width: double.infinity,
-                                  onPressed: _openCity,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      CustomText(
-                                        selectedCityName ??
-                                            widget.cityHint ??
-                                            'select_city',
-                                      ),
-                                      Icon(Icons.keyboard_arrow_down_rounded),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                          : SizedBox.shrink(),
+                      Icon(Icons.keyboard_arrow_down_rounded),
                     ],
-                  )
-                  : null,
+                  ),
+                ),
+              ),
+              SizedBox(width: 16),
+              Expanded(
+                child: CustomButton(
+                  label: 'city',
+                  errorMessage: widget.cityErrorMessage,
+                  width: double.infinity,
+                  onPressed: _openCity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(widget.selectedCity ?? 'select_city'),
+                      Icon(Icons.keyboard_arrow_down_rounded),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

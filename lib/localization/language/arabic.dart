@@ -107,6 +107,11 @@ class Arabic {
     'min_characters': 'الحد الأدنى لعدد الأحرف هو {0}.',
     'select_gender': 'يرجى تحديد الجنس.',
     'network_error': 'تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.',
+    'please_select_location': 'يرجى اختيار العنوان بشكل صحيح.',
+
+    'select_country_required': 'يرجى اختيار الدولة.',
+    'select_province_required': 'يرجى اختيار الولاية أو المنطقة.',
+    'select_city_required': 'يرجى اختيار المدينة.',
 
     /// رسائل الاستجابة
     'reset_password': 'استعادة كلمة المرور',

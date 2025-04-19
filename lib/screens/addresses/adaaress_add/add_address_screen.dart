@@ -4,22 +4,15 @@ import 'package:application/widgets/custom_country_picker.dart';
 class AddAddressScreen extends StatelessWidget {
   AddAddressScreen({super.key});
   final _ = Get.put(AddAddressController());
-  final country = Get.arguments as Map<String, dynamic>?;
+  final address = Get.arguments as Address?;
 
   @override
   Widget build(BuildContext context) {
     /// Set the initial values for the address fields if available
-    if (country != null) {
-      _.addressNameController.text = country!['addressName'] ?? '';
-      _.streetAddressController.text = country!['streetAddress'] ?? '';
-
-      _.phoneNumberController.text = country!['phoneNumber'] ?? '';
-      _.notesController.text = country!['notes'] ?? '';
-
-      /// Set the initial values for the country fields if available
-
-      /// Set the initial values for the country code if available
+    if (address != null) {
+      _.loadAddress(address!);
     }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -59,18 +52,25 @@ class AddAddressScreen extends StatelessWidget {
                     SizedBox(height: 16),
 
                     /// location
-                    CustomCountryPicker(
-                      countryPickerMode: CountryPickerMode.address,
-                      initCountryCode: country?['code'],
+                    GetBuilder<AddAddressController>(
+                      builder:
+                          (_) => CustomCountryPicker(
+                            countryPickerMode: CountryPickerMode.address,
+                            selectedCountry: _.selectedCountry,
+                            selectedCountryCode: _.selectedCountryCode,
+                            selectedCountryFlag: _.selectedCountryFlag,
+                            selectedProvince: _.selectedProvince,
+                            selectedCity: _.selectedCity,
 
-                      onChangedCountry: ({code, flag, name}) {
-                        _.country = name;
-                        _.flag = flag;
-                        _.updateCountryCode(code); // Update the country code
-                      },
-
-                      onChangedProvince: (value) => _.province = value,
-                      onChangedCity: (value) => _.city = value,
+                            countryErrorMessage: _.countryErrorMessage,
+                            provinceErrorMessage: _.provinceErrorMessage,
+                            cityErrorMessage: _.cityErrorMessage,
+                            onChangedCountry:
+                                (country) => _.onChangedCountry(country),
+                            onChangedProvince:
+                                (value) => _.onChangedProvince(value),
+                            onChangedCity: (value) => _.onChangedCity(value),
+                          ),
                     ),
 
                     /// space
@@ -102,10 +102,10 @@ class AddAddressScreen extends StatelessWidget {
                             builder:
                                 (_) => CustomText(
                                   textDirection: TextDirection.ltr,
-                                  _.countryCode ??
+                                  _.selectedCountryCode ??
                                       AppConstants.DEFAULT_COUNTRY_CODE,
                                   color:
-                                      _.countryCode == null
+                                      _.selectedCountryCode == null
                                           ? Colors.grey.shade400
                                           : Colors.black,
                                 ),

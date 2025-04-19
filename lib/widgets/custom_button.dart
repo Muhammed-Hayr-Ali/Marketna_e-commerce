@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:application/utils/import.dart';
 
 /// A customizable button widget that supports various styles and states.
 /// It can display a loading indicator, has customizable dimensions, colors, and margins.
@@ -41,6 +41,8 @@ class CustomButton extends StatelessWidget {
   /// An optional label to display above the button. If provided, it will be shown as a small text.
   final String? label;
 
+  final String? errorMessage;
+
   /// Creates an instance of [CustomButton].
   ///
   /// [child] is required and represents the content inside the button.
@@ -62,6 +64,7 @@ class CustomButton extends StatelessWidget {
     this.borderRadius = 10,
     this.padding,
     this.label,
+    this.errorMessage,
   });
 
   /// Builds the button with the specified style and behavior.
@@ -123,7 +126,7 @@ class CustomButton extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    label!,
+                    label!.tr,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -132,6 +135,21 @@ class CustomButton extends StatelessWidget {
                   ),
                   const SizedBox(height: 6.0),
                   _button(),
+                  SizedBox(
+                    child:
+                        errorMessage != null
+                            ? Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Text(
+                                (errorMessage ?? '').tr,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            )
+                            : const SizedBox.shrink(),
+                  ),
                 ],
               ),
     );
