@@ -73,9 +73,6 @@ class Validators {
   }
 
   static String? phone(String phone) {
-    if (phone.isEmpty) {
-      return null;
-    }
     if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phone)) {
       return 'invalid_phone'.tr;
     }

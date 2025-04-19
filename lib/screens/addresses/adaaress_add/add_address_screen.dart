@@ -78,6 +78,7 @@ class AddAddressScreen extends StatelessWidget {
 
                     /// phone number
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: CustomTextField(
