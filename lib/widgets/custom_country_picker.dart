@@ -234,7 +234,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   Widget _pickerCodeMode() {
     return CustomButton(
-      label: 'country_code',
+      label: 'countryCode',
       errorMessage: widget.countryErrorMessage,
       isLoading: isLoading,
       onPressed: _openCountry,
@@ -269,8 +269,10 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
           onPressed: _openCountry,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: 20,
@@ -302,6 +304,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
         SizedBox(height: 16),
         SizedBox(
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: CustomButton(

@@ -141,6 +141,7 @@ class EditProfileScreen extends StatelessWidget {
 
                             const SizedBox(height: 16.0),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: CustomTextField(

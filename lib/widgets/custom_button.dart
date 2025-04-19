@@ -126,7 +126,7 @@ class CustomButton extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    label!.tr,
+                    (label ?? '').tr,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
