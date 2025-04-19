@@ -1,18 +1,21 @@
 import 'package:application/utils/import.dart';
 
 class CountryPickerController extends GetxController {
+  final _supabase = Supabase.instance.client;
+  final _storage = GetStorage();
 
-  
   /// This controller is used to manage the country picker widget.
   final RxBool _isLoading = false.obs;
   final RxList<CountryModel> _countries = <CountryModel>[].obs;
   final RxList<Province> _provinces = <Province>[].obs;
   final RxList<City> _cities = <City>[].obs;
+
+  ///
   final Rxn<CountryModel> _selectedCountry = Rxn<CountryModel>();
   final Rxn<Province> _selectedProvince = Rxn<Province>();
   final Rxn<City> _selectedCity = Rxn<City>();
 
-  /// This controller is used to manage the country picker widget.
+  ///
   bool get isLoading => _isLoading.value;
   List<CountryModel> get countries => _countries.toList();
   List<Province> get provinces => _provinces.toList();
@@ -21,14 +24,19 @@ class CountryPickerController extends GetxController {
   Province? get selectedProvince => _selectedProvince.value;
   City? get selectedCity => _selectedCity.value;
 
+  String localCode() {
+    String? locale = _storage.read('locale');
+    if (locale == null || locale.isEmpty || locale == 'auto') {
+      return Get.deviceLocale!.languageCode;
+    }
+    return locale;
+  }
+
   /// [loadCountries] is a method that fetches the countries from the database.
-  Future<bool> loadCountries(
-    SupabaseClient supabaseClient,
-    String locale,
-  ) async {
+  Future<bool> loadCountries() async {
     _isLoading.value = true;
     try {
-      final countryResponse = await supabaseClient
+      final countryResponse = await _supabase
           .from('countries')
           .select()
           .order('name');

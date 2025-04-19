@@ -2,19 +2,12 @@ import 'package:application/utils/import.dart';
 import 'package:application/widgets/custom_country_picker/controller/controller.dart';
 
 class CountryPickerMainController {
-
-  final _supabase = Supabase.instance.client;
-  final GetStorage storage = GetStorage();
-
-
   void openCountry(CountryPickerController controller) async {
     if (controller.countries.isEmpty) {
-      final result = await controller.loadCountries(
-        Supabase.instance.client,
-        GetStorage().read('locale') ?? Get.deviceLocale!.languageCode,
-      );
+      // Load countries from the database if the list is empty
+      final result = await controller.loadCountries();
       if (!result) {
-        Get.snackbar('Error', 'Failed to load countries');
+        CustomNotification.showSnackbar(message: 'Failed to load countries');
         return;
       }
     }
@@ -43,7 +36,13 @@ class CountryPickerMainController {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          CustomText(controller.countries[index].name ?? ''),
+                          CustomText(
+                            controller.localCode() != 'ar'
+                                ? controller.countries[index].name ?? ''
+                                : controller.countries[index].nameAr ??
+                                    controller.countries[index].name ??
+                                    '',
+                          ),
                         ],
                       ),
                       Directionality(
@@ -74,7 +73,13 @@ class CountryPickerMainController {
                     controller.updateProvince(controller.provinces[index]);
                     Get.back();
                   },
-                  child: CustomText(controller.provinces[index].name ?? ''),
+                  child: CustomText(
+                    controller.localCode() != 'ar'
+                        ? controller.provinces[index].name ?? ''
+                        : controller.provinces[index].nameAr ??
+                            controller.provinces[index].name ??
+                            '',
+                  ),
                 ),
           ),
         ),
@@ -103,5 +108,3 @@ class CountryPickerMainController {
     );
   }
 }
-
-
