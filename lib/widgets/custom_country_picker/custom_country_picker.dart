@@ -13,7 +13,15 @@ class CustomCountryPicker extends StatelessWidget {
     this.onChangedCity,
     this.codeLabel,
     this.initCountryCode,
+    this.initCountryName,
+    this.initProvinceName,
+    this.initCityName,
   });
+
+  final String? initCountryCode;
+  final String? initCountryName;
+  final String? initProvinceName;
+  final String? initCityName;
 
   /// [countryPickerMode] is the mode of the country picker
   /// [initCountryCode] is the initial country code
@@ -22,7 +30,6 @@ class CustomCountryPicker extends StatelessWidget {
   /// [onChangedProvince] is the callback when province is changed
   /// [onChangedCity] is the callback when city is changed
   final CountryPickerMode countryPickerMode;
-  final String? initCountryCode;
   final String? codeLabel;
 
   /// Callback when country is changed
@@ -47,6 +54,8 @@ class CustomCountryPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = _controller;
+    controller.loadCountries();
+    controller.loadInitCountry(initCountryCode);
     return countryPickerMode == CountryPickerMode.code
         ? _codePicker(controller)
         : _addressPicker(controller);
@@ -72,18 +81,16 @@ class CustomCountryPicker extends StatelessWidget {
         textDirection: TextDirection.ltr,
         child: Transform.translate(
           offset: const Offset(-1, 1),
-          child: Obx(
-            () {
-              final selectedCountry = controller.selectedCountry;
-              final countryCode = selectedCountry?.code ?? initCountryCode;
+          child: Obx(() {
+            final selectedCountry = controller.selectedCountry;
+            final countryCode = selectedCountry?.code ?? initCountryCode;
 
-              return CustomText(
-                countryCode ?? '+963',
-                fontWeight: FontWeight.w500,
-                color: countryCode == null ? Colors.grey : null,
-              );
-            },
-          ),
+            return CustomText(
+              countryCode ?? '+963',
+              fontWeight: FontWeight.w500,
+              color: countryCode == null ? Colors.grey : null,
+            );
+          }),
         ),
       ),
     );

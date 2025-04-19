@@ -1,6 +1,8 @@
 import 'package:application/utils/import.dart';
 
 class CountryPickerController extends GetxController {
+
+
   final _supabase = Supabase.instance.client;
   final _storage = GetStorage();
 
@@ -23,6 +25,28 @@ class CountryPickerController extends GetxController {
   CountryModel? get selectedCountry => _selectedCountry.value;
   Province? get selectedProvince => _selectedProvince.value;
   City? get selectedCity => _selectedCity.value;
+
+  @override
+  void onClose() {
+    super.onClose();
+    _countries.clear();
+    _provinces.clear();
+    _cities.clear();
+    _selectedCountry.value = null;
+    _selectedProvince.value = null;
+    _selectedCity.value = null;
+  }
+
+  Future <void> loadInitCountry (String? initCountryCode) async {
+    if (initCountryCode != null) {
+      await loadCountries();
+      _countries.assignAll(
+        _countries.where((country) => country.code == initCountryCode),
+      );
+    }
+  }
+
+  /// [localCode] is a method that returns the local code of the device.
 
   String localCode() {
     String? locale = _storage.read('locale');

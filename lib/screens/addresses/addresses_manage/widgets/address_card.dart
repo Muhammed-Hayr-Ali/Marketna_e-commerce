@@ -70,7 +70,7 @@ class AddressCard extends StatelessWidget {
                   onPressed:
                       () => Get.toNamed(
                         AppRoutes.ADD_ADDRESSES_SCREEN,
-                        arguments: address.id,
+                        arguments: address.countryCode,
                       ),
                   icon: Icon(Icons.edit, color: AppColors.primaryColor),
                 ),

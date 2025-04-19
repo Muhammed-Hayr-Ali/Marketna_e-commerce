@@ -3,7 +3,7 @@ import 'package:application/utils/import.dart';
 class AddAddressScreen extends StatelessWidget {
   AddAddressScreen({super.key});
   final _ = Get.put(AddAddressController());
-  final addressId = Get.arguments as int?;
+  final _countryCode = Get.arguments as String?;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +48,7 @@ class AddAddressScreen extends StatelessWidget {
                     /// location
                     CustomCountryPicker(
                       countryPickerMode: CountryPickerMode.address,
+                      initCountryCode: _countryCode,
                       onChangedCountry: ({code, flag, name}) {
                         _.country = name;
                         _.flag = flag;
