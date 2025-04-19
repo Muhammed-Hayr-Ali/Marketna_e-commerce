@@ -101,6 +101,7 @@ abstract class AppConstants {
 
   static const String PLEASE_SELECT_LOCATION = 'please_select_location';
   static const String SELECT_COUNTRY_REQUIRED = 'select_country_required';
+  static const String COUNTRY_CODE_REQUIRED = 'country_code_required';
   static const String SELECT_PROVINCE_REQUIRED = 'select_province_required';
   static const String SELECT_CITY_REQUIRED = 'select_city_required';
 

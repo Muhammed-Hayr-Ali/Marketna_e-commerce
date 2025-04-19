@@ -6,16 +6,21 @@ class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
     super.key,
     required this.countryPickerMode,
+
     this.onChangedCountry,
     this.onChangedProvince,
     this.onChangedCity,
-    this.countryErrorMessage,
-    this.provinceErrorMessage,
-    this.cityErrorMessage,
+
     this.selectedCountry,
+    this.selectedCountryCode,
     this.selectedCountryFlag,
     this.selectedProvince,
-    this.selectedCity, this.selectedCountryCode,
+    this.selectedCity,
+
+    this.countryErrorMessage,
+    this.countryCodeErrorMessage,
+    this.provinceErrorMessage,
+    this.cityErrorMessage,
   });
 
   final CountryPickerMode countryPickerMode;
@@ -32,6 +37,7 @@ class CustomCountryPicker extends StatefulWidget {
   final String? selectedCity;
 
   final String? countryErrorMessage;
+  final String? countryCodeErrorMessage;
   final String? provinceErrorMessage;
   final String? cityErrorMessage;
 
@@ -228,7 +234,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   Widget _pickerCodeMode() {
     return CustomButton(
-      label: '',
+      label: 'country_code',
+      errorMessage: widget.countryErrorMessage,
       isLoading: isLoading,
       onPressed: _openCountry,
       child: Directionality(

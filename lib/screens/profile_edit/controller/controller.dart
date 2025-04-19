@@ -12,6 +12,7 @@ class EditProfileController extends GetxController {
   final nameController = TextEditingController();
   String? email;
   String? countryCode;
+  String? countryCodeErrorMessage;
   final phoneController = TextEditingController();
   String? gender;
   String? dateBirth;
@@ -313,7 +314,18 @@ class EditProfileController extends GetxController {
   ///
   /// Finally, it will reset the form and set the loading state to false.
   Future<void> updateUser() async {
-    if (!formKey.currentState!.validate()) return;
+    if (countryCode == null) {
+      countryCodeErrorMessage = AppConstants.COUNTRY_CODE_REQUIRED;
+      return;
+    } else {
+      countryCodeErrorMessage = null;
+      update();
+    }
+
+    if (!formKey.currentState!.validate() || countryCode == null) {
+      update();
+      return;
+    }
 
     isLoading.value = true;
 

@@ -73,6 +73,7 @@ class Arabic {
     'verification_code': 'رمز التحقق',
     'first_name': 'الاسم الأول',
     'last_name': 'اسم العائلة',
+    'country_code': 'رمز الدولة',
     'phone': 'رقم الهاتف',
     'gender': 'الجنس',
     'date_of_birth': 'تاريخ الميلاد',
@@ -110,6 +111,7 @@ class Arabic {
     'please_select_location': 'يرجى اختيار العنوان بشكل صحيح.',
 
     'select_country_required': 'يرجى اختيار الدولة.',
+    'country_code_required' : ' اختر رمز الدولة',
     'select_province_required': 'يرجى اختيار الولاية أو المنطقة.',
     'select_city_required': 'يرجى اختيار المدينة.',
 
