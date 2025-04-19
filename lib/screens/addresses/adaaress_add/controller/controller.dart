@@ -29,10 +29,9 @@ class AddAddressController extends GetxController {
 
   void updateCountryCode(code) {
     countryCode = code;
+    debugPrint(countryCode);
     update();
   }
-
-
 
   /// Determine the device's current location.
   ///
@@ -61,7 +60,6 @@ class AddAddressController extends GetxController {
 
     return await Geolocator.getCurrentPosition();
   }
-
 
   Future<void> addAddress() async {
     isLoading.value = true;

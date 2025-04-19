@@ -1,12 +1,25 @@
 import 'package:application/utils/import.dart';
+import 'package:application/widgets/custom_country_picker.dart';
 
 class AddAddressScreen extends StatelessWidget {
   AddAddressScreen({super.key});
   final _ = Get.put(AddAddressController());
-  final _countryCode = Get.arguments as String?;
+  final country = Get.arguments as Map<String, dynamic>?;
 
   @override
   Widget build(BuildContext context) {
+    /// Set the initial values for the address fields if available
+    if (country != null) {
+      _.addressNameController.text = country!['addressName'] ?? '';
+      _.streetAddressController.text = country!['streetAddress'] ?? '';
+
+      _.phoneNumberController.text = country!['phoneNumber'] ?? '';
+      _.notesController.text = country!['notes'] ?? '';
+
+      /// Set the initial values for the country fields if available
+
+      /// Set the initial values for the country code if available
+    }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -48,7 +61,8 @@ class AddAddressScreen extends StatelessWidget {
                     /// location
                     CustomCountryPicker(
                       countryPickerMode: CountryPickerMode.address,
-                      initCountryCode: _countryCode,
+                      initCountryCode: country?['code'],
+
                       onChangedCountry: ({code, flag, name}) {
                         _.country = name;
                         _.flag = flag;
@@ -83,13 +97,18 @@ class AddAddressScreen extends StatelessWidget {
                         SizedBox(width: 16),
                         CustomButton(
                           label: '',
-                          child: CustomText(
-                            textDirection: TextDirection.ltr,
-                            _.countryCode ?? AppConstants.DEFAULT_COUNTRY_CODE,
-                            color:
-                                _.countryCode == null
-                                    ? Colors.grey.shade400
-                                    : Colors.black,
+                          child: GetBuilder<AddAddressController>(
+                            init: AddAddressController(),
+                            builder:
+                                (_) => CustomText(
+                                  textDirection: TextDirection.ltr,
+                                  _.countryCode ??
+                                      AppConstants.DEFAULT_COUNTRY_CODE,
+                                  color:
+                                      _.countryCode == null
+                                          ? Colors.grey.shade400
+                                          : Colors.black,
+                                ),
                           ),
                         ),
                       ],
