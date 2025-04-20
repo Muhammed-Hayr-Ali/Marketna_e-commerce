@@ -25,69 +25,63 @@ class CustomCountryPicker extends StatefulWidget {
   });
 
   final CountryPickerMode countryPickerMode;
-
-  final void Function(CountryModel)? onChangedCountry;
-  final void Function(Province)? onChangedProvince;
-  final void Function(City)? onChangedCity;
-
   final String? selectedCountry;
   final String? selectedCountryCode;
   final String? selectedCountryFlag;
   final String? selectedProvince;
   final String? selectedCity;
-
   final String? countryErrorMessage;
   final String? countryCodeErrorMessage;
   final String? provinceErrorMessage;
   final String? cityErrorMessage;
+  final void Function(CountryModel)? onChangedCountry;
+  final void Function(Province)? onChangedProvince;
+  final void Function(City)? onChangedCity;
 
   @override
   State<CustomCountryPicker> createState() => _CustomCountryPickerState();
 }
 
 class _CustomCountryPickerState extends State<CustomCountryPicker> {
-  /// Initialize Supabase client
+  /// Variables
   final _supabase = Supabase.instance.client;
-
-  /// Initialize GetStorage for local storage
   final GetStorage storage = GetStorage();
-
-  /// Initialize local variable for locale
   String? local;
-
-  /// Initialize isLoading variable for loading state
   bool isLoading = false;
-
-  /// Initialize selectedCountry, selectedProvince, and selectedCity variables
-  bool isCountrySelected = false;
 
   List<CountryModel> countries = [];
   List<Province> provinces = [];
   List<City> city = [];
 
+  /// Functions
+  /// Load countries
   Future<bool> _loadCountries() async {
     setState(() {
       isLoading = true;
     });
 
-    /// Get the locale from storage or device locale
-    /// and assign it to the local variable
+    // Retrieve locale from storage or default to device locale
     local =
-        storage.read(AppStorageKey.LOCALE) ?? Get.deviceLocale!.languageCode;
+        storage.read(AppStorageKey.LOCALE) ?? Get.deviceLocale?.languageCode;
 
     try {
-      /// Fetch countries from Supabase database
-      final response = await _supabase.from('countries').select().order('name');
+      // Fetch countries sorted by name from the database
+      final List<dynamic> response = await _supabase
+          .from('countries')
+          .select()
+          .order('name');
 
-      /// Check if the response is empty
+      // Return false if no countries are found
       if (response.isEmpty) return false;
+
       setState(() {
-        /// Map the response to a list of CountryModel objects
-        countries = response.map((e) => CountryModel.fromJson(e)).toList();
+        // Convert response to a list of CountryModel instances
+        countries =
+            response.map((data) => CountryModel.fromJson(data)).toList();
       });
+
       return true;
-    } catch (error) {
-      debugPrint(error.toString());
+    } catch (e) {
       return false;
     } finally {
       setState(() {
@@ -96,33 +90,44 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     }
   }
 
-  void _updateCountry(CountryModel value) {
-    provinces = value.province ?? [];
-    city = [];
-    widget.onChangedCountry?.call(value);
+  /// On country changed
+  /// This function is called when a country is selected from the picker.
+  void _onCountryChanged(CountryModel selectedCountry) {
+    widget.onChangedCountry?.call(selectedCountry);
+    provinces = selectedCountry.province ?? [];
+    city.clear();
     Get.back();
   }
 
-  void _updateProvince(Province value) {
-    city = value.city ?? [];
-    widget.onChangedProvince?.call(value);
+
+  /// On province changed
+  /// This function is called when a province is selected from the picker.
+  void _onProvinceChanged(Province province) {
+    widget.onChangedProvince?.call(province);
+    city = province.city ?? [];
     Get.back();
   }
 
-  void _updateCity(City value) {
-    widget.onChangedCity?.call(value);
+  /// On city changed
+  /// This function is called when a city is selected from the picker.
+  void _onCityChanged(City city) {
+    widget.onChangedCity?.call(city);
     Get.back();
   }
 
   /// Open Country picker
+  /// This function is called when the country button is pressed.
+  /// It opens a bottom sheet with a list of countries to select from.
   void _openCountrypicker() async {
+    /// Check if countries are loaded, if not load them
     if (countries.isEmpty) {
       bool result = await _loadCountries();
       if (!result) {
         return;
       }
     }
-    /// 
+
+    /// open country picker
     custombottomSheet(
       title: 'select_country',
       children: [
@@ -131,9 +136,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
             itemCount: countries.length,
             itemBuilder:
                 (context, index) => TextButton(
-                  onPressed: () {
-                    _updateCountry(countries[index]);
-                  },
+                  onPressed: () => _onCountryChanged(countries[index]),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -169,8 +172,13 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   }
 
   /// Open Province picker
+  /// This function is called when the province button is pressed.
+  /// It opens a bottom sheet with a list of provinces to select from.
   void _openProvincePicker() {
+    /// Check if provinces are loaded, if not load them
     if (provinces.isEmpty || widget.selectedCountry == null) return;
+
+    /// open province picker
     custombottomSheet(
       title: 'select_province',
       children: [
@@ -179,9 +187,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
             itemCount: provinces.length,
             itemBuilder:
                 (context, index) => TextButton(
-                  onPressed: () {
-                    _updateProvince(provinces[index]);
-                  },
+                  onPressed: () => _onProvinceChanged(provinces[index]),
                   child: Row(
                     children: [
                       CustomText(
@@ -200,12 +206,17 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   }
 
   /// Open City picker
+  /// This function is called when the city button is pressed.
+  /// It opens a bottom sheet with a list of cities to select from.
   void _openCityPicker() {
+    /// Check if cities are loaded, if not load them
     if (city.isEmpty ||
         widget.selectedCountry == null ||
         widget.selectedProvince == null) {
       return;
     }
+
+    /// open city picker
     custombottomSheet(
       title: 'select_city',
       children: [
@@ -214,9 +225,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
             itemCount: city.length,
             itemBuilder:
                 (context, index) => TextButton(
-                  onPressed: () {
-                    _updateCity(city[index]);
-                  },
+                  onPressed: () => _onCityChanged(city[index]),
                   child: Row(children: [CustomText(city[index].name ?? '')]),
                 ),
           ),

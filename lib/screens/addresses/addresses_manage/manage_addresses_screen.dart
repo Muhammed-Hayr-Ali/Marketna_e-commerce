@@ -1,8 +1,7 @@
 import 'package:application/utils/import.dart';
 
 class ManageAddressesScreen extends StatelessWidget {
-  ManageAddressesScreen({super.key});
-  final _ = Get.put<ManageAddressesController>(ManageAddressesController());
+  const ManageAddressesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,6 @@ class ManageAddressesScreen extends StatelessWidget {
       ),
       body: GetBuilder<ManageAddressesController>(
         init: ManageAddressesController(),
-
         builder:
             (controller) =>
                 controller.isLoading
