@@ -96,21 +96,23 @@ class AddAddressScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 16),
-                        CustomButton(
-                          label: '',
-                          child: GetBuilder<AddAddressController>(
-                            init: AddAddressController(),
-                            builder:
-                                (_) => CustomText(
+                        GetBuilder<AddAddressController>(
+                          init: AddAddressController(),
+                          builder:
+                              (_) => CustomButton(
+                                label: AppConstants.COUNTRY_CODE,
+                                errorMessage: _.countryCodeErrorMessage,
+
+                                child: CustomText(
                                   textDirection: TextDirection.ltr,
                                   _.selectedCountryCode ??
-                                      AppConstants.DEFAULT_COUNTRY_CODE,
+                                      AppConstants.DEFAULT_COUNTRY_CODE.tr,
                                   color:
                                       _.selectedCountryCode == null
                                           ? Colors.grey.shade400
                                           : Colors.black,
                                 ),
-                          ),
+                              ),
                         ),
                       ],
                     ),
@@ -136,6 +138,7 @@ class AddAddressScreen extends StatelessWidget {
                 () => CustomButton(
                   isLoading: _.isLoading.value,
                   width: double.infinity,
+
                   buttonColor: AppColors.primaryColor,
                   progressColor: AppColors.white,
                   onPressed: _.addAddress,

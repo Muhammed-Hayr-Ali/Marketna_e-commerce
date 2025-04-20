@@ -165,6 +165,8 @@ class EditProfileScreen extends StatelessWidget {
                                 CustomCountryPicker(
                                   countryPickerMode: CountryPickerMode.code,
                                   selectedCountryCode: _.countryCode,
+                                  countryCodeErrorMessage:
+                                      _.countryCodeErrorMessage,
                                   onChangedCountry: (value) {
                                     _.updateCountryCode(value.code);
                                   },

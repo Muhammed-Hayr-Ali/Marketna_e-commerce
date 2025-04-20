@@ -1,4 +1,5 @@
 import 'package:application/utils/import.dart';
+import 'package:application/widgets/animation/fade_animation_dy.dart';
 
 /// A customizable button widget that supports various styles and states.
 /// It can display a loading indicator, has customizable dimensions, colors, and margins.
@@ -138,13 +139,22 @@ class CustomButton extends StatelessWidget {
                   SizedBox(
                     child:
                         errorMessage != null
-                            ? Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Text(
-                                (errorMessage ?? '').tr,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.red,
+                            ? FadeAnimationDy(
+                              delay: 200,
+                              dy: 6,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                  6.0,
+                                  2.0,
+                                  6.0,
+                                  0,
+                                ),
+                                child: Text(
+                                  (errorMessage ?? '').tr,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.red,
+                                  ),
                                 ),
                               ),
                             )

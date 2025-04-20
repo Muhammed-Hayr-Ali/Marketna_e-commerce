@@ -166,9 +166,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     ), // Default text style
             decoration: InputDecoration(
               counterText: '', // Hide character counter
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ), // Padding inside the text field
+              contentPadding:
+                  widget.lines > 1
+                      ? const EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 8.0,
+                      ) // Padding for multi-line text field
+                      : // Padding for single-line text field
+                      const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                      ), // Padding inside the text field
 
               hintText: widget.hintText, // Placeholder text
               hintStyle:

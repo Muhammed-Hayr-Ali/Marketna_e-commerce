@@ -32,6 +32,7 @@ class AddAddressController extends GetxController {
   String? countryErrorMessage;
   String? provinceErrorMessage;
   String? cityErrorMessage;
+  String? countryCodeErrorMessage;
 
   @override
   void onInit() async {
@@ -138,10 +139,18 @@ class AddAddressController extends GetxController {
       update();
     }
 
+    if (selectedCountryCode == null || selectedCountryCode!.isEmpty) {
+      countryCodeErrorMessage = AppConstants.COUNTRY_CODE_REQUIRED;
+    } else {
+      countryCodeErrorMessage = null;
+      update();
+    }
+
     if (!formKey.currentState!.validate() ||
         countryErrorMessage != null ||
         provinceErrorMessage != null ||
-        cityErrorMessage != null) {
+        cityErrorMessage != null ||
+        countryCodeErrorMessage != null) {
       isLoading.value = false;
       update();
       return;

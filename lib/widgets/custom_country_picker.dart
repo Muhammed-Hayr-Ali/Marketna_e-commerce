@@ -228,7 +228,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   Widget _pickerCodeMode() {
     return CustomButton(
       label: 'countryCode',
-      errorMessage: widget.countryErrorMessage,
+      errorMessage: widget.countryCodeErrorMessage,
       isLoading: isLoading,
       onPressed: _openCountry,
       child: Directionality(
@@ -236,7 +236,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
         child: Transform.translate(
           offset: Offset(-1, 1),
           child: CustomText(
-            widget.selectedCountryCode ?? '+963',
+            widget.selectedCountryCode ?? '963',
             fontWeight: FontWeight.w500,
             color:
                 widget.selectedCountryCode == null

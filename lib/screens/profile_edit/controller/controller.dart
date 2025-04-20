@@ -48,7 +48,11 @@ class EditProfileController extends GetxController {
     email = currentUser.email;
 
     // Set the country code to the user's country code
-    countryCode = userMetadata?[AppConstants.COUNTRY_CODE] ?? '';
+    if (userMetadata?[AppConstants.COUNTRY_CODE] != null) {
+      countryCode = userMetadata![AppConstants.COUNTRY_CODE];
+    } else {
+      countryCode = null;
+    }
 
     // Set the phone controller text to the user's phone number
     phoneController.text = userMetadata?[AppConstants.PHONE] ?? '';
@@ -314,9 +318,9 @@ class EditProfileController extends GetxController {
   ///
   /// Finally, it will reset the form and set the loading state to false.
   Future<void> updateUser() async {
+    debugPrint(countryCode);
     if (countryCode == null) {
       countryCodeErrorMessage = AppConstants.COUNTRY_CODE_REQUIRED;
-      return;
     } else {
       countryCodeErrorMessage = null;
       update();
@@ -338,7 +342,7 @@ class EditProfileController extends GetxController {
         UserAttributes(
           data: {
             AppConstants.DISPLAY_NAME: nameController.text.trim(),
-            AppConstants.NAME: DataConverter.removeTextAfterAt(email!.trim()),
+            AppConstants.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(email!.trim()),
             AppConstants.COUNTRY_CODE: countryCode,
             AppConstants.PHONE: phoneController.text.trim(),
             AppConstants.GENDER: gender,
