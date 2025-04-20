@@ -83,6 +83,7 @@ abstract class AppConstants {
   static const String LOCATION_PERMISSIONS_DENIED_REQUEST_PERMISSIONS =
       'Location_permissions_denied_request_permissions';
   static const String ADDRESS_ADDED_SUCCESSFULLY = 'address_added_successfully';
+  static const String ADDRESS_UPDATED_SUCCESSFULLY = 'address_updated_successfully';
 
   static const String DATA_SENDING_ERROR = 'data_sending_error';
   static const String DATA_LOADING_ERROR = 'data_loading_error';

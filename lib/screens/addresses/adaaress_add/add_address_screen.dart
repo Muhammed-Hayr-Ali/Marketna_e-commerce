@@ -138,8 +138,14 @@ class AddAddressScreen extends StatelessWidget {
                   width: double.infinity,
                   buttonColor: AppColors.primaryColor,
                   progressColor: AppColors.white,
-                  onPressed: _.addAddress,
-                  child: CustomText(color: AppColors.white, AppConstants.SAVE),
+                  onPressed:
+                   
+                   _.addAddress,
+                  child: CustomText(
+                    address != null
+                        ? AppConstants.UPDATE
+                        : AppConstants.ADD_NEW_ADDRESS,
+            color: AppColors.white, ),
                 ),
               ),
             ],

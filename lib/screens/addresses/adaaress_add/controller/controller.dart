@@ -176,7 +176,7 @@ class AddAddressController extends GetxController {
             .eq('id', addressId!)
             .whenComplete(() {
               CustomNotification.showSnackbar(
-                message: AppConstants.ADDRESS_ADDED_SUCCESSFULLY,
+                message: AppConstants.ADDRESS_UPDATED_SUCCESSFULLY,
               );
               _.loadAddresses();
             });

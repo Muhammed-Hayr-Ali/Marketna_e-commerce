@@ -137,6 +137,7 @@ class Arabic {
     'data_sending_error':
         'حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.',
     'address_added_successfully': 'تمت إضافة العنوان بنجاح.',
+    'address_updated_successfully': 'تم تحديث العنوان بنجاح.',
     'user_id_is_null':
         'تعذر الحصول على معلومات المستخدم. يرجى إعادة تسجيل الدخول.',
     'Unable_Location_services':
