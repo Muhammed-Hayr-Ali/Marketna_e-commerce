@@ -72,7 +72,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     setState(() {
       isLoading = true;
     });
-    local = storage.read('locale') ?? Get.deviceLocale!.languageCode;
+    local = storage.read(AppStorageKey.LOCALE) ?? Get.deviceLocale!.languageCode;
 
     try {
       final response = await _supabase.from('countries').select().order('name');
@@ -97,11 +97,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       provinces = value.province ?? [];
       city = [];
       selectedProvince = null;
-      // selectedProvinceName = null;
       selectedCity = null;
-      // selectedCityName = null;
-      // selectedCountryName = (local == 'ar' ? value.nameAr : value.name) ?? '';
-      // selectedCountryFlag = value.flag ?? '';
     });
     widget.onChangedCountry?.call(value);
 
@@ -113,9 +109,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       selectedProvince = value;
       city = value.city ?? [];
       selectedCity = null;
-      // selectedCityName = null;
 
-      // selectedProvinceName = (local == 'ar' ? value.nameAr : value.name) ?? '';
     });
     widget.onChangedProvince?.call(value);
     Navigator.pop(context);
@@ -124,7 +118,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   void _updateCity(City value) {
     setState(() {
       selectedCity = value;
-      // selectedCityName = value.name ?? '';
     });
     widget.onChangedCity?.call(value);
     Get.back();
