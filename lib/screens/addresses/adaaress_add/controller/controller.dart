@@ -33,7 +33,6 @@ class AddAddressController extends GetxController {
   String? provinceErrorMessage;
   String? cityErrorMessage;
 
-
   @override
   void onInit() async {
     local = await _localstorage.read<String>(
@@ -147,7 +146,6 @@ class AddAddressController extends GetxController {
       update();
       return;
     }
-
 
     try {
       final currentPosition = await _determinePosition();
