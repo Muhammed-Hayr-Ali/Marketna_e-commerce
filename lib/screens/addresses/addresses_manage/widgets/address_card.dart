@@ -10,8 +10,11 @@ class AddressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      elevation: 0,
+
+      color: Colors.grey.shade100,
+
+      margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,64 +23,120 @@ class AddressCard extends StatelessWidget {
           children: [
             // اسم العنوان
             if (address.addressName != null && address.addressName!.isNotEmpty)
-              ListTile(
-                leading: Icon(Icons.location_on, color: AppColors.primaryColor),
-                title: Text(
-                  address.addressName!,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+              Row(
+                children: [
+                  Icon(PhosphorIconsRegular.mapPin, size: 22.0),
+                  const SizedBox(width: 8),
+                  Text(
+                    address.addressName!,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryColor,
+                    ),
                   ),
-                ),
+                ],
               ),
 
-            // العنوان الكامل
-            if (address.streetAddress != null &&
-                address.streetAddress!.isNotEmpty)
-              ListTile(
-                leading: Icon(Icons.home, color: Colors.grey),
-                title: Text(address.streetAddress!),
+            const SizedBox(height: 8),
+
+            // العنوان الكامل (الشارع، المدينة، الدولة)
+            if ((address.streetAddress != null &&
+                    address.streetAddress!.isNotEmpty) ||
+                (address.city != null && address.city!.isNotEmpty) ||
+                (address.country != null && address.country!.isNotEmpty))
+              Row(
+                children: [
+                  Icon(
+                    PhosphorIconsRegular.house,
+                    color: Colors.grey,
+                    size: 22.0,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      '${address.streetAddress ?? ''}, ${address.city ?? ''}, ${address.province ?? ''}, ${address.country ?? ''}'
+                          .trim(),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
               ),
-            if (address.city != null && address.city!.isNotEmpty)
-              ListTile(
-                leading: Icon(Icons.location_city, color: Colors.grey),
-                title: Text('${address.city}, ${address.province}'),
-              ),
-            if (address.country != null && address.country!.isNotEmpty)
-              ListTile(
-                leading: Icon(Icons.flag, color: Colors.grey),
-                title: Text(address.country!),
-              ),
+
+            const SizedBox(height: 8),
 
             // رقم الهاتف
             if (address.phoneNumber != null && address.phoneNumber!.isNotEmpty)
-              ListTile(
-                leading: Icon(Icons.phone, color: Colors.grey),
-                title: Text(address.phoneNumber!),
+              Row(
+                children: [
+                  Icon(
+                    PhosphorIconsRegular.phone,
+                    color: Colors.grey,
+                    size: 22.0,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    textDirection: TextDirection.ltr,
+                    '${address.countryCode ?? ''} ${address.phoneNumber ?? ''}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
               ),
+
+            const SizedBox(height: 8),
 
             // الملاحظات
             if (address.notes != null && address.notes!.isNotEmpty)
-              ListTile(
-                leading: Icon(Icons.note, color: Colors.grey),
-                title: Text(address.notes!),
+              Row(
+                children: [
+                  Icon(
+                    PhosphorIconsRegular.note,
+                    color: Colors.grey,
+                    size: 22.0,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      address.notes!,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
               ),
+
+            const SizedBox(height: 16),
 
             // أزرار التعديل والحذف
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(
-                  onPressed:
+                CustomCicularButton(
+                  color: Colors.white,
+                  borderColor: AppColors.primaryColor,
+                  borderWidth: 1.5,
+                  child: Icon(
+                    PhosphorIconsRegular.pencilSimple,
+                    color: AppColors.primaryColor,
+                    size: 18.0,
+                  ),
+                  onTap:
                       () => Get.toNamed(
                         AppRoutes.ADD_ADDRESSES_SCREEN,
                         arguments: address,
                       ),
-                  icon: Icon(Icons.edit, color: AppColors.primaryColor),
                 ),
-                IconButton(
-                  onPressed: () => _.dateAddress(address.id!),
 
-                  icon: Icon(Icons.delete, color: Colors.red),
+                const SizedBox(width: 8),
+
+                CustomCicularButton(
+                  borderColor: Colors.red,
+                  borderWidth: 1.5,
+                  color: Colors.white,
+                  child: Icon(
+                    PhosphorIconsRegular.trash,
+                    color: Colors.red,
+                    size: 16.0,
+                  ),
+                  onTap: () => _.dateAddress(address.id!),
                 ),
               ],
             ),

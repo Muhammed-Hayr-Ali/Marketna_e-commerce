@@ -36,9 +36,11 @@ class ManageAddressesController extends GetxController {
           .select()
           .eq(AppConstants.CUSTOMER_ID, customerId!);
 
-      debugPrint(response.toString());
-
       // Check if the response is empty
+      if (response.isEmpty) {
+        debugPrint('No addresses found for the user.');
+        return;
+      }
 
       // Update the addresses list with the fetched data
       addresses = List<Address>.from(

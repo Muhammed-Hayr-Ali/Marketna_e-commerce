@@ -113,5 +113,6 @@ export 'package:shimmer/shimmer.dart';
 export 'package:supabase_flutter/supabase_flutter.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:uuid/uuid.dart';
+export 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // ==============================

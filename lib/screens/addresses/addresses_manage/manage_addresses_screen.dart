@@ -1,7 +1,8 @@
 import 'package:application/utils/import.dart';
 
 class ManageAddressesScreen extends StatelessWidget {
-  const ManageAddressesScreen({super.key});
+  ManageAddressesScreen({super.key});
+  final _ = Get.put<ManageAddressesController>(ManageAddressesController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,36 +16,37 @@ class ManageAddressesScreen extends StatelessWidget {
         title: const CustomText(AppConstants.MANAGE_ADDRESSES),
 
         actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed(AppRoutes.ADD_ADDRESSES_SCREEN);
-            },
-            icon: const Icon(Icons.add),
+          SizedBox(
+            child: IconButton(
+              onPressed: () {
+                Get.toNamed(AppRoutes.ADD_ADDRESSES_SCREEN);
+              },
+              icon: const Icon(Icons.add),
+            ),
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: GetBuilder<ManageAddressesController>(
-          init: ManageAddressesController(),
+      body: GetBuilder<ManageAddressesController>(
+        init: ManageAddressesController(),
 
-          builder:
-              (controller) =>
-                  controller.isLoading
-                      ? const Center(
-                        child: CircularProgressIndicator(strokeWidth: 2.0),
-                      )
-                      : controller.addresses.isEmpty ||
-                          controller.addresses == []
-                      ? noAddressesWidget()
-                      : ListView.builder(
+        builder:
+            (controller) =>
+                controller.isLoading
+                    ? const Center(
+                      child: CircularProgressIndicator(strokeWidth: 2.0),
+                    )
+                    : controller.addresses.isEmpty || controller.addresses == []
+                    ? noAddressesWidget()
+                    : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: ListView.builder(
                         itemCount: controller.addresses.length,
                         itemBuilder:
                             (context, index) => AddressCard(
                               address: controller.addresses[index],
                             ),
                       ),
-        ),
+                    ),
       ),
     );
   }
