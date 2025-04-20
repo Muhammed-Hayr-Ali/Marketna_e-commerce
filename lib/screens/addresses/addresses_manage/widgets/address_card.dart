@@ -12,134 +12,52 @@ class AddressCard extends StatelessWidget {
     return Card(
       elevation: 0,
 
-      color: Colors.grey.shade100,
+      color: Colors.transparent,
 
       margin: const EdgeInsets.only(bottom: 16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 4.0),
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // اسم العنوان
-            if (address.addressName != null && address.addressName!.isNotEmpty)
-              Row(
-                children: [
-                  Icon(PhosphorIconsRegular.mapPin, size: 22.0),
-                  const SizedBox(width: 8),
-                  Text(
-                    address.addressName!,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ],
-              ),
-
-            const SizedBox(height: 8),
-
-            // العنوان الكامل (الشارع، المدينة، الدولة)
-            if ((address.streetAddress != null &&
-                    address.streetAddress!.isNotEmpty) ||
-                (address.city != null && address.city!.isNotEmpty) ||
-                (address.country != null && address.country!.isNotEmpty))
-              Row(
-                children: [
-                  Icon(
-                    PhosphorIconsRegular.house,
-                    color: Colors.grey,
-                    size: 22.0,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '${address.streetAddress ?? ''}, ${address.city ?? ''}, ${address.province ?? ''}, ${address.country ?? ''}'
-                          .trim(),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ),
-                ],
-              ),
-
-            const SizedBox(height: 8),
-
-            // رقم الهاتف
-            if (address.phoneNumber != null && address.phoneNumber!.isNotEmpty)
-              Row(
-                children: [
-                  Icon(
-                    PhosphorIconsRegular.phone,
-                    color: Colors.grey,
-                    size: 22.0,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    textDirection: TextDirection.ltr,
-                    '${address.countryCode ?? ''} ${address.phoneNumber ?? ''}',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-
-            const SizedBox(height: 8),
-
-            // الملاحظات
-            if (address.notes != null && address.notes!.isNotEmpty)
-              Row(
-                children: [
-                  Icon(
-                    PhosphorIconsRegular.note,
-                    color: Colors.grey,
-                    size: 22.0,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      address.notes!,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ),
-                ],
-              ),
-
-            const SizedBox(height: 16),
-
-            // أزرار التعديل والحذف
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomCicularButton(
-                  color: Colors.white,
-                  borderColor: AppColors.primaryColor,
-                  borderWidth: 1.5,
-                  child: Icon(
-                    PhosphorIconsRegular.pencilSimple,
-                    color: AppColors.primaryColor,
-                    size: 18.0,
-                  ),
-                  onTap:
-                      () => Get.toNamed(
-                        AppRoutes.ADD_ADDRESSES_SCREEN,
-                        arguments: address,
-                      ),
+                CustomText(
+                  address.addressName ?? '',
+                  fontWeight: FontWeight.w600,
                 ),
-
-                const SizedBox(width: 8),
-
-                CustomCicularButton(
-                  borderColor: Colors.red,
-                  borderWidth: 1.5,
-                  color: Colors.white,
-                  child: Icon(
-                    PhosphorIconsRegular.trash,
-                    color: Colors.red,
-                    size: 16.0,
-                  ),
-                  onTap: () => _.dateAddress(address.id!),
+                SizedBox(height: 4.0),
+                CustomText(
+                  '${address.streetAddress ?? ''}, ${address.city ?? ''}, ${address.province ?? ''}',
+                  color: Colors.grey.shade600,
+                  fontSize: 12,
+                ),
+                SizedBox(height: 4.0),
+                Row(
+                  children: [
+                    CustomText(
+                      address.country ?? '',
+                      color: Colors.grey.shade600,
+                      fontSize: 12,
+                    ),
+                    const SizedBox(width: 8.0),
+                    CustomText(
+                      textDirection: TextDirection.ltr,
+                      '${address.countryCode ?? ''}, ${address.phoneNumber ?? ''}',
+                      color: Colors.grey.shade600,
+                      fontSize: 12,
+                    ),
+                  ],
                 ),
               ],
             ),
+            Icon(Icons.more_vert_rounded),
           ],
         ),
       ),

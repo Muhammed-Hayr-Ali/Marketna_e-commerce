@@ -25,26 +25,30 @@ class ManageAddressesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: GetBuilder<ManageAddressesController>(
-        init: ManageAddressesController(),
-        builder:
-            (controller) =>
-                controller.isLoading
-                    ? const Center(
-                      child: CircularProgressIndicator(strokeWidth: 2.0),
-                    )
-                    : controller.addresses.isEmpty || controller.addresses == []
-                    ? noAddressesWidget()
-                    : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: ListView.builder(
-                        itemCount: controller.addresses.length,
-                        itemBuilder:
-                            (context, index) => AddressCard(
-                              address: controller.addresses[index],
-                            ),
-                      ),
-                    ),
+      body: Column(
+        children: [
+          GetBuilder<ManageAddressesController>(
+            init: ManageAddressesController(),
+            builder:
+                (controller) =>
+                    controller.isLoading
+                        ? const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2.0),
+                        )
+                        : controller.addresses.isEmpty ||
+                            controller.addresses == []
+                        ? noAddressesWidget()
+                        : Expanded(
+                          child: ListView.builder(
+                            itemCount: controller.addresses.length,
+                            itemBuilder:
+                                (context, index) => AddressCard(
+                                  address: controller.addresses[index],
+                                ),
+                          ),
+                        ),
+          ),
+        ],
       ),
     );
   }
