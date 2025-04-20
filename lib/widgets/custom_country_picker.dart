@@ -72,7 +72,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     setState(() {
       isLoading = true;
     });
-    local = storage.read(AppStorageKey.LOCALE) ?? Get.deviceLocale!.languageCode;
+    local =
+        storage.read(AppStorageKey.LOCALE) ?? Get.deviceLocale!.languageCode;
 
     try {
       final response = await _supabase.from('countries').select().order('name');
@@ -109,7 +110,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       selectedProvince = value;
       city = value.city ?? [];
       selectedCity = null;
-
     });
     widget.onChangedProvince?.call(value);
     Navigator.pop(context);
@@ -304,7 +304,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                   label: 'state/province',
                   errorMessage: widget.provinceErrorMessage,
                   width: double.infinity,
-                  onPressed: _openProvince,
+                  onPressed:
+                      widget.selectedCountry != null ? _openProvince : null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -321,7 +322,11 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                   label: 'city',
                   errorMessage: widget.cityErrorMessage,
                   width: double.infinity,
-                  onPressed: _openCity,
+                  onPressed:
+                      widget.selectedCountry != null &&
+                              widget.selectedProvince != null
+                          ? _openCity
+                          : null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
