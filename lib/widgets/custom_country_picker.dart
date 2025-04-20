@@ -45,7 +45,7 @@ class CustomCountryPicker extends StatefulWidget {
 class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Variables
   final _supabase = Supabase.instance.client;
-  final GetStorage storage = GetStorage();
+  final GetStorage _storage = GetStorage();
   String? local;
   bool isLoading = false;
 
@@ -62,7 +62,9 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     // Retrieve locale from storage or default to device locale
     local =
-        storage.read(AppStorageKey.LOCALE) ?? Get.deviceLocale?.languageCode;
+        _storage.read(AppStorageKey.LOCALE) ??
+        Get.deviceLocale?.languageCode ??
+        'en';
 
     try {
       // Fetch countries sorted by name from the database
@@ -98,7 +100,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     city.clear();
     Get.back();
   }
-
 
   /// On province changed
   /// This function is called when a province is selected from the picker.
