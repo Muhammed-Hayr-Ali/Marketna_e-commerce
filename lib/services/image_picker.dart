@@ -4,7 +4,9 @@ class ImageService {
   final _picker = ImagePicker();
 
   Future<XFile?> getImageFromGallery() async {
-    final bool accessStorage = await PermissionHandler.requestPermission(Permission.storage);
+    final bool accessStorage = await PermissionHandler.requestPermission(
+      Permission.mediaLibrary,
+    );
 
     if (!accessStorage) {
       CustomNotification.showToast(message: 'Permission Denied');
@@ -12,10 +14,11 @@ class ImageService {
     }
 
     final pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery,
-        maxHeight: 300,
-        maxWidth: 300,
-        imageQuality: 50);
+      source: ImageSource.gallery,
+      maxHeight: 300,
+      maxWidth: 300,
+      imageQuality: 50,
+    );
     if (pickedFile != null) {
       return pickedFile;
     }
@@ -33,10 +36,11 @@ class ImageService {
     }
 
     final pickedFile = await _picker.pickImage(
-        source: ImageSource.camera,
-        maxHeight: 300,
-        maxWidth: 300,
-        imageQuality: 50);
+      source: ImageSource.camera,
+      maxHeight: 300,
+      maxWidth: 300,
+      imageQuality: 50,
+    );
     if (pickedFile != null) {
       return pickedFile;
     }
