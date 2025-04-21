@@ -1,57 +1,45 @@
-import 'package:application/models/rating_model.dart';
-
 class Product {
-  final String id;
-  final String name;
-  final String description;
-  final double price;
-  final String imageUrl;
-  final int quantity;
-  final String category;
-  final Rating rating;
+  int? id;
+  String? name;
+  String? description;
+  double? price;
+  String? imageUrl;
+  int? quantity;
+  String? category;
 
-  // Constructor
   Product({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.imageUrl,
-    required this.quantity,
-    required this.category,
-    required this.rating,
+    this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.imageUrl,
+    this.quantity,
+    this.category,
   });
 
-  // Factory method to create a Product from JSON
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      price: json['price'].toDouble(),
-      imageUrl: json['image_url'],
-      quantity: json['quantity'],
-      category: json['category'],
-      rating: Rating.fromJson(json['rating']),
-    );
+  Product.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    price = json['price'];
+    imageUrl = json['image_url'];
+    quantity = json['quantity'];
+    category = json['category'];
   }
 
-  // Method to convert Product to JSON
   Map<String, dynamic> toJson() {
-    return {
-      // 'id': id,
-      'name': name,
-      'description': description,
-      'price': price,
-      'image_url': imageUrl,
-      'quantity': quantity,
-      'category': category,
-      'rating': rating.toJson(),
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['description'] = description;
+    data['price'] = price;
+    data['image_url'] = imageUrl;
+    data['quantity'] = quantity;
+    data['category'] = category;
+    return data;
   }
 
   @override
   String toString() {
-    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category, rating: $rating}';
+    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category}';
   }
 }

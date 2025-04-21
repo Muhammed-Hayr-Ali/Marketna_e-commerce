@@ -3,6 +3,7 @@ class Country {
   String? name;
   String? nameAr;
   String? emoji;
+  String? emojiU;
   String? code;
   String? isoCode;
   String? flag;
@@ -13,6 +14,7 @@ class Country {
     this.name,
     this.nameAr,
     this.emoji,
+    this.emojiU,
     this.code,
     this.isoCode,
     this.flag,
@@ -24,12 +26,13 @@ class Country {
     name = json['name'];
     nameAr = json['name_ar'];
     emoji = json['emoji'];
+    emojiU = json['emojiU'];
     code = json['code'];
-    isoCode = json['iso_code'];
+    isoCode = json['isoCode'];
     flag = json['flag'];
-    if (json['state'] != null) {
+    if (json['province'] != null) {
       province = <Province>[];
-      json['state'].forEach((v) {
+      json['province'].forEach((v) {
         province!.add(Province.fromJson(v));
       });
     }
@@ -41,18 +44,19 @@ class Country {
     data['name'] = name;
     data['name_ar'] = nameAr;
     data['emoji'] = emoji;
+    data['emojiU'] = emojiU;
     data['code'] = code;
-    data['iso_code'] = isoCode;
+    data['isoCode'] = isoCode;
     data['flag'] = flag;
     if (province != null) {
-      data['state'] = province!.map((v) => v.toJson()).toList();
+      data['province'] = province!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 
   @override
   String toString() {
-    return 'Country{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, code: $code, isoCode: $isoCode, flag: $flag, province: $province}';
+    return 'Country{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province}';
   }
 }
 
@@ -99,26 +103,26 @@ class Province {
 class City {
   int? id;
   String? name;
-  int? stateId;
+  int? provinceId;
 
-  City({this.id, this.name, this.stateId});
+  City({this.id, this.name, this.provinceId});
 
   City.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    stateId = json['state_id'];
+    provinceId = json['province_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['state_id'] = stateId;
+    data['province_id'] = provinceId;
     return data;
   }
 
   @override
   String toString() {
-    return 'City{id: $id, name: $name, stateId: $stateId}';
+    return 'City{id: $id, name: $name, provinceId: $provinceId}';
   }
 }

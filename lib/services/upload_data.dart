@@ -1,10 +1,13 @@
 import 'package:application/utils/import.dart';
 
 class UploadData {
-  UploadData._();
+
   final _supabase = Supabase.instance.client;
 
-  Future<void> loadCountries(String filePath) async {
+  Future<void> uploadDataToSupabase({
+    required String filePath,
+    required String table,
+  }) async {
     try {
       debugPrint('Loading data...');
 
@@ -29,7 +32,7 @@ class UploadData {
 
       /// Insert each data into the Supabase table
       for (final Map<String, dynamic> data in jsonList) {
-        await _supabase.from('countries').insert(data);
+        await _supabase.from(table).insert(data);
       }
       debugPrint('Data inserted successfully.');
     } catch (e) {
