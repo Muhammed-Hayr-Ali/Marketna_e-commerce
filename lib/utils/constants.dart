@@ -139,6 +139,9 @@ abstract class AppConstants {
   static const String ADD_NEW_ADDRESS = 'add_new_address';
   static const String ADDRESS_NAME = 'address_name';
   static const String STREET_ADDRESS = 'street_address';
+  static const String COUNTRY = 'country';
+  static const String STATE_PROVINCE = 'state/province';
+  static const String CITY = 'city';
   static const String PHONENUMBER = 'phone';
   static const String DEFAULT_PHONE = '987654321';
   static const String DEFAULT_COUNTRY_CODE = '+963';
@@ -146,6 +149,7 @@ abstract class AppConstants {
   static const String NO_ADDRESSES = 'no_addresses';
   static const String MANAGE_ADDRESSES = 'manage_addresses';
   static const String WANT_DELETE_ADDRESS = 'want_delete_address';
+  static const String ADDRESS_DETAILS = 'address_details';
 
   /// **Auth**
   static const String RESET_PASSWORD = 'reset_password';
