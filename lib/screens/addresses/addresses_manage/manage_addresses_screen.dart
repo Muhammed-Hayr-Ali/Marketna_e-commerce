@@ -16,7 +16,10 @@ class ManageAddressesScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 10.0,
+            ),
             child: const CustomText(
               AppConstants.MANAGE_ADDRESSES,
               fontSize: 20,

@@ -7,88 +7,133 @@ class AddressCard extends StatelessWidget {
 
   void _openAddressDetails() {
     custombottomSheet(
-      title: AppConstants.ADDRESS_DETAILS,
       children: [
-        /// address name
-        CustomText(
-          '${AppConstants.ADDRESS_NAME.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
-        ),
-        CustomText(
-          address.addressName ?? '',
-          fontWeight: FontWeight.w600,
-        ),
-        Divider(height: 28.0, color: Colors.grey.shade200),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /// address name
+                  CustomText(
+                    '${AppConstants.ADDRESS_NAME.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      address.addressName ?? '',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Divider(color: Colors.grey.shade200),
 
-        /// street address
-        CustomText(
-          '${AppConstants.STREET_ADDRESS.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
-        ),
-        CustomText(
-          address.streetAddress ?? '',
-          fontWeight: FontWeight.w600,
-        ),
-        Divider(height: 28.0, color: Colors.grey.shade200),
+                  /// street address
+                  CustomText(
+                    '${AppConstants.STREET_ADDRESS.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      address.streetAddress ?? '',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Divider(color: Colors.grey.shade200),
 
-        /// location
-        CustomText(
-          '${AppConstants.COUNTRY.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
-        ),
-        CustomText(
-          address.country ?? '',
-          fontWeight: FontWeight.w600,
-        ),
-        Divider(height: 28.0, color: Colors.grey.shade200),
-        CustomText(
-          '${AppConstants.STATE_PROVINCE.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
-        ),
-        CustomText(
-          address.province ?? '',
-          fontWeight: FontWeight.w600,
-        ),
-        Divider(height: 28.0, color: Colors.grey.shade200),
-        CustomText(
-          '${AppConstants.CITY.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
-        ),
-        CustomText(
-          address.city ?? '',
-          fontWeight: FontWeight.w600,
-        ),
-        Divider(height: 28.0, color: Colors.grey.shade200),
+                  /// location
+                  CustomText(
+                    '${AppConstants.COUNTRY.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      address.country ?? '',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Divider(color: Colors.grey.shade200),
+                  CustomText(
+                    '${AppConstants.STATE_PROVINCE.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      address.province ?? '',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Divider(color: Colors.grey.shade200),
+                  CustomText(
+                    '${AppConstants.CITY.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      address.city ?? '',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Divider(color: Colors.grey.shade200),
 
-        /// Phone
-        CustomText(
-          '${AppConstants.PHONENUMBER.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
-        ),
-        CustomText(
-          textDirection: TextDirection.ltr,
-          '${address.countryCode ?? ''} ${address.phoneNumber ?? ''}',
-          fontWeight: FontWeight.w600,
-        ),
-        Divider(height: 28.0, color: Colors.grey.shade200),
+                  /// Phone
+                  CustomText(
+                    '${AppConstants.PHONENUMBER.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      textDirection: TextDirection.ltr,
+                      '${address.countryCode ?? ''} ${address.phoneNumber ?? ''}',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Divider(color: Colors.grey.shade200),
 
-        /// Notes
-        CustomText(
-          '${AppConstants.NOTES.tr} : ',
-          fontWeight: FontWeight.w400,
-          color: Colors.grey,
+                  /// Notes
+                  CustomText(
+                    '${AppConstants.NOTES.tr} : ',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      address.notes ?? '',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                ],
+              ),
+            ),
+          ),
         ),
-        CustomText(
-          address.notes ?? '',
-          fontWeight: FontWeight.w600,
+        const SizedBox(height: 16.0),
+        CustomButton(
+          width: double.infinity,
+          onPressed: () => Get.back(),
+          child: const CustomText('close'),
         ),
-        SizedBox(height: 16.0),
       ],
     );
   }
@@ -96,6 +141,7 @@ class AddressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInkk(
+      radius: 0,
       onLongPress: _openAddressDetails,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
