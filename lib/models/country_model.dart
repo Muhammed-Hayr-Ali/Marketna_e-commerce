@@ -8,6 +8,7 @@ class Country {
   String? isoCode;
   String? flag;
   List<Province>? province;
+  DateTime? createdAt;
 
   Country({
     this.id,
@@ -19,6 +20,7 @@ class Country {
     this.isoCode,
     this.flag,
     this.province,
+    this.createdAt,
   });
 
   Country.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,8 @@ class Country {
         province!.add(Province.fromJson(v));
       });
     }
+    createdAt =
+        json['created_at'] != null ? DateTime.parse(json['created_at']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -56,7 +60,7 @@ class Country {
 
   @override
   String toString() {
-    return 'Country{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province}';
+    return 'Country{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province, createdAt: $createdAt}';
   }
 }
 

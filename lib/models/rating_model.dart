@@ -4,6 +4,7 @@ class Rating {
   final String userId;
   final double ratingValue;
   final String? review;
+  DateTime? createdAt;
 
   // Constructor
   Rating({
@@ -12,6 +13,7 @@ class Rating {
     required this.userId,
     required this.ratingValue,
     this.review,
+    this.createdAt,
   });
 
   // Factory method to create a Rating from JSON
@@ -21,7 +23,11 @@ class Rating {
       productId: json['product_id'],
       userId: json['user_id'],
       ratingValue: json['rating_value'].toDouble(),
-      review: json['review'], // Optional field
+      review: json['review'],
+      createdAt:
+          json['created_at'] != null
+              ? DateTime.parse(json['created_at'])
+              : null,
     );
   }
 
@@ -31,13 +37,13 @@ class Rating {
       'id': id,
       'product_id': productId,
       'user_id': userId,
-      'rating_value': ratingValue,   
+      'rating_value': ratingValue,
       'review': review, // Optional field
     };
   }
 
   @override
   String toString() {
-    return 'Rating{id: $id, productId: $productId, userId: $userId, ratingValue: $ratingValue, review: $review}';
+    return 'Rating{id: $id, productId: $productId, userId: $userId, ratingValue: $ratingValue, review: $review, createdAt: $createdAt}';
   }
 }

@@ -12,6 +12,7 @@ class Address {
   final String? flag;
   final String? notes;
   final Map<String, dynamic>? location;
+  DateTime? createdAt;
 
   // Constructor to initialize the fields
   Address({
@@ -27,6 +28,7 @@ class Address {
     this.flag,
     this.notes,
     this.location,
+    this.createdAt,
   });
 
   // Factory method to create an instance from a map
@@ -44,6 +46,10 @@ class Address {
       flag: json['flag'],
       notes: json['notes'],
       location: json['location'],
+      createdAt:
+          json['created_at'] != null
+              ? DateTime.parse(json['created_at'])
+              : null,
     );
   }
 
@@ -78,6 +84,7 @@ class Address {
         'phoneNumber: $phoneNumber, '
         'flag: $flag, '
         'notes: $notes, '
-        'location: $location}';
+        'location: $location,'
+        'createdAt: $createdAt}';
   }
 }
