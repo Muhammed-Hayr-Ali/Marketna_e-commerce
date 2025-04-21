@@ -19,15 +19,19 @@ class HomeScreen extends StatelessWidget {
               _.isLoading.value
                   ? CircularProgressIndicator()
                   : Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: CustomText('Hello World'),
+                    padding:  EdgeInsets.all(16.0),
+                    child: CustomText(_.errorMessage.value,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
               CustomButton(
                 isLoading: _.isLoading.value,
                 width: 100,
                 height: 40,
                 borderRadius: 60,
-                onPressed: () => debugPrint('Hello World'),
+                onPressed: _.uploadProductsToDatabase,
                 child: CustomText('send'.tr),
               ),
             ],

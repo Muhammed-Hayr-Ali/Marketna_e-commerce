@@ -1,4 +1,4 @@
-import 'package:application/utils/constants.dart';
+import 'package:application/utils/app_constants.dart';
 
 class DataConverter {
   /// Retrieves the avatar URL from the user's metadata.

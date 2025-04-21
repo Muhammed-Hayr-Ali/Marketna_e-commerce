@@ -29,7 +29,7 @@ class Product {
       name: json['name'],
       description: json['description'],
       price: json['price'].toDouble(),
-      imageUrl: json['imageUrl'],
+      imageUrl: json['image_url'],
       quantity: json['quantity'],
       category: json['category'],
       rating: Rating.fromJson(json['rating']),
@@ -39,11 +39,11 @@ class Product {
   // Method to convert Product to JSON
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      // 'id': id,
       'name': name,
       'description': description,
       'price': price,
-      'imageUrl': imageUrl,
+      'image_url': imageUrl,
       'quantity': quantity,
       'category': category,
       'rating': rating.toJson(),

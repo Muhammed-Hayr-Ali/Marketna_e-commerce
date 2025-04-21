@@ -46,7 +46,7 @@ flutter:
     - assets/images/svg/
     - assets/images/onboarding/
     - assets/bottomNavbar/
-    - assets/data/countries.json
+    - assets/data/
     - assets/flags/
 
 

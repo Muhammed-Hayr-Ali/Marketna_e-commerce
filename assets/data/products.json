@@ -1,0 +1,272 @@
+[
+    {
+        "id": "1",
+        "name": "Wireless Bluetooth Earbuds",
+        "description": "High-quality wireless earbuds with noise cancellation and long battery life.",
+        "price": 79.99,
+        "image_url": "https://images.unsplash.com/photo-1586871201204-6e90d4c3f4b6",
+        "quantity": 50,
+        "category": "Electronics"
+    },
+    {
+        "id": "2",
+        "name": "Smartphone X Pro",
+        "description": "Latest smartphone with 120Hz display, 5G support, and quad-camera setup.",
+        "price": 899.99,
+        "image_url": "https://images.unsplash.com/photo-1520342868574-5fa3804e551c",
+        "quantity": 20,
+        "category": "Electronics"
+    },
+    {
+        "id": "3",
+        "name": "Coffee Maker Deluxe",
+        "description": "Automatic coffee maker with programmable settings and built-in grinder.",
+        "price": 149.99,
+        "image_url": "https://images.unsplash.com/photo-1506126613408-eca07ce68773",
+        "quantity": 30,
+        "category": "Home Appliances"
+    },
+    {
+        "id": "4",
+        "name": "Leather Backpack",
+        "description": "Durable leather backpack with multiple compartments and USB charging port.",
+        "price": 129.99,
+        "image_url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+        "quantity": 40,
+        "category": "Fashion"
+    },
+    {
+        "id": "5",
+        "name": "LED Desk Lamp",
+        "description": "Adjustable LED desk lamp with touch controls and multiple brightness levels.",
+        "price": 39.99,
+        "image_url": "https://images.unsplash.com/photo-1542089280-7d73ae0e0d4f",
+        "quantity": 100,
+        "category": "Home Appliances"
+    },
+    {
+        "id": "6",
+        "name": "Yoga Mat Premium",
+        "description": "Non-slip yoga mat with extra cushioning for comfort during workouts.",
+        "price": 29.99,
+        "image_url": "https://images.unsplash.com/photo-1584978085537-5ca97c5a205b",
+        "quantity": 60,
+        "category": "Sports"
+    },
+    {
+        "id": "7",
+        "name": "Air Fryer Pro",
+        "description": "Compact air fryer with digital touch controls and multiple cooking presets.",
+        "price": 199.99,
+        "image_url": "https://images.unsplash.com/photo-1601286756147-f5b693aaaf15",
+        "quantity": 25,
+        "category": "Home Appliances"
+    },
+    {
+        "id": "8",
+        "name": "Men's Running Shoes",
+        "description": "Lightweight running shoes with breathable mesh and shock absorption.",
+        "price": 89.99,
+        "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        "quantity": 70,
+        "category": "Fashion"
+    },
+    {
+        "id": "9",
+        "name": "Portable Power Bank",
+        "description": "Compact power bank with 20,000mAh capacity and fast charging support.",
+        "price": 49.99,
+        "image_url": "https://images.unsplash.com/photo-1588882312187-863c53071144",
+        "quantity": 80,
+        "category": "Electronics"
+    },
+    {
+        "id": "10",
+        "name": "Stainless Steel Water Bottle",
+        "description": "Insulated stainless steel water bottle keeps drinks cold for 24 hours.",
+        "price": 19.99,
+        "image_url": "https://images.unsplash.com/photo-1563612116625-301442dbcb72",
+        "quantity": 150,
+        "category": "Sports"
+    },
+    {
+        "id": "11",
+        "name": "Gaming Headset Pro",
+        "description": "Surround sound gaming headset with noise-canceling microphone.",
+        "price": 69.99,
+        "image_url": "https://images.unsplash.com/photo-1583324113626-70df0f4deaab",
+        "quantity": 35,
+        "category": "Electronics"
+    },
+    {
+        "id": "12",
+        "name": "Women's Winter Jacket",
+        "description": "Waterproof winter jacket with thermal insulation and detachable hood.",
+        "price": 119.99,
+        "image_url": "https://images.unsplash.com/photo-1588305244592-8da74226d928",
+        "quantity": 45,
+        "category": "Fashion"
+    },
+    {
+        "id": "13",
+        "name": "Electric Toothbrush",
+        "description": "Rechargeable electric toothbrush with timer and multiple brushing modes.",
+        "price": 59.99,
+        "image_url": "https://images.unsplash.com/photo-1578985545062-6992bd0815cc",
+        "quantity": 120,
+        "category": "Health"
+    },
+    {
+        "id": "14",
+        "name": "Bluetooth Speaker Mini",
+        "description": "Compact Bluetooth speaker with 10-hour battery life and waterproof design.",
+        "price": 34.99,
+        "image_url": "https://images.unsplash.com/photo-1584736793009-40ddf2dd7842",
+        "quantity": 90,
+        "category": "Electronics"
+    },
+    {
+        "id": "15",
+        "name": "Men's Casual Watch",
+        "description": "Analog men's watch with leather strap and water-resistant design.",
+        "price": 89.99,
+        "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+        "quantity": 55,
+        "category": "Fashion"
+    },
+    {
+        "id": "16",
+        "name": "Wireless Charging Pad",
+        "description": "Fast wireless charging pad compatible with all Qi-enabled devices.",
+        "price": 24.99,
+        "image_url": "https://images.unsplash.com/photo-1593305841991-05c1bf4b9b6b",
+        "quantity": 110,
+        "category": "Electronics"
+    },
+    {
+        "id": "17",
+        "name": "Kids' Educational Toy",
+        "description": "Interactive educational toy to enhance creativity and problem-solving skills.",
+        "price": 39.99,
+        "image_url": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73",
+        "quantity": 65,
+        "category": "Toys"
+    },
+    {
+        "id": "18",
+        "name": "Smart Fitness Tracker",
+        "description": "Fitness tracker with heart rate monitor, step counter, and sleep tracking.",
+        "price": 49.99,
+        "image_url": "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
+        "quantity": 85,
+        "category": "Sports"
+    },
+    {
+        "id": "19",
+        "name": "Laptop Cooling Pad",
+        "description": "Adjustable laptop cooling pad with dual fans and ergonomic design.",
+        "price": 59.99,
+        "image_url": "https://images.unsplash.com/photo-1593640406902-ed0ba75a5787",
+        "quantity": 75,
+        "category": "Electronics"
+    },
+    {
+        "id": "20",
+        "name": "Women's Sunglasses",
+        "description": "UV-protected sunglasses with stylish frame and polarized lenses.",
+        "price": 29.99,
+        "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+        "quantity": 130,
+        "category": "Fashion"
+    },
+    {
+        "id": "21",
+        "name": "Smart Home Camera",
+        "description": "Wi-Fi enabled home security camera with night vision and motion detection.",
+        "price": 129.99,
+        "image_url": "https://images.unsplash.com/photo-1588305244592-8da74226d928",
+        "quantity": 40,
+        "category": "Electronics"
+    },
+    {
+        "id": "22",
+        "name": "Men's Leather Wallet",
+        "description": "Slim minimalist leather wallet with RFID blocking technology.",
+        "price": 49.99,
+        "image_url": "https://images.unsplash.com/photo-1563612116625-301442dbcb72",
+        "quantity": 100,
+        "category": "Fashion"
+    },
+    {
+        "id": "23",
+        "name": "Reusable Shopping Bags",
+        "description": "Set of reusable shopping bags made from eco-friendly materials.",
+        "price": 14.99,
+        "image_url": "https://images.unsplash.com/photo-1586871201204-6e90d4c3f4b6",
+        "quantity": 200,
+        "category": "Home Appliances"
+    },
+    {
+        "id": "24",
+        "name": "Digital Kitchen Scale",
+        "description": "Precision digital kitchen scale with LCD display and tare function.",
+        "price": 29.99,
+        "image_url": "https://images.unsplash.com/photo-1588882312187-863c53071144",
+        "quantity": 95,
+        "category": "Home Appliances"
+    },
+    {
+        "id": "25",
+        "name": "Travel Pillow",
+        "description": "Memory foam travel pillow with soft cover for neck support.",
+        "price": 19.99,
+        "image_url": "https://images.unsplash.com/photo-1584978085537-5ca97c5a205b",
+        "quantity": 150,
+        "category": "Travel"
+    },
+    {
+        "id": "26",
+        "name": "Smart Doorbell",
+        "description": "Video doorbell with two-way audio and mobile app notifications.",
+        "price": 199.99,
+        "image_url": "https://images.unsplash.com/photo-1601286756147-f5b693aaaf15",
+        "quantity": 30,
+        "category": "Electronics"
+    },
+    {
+        "id": "27",
+        "name": "Women's Handbag",
+        "description": "Stylish handbag with multiple compartments and adjustable strap.",
+        "price": 79.99,
+        "image_url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+        "quantity": 50,
+        "category": "Fashion"
+    },
+    {
+        "id": "28",
+        "name": "Smart Bulb RGB",
+        "description": "Wi-Fi enabled smart bulb with color-changing and voice control features.",
+        "price": 29.99,
+        "image_url": "https://images.unsplash.com/photo-1542089280-7d73ae0e0d4f",
+        "quantity": 120,
+        "category": "Electronics"
+    },
+    {
+        "id": "29",
+        "name": "Men's Polo Shirt",
+        "description": "Comfortable polo shirt made from breathable cotton fabric.",
+        "price": 39.99,
+        "image_url": "https://images.unsplash.com/photo-1588305844592-8da74226d928",
+        "quantity": 100,
+        "category": "Fashion"
+    },
+    {
+        "id": "30",
+        "name": "Smart Plug Mini",
+        "description": "Compact smart plug to control appliances remotely via mobile app.",
+        "price": 19.99,
+        "image_url": "https://images.unsplash.com/photo-1593305841991-05c1bf4b9b6b",
+        "quantity": 150,
+        "category": "Electronics"
+    }
+]
