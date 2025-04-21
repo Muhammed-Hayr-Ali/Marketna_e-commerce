@@ -198,4 +198,8 @@ abstract class AppConstants {
   static const String SETTINGS = 'settings';
   static const String SECURITY = 'security';
   static const String HELP_CENTER = 'help_center';
+
+
+  /// **Settings**
+  static const String SETTINGS_TITLE = 'settings';
 }

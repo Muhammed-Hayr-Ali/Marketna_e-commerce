@@ -84,7 +84,9 @@ class ProfileScreen extends StatelessWidget {
                   MenuItem(
                     title: AppConstants.SETTINGS,
                     icon: AppAssets.settings,
-                    onTap: () {},
+                    onTap: () => _.navigateToScreen(
+                      AppRoutes.SETTINGS_SCREEN,
+                    ),
                   ),
                   MenuItem(
                     title: AppConstants.SECURITY,

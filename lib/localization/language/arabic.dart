@@ -225,6 +225,11 @@ class Arabic {
     'location': 'الموقع',
     'address_details': 'تفاصيل العنوان',
 
+
+
+    /// الاعدادات
+    'settings': 'الإعدادات',
+
     /// ملاحظات إضافية
     'powered_by': 'مدعوم بواسطة',
     'version': 'الإصدار',

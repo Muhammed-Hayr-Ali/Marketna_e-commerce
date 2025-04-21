@@ -30,5 +30,6 @@ class RouteGet {
       page: () => ManageAddressesScreen(),
     ),
     GetPage(name: AppRoutes.ADD_ADDRESSES_SCREEN, page: () => AddAddressScreen()),
+    GetPage(name: AppRoutes.SETTINGS_SCREEN, page: () => SettingsScreen()),
   ];
 }

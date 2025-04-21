@@ -22,5 +22,6 @@ abstract class AppRoutes {
   static const EDIT_PROFILE_SCREEN = '/editProfileScreen';
   static const MANAGER_ADDRESSES_SCREEN = '/manageAddressesScreen';
   static const ADD_ADDRESSES_SCREEN = '/addAddressesScreen';
+  static const SETTINGS_SCREEN = '/settingsScreen';
 
 }
