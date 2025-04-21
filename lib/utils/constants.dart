@@ -6,11 +6,11 @@ abstract class AppConstants {
   // ==============================
 
   static const String appName = 'Application';
-  static const String appVersion = '1.0.0';
+  static const String VERSION = '1.0.0';
 
   static const String fontFamily = 'Rubik';
 
-  static const String privacypolicy =
+  static const String PRIVACY_POLICY_URL =
       "https://www.freeprivacypolicy.com/live/00f25697-39a1-4cd6-a756-beec184a6055";
 
   // ==============================
@@ -121,7 +121,6 @@ abstract class AppConstants {
   static const String CONFIRM = 'confirm';
   static const String ARE_YOU_SURE_LOGOUT = 'are_you_sure_logout';
   static const String CANCEL = 'cancel';
-  static const String LOGOUT = 'logout';
   static const String YES = 'yes';
   static const String NO = 'no';
   static const String OK = 'ok';
@@ -199,7 +198,11 @@ abstract class AppConstants {
   static const String SECURITY = 'security';
   static const String HELP_CENTER = 'help_center';
 
-
   /// **Settings**
   static const String SETTINGS_TITLE = 'settings';
+  static const String NOTIFICATIONS = 'notifications';
+  static const String LANGUAGE = 'language';
+  static const String PRIVACY = 'dark_mode';
+  static const String ABOUT = 'about';
+  static const String LOGOUT = 'logout';
 }

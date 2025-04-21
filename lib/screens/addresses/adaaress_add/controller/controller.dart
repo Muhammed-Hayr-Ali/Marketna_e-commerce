@@ -61,7 +61,7 @@ class AddAddressController extends GetxController {
     update();
   }
 
-  Future<void> onChangedCountry(CountryModel value) async {
+  Future<void> onChangedCountry(Country value) async {
     selectedCountry = local != 'ar' ? value.name : value.nameAr;
     selectedCountryCode = value.code;
     selectedCountryFlag = value.flag;

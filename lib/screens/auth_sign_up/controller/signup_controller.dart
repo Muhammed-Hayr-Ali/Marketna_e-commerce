@@ -7,7 +7,7 @@ class SignUpController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final Uri _url = Uri.parse(AppConstants.privacypolicy);
+  final Uri _url = Uri.parse(AppConstants.PRIVACY_POLICY_URL);
   RxBool isLoading = false.obs;
 
   /// Signs the user up with email and password.

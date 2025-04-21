@@ -6,7 +6,7 @@ class UploadCountriesController extends GetxController {
   RxBool isLoading = false.obs;
   RxString message = ''.obs;
 
-  List<CountryModel> countries = [];
+  List<Country> countries = [];
   List<Province> provinces = [];
   List<City> city = [];
 
@@ -18,7 +18,7 @@ class UploadCountriesController extends GetxController {
       );
 
       List<dynamic> jsonList = json.decode(jsonString);
-      countries = jsonList.map((json) => CountryModel.fromJson(json)).toList();
+      countries = jsonList.map((json) => Country.fromJson(json)).toList();
       if (countries.isNotEmpty) {
         for (var country in countries) {
           await _supabase.from('countries').insert(country.toJson());

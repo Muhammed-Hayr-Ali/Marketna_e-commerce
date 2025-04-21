@@ -1,4 +1,4 @@
-class CountryModel {
+class Country {
   int? id;
   String? name;
   String? nameAr;
@@ -8,7 +8,7 @@ class CountryModel {
   String? flag;
   List<Province>? province;
 
-  CountryModel({
+  Country({
     this.id,
     this.name,
     this.nameAr,
@@ -19,7 +19,7 @@ class CountryModel {
     this.province,
   });
 
-  CountryModel.fromJson(Map<String, dynamic> json) {
+  Country.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     nameAr = json['name_ar'];
