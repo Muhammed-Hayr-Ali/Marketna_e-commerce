@@ -39,12 +39,13 @@ class SplashScreenController extends GetxController {
   /// When this method is called, it will set the [loading] variable to false,
   /// so the loading indicator will be hidden.
   Future<void> _checkInternet() async {
-  final hasInternetConnection = await InternetConnectionChecker.instance.hasConnection;
-  if (!hasInternetConnection) {
-    loading.value = false;
-    throw Exception('No internet connection');
+    final hasInternetConnection =
+        await InternetConnectionChecker.instance.hasConnection;
+    if (!hasInternetConnection) {
+      loading.value = false;
+      throw Exception('No internet connection');
+    }
   }
-}
 
   /// Checks if the app is launched for the first time and navigates to the
   /// onboarding screen if it is the first time, or checks if the user is
@@ -80,7 +81,9 @@ class SplashScreenController extends GetxController {
   /// found, it will navigate to the login screen instead.
   Future<void> _checkAuthentication() async {
     final isAuthenticated = await _hasAuthenticatedUser();
-    _navigateToScreen(isAuthenticated ? AppRoutes.MAIN_SCREEN : AppRoutes.LOGIN_SCREEN);
+    _navigateToScreen(
+      isAuthenticated ? AppRoutes.MAIN_SCREEN : AppRoutes.LOGIN_SCREEN,
+    );
   }
 
   /// Checks if the user is authenticated.
@@ -94,7 +97,7 @@ class SplashScreenController extends GetxController {
   /// will navigate to the login screen instead.
   Future<bool> _hasAuthenticatedUser() async {
     try {
-     await supabase.auth.getUser();
+      await supabase.auth.getUser();
       return true;
     } on AuthException catch (e) {
       debugPrint('Error fetching user: ${e.message}');
@@ -102,14 +105,14 @@ class SplashScreenController extends GetxController {
     }
   }
 
-/// Navigates to the specified route using GetX's `Get.offAllNamed` method.
-/// 
-/// This method will remove all existing routes from the stack and replace
-/// them with the new route specified by [routeName]. It is typically used
-/// for navigating to a new screen and clearing the navigation history so
-/// that the user cannot go back to the previous screens.
-/// 
-/// - Parameter routeName: The name of the route to navigate to.
+  /// Navigates to the specified route using GetX's `Get.offAllNamed` method.
+  ///
+  /// This method will remove all existing routes from the stack and replace
+  /// them with the new route specified by [routeName]. It is typically used
+  /// for navigating to a new screen and clearing the navigation history so
+  /// that the user cannot go back to the previous screens.
+  ///
+  /// - Parameter routeName: The name of the route to navigate to.
 
   void _navigateToScreen(String routeName) {
     Get.offAllNamed(routeName);
@@ -119,6 +122,7 @@ class SplashScreenController extends GetxController {
   /// If an error occurs, a snackbar with the error message is displayed.
   void _handleError(dynamic error) {
     CustomNotification.showSnackbar(message: error.toString());
+    debugPrint(error.toString());
   }
 
   void retry() => initializeApp();

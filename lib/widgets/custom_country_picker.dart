@@ -97,7 +97,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   void _onCountryChanged(CountryModel selectedCountry) {
     widget.onChangedCountry?.call(selectedCountry);
     provinces = selectedCountry.province ?? [];
-    city.clear();
+    city = [];
     Get.back();
   }
 
@@ -211,9 +211,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// It opens a bottom sheet with a list of cities to select from.
   void _openCityPicker() {
     /// Check if cities are loaded, if not load them
-    if (city.isEmpty ||
-        widget.selectedCountry == null ||
-        widget.selectedProvince == null) {
+    if (city.isEmpty || widget.selectedProvince == null) {
       return;
     }
 

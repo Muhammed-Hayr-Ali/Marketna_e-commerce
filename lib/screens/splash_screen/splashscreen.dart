@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
               () =>
                   _.loading.value
                       ? Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(14.0),
                         child: SizedBox(
                           height: 20,
                           width: 20,

@@ -69,18 +69,18 @@ class ManageAddressesController extends GetxController {
     debugPrint('Updating address...');
     bool result = await _main.shouldDeleteAddress();
     if (!result) return; // User chose not to delete the address
-    isLoading = true;
-    update();
     try {
       // Update the address in the database
       await _supabase.from(KEYS.ADDRESSES_TABLE).delete().eq('id', addressId);
+      addresses.removeWhere((address) => address.id == addressId);
+      update(); // Notify listeners about the change
     } catch (error) {
       // Handle errors and show error notification
       // CustomNotification.showSnackbar(message: AppConstants.DATA_UPDATING_ERROR);
       debugPrint(error.toString());
     } finally {
       // Reload addresses after updating
-      await loadAddresses();
+      // await loadAddresses();
     }
   }
 }

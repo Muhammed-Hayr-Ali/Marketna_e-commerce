@@ -120,7 +120,7 @@ class Arabic {
     'enter_email_for_reset': 'أدخل البريد الإلكتروني لاستعادة كلمة المرور',
     'password_updated_successfully': 'تم تحديث كلمة المرور بنجاح',
     'profile_updated_successfully': 'تم تحديث الملف الشخصي بنجاح',
-    'Exception: no_internet_connection': 'خطأ: لا يوجد اتصال بالإنترنت',
+    'Exception: No internet connection': 'خطأ: لا يوجد اتصال بالإنترنت',
     'user_already_registered': 'المستخدم مسجل بالفعل',
     'Invalid login credentials': 'بيانات تسجيل الدخول غير صحيحة',
     'user_is_banned': 'لقد تم حظر حسابك',
