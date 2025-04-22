@@ -1,15 +1,15 @@
 class Address {
   // Fields
   final int? id;
-  final String? customerId;
+  final String? userId;
   final String? addressName;
-  final String? streetAddress;
   final String? country;
-  final String? city;
+  final String? flag;
   final String? province;
+  final String? city;
+  final String? street;
   final String? countryCode;
   final String? phoneNumber;
-  final String? flag;
   final String? notes;
   final Map<String, dynamic>? location;
   DateTime? createdAt;
@@ -17,15 +17,15 @@ class Address {
   // Constructor to initialize the fields
   Address({
     this.id,
-    this.customerId,
+    this.userId,
     this.addressName,
-    this.streetAddress,
-    this.city,
-    this.province,
     this.country,
+    this.flag,
+    this.province,
+    this.city,
+    this.street,
     this.countryCode,
     this.phoneNumber,
-    this.flag,
     this.notes,
     this.location,
     this.createdAt,
@@ -35,15 +35,15 @@ class Address {
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       id: json['id'],
-      customerId: json['customer_id'],
+      userId: json['user_id'],
       addressName: json['address_name'],
-      streetAddress: json['street_address'],
-      city: json['city'],
-      province: json['province'],
       country: json['country'],
+      flag: json['flag'],
+      province: json['province'],
+      city: json['city'],
+      street: json['street'],
       countryCode: json['country_code'],
       phoneNumber: json['phone_number'],
-      flag: json['flag'],
       notes: json['notes'],
       location: json['location'],
       createdAt:
@@ -56,15 +56,15 @@ class Address {
   // Method to convert the object to a JSON map
   Map<String, dynamic> toJson() {
     return {
-      'customer_id': customerId,
+      'user_id': userId,
       'address_name': addressName,
-      'street_address': streetAddress,
-      'city': city,
-      'province': province,
       'country': country,
+      'flag': flag,
+      'province': province,
+      'city': city,
+      'street': street,
       'country_code': countryCode,
       'phone_number': phoneNumber,
-      'flag': flag,
       'notes': notes,
       'location': location,
     };
@@ -74,15 +74,15 @@ class Address {
   String toString() {
     return 'Address{'
         'id: $id, '
-        'customerId: $customerId, '
+        'user_id: $userId, '
         'addressName: $addressName, '
-        'streetAddress: $streetAddress, '
-        'city: $city, '
-        'province: $province, '
         'country: $country, '
+        'flag: $flag, '
+        'province: $province, '
+        'city: $city, '
+        'streetAddress: $street, '
         'countryCode: $countryCode, '
         'phoneNumber: $phoneNumber, '
-        'flag: $flag, '
         'notes: $notes, '
         'location: $location,'
         'createdAt: $createdAt}';

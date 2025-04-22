@@ -41,7 +41,7 @@ class AddressCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomText(
-                      address.streetAddress ?? '',
+                      address.street ?? '',
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -152,7 +152,7 @@ class AddressCard extends StatelessWidget {
             CustomText(address.addressName ?? '', fontWeight: FontWeight.w600),
             SizedBox(height: 4.0),
             CustomText(
-              '${address.streetAddress ?? ''}, ${address.city ?? ''}, ${address.province ?? ''}',
+              '${address.street ?? ''}, ${address.city ?? ''}, ${address.province ?? ''}',
               color: Colors.grey.shade600,
               fontSize: 12,
             ),

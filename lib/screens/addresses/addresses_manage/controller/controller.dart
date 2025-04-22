@@ -3,7 +3,7 @@ import 'package:application/utils/import.dart';
 class ManageAddressesController extends GetxController {
   final _supabase = Supabase.instance.client;
   final _main = ManageAddressesMainController();
-  String? customerId;
+  String? userId;
   bool isLoading = true;
   List<Address> addresses = [];
 
@@ -11,7 +11,7 @@ class ManageAddressesController extends GetxController {
   void onInit() {
     debugPrint('Initializing ManageAddressesController...');
     // Initialize the customerId with the current user's ID
-    customerId = _supabase.auth.currentUser!.id;
+    userId = _supabase.auth.currentUser!.id;
     // Load addresses when the controller is initialized
     loadAddresses();
     super.onInit();
@@ -24,8 +24,8 @@ class ManageAddressesController extends GetxController {
   Future<void> loadAddresses() async {
     debugPrint('Loading addresses...');
 
-    if (customerId == null) {
-      debugPrint('Customer ID is null. Cannot load addresses.');
+    if (userId == null) {
+      debugPrint('user ID is null. Cannot load addresses.');
       return;
     }
 
@@ -34,7 +34,7 @@ class ManageAddressesController extends GetxController {
       final response = await _supabase
           .from(KEYS.ADDRESSES_TABLE)
           .select()
-          .eq(AppConstants.CUSTOMER_ID, customerId!);
+          .eq(AppConstants.USER_ID, userId!);
 
       // Check if the response is empty
       if (response.isEmpty) {

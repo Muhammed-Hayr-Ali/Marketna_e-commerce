@@ -48,7 +48,7 @@ class AddAddressController extends GetxController {
     if (address == null) return;
     addressId = address.id;
     addressNameController.text = address.addressName ?? '';
-    streetAddressController.text = address.streetAddress ?? '';
+    streetAddressController.text = address.street ?? '';
     phoneNumberController.text = address.phoneNumber ?? '';
     notesController.text = address.notes ?? '';
 
@@ -160,9 +160,9 @@ class AddAddressController extends GetxController {
       final currentPosition = await _determinePosition();
 
       final newAddress = Address(
-        customerId: currentUserId,
+        userId: currentUserId,
         addressName: addressNameController.text,
-        streetAddress: streetAddressController.text,
+        street: streetAddressController.text,
         country: selectedCountry,
         province: selectedProvince,
         city: selectedCity,
