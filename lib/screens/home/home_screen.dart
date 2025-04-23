@@ -30,6 +30,8 @@ class HomeScreen extends StatelessWidget {
                   reverseOrder: true,
                   activeDotColor: AppColors.primaryColor,
                 ),
+
+            const SizedBox(height: 100),
           ],
         ),
       ),

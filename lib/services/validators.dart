@@ -118,11 +118,22 @@ class Validators {
 
   static String? phoneNumber(String phoneNumber) {
     if (phoneNumber.isEmpty) {
-      return null;
+      return AppConstants.PHONE_NUMBER_REQUIRED.tr;
     }
 
-    if (!RegExp(r'^\+[0-9]{4,12}$').hasMatch(phoneNumber)) {
-      return 'invalid_phone'.tr;
+    if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phoneNumber)) {
+      return AppConstants.PHONE_NUMBER_INVALID.tr;
+    }
+    return null;
+  }
+
+  static String? countryCode(String countryCode) {
+    if (countryCode.isEmpty) {
+      return AppConstants.COUNTRY_CODE_REQUIRED.tr;
+    }
+
+    if (!RegExp(r'^\+[0-9]{1,4}$').hasMatch(countryCode)) {
+      return AppConstants.COUNTRY_CODE_INVALID.tr;
     }
     return null;
   }

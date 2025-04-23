@@ -68,10 +68,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     try {
       // Fetch countries sorted by name from the database
-      final List<dynamic> response = await _supabase
-          .from('countries')
-          .select()
-          .order('name');
+      final List<dynamic> response = await _supabase.from('countries').select();
 
       // Return false if no countries are found
       if (response.isEmpty) return false;

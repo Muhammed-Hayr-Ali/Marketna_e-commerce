@@ -1,5 +1,5 @@
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/custom_country_picker.dart';
+import 'package:application/widgets/phone_text_field.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
@@ -140,39 +140,55 @@ class EditProfileScreen extends StatelessWidget {
                             ),
 
                             const SizedBox(height: 16.0),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: CustomTextField(
-                                    textDirection: TextDirection.ltr,
-                                    label: AppConstants.PHONE.tr,
+                            GetBuilder<EditProfileController>(
+                              builder:
+                                  (_) => PhoneTextField(
                                     hintText: AppConstants.DEFAULT_PHONE,
-                                    controller: _.phoneController,
-                                    validator:
-                                        (value) => Validators.phone(value!),
-                                    keyboardType: TextInputType.phone,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]'),
-                                      ),
-                                    ],
+                                    labelText: AppConstants.PHONE.tr,
+                                    selectedCode: _.countryCode,
+                                    phoneController: _.phoneController,
+                                    onSelectedCode:
+                                        (countryCode) =>
+                                            _.updateCountryCode(countryCode),
+                                    errorMessage:
+                                        _.phoneErrorMessage != ''
+                                            ? _.phoneErrorMessage
+                                            : _.countryCodeErrorMessage,
                                   ),
-                                ),
-
-                                SizedBox(width: 16.0),
-
-                                CustomCountryPicker(
-                                  countryPickerMode: CountryPickerMode.code,
-                                  selectedCountryCode: _.countryCode,
-                                  countryCodeErrorMessage:
-                                      _.countryCodeErrorMessage,
-                                  onChangedCountry: (value) {
-                                    _.updateCountryCode(value.code);
-                                  },
-                                ),
-                              ],
                             ),
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     Expanded(
+                            //       child: CustomTextField(
+                            //         textDirection: TextDirection.ltr,
+                            //         label: AppConstants.PHONE.tr,
+                            //         hintText: AppConstants.DEFAULT_PHONE,
+                            //         controller: _.phoneController,
+                            //         validator:
+                            //             (value) => Validators.phone(value!),
+                            //         keyboardType: TextInputType.phone,
+                            //         inputFormatters: [
+                            //           FilteringTextInputFormatter.allow(
+                            //             RegExp(r'[0-9]'),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+
+                            //     SizedBox(width: 16.0),
+
+                            //     CustomCountryPicker(
+                            //       countryPickerMode: CountryPickerMode.code,
+                            //       selectedCountryCode: _.countryCode,
+                            //       countryCodeErrorMessage:
+                            //           _.countryCodeErrorMessage,
+                            //       onChangedCountry: (value) {
+                            //         _.updateCountryCode(value.code);
+                            //       },
+                            //     ),
+                            //   ],
+                            // ),
                             const SizedBox(height: 16.0),
                             Row(
                               children: [

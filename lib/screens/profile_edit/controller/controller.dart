@@ -12,8 +12,9 @@ class EditProfileController extends GetxController {
   final nameController = TextEditingController();
   String? email;
   String? countryCode;
-  String? countryCodeErrorMessage;
   final phoneController = TextEditingController();
+  String? phoneErrorMessage;
+  String? countryCodeErrorMessage;
   String? gender;
   String? dateBirth;
 
@@ -48,20 +49,18 @@ class EditProfileController extends GetxController {
     email = currentUser.email;
 
     // Set the country code to the user's country code
-    if (userMetadata?[AppConstants.COUNTRY_CODE] != null) {
-      countryCode = userMetadata![AppConstants.COUNTRY_CODE];
-    } else {
-      countryCode = null;
-    }
+
+    // Set the country code controller text to the user's country code
+    countryCode = userMetadata![AppConstants.COUNTRY_CODE] ?? '';
 
     // Set the phone controller text to the user's phone number
-    phoneController.text = userMetadata?[AppConstants.PHONE] ?? '';
+    phoneController.text = userMetadata[AppConstants.PHONE] ?? '';
 
     // Set the gender to the user's gender
-    gender = userMetadata?[AppConstants.GENDER] ?? '';
+    gender = userMetadata[AppConstants.GENDER] ?? '';
 
     // Set the date of birth to the user's date of birth
-    dateBirth = userMetadata?[AppConstants.DATE_BIRTH] ?? '';
+    dateBirth = userMetadata[AppConstants.DATE_BIRTH] ?? '';
 
     // Update the UI
     update();
@@ -283,6 +282,14 @@ class EditProfileController extends GetxController {
     CustomNotification.showToast(message: AppConstants.EMAIL_COPIED);
   }
 
+  /// updates Country Code
+  void updateCountryCode(String value) {
+    countryCode = value;
+    update();
+  }
+  
+
+
   /// Updates the user's gender.
   ///
   /// This function sets the [gender] to the provided [value] and triggers a UI update.
@@ -318,16 +325,15 @@ class EditProfileController extends GetxController {
   ///
   /// Finally, it will reset the form and set the loading state to false.
   Future<void> updateUser() async {
-    debugPrint(countryCode);
-    if (countryCode == null) {
-      countryCodeErrorMessage = AppConstants.COUNTRY_CODE_REQUIRED;
-    } else {
-      countryCodeErrorMessage = null;
-      update();
-    }
+    debugPrint(phoneController.text.trim());
+    phoneErrorMessage = Validators.phoneNumber(phoneController.text) ?? '';
+    countryCodeErrorMessage = Validators.countryCode(countryCode!) ?? '';
+    update();
 
-    if (!formKey.currentState!.validate() || countryCode == null) {
-      update();
+    if (!formKey.currentState!.validate() ||
+        phoneErrorMessage!.isNotEmpty ||
+        countryCodeErrorMessage!.isNotEmpty) {
+      // Show a snackbar with the error message
       return;
     }
 
@@ -342,7 +348,9 @@ class EditProfileController extends GetxController {
         UserAttributes(
           data: {
             AppConstants.DISPLAY_NAME: nameController.text.trim(),
-            AppConstants.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(email!.trim()),
+            AppConstants.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(
+              email!.trim(),
+            ),
             AppConstants.COUNTRY_CODE: countryCode,
             AppConstants.PHONE: phoneController.text.trim(),
             AppConstants.GENDER: gender,
@@ -372,10 +380,5 @@ class EditProfileController extends GetxController {
     }
   }
 
-  /// Updates the user's country code with the provided [code] and
-  /// triggers a UI update.
-  void updateCountryCode(code) {
-    countryCode = code;
-    update();
-  }
+
 }

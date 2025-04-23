@@ -95,6 +95,7 @@ class Arabic {
     'passwords_do_not_match': 'كلمة المرور وتأكيد كلمة المرور غير متطابقتين',
     'phone_cannot_be_empty': 'رقم الهاتف لا يمكن أن يكون فارغًا',
     'invalid_phone': 'رقم الهاتف غير صالح',
+    'invalid_country_code': 'رمز الدولة غير صالح',
     'addressName_cannot_be_empty': 'اسم العنوان لا يمكن أن يكون فارغًا',
     'country_cannot_be_empty': 'اسم الدولة لا يمكن أن يكون فارغًا',
     'stateProvince_cannot_be_empty':
