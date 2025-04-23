@@ -39,7 +39,7 @@ class PhoneTextFieldController extends GetxController {
     }
   }
 
-  Future<String> openCountryPicker() async {
+  Future<String?> openCountryPicker() async {
     final List<Country> countriesList;
     if (countries.isNotEmpty) {
       countriesList = countries;
@@ -50,7 +50,7 @@ class PhoneTextFieldController extends GetxController {
     }
 
     if (countriesList.isEmpty) {
-      return '';
+      return null;
     }
 
     String result =
@@ -62,9 +62,8 @@ class PhoneTextFieldController extends GetxController {
                 itemCount: countriesList.length,
                 itemBuilder:
                     (context, index) => TextButton(
-                      onPressed: () {
-                        Get.back(result: countriesList[index].code);
-                      },
+                      onPressed:
+                          () => Get.back(result: countriesList[index].code),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -98,33 +97,36 @@ class PhoneTextFieldController extends GetxController {
           ],
         ) ??
         '';
-    debugPrint('Selected country code: $result');
     return result;
   }
 }
 
 class PhoneTextField extends StatelessWidget {
-  final String? hintText;
-  final String? labelText;
+  final bool enableCode;
+  final String hintPhone;
+  final String hintCode;
+  final String labelText;
   final String? fontFamily;
   final double? fontSize;
   final FontWeight? fontWeight;
-  final String? errorMessage;
   final String? selectedCode;
-  final TextEditingController phoneController;
-  final void Function(String) onSelectedCode;
+  final void Function(String?)? onSelectedCode;
+  final TextEditingController? phoneController;
+  final String? errorMessage;
 
   PhoneTextField({
     super.key,
-    this.hintText,
-    this.labelText,
+    this.enableCode = true,
+    this.hintPhone = '987654321',
+    this.hintCode = '+963',
+    this.labelText = 'phone',
     this.fontFamily,
     this.fontSize,
     this.fontWeight,
-    required this.phoneController,
-    required this.onSelectedCode,
-    this.errorMessage,
     this.selectedCode,
+    this.onSelectedCode,
+    this.phoneController,
+    this.errorMessage,
   });
 
   final _ = Get.put(PhoneTextFieldController());
@@ -135,7 +137,7 @@ class PhoneTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          (labelText ?? 'Phone Number').tr,
+          labelText.tr,
           style: TextStyle(
             fontSize: 12,
             color: Colors.grey,
@@ -165,12 +167,17 @@ class PhoneTextField extends StatelessWidget {
                         ),
                         minimumSize: const Size(0, 0),
                       ),
-                      onPressed: () {
-                        final result = _.openCountryPicker();
-                        result.then((value) {
-                          onSelectedCode.call(value);
-                        });
-                      },
+                      onPressed:
+                          enableCode == true
+                              ? () {
+                                final result = _.openCountryPicker();
+                                result.then((value) {
+                                  if (onSelectedCode != null) {
+                                    onSelectedCode!.call(value!);
+                                  }
+                                });
+                              }
+                              : null,
                       child:
                           _.isLoading.value
                               ? SizedBox(
@@ -180,13 +187,20 @@ class PhoneTextField extends StatelessWidget {
                                   strokeWidth: 1.5,
                                 ),
                               )
+                              : selectedCode != null && selectedCode != ''
+                              ? Text(
+                                selectedCode!,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: fontSize ?? 14,
+                                  fontWeight: fontWeight ?? FontWeight.w500,
+                                ),
+                              )
                               : Text(
-                                selectedCode != null && selectedCode != ''
-                                    ? '$selectedCode'
-                                    : '+963',
+                                hintCode,
                                 style: TextStyle(
                                   color:
-                                      selectedCode != null && selectedCode != ''
+                                      selectedCode != null
                                           ? Colors.black
                                           : Colors.grey.shade400,
                                   fontSize: fontSize ?? 14,
@@ -210,7 +224,9 @@ class PhoneTextField extends StatelessWidget {
                     ],
                     onChanged: (value) {
                       if (value.length == 12) {
-                        phoneController.text = value;
+                        if (phoneController != null) {
+                          phoneController!.text = value;
+                        }
                       }
                     },
                     textAlign: TextAlign.start,
@@ -221,7 +237,7 @@ class PhoneTextField extends StatelessWidget {
                       color: Colors.black,
                     ),
                     decoration: InputDecoration(
-                      hintText: hintText ?? 'Phone Number',
+                      hintText: hintPhone,
                       hintStyle: TextStyle(
                         fontFamily: fontFamily ?? AppConstants.fontFamily,
                         fontSize: fontSize ?? 14,
@@ -244,7 +260,7 @@ class PhoneTextField extends StatelessWidget {
         ),
         SizedBox(
           child:
-              errorMessage != ''
+              errorMessage != null
                   ? FadeAnimationDy(
                     delay: 200,
                     dy: 6,

@@ -143,7 +143,8 @@ class EditProfileScreen extends StatelessWidget {
                             GetBuilder<EditProfileController>(
                               builder:
                                   (_) => PhoneTextField(
-                                    hintText: AppConstants.DEFAULT_PHONE,
+                                    hintPhone: AppConstants.DEFAULT_PHONE,
+                                    hintCode: AppConstants.DEFAULT_COUNTRY_CODE,
                                     labelText: AppConstants.PHONE.tr,
                                     selectedCode: _.countryCode,
                                     phoneController: _.phoneController,
@@ -151,9 +152,8 @@ class EditProfileScreen extends StatelessWidget {
                                         (countryCode) =>
                                             _.updateCountryCode(countryCode),
                                     errorMessage:
-                                        _.phoneErrorMessage != ''
-                                            ? _.phoneErrorMessage
-                                            : _.countryCodeErrorMessage,
+                                        _.phoneErrorMessage ??
+                                        _.countryCodeErrorMessage,
                                   ),
                             ),
                             // Row(

@@ -51,7 +51,7 @@ class EditProfileController extends GetxController {
     // Set the country code to the user's country code
 
     // Set the country code controller text to the user's country code
-    countryCode = userMetadata![AppConstants.COUNTRY_CODE] ?? '';
+    countryCode = userMetadata![AppConstants.COUNTRY_CODE];
 
     // Set the phone controller text to the user's phone number
     phoneController.text = userMetadata[AppConstants.PHONE] ?? '';
@@ -283,12 +283,10 @@ class EditProfileController extends GetxController {
   }
 
   /// updates Country Code
-  void updateCountryCode(String value) {
+  void updateCountryCode(String? value) {
     countryCode = value;
     update();
   }
-  
-
 
   /// Updates the user's gender.
   ///
@@ -326,8 +324,8 @@ class EditProfileController extends GetxController {
   /// Finally, it will reset the form and set the loading state to false.
   Future<void> updateUser() async {
     debugPrint(phoneController.text.trim());
-    phoneErrorMessage = Validators.phoneNumber(phoneController.text) ?? '';
-    countryCodeErrorMessage = Validators.countryCode(countryCode!) ?? '';
+    phoneErrorMessage = Validators.phoneNumber(phoneController.text);
+    countryCodeErrorMessage = Validators.countryCode(countryCode!);
     update();
 
     if (!formKey.currentState!.validate() ||
@@ -379,6 +377,4 @@ class EditProfileController extends GetxController {
       isLoading.value = false;
     }
   }
-
-
 }
