@@ -6,6 +6,7 @@ class Product {
   String? imageUrl;
   int? quantity;
   String? category;
+  String? quality;
   DateTime? createdAt;
 
   Product({
@@ -16,6 +17,8 @@ class Product {
     this.imageUrl,
     this.quantity,
     this.category,
+    this.quality,
+    this.createdAt,
   });
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -26,6 +29,7 @@ class Product {
     imageUrl = json['image_url'];
     quantity = json['quantity'];
     category = json['category'];
+    quality = json['quality'];
     createdAt =
         json['created_at'] != null ? DateTime.parse(json['created_at']) : null;
   }
@@ -38,11 +42,12 @@ class Product {
     data['image_url'] = imageUrl;
     data['quantity'] = quantity;
     data['category'] = category;
+    data['quality'] = quality;
     return data;
   }
 
   @override
   String toString() {
-    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category, createdAt: $createdAt}';
+    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category, quality: $quality, createdAt: $createdAt}';
   }
 }

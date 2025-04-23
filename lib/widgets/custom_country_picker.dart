@@ -78,8 +78,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
       setState(() {
         // Convert response to a list of Country instances
-        countries =
-            response.map((data) => Country.fromJson(data)).toList();
+        countries = response.map((data) => Country.fromJson(data)).toList();
       });
 
       return true;

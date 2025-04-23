@@ -15,7 +15,7 @@ Widget noAddressesWidget() {
           padding: EdgeInsets.symmetric(horizontal: 16),
           height: 40,
           borderRadius: 60,
-          onPressed: () => Get.toNamed(AppRoutes.ADD_ADDRESSES_SCREEN),
+          onPressed: () => Get.toNamed(Routes.ADD_ADDRESSES_SCREEN),
           child: CustomText(AppConstants.ADD_NEW_ADDRESS),
         ),
       ],

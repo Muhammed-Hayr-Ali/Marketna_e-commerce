@@ -10,7 +10,7 @@ export 'package:application/localization/translation.dart';
 // ==============================
 export 'package:application/models/address_model.dart';
 export 'package:application/models/country_model.dart';
-export 'package:application/myapp.dart';
+export 'package:application/models/product_model.dart';
 // ==============================
 // **Routes**
 // ==============================
@@ -57,6 +57,8 @@ export 'package:application/screens/splash_screen/binding/binding.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/data_converter.dart';
+export 'package:application/screens/product_details/controller/controller.dart';
+
 // ==============================
 // **Services**
 // ==============================

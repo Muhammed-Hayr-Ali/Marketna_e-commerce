@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 
       // Route configuration
       getPages: RouteGet.getPages,
-      initialRoute: AppRoutes.SPLASH_SCREEN,
+      initialRoute: Routes.SPLASH_SCREEN,
     );
   }
 }

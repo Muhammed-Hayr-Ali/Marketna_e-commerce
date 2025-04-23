@@ -67,10 +67,6 @@ abstract class AppConstants {
   /// ==============================
   static const String USER_DATA = 'user_data';
 
-  /// ==============================
-  /// **Column**
-  /// ==============================
-  static const String USER_ID = 'user_id';
 
   /// ==============================
   /// **Notification**

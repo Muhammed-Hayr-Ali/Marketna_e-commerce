@@ -32,7 +32,7 @@ class LoginController extends GetxController {
     // If successful, navigate to main screen
     try {
       await supabase.auth.signInWithPassword(email: email, password: password);
-      Get.offAllNamed(AppRoutes.MAIN_SCREEN);
+      Get.offAllNamed(Routes.MAIN_SCREEN);
     } on AuthException catch (error) {
       // Show error message in a snackbar
       CustomNotification.showSnackbar(message: error.message);
@@ -86,7 +86,7 @@ class LoginController extends GetxController {
         throw AppConstants.GOOGLE_SIGN_IN_FAILED;
       }
       // Navigate to main screen
-      Get.offAllNamed(AppRoutes.MAIN_SCREEN);
+      Get.offAllNamed(Routes.MAIN_SCREEN);
     } on AuthApiException catch (error) {
       // Show error message in a snackbar
       CustomNotification.showSnackbar(message: error.message);

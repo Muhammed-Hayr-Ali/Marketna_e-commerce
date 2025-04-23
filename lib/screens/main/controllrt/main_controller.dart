@@ -4,11 +4,11 @@ class MainController extends GetxController {
   RxInt currentIndex = 0.obs;
 
   final List<String> pages = [
-    AppRoutes.HOME_SCREEN,
-    AppRoutes.FAVORITE_SCREEN,
-    AppRoutes.CART_SCREEN,
-    AppRoutes.NOTIFICATION_SCREEN,
-    AppRoutes.PROFILE_SCREEN,
+    Routes.HOME_SCREEN,
+    Routes.FAVORITE_SCREEN,
+    Routes.CART_SCREEN,
+    Routes.NOTIFICATION_SCREEN,
+    Routes.PROFILE_SCREEN,
   ];
 
   void changePage(int index) {

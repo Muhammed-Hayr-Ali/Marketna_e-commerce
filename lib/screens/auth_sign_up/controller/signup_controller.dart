@@ -38,7 +38,7 @@ class SignUpController extends GetxController {
         },
       );
 
-      Get.offAllNamed(AppRoutes.MAIN_SCREEN);
+      Get.offAllNamed(Routes.MAIN_SCREEN);
     } on AuthException catch (error) {
       // Show a snackbar with the error message
       CustomNotification.showSnackbar(message: error.message);

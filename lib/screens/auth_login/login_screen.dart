@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                         GestureDetector(
                           onTap:
                               () =>
-                                  _navigateToScreen(AppRoutes.FORGOT_PASSWORD),
+                                  _navigateToScreen(Routes.FORGOT_PASSWORD),
                           child: CustomText(
                             AppConstants.FORGOT_PASSWORD,
                             fontSize: 12,
@@ -96,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                     CustomText(AppConstants.DONT_HAVE_ACCOUNT, fontSize: 12),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: () => _navigateToScreen(AppRoutes.REGISTER_SCREEN),
+                      onTap: () => _navigateToScreen(Routes.REGISTER_SCREEN),
                       child: CustomText(
                         AppConstants.SIGN_UP,
                         fontSize: 12,

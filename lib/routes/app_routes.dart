@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-abstract class AppRoutes {
+abstract class Routes {
     /// ==============================
   /// **Routes**
   /// ==============================
@@ -23,5 +23,6 @@ abstract class AppRoutes {
   static const MANAGER_ADDRESSES_SCREEN = '/manageAddressesScreen';
   static const ADD_ADDRESSES_SCREEN = '/addAddressesScreen';
   static const SETTINGS_SCREEN = '/settingsScreen';
+  static const PRODUCT_DETAILS = '/productDetails';
 
 }

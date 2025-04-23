@@ -66,14 +66,14 @@ class ProfileScreen extends StatelessWidget {
                     title: AppConstants.EDIT_PROFILE,
                     icon: AppAssets.profile,
                     onTap:
-                        () => _.navigateToScreen(AppRoutes.EDIT_PROFILE_SCREEN),
+                        () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
                     title: AppConstants.MY_ADDRESSES,
                     icon: AppAssets.mapPoint,
                     onTap:
                         () => _.navigateToScreen(
-                          AppRoutes.MANAGER_ADDRESSES_SCREEN,
+                          Routes.MANAGER_ADDRESSES_SCREEN,
                         ),
                   ),
                   MenuItem(
@@ -85,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                     title: AppConstants.SETTINGS,
                     icon: AppAssets.settings,
                     onTap: () => _.navigateToScreen(
-                      AppRoutes.SETTINGS_SCREEN,
+                      Routes.SETTINGS_SCREEN,
                     ),
                   ),
                   MenuItem(

@@ -4,45 +4,50 @@
         "name": "Wireless Bluetooth Earbuds",
         "description": "High-quality wireless earbuds with noise cancellation and long battery life.",
         "price": 79.99,
-        "image_url": "https://images.unsplash.com/photo-1586871201204-6e90d4c3f4b6",
+        "image_url": "https://images.unsplash.com/photo-1636100007422-4d77bdd15a6b",
         "quantity": 50,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "Premium"
     },
     {
         "id": "2",
         "name": "Smartphone X Pro",
         "description": "Latest smartphone with 120Hz display, 5G support, and quad-camera setup.",
         "price": 899.99,
-        "image_url": "https://images.unsplash.com/photo-1520342868574-5fa3804e551c",
+        "image_url": "https://images.unsplash.com/photo-1551789028-47bd9d06b118",
         "quantity": 20,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "Premium"
     },
     {
         "id": "3",
         "name": "Coffee Maker Deluxe",
         "description": "Automatic coffee maker with programmable settings and built-in grinder.",
         "price": 149.99,
-        "image_url": "https://images.unsplash.com/photo-1506126613408-eca07ce68773",
+        "image_url": "https://images.unsplash.com/photo-1595259601701-ccc4aa91c073",
         "quantity": 30,
-        "category": "Home Appliances"
+        "category": "Home Appliances",
+        "quality": "Premium"
     },
     {
         "id": "4",
         "name": "Leather Backpack",
         "description": "Durable leather backpack with multiple compartments and USB charging port.",
         "price": 129.99,
-        "image_url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+        "image_url": "https://images.unsplash.com/photo-1587395925079-4bfbb0488fa2",
         "quantity": 40,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "Premium"
     },
     {
         "id": "5",
         "name": "LED Desk Lamp",
         "description": "Adjustable LED desk lamp with touch controls and multiple brightness levels.",
         "price": 39.99,
-        "image_url": "https://images.unsplash.com/photo-1542089280-7d73ae0e0d4f",
+        "image_url": "https://images.unsplash.com/photo-1708513427809-728a7913fc9f",
         "quantity": 100,
-        "category": "Home Appliances"
+        "category": "Home Appliances",
+        "quality": "Premium"
     },
     {
         "id": "6",
@@ -51,7 +56,8 @@
         "price": 29.99,
         "image_url": "https://images.unsplash.com/photo-1584978085537-5ca97c5a205b",
         "quantity": 60,
-        "category": "Sports"
+        "category": "Sports",
+        "quality": "new"
     },
     {
         "id": "7",
@@ -60,7 +66,8 @@
         "price": 199.99,
         "image_url": "https://images.unsplash.com/photo-1601286756147-f5b693aaaf15",
         "quantity": 25,
-        "category": "Home Appliances"
+        "category": "Home Appliances",
+        "quality": "new"
     },
     {
         "id": "8",
@@ -69,7 +76,8 @@
         "price": 89.99,
         "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
         "quantity": 70,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "new"
     },
     {
         "id": "9",
@@ -78,7 +86,8 @@
         "price": 49.99,
         "image_url": "https://images.unsplash.com/photo-1588882312187-863c53071144",
         "quantity": 80,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "new"
     },
     {
         "id": "10",
@@ -87,7 +96,8 @@
         "price": 19.99,
         "image_url": "https://images.unsplash.com/photo-1563612116625-301442dbcb72",
         "quantity": 150,
-        "category": "Sports"
+        "category": "Sports",
+        "quality": "new"
     },
     {
         "id": "11",
@@ -96,7 +106,8 @@
         "price": 69.99,
         "image_url": "https://images.unsplash.com/photo-1583324113626-70df0f4deaab",
         "quantity": 35,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "popular"
     },
     {
         "id": "12",
@@ -105,7 +116,8 @@
         "price": 119.99,
         "image_url": "https://images.unsplash.com/photo-1588305244592-8da74226d928",
         "quantity": 45,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "popular"
     },
     {
         "id": "13",
@@ -114,7 +126,8 @@
         "price": 59.99,
         "image_url": "https://images.unsplash.com/photo-1578985545062-6992bd0815cc",
         "quantity": 120,
-        "category": "Health"
+        "category": "Health",
+        "quality": "popular"
     },
     {
         "id": "14",
@@ -123,7 +136,8 @@
         "price": 34.99,
         "image_url": "https://images.unsplash.com/photo-1584736793009-40ddf2dd7842",
         "quantity": 90,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "popular"
     },
     {
         "id": "15",
@@ -132,7 +146,8 @@
         "price": 89.99,
         "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
         "quantity": 55,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "popular"
     },
     {
         "id": "16",
@@ -141,7 +156,8 @@
         "price": 24.99,
         "image_url": "https://images.unsplash.com/photo-1593305841991-05c1bf4b9b6b",
         "quantity": 110,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "normal"
     },
     {
         "id": "17",
@@ -150,7 +166,8 @@
         "price": 39.99,
         "image_url": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73",
         "quantity": 65,
-        "category": "Toys"
+        "category": "Toys",
+        "quality": "normal"
     },
     {
         "id": "18",
@@ -159,7 +176,8 @@
         "price": 49.99,
         "image_url": "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
         "quantity": 85,
-        "category": "Sports"
+        "category": "Sports",
+        "quality": "normal"
     },
     {
         "id": "19",
@@ -168,7 +186,8 @@
         "price": 59.99,
         "image_url": "https://images.unsplash.com/photo-1593640406902-ed0ba75a5787",
         "quantity": 75,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "normal"
     },
     {
         "id": "20",
@@ -177,7 +196,8 @@
         "price": 29.99,
         "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
         "quantity": 130,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "normal"
     },
     {
         "id": "21",
@@ -186,7 +206,8 @@
         "price": 129.99,
         "image_url": "https://images.unsplash.com/photo-1588305244592-8da74226d928",
         "quantity": 40,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "normal"
     },
     {
         "id": "22",
@@ -195,7 +216,8 @@
         "price": 49.99,
         "image_url": "https://images.unsplash.com/photo-1563612116625-301442dbcb72",
         "quantity": 100,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "normal"
     },
     {
         "id": "23",
@@ -204,7 +226,8 @@
         "price": 14.99,
         "image_url": "https://images.unsplash.com/photo-1586871201204-6e90d4c3f4b6",
         "quantity": 200,
-        "category": "Home Appliances"
+        "category": "Home Appliances",
+        "quality": "normal"
     },
     {
         "id": "24",
@@ -213,7 +236,8 @@
         "price": 29.99,
         "image_url": "https://images.unsplash.com/photo-1588882312187-863c53071144",
         "quantity": 95,
-        "category": "Home Appliances"
+        "category": "Home Appliances",
+        "quality": "normal"
     },
     {
         "id": "25",
@@ -222,7 +246,8 @@
         "price": 19.99,
         "image_url": "https://images.unsplash.com/photo-1584978085537-5ca97c5a205b",
         "quantity": 150,
-        "category": "Travel"
+        "category": "Travel",
+        "quality": "normal"
     },
     {
         "id": "26",
@@ -231,7 +256,8 @@
         "price": 199.99,
         "image_url": "https://images.unsplash.com/photo-1601286756147-f5b693aaaf15",
         "quantity": 30,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "normal"
     },
     {
         "id": "27",
@@ -240,7 +266,8 @@
         "price": 79.99,
         "image_url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
         "quantity": 50,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "normal"
     },
     {
         "id": "28",
@@ -249,7 +276,8 @@
         "price": 29.99,
         "image_url": "https://images.unsplash.com/photo-1542089280-7d73ae0e0d4f",
         "quantity": 120,
-        "category": "Electronics"
+        "category": "Electronics",
+        "quality": "normal"
     },
     {
         "id": "29",
@@ -258,7 +286,8 @@
         "price": 39.99,
         "image_url": "https://images.unsplash.com/photo-1588305844592-8da74226d928",
         "quantity": 100,
-        "category": "Fashion"
+        "category": "Fashion",
+        "quality": "normal"
     },
     {
         "id": "30",
@@ -267,6 +296,7 @@
         "price": 19.99,
         "image_url": "https://images.unsplash.com/photo-1593305841991-05c1bf4b9b6b",
         "quantity": 150,
-        "category": "Electronics"
+        "category": "Electronics" ,
+        "quality": "normal"
     }
 ]

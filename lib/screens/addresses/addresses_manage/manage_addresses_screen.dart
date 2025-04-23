@@ -44,7 +44,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(16.0),
                                 child: CustomButton(
                                   onPressed: () {
-                                    Get.toNamed(AppRoutes.ADD_ADDRESSES_SCREEN);
+                                    Get.toNamed(Routes.ADD_ADDRESSES_SCREEN);
                                   },
                                   child: Row(
                                     children: [
@@ -108,7 +108,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                             DismissDirection.startToEnd) {
                                           // التمرير من اليسار إلى اليمين (تعديل)
                                           Get.toNamed(
-                                            AppRoutes.ADD_ADDRESSES_SCREEN,
+                                            Routes.ADD_ADDRESSES_SCREEN,
                                             arguments: address,
                                           );
                                           return false; // لا تحذف العنصر من القائمة

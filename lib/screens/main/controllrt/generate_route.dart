@@ -3,15 +3,15 @@ import 'package:application/utils/import.dart';
 class RouteGenerator {
   static GetPageRoute? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case AppRoutes.HOME_SCREEN:
+      case Routes.HOME_SCREEN:
         return GetPageRoute(page: () => HomeScreen());
-      case AppRoutes.FAVORITE_SCREEN:
+      case Routes.FAVORITE_SCREEN:
         return GetPageRoute(page: () => FavoriteScreen());
-      case AppRoutes.CART_SCREEN:
+      case Routes.CART_SCREEN:
         return GetPageRoute(page: () => CartScreen());
-      case AppRoutes.NOTIFICATION_SCREEN:
+      case Routes.NOTIFICATION_SCREEN:
         return GetPageRoute(page: () => NotificationScreen());
-      case AppRoutes.PROFILE_SCREEN:
+      case Routes.PROFILE_SCREEN:
         return GetPageRoute(page: () => ProfileScreen());
       default:
         return null;

@@ -34,7 +34,7 @@ class ManageAddressesController extends GetxController {
       final response = await _supabase
           .from(KEYS.ADDRESSES_TABLE)
           .select()
-          .eq(AppConstants.USER_ID, userId!);
+          .eq(KEYS.USER_ID, userId!);
 
       // Check if the response is empty
       if (response.isEmpty) {
