@@ -33,6 +33,7 @@ class AddAddressController extends GetxController {
   String? provinceErrorMessage;
   String? cityErrorMessage;
   String? countryCodeErrorMessage;
+  String? phoneErrorMessage;
 
   @override
   void onInit() async {
@@ -110,51 +111,28 @@ class AddAddressController extends GetxController {
   }
 
   Future<void> addAddress() async {
-    isLoading.value = true;
-
     final currentUserId = _supabase.auth.currentUser?.id;
     if (currentUserId == null) {
       isLoading.value = false;
       return;
     }
 
-    if (selectedCountry == null) {
-      countryErrorMessage = AppConstants.SELECT_COUNTRY_REQUIRED;
-    } else {
-      countryErrorMessage = null;
-      update();
-    }
-
-    if (selectedProvince == null) {
-      provinceErrorMessage = AppConstants.SELECT_PROVINCE_REQUIRED;
-    } else {
-      provinceErrorMessage = null;
-      update();
-    }
-
-    if (selectedCity == null) {
-      cityErrorMessage = AppConstants.SELECT_CITY_REQUIRED;
-    } else {
-      cityErrorMessage = null;
-      update();
-    }
-
-    if (selectedCountryCode == null || selectedCountryCode!.isEmpty) {
-      countryCodeErrorMessage = AppConstants.COUNTRY_CODE_REQUIRED;
-    } else {
-      countryCodeErrorMessage = null;
-      update();
-    }
+    countryErrorMessage = Validators.country(selectedCountry ?? '');
+    provinceErrorMessage = Validators.province(selectedProvince ?? '');
+    cityErrorMessage = Validators.city(selectedCity ?? '');
+    countryCodeErrorMessage = Validators.countryCode(selectedCountryCode ?? '');
+    phoneErrorMessage = Validators.phoneNumber(phoneNumberController.text);
+    update();
 
     if (!formKey.currentState!.validate() ||
         countryErrorMessage != null ||
         provinceErrorMessage != null ||
         cityErrorMessage != null ||
-        countryCodeErrorMessage != null) {
-      isLoading.value = false;
-      update();
+        countryCodeErrorMessage != null ||
+        phoneErrorMessage != null) {
       return;
     }
+    isLoading.value = true;
 
     try {
       final currentPosition = await _determinePosition();

@@ -11,7 +11,7 @@ class EditProfileController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   String? email;
-  String? countryCode;
+  String? selectedCountryCode;
   final phoneController = TextEditingController();
   String? phoneErrorMessage;
   String? countryCodeErrorMessage;
@@ -51,16 +51,16 @@ class EditProfileController extends GetxController {
     // Set the country code to the user's country code
 
     // Set the country code controller text to the user's country code
-    countryCode = userMetadata![AppConstants.COUNTRY_CODE];
+    selectedCountryCode = userMetadata?[AppConstants.COUNTRY_CODE];
 
     // Set the phone controller text to the user's phone number
-    phoneController.text = userMetadata[AppConstants.PHONE] ?? '';
+    phoneController.text = userMetadata?[AppConstants.PHONE] ?? '';
 
     // Set the gender to the user's gender
-    gender = userMetadata[AppConstants.GENDER] ?? '';
+    gender = userMetadata?[AppConstants.GENDER] ?? '';
 
     // Set the date of birth to the user's date of birth
-    dateBirth = userMetadata[AppConstants.DATE_BIRTH] ?? '';
+    dateBirth = userMetadata?[AppConstants.DATE_BIRTH] ?? '';
 
     // Update the UI
     update();
@@ -284,7 +284,7 @@ class EditProfileController extends GetxController {
 
   /// updates Country Code
   void updateCountryCode(String? value) {
-    countryCode = value;
+    selectedCountryCode = value;
     update();
   }
 
@@ -325,13 +325,12 @@ class EditProfileController extends GetxController {
   Future<void> updateUser() async {
     debugPrint(phoneController.text.trim());
     phoneErrorMessage = Validators.phoneNumber(phoneController.text);
-    countryCodeErrorMessage = Validators.countryCode(countryCode!);
+    countryCodeErrorMessage = Validators.countryCode(selectedCountryCode ?? '');
     update();
 
     if (!formKey.currentState!.validate() ||
-        phoneErrorMessage!.isNotEmpty ||
-        countryCodeErrorMessage!.isNotEmpty) {
-      // Show a snackbar with the error message
+        phoneErrorMessage != null ||
+        countryCodeErrorMessage != null) {
       return;
     }
 
@@ -349,7 +348,7 @@ class EditProfileController extends GetxController {
             AppConstants.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(
               email!.trim(),
             ),
-            AppConstants.COUNTRY_CODE: countryCode,
+            AppConstants.COUNTRY_CODE: selectedCountryCode,
             AppConstants.PHONE: phoneController.text.trim(),
             AppConstants.GENDER: gender,
             AppConstants.DATE_BIRTH: dateBirth,

@@ -146,7 +146,7 @@ class EditProfileScreen extends StatelessWidget {
                                     hintPhone: AppConstants.DEFAULT_PHONE,
                                     hintCode: AppConstants.DEFAULT_COUNTRY_CODE,
                                     labelText: AppConstants.PHONE.tr,
-                                    selectedCode: _.countryCode,
+                                    selectedCode: _.selectedCountryCode,
                                     phoneController: _.phoneController,
                                     onSelectedCode:
                                         (countryCode) =>

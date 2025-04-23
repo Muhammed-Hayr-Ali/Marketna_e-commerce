@@ -85,11 +85,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
     });
   }
 
-  /// Clears the text field's content.
-  void _clearText() {
-    widget.controller.clear();
-  }
-
   /// Returns a widget for toggling password visibility.
   /// Displays an eye icon that switches between "visible" and "hidden" states.
   Widget _toggleVisibilityWidget() {
@@ -107,7 +102,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   /// Displays a cancel icon that clears the text when tapped.
   Widget _clearTextWidget() {
     return GestureDetector(
-      onTap: _clearText,
+      onTap: widget.controller.clear,
       child: Icon(Icons.cancel, size: 16, color: Colors.grey.shade400),
     );
   }

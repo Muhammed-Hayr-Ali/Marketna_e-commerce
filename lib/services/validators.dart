@@ -95,14 +95,14 @@ class Validators {
 
   static String? city(String city) {
     if (city.isEmpty) {
-      return 'city_cannot_be_empty'.tr;
+      return AppConstants.SELECT_CITY_REQUIRED.tr;
     }
     return null;
   }
 
-  static String? stateProvince(String stateProvince) {
+  static String? province(String stateProvince) {
     if (stateProvince.isEmpty) {
-      return 'stateProvince_cannot_be_empty'.tr;
+      return AppConstants.SELECT_PROVINCE_REQUIRED.tr;
     }
     return null;
   }
@@ -111,7 +111,7 @@ class Validators {
 
   static String? country(String country) {
     if (country.isEmpty) {
-      return 'country_cannot_be_empty'.tr;
+      return AppConstants.SELECT_COUNTRY_REQUIRED.tr;
     }
     return null;
   }

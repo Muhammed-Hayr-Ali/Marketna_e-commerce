@@ -131,6 +131,16 @@ class PhoneTextField extends StatelessWidget {
 
   final _ = Get.put(PhoneTextFieldController());
 
+  Widget _clearTextWidget() {
+    return Transform.translate(
+      offset: const Offset(0, 2),
+      child: GestureDetector(
+        onTap: phoneController!.clear,
+        child: Icon(Icons.cancel, size: 16, color: Colors.grey.shade400),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -199,10 +209,7 @@ class PhoneTextField extends StatelessWidget {
                               : Text(
                                 hintCode,
                                 style: TextStyle(
-                                  color:
-                                      selectedCode != null
-                                          ? Colors.black
-                                          : Colors.grey.shade400,
+                                  color: Colors.grey.shade400,
                                   fontSize: fontSize ?? 14,
                                   fontWeight: fontWeight ?? FontWeight.w500,
                                 ),
@@ -237,6 +244,7 @@ class PhoneTextField extends StatelessWidget {
                       color: Colors.black,
                     ),
                     decoration: InputDecoration(
+                      suffix: _clearTextWidget(),
                       hintText: hintPhone,
                       hintStyle: TextStyle(
                         fontFamily: fontFamily ?? AppConstants.fontFamily,
@@ -254,6 +262,7 @@ class PhoneTextField extends StatelessWidget {
                     ),
                   ),
                 ),
+                //    IconButton(onPressed: clarPhone, icon: const Icon(Icons.clear)),
               ],
             ),
           ),

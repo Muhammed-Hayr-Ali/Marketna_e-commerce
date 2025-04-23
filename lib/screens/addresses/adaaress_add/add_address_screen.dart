@@ -1,5 +1,6 @@
 import 'package:application/utils/import.dart';
 import 'package:application/widgets/custom_country_picker.dart';
+import 'package:application/widgets/phone_text_field.dart';
 
 class AddAddressScreen extends StatelessWidget {
   AddAddressScreen({super.key});
@@ -77,45 +78,64 @@ class AddAddressScreen extends StatelessWidget {
                     SizedBox(height: 16),
 
                     /// phone number
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: CustomTextField(
-                            textDirection: TextDirection.ltr,
-                            label: AppConstants.PHONENUMBER.tr,
-                            hintText: AppConstants.DEFAULT_PHONE.tr,
-                            controller: _.phoneNumberController,
-                            validator: (value) => Validators.phone(value!),
-                            keyboardType: TextInputType.phone,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                RegExp(r'[0-9]'),
-                              ),
-                            ],
+                    GetBuilder<AddAddressController>(
+                      builder:
+                          (_) => PhoneTextField(
+                            enableCode: false,
+                            hintPhone: AppConstants.DEFAULT_PHONE,
+                            hintCode: AppConstants.DEFAULT_COUNTRY_CODE,
+                            labelText: AppConstants.PHONE.tr,
+                            selectedCode: _.selectedCountryCode,
+                            phoneController: _.phoneNumberController,
+                            // onSelectedCode:
+                            //     (countryCode) =>
+                            //         _.updateCountryCode(countryCode),
+                            errorMessage:
+                                _.phoneErrorMessage ??
+                                _.countryCodeErrorMessage,
                           ),
-                        ),
-                        SizedBox(width: 16),
-                        GetBuilder<AddAddressController>(
-                          init: AddAddressController(),
-                          builder:
-                              (_) => CustomButton(
-                                label: AppConstants.COUNTRY_CODE,
-                                errorMessage: _.countryCodeErrorMessage,
-
-                                child: CustomText(
-                                  textDirection: TextDirection.ltr,
-                                  _.selectedCountryCode ??
-                                      AppConstants.DEFAULT_COUNTRY_CODE.tr,
-                                  color:
-                                      _.selectedCountryCode == null
-                                          ? Colors.grey.shade400
-                                          : Colors.black,
-                                ),
-                              ),
-                        ),
-                      ],
                     ),
+
+                    ///
+                    // Row(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Expanded(
+                    //       child: CustomTextField(
+                    //         textDirection: TextDirection.ltr,
+                    //         label: AppConstants.PHONENUMBER.tr,
+                    //         hintText: AppConstants.DEFAULT_PHONE.tr,
+                    //         controller: _.phoneNumberController,
+                    //         validator: (value) => Validators.phone(value!),
+                    //         keyboardType: TextInputType.phone,
+                    //         inputFormatters: [
+                    //           FilteringTextInputFormatter.allow(
+                    //             RegExp(r'[0-9]'),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 16),
+                    //     GetBuilder<AddAddressController>(
+                    //       init: AddAddressController(),
+                    //       builder:
+                    //           (_) => CustomButton(
+                    //             label: AppConstants.COUNTRY_CODE,
+                    //             errorMessage: _.countryCodeErrorMessage,
+
+                    //             child: CustomText(
+                    //               textDirection: TextDirection.ltr,
+                    //               _.selectedCountryCode ??
+                    //                   AppConstants.DEFAULT_COUNTRY_CODE.tr,
+                    //               color:
+                    //                   _.selectedCountryCode == null
+                    //                       ? Colors.grey.shade400
+                    //                       : Colors.black,
+                    //             ),
+                    //           ),
+                    //     ),
+                    //   ],
+                    // ),
 
                     /// space
                     SizedBox(height: 16),
