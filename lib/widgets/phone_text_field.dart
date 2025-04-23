@@ -218,6 +218,7 @@ class PhoneTextField extends StatelessWidget {
                   ),
                 ),
                 Container(height: 20, width: 1, color: Colors.grey.shade400),
+                SizedBox(width: 6.0),
                 Expanded(
                   flex: 8,
                   child: TextField(
@@ -254,9 +255,9 @@ class PhoneTextField extends StatelessWidget {
                       ),
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.fromLTRB(
-                        16.0,
+                        10.0,
                         1,
-                        16.0,
+                        10.0,
                         0,
                       ),
                     ),
