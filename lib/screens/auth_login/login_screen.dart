@@ -59,8 +59,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap:
-                              () =>
-                                  _navigateToScreen(Routes.FORGOT_PASSWORD),
+                              () => _navigateToScreen(Routes.FORGOT_PASSWORD),
                           child: CustomText(
                             AppConstants.FORGOT_PASSWORD,
                             fontSize: 12,
@@ -119,28 +118,39 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    /// Login with github
                     CustomCicularButton(
-                      size: 48,
-                      onTap: _.signInWithGithub,
-                      padding: 12,
-                      color: Colors.grey.shade100,
-                      child: SvgPicture.asset(AppAssets.github),
+                      size: 16,
+                      onPressed: _.signInWithGithub,
+                      child: SvgPicture.asset(
+                        AppAssets.github,
+                        height: 16,
+                        width: 16,
+                      ),
                     ),
                     const SizedBox(width: 16.0),
+
+                    /// Login with google
                     CustomCicularButton(
-                      size: 48,
-                      onTap: _.googleSignIn,
-                      padding: 10,
-                      color: Colors.grey.shade100,
-                      child: SvgPicture.asset(AppAssets.google),
+                      size: 16,
+                      onPressed: _.googleSignIn,
+                      child: SvgPicture.asset(
+                        AppAssets.google,
+                        height: 16,
+                        width: 16,
+                      ),
                     ),
                     const SizedBox(width: 16.0),
+
+                    /// Login with x
                     CustomCicularButton(
-                      size: 48,
-                      onTap: _.signInWithTwitter,
-                      padding: 12,
-                      color: Colors.grey.shade100,
-                      child: SvgPicture.asset(AppAssets.twitter),
+                      size: 16,
+                      onPressed: _.signInWithTwitter,
+                      child: SvgPicture.asset(
+                        AppAssets.twitter,
+                        height: 16,
+                        width: 16,
+                      ),
                     ),
                   ],
                 ),

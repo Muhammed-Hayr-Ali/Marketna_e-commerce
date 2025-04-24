@@ -8,7 +8,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE9EEF2),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const CustomText(AppConstants.PROFILE),
@@ -22,19 +21,70 @@ class ProfileScreen extends StatelessWidget {
               builder:
                   (_) =>
                       _.user == null
-                          ? const Center(child: CircularProgressIndicator())
+                          ? SizedBox.shrink()
                           : Row(
                             children: [
                               const SizedBox(height: 10),
-                              CustomAvatar(
-                                borderColor: Colors.white,
-                                borderWidth: 4.0,
-                                sourceImage: SourceImage.networkImage,
-                                size: 64,
-                                path: DataConverter.getAvatarUrl(
-                                  _.user!.userMetadata!,
+                              Container(
+                                height: Get.width * 0.2,
+                                width: Get.width * 0.2,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(999),
                                 ),
+                                child:
+                                    DataConverter.getAvatarUrl(
+                                              _.user!.userMetadata!,
+                                            ) ==
+                                            ''
+                                        ? Padding(
+                                          padding: const EdgeInsets.all(14.0),
+                                          child: SvgPicture.asset(
+                                            AppAssets.profile,
+                                          ),
+                                        )
+                                        : ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            999,
+                                          ),
+                                          child: CachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            imageUrl:
+                                                DataConverter.getAvatarUrl(
+                                                  _.user!.userMetadata!,
+                                                ),
+
+                                            placeholder: (context, url) {
+                                              return Shimmer.fromColors(
+                                                baseColor: Colors.white,
+                                                highlightColor:
+                                                    Colors.grey.shade100,
+                                                child: Container(
+                                                  height: Get.width * 0.2,
+                                                  width: Get.width * 0.2,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade300,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          999,
+                                                        ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+
+                                            errorWidget: (context, url, error) {
+                                              return Center(
+                                                child: Icon(
+                                                  Icons.error,
+                                                  color: Colors.grey,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
                               ),
+
                               const SizedBox(width: 12),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,16 +115,14 @@ class ProfileScreen extends StatelessWidget {
                   MenuItem(
                     title: AppConstants.EDIT_PROFILE,
                     icon: AppAssets.profile,
-                    onTap:
-                        () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
+                    onTap: () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
                     title: AppConstants.MY_ADDRESSES,
                     icon: AppAssets.mapPoint,
                     onTap:
-                        () => _.navigateToScreen(
-                          Routes.MANAGER_ADDRESSES_SCREEN,
-                        ),
+                        () =>
+                            _.navigateToScreen(Routes.MANAGER_ADDRESSES_SCREEN),
                   ),
                   MenuItem(
                     title: AppConstants.MY_ORDERS,
@@ -84,9 +132,7 @@ class ProfileScreen extends StatelessWidget {
                   MenuItem(
                     title: AppConstants.SETTINGS,
                     icon: AppAssets.settings,
-                    onTap: () => _.navigateToScreen(
-                      Routes.SETTINGS_SCREEN,
-                    ),
+                    onTap: () => _.navigateToScreen(Routes.SETTINGS_SCREEN),
                   ),
                   MenuItem(
                     title: AppConstants.SECURITY,

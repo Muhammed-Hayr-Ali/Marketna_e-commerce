@@ -2,6 +2,7 @@ import 'package:application/utils/import.dart';
 
 enum CountryPickerMode { address, code }
 
+
 class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
     super.key,
@@ -41,6 +42,7 @@ class CustomCountryPicker extends StatefulWidget {
   @override
   State<CustomCountryPicker> createState() => _CustomCountryPickerState();
 }
+
 
 class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Variables

@@ -8,7 +8,6 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   RxBool isLoading = false.obs;
-  RxBool loginWithIsLoading = false.obs;
 
   /// Signs the user in with an email and password.
   ///
@@ -56,7 +55,7 @@ class LoginController extends GetxController {
   /// to the main screen. If an error occurs, a snackbar with the error message is displayed.
   Future<void> googleSignIn() async {
     // Set loading state
-    loginWithIsLoading.value = true;
+    isLoading.value = true;
     try {
       // Initialize GoogleSignIn with the server client ID
       final googleSignIn = GoogleSignIn(serverClientId: KEYS.WEB_CLIENT_ID);
@@ -99,7 +98,7 @@ class LoginController extends GetxController {
       debugPrint(error.toString());
     } finally {
       // Reset loading state
-      loginWithIsLoading.value = false;
+      isLoading.value = false;
     }
   }
 
@@ -116,7 +115,7 @@ class LoginController extends GetxController {
   /// The `mainScreen` route is a route that displays the main screen of the app.
   Future<void> signInWithTwitter() async {
     // Set loading state
-    loginWithIsLoading.value = true;
+    isLoading.value = true;
 
     // Attempt to sign in with Supabase using Twitter OAuth
     // If successful, navigate to main screen
@@ -138,7 +137,7 @@ class LoginController extends GetxController {
       debugPrint(error.toString());
     } finally {
       // Reset loading state
-      loginWithIsLoading.value = false;
+      isLoading.value = false;
     }
   }
 
@@ -149,7 +148,7 @@ class LoginController extends GetxController {
   /// main screen. If an error occurs, a snackbar with the error message is displayed.
   Future<void> signInWithGithub() async {
     // Set loading state
-    loginWithIsLoading.value = true;
+    isLoading.value = true;
 
     // Attempt to sign in with Supabase using GitHub OAuth
     // If successful, navigate to main screen
@@ -169,7 +168,7 @@ class LoginController extends GetxController {
       );
       debugPrint(error.toString());
     } finally {
-      loginWithIsLoading.value = false;
+      isLoading.value = false;
     }
   }
 }

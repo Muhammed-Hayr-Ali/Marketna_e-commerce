@@ -20,6 +20,7 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('ui updated');
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -36,69 +37,25 @@ class EditProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Obx(
+                //   () => CustomAvatar(
+                //     sourceImage: SourceImage.localImage,
+                //     imageUrl: _.imagePath.value,
+                //   ),
+                // ),
                 GetBuilder<EditProfileController>(
                   builder:
-                      (_) => Stack(
-                        alignment: Alignment.center,
-
-                        children: [
-                          /// image loading
-                          Obx(
-                            () =>
-                                _.imageIsLoading.value
-                                    /// is loading
-                                    ? SizedBox(
-                                      width: 100,
-                                      height: 100,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    )
-                                    : SizedBox.shrink(),
-                          ),
-
-                          /// image
-                          SizedBox(
-                            child:
-                                /// image path is not null
-                                _.imagePath != null
-                                    ? CustomAvatar(
-                                      sourceImage: SourceImage.localImage,
-                                      size: 100,
-                                      path: _.imagePath!,
-                                      onTap: _.clearImagePath,
-                                      childColor: Colors.grey.shade200,
-                                      child: SvgPicture.asset(
-                                        AppAssets.trashBin,
-                                        colorFilter: ColorFilter.mode(
-                                          Colors.red,
-                                          BlendMode.srcIn,
-                                        ),
-                                      ),
-                                    )
-                                    :
-                                    /// image path is nully
-                                    CustomAvatar(
-                                      sourceImage: SourceImage.networkImage,
-                                      size: 100,
-                                      path: DataConverter.getAvatarUrl(
-                                        _.user!.userMetadata!,
-                                      ),
-                                      onTap: _.selectImageSource,
-                                      childColor: Colors.grey.shade200,
-                                      child: SvgPicture.asset(
-                                        AppAssets.camera,
-                                        colorFilter: ColorFilter.mode(
-                                          AppColors.admiralBlue,
-                                          BlendMode.srcIn,
-                                        ),
-                                      ),
-                                    ),
-                          ),
-                        ],
+                      (_) => CustomAvatar(
+                        imagePath: _.imagePath,
+                        imageUrl: DataConverter.getAvatarUrl(
+                          _.user!.userMetadata!,
+                        ),
+                        onSelectImage: (path) => _.updatePath(path),
+                        clearPath: () => _.updatePath(null),
+                        onDeleteTap: () => _.deleteImage(true),
                       ),
                 ),
+
                 const SizedBox(height: 20),
                 Form(
                   key: _.formKey,

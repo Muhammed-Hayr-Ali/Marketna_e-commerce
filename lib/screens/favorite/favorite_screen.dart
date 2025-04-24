@@ -10,7 +10,26 @@ class FavoriteScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const CustomText('Favorite'),
       ),
-      body: Center(child: CustomText('FavoriteScreen')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(child: CustomText('FavoriteScreen')),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size.fromRadius(16),
+              backgroundColor: Colors.grey.shade200,
+              shadowColor: Colors.transparent,
+              elevation: 0,
+              shape: CircleBorder(),
+              padding: EdgeInsets.zero,
+            ),
+            onPressed: () {
+              // Handle button tap
+            },
+            child: Icon(Icons.settings),
+          ),
+        ],
+      ),
     );
   }
 }

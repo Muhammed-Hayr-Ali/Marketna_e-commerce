@@ -30,8 +30,8 @@ custombottomSheet<T>({required List<Widget> children, String? title}) {
                               ),
                               Spacer(),
                               CustomCicularButton(
-                                color: Colors.grey.shade200,
-                                onTap: Get.back,
+                                backgroundColor: Colors.grey.shade200,
+                                onPressed: Get.back,
                                 child: Icon(Icons.close),
                               ),
                             ],

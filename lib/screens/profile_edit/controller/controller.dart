@@ -6,8 +6,7 @@ class EditProfileController extends GetxController {
   final supabase = Supabase.instance.client;
 
   final _profileController = Get.find<ProfileController>();
-  final _main = EditProfileMainController();
-  final _imageService = ImageService();
+
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   String? email;
@@ -19,7 +18,7 @@ class EditProfileController extends GetxController {
   String? dateBirth;
 
   RxBool isLoading = false.obs;
-  RxBool imageIsLoading = false.obs;
+  bool imageIsLoading = false;
   User? user;
   String? imagePath;
 
@@ -66,98 +65,17 @@ class EditProfileController extends GetxController {
     update();
   }
 
-  /// Shows a bottom sheet to select the source of the image.
-  ///
-  /// This function shows a bottom sheet with options to select the image from
-  /// the camera, gallery, or delete the image. The selected option is then
-  /// handled by the corresponding function.
-  ///
-  /// [selectedSource] The selected option from the bottom sheet.
-  ///
-  /// Returns a [Future] that resolves when the operation is completed.
-  Future<void> selectImageSource() async {
-    final String? selectedSource = await _main.openSelectImageSource();
-
-    if (selectedSource == null) return;
-    debugPrint(selectedSource);
-    switch (selectedSource) {
-      /// Selects the image from the camera.
-      case AppConstants.CAMERA:
-        _selectImageFromCamera();
-        break;
-
-      /// Selects the image from the gallery.
-      case AppConstants.GALLERY:
-        _selectImageFromGallery();
-        break;
-
-      /// Deletes the image.
-      case AppConstants.DELETE:
-        _deleteImage(true);
-        break;
-      default:
-        break;
-    }
-  }
-
-  /// Selects an image from the gallery and updates the image path.
-  ///
-  /// This function uses the image service to select an image from the gallery.
-  /// If an image is selected, it updates the imagePath and triggers a UI update.
-  Future<void> _selectImageFromGallery() async {
-    // Get the image file from the gallery
-    final file = await _imageService.getImageFromGallery();
-
-    // If no file is selected, return early
-    if (file == null) return;
-
-    // Update the image path with the selected file's path
-    imagePath = file.path;
-
-    // Update the UI
-    update();
-  }
-
-  /// Selects an image from the camera and updates the image path.
-  ///
-  /// This function uses the [ImageService] to select an image from the camera.
-  /// If an image is selected, it updates the [imagePath] and triggers a UI update.
-  ///
-  /// Returns a [Future] that resolves when the operation is completed.
-  Future<void> _selectImageFromCamera() async {
-    // Get the image file from the camera
-    final XFile? imageFile = await _imageService.getImageFromCamera();
-
-    // If no file is selected, return early
-    if (imageFile == null) return;
-
-    // Update the image path with the selected file's path
-    imagePath = imageFile.path;
-
-    // Update the UI
-    update();
-  }
-
-  /// Clears the image path.
-  ///
-  /// This function sets the [imagePath] to null and triggers a UI update.
-  Future<void> clearImagePath() async {
-    imagePath = null;
+  void updatePath(String? value) {
+    imagePath = value;
     update();
   }
 
   /// Deletes the profile image from the bucket.
-  ///
-  /// This function takes a boolean [withUpdate] parameter. If [withUpdate] is true,
-  /// it will update the user's avatar URL in the database and refresh the UI after
-  /// deleting the image. If [withUpdate] is false, it will not update the user's avatar
-  /// URL in the database and will not refresh the UI after deleting the image.
-  ///
-  /// Returns a [Future] that resolves when the operation is completed.
-  Future<void> _deleteImage(bool withUpdate) async {
+  Future<void> deleteImage(bool withUpdate) async {
     debugPrint('deleteImage');
 
-    imageIsLoading(true);
+    imageIsLoading = true;
+    update();
 
     // Check if the user is logged in
     if (user == null) return;
@@ -203,28 +121,23 @@ class EditProfileController extends GetxController {
         _initialize();
         _profileController.initializeUser();
       }
-      imageIsLoading(false);
+      imageIsLoading=false;
+      update();
+
     }
   }
 
-  /// Uploads the image to the Supabase Storage and then updates the user's avatar with the new image.
-  ///
-  /// This function will first delete the old image if exists, then it will upload the new image to the
-  /// Supabase Storage. After the upload is complete, it will update the user's avatar with the new image.
-  ///
-  /// If an error occurs during the upload or update process, it will show a snackbar with the error
-  /// message.
-  ///
-  /// - Parameter imagePath: The path of the image to upload.
+  /// Uploads the image to the Supabase Storage
   Future<void> _uploadImage() async {
     debugPrint('updateUser');
 
     if (imagePath == null) return;
 
     debugPrint('try delete old image');
-    await _deleteImage(false);
+    await deleteImage(false);
 
-    imageIsLoading(true);
+    imageIsLoading = true;
+    update();
     try {
       final String fileExtension = DataConverter.getFileExtension(imagePath!);
       final String fileName = Uuid().v1() + fileExtension;
@@ -263,18 +176,13 @@ class EditProfileController extends GetxController {
       );
       debugPrint(error.toString());
     } finally {
+      imageIsLoading = false;
       imagePath = null;
-      imageIsLoading(false);
+      update();
     }
   }
 
   /// Copies the email to the clipboard.
-  ///
-  /// This function will copy the email to the clipboard if the email is not null.
-  /// If the email is null, it will do nothing.
-  ///
-  /// After copying the email to the clipboard, it will show a toast with the
-  /// message 'email_copied'.
   void copyEmailToClipboard() {
     if (email == null) return;
 
@@ -288,40 +196,19 @@ class EditProfileController extends GetxController {
     update();
   }
 
-  /// Updates the user's gender.
-  ///
-  /// This function sets the [gender] to the provided [value] and triggers a UI update.
-  ///
-  /// - Parameter value: The new gender value to be set.
+  /// Updates the user gender.
   void updateGender(String value) {
     gender = value;
     update();
   }
 
-  /// Updates the user's date of birth.
-  ///
-  /// This function sets the [dateBirth] to the provided [value] and triggers a
-  /// UI update.
-  ///
-  /// - Parameter value: The new date of birth value in 'yyyy-MM-dd' format.
+  /// Updates the user date of birth.
   void updateDateBirth(String value) {
     dateBirth = value;
     update(); // Refresh UI to reflect changes
   }
 
-  /// Updates the user's profile information.
-  ///
-  /// This function will update the user's profile information in the Supabase
-  /// database. It will first validate the form, then upload the image to the
-  /// Supabase Storage, and finally update the user's information in the
-  /// Supabase database.
-  ///
-  /// If the process is successful, it will show a snackbar with the message
-  /// 'Profile updated successfully'.
-  ///
-  /// If an error occurs, it will show a snackbar with the error message.
-  ///
-  /// Finally, it will reset the form and set the loading state to false.
+  /// Updates the user profile information.
   Future<void> updateUser() async {
     debugPrint(phoneController.text.trim());
     phoneErrorMessage = Validators.phoneNumber(phoneController.text);

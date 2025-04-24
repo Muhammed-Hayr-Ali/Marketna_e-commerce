@@ -21,16 +21,7 @@ class MenuItem extends StatelessWidget {
       children: [
         ListTile(
           onTap: onTap,
-          leading:
-              icon != null
-                  ? SvgPicture.asset(
-                    icon ?? '',
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.admiralBlue,
-                      BlendMode.srcIn,
-                    ),
-                  )
-                  : null,
+          leading: icon != null ? SvgPicture.asset(icon ?? '') : null,
           title:
               title != null
                   ? CustomText(
