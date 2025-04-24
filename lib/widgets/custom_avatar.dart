@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:application/utils/import.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class CustomAvatar extends StatefulWidget {
   final String? imageUrl;
