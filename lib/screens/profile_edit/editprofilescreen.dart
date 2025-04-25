@@ -1,4 +1,5 @@
 import 'package:application/utils/import.dart';
+import 'package:application/widgets/custom_avatar.dart';
 import 'package:application/widgets/phone_text_field.dart';
 
 class EditProfileScreen extends StatelessWidget {

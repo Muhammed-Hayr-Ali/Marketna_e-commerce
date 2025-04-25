@@ -84,7 +84,7 @@ export 'package:application/utils/keys.dart';
 // ==============================
 // **Widgets**
 // ==============================
-export 'package:application/widgets/custom_avatar.dart';
+export 'package:application/widgets/custom_avatar_xxxx.dart';
 export 'package:application/widgets/custom_bottom_sheet.dart';
 export 'package:application/widgets/custom_button.dart';
 export 'package:application/widgets/custom_circular_button.dart';

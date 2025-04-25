@@ -73,7 +73,6 @@ class EditProfileController extends GetxController {
   Future<void> deleteImage(bool withUpdate) async {
     debugPrint('deleteImage');
 
-
     // Check if the user is logged in
     if (user == null) return;
 
@@ -118,7 +117,6 @@ class EditProfileController extends GetxController {
         _initialize();
         _profileController.initializeUser();
       }
-
     }
   }
 

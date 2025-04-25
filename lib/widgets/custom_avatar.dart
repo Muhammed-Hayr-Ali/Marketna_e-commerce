@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:application/utils/import.dart';
 
-class CustomAvatar extends StatefulWidget {
+class CustomAvatar extends StatelessWidget {
   final String? imageUrl;
   final String? imagePath;
   final double size;
@@ -12,7 +12,7 @@ class CustomAvatar extends StatefulWidget {
   final void Function()? onDeleteTap, clearPath;
   final void Function(String? path) onSelectImage;
 
-  const CustomAvatar({
+  CustomAvatar({
     super.key,
     this.imageUrl,
     this.imagePath,
@@ -27,41 +27,31 @@ class CustomAvatar extends StatefulWidget {
     required this.onSelectImage,
   });
 
-  @override
-  State<CustomAvatar> createState() => _CustomAvatarState();
-}
-
-class _CustomAvatarState extends State<CustomAvatar> {
   /// variables
   final ImagePicker picker = ImagePicker();
 
-  Border defaultBorder = Border.all(color: Colors.transparent, width: 0);
-  BoxShadow defaultShadow = const BoxShadow(
+  final Border defaultBorder = Border.all(color: Colors.transparent, width: 0);
+  final BoxShadow defaultShadow = const BoxShadow(
     color: Colors.grey,
     blurRadius: 4,
     offset: Offset(0, 0),
     spreadRadius: 0,
     blurStyle: BlurStyle.outer,
   );
-
-  ButtonStyle? cicularButtonstyle;
-  ButtonStyle fullWidthButtonstyle = ElevatedButton.styleFrom(
+  final ButtonStyle fullWidthButtonstyle = ElevatedButton.styleFrom(
     backgroundColor: Colors.grey.shade200,
     minimumSize: Size(double.infinity, 49),
     elevation: 0,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
     shadowColor: Colors.transparent,
   );
-
-  @override
-  void initState() {
-    super.initState();
-    cicularButtonstyle = ElevatedButton.styleFrom(
+  ButtonStyle cicularButtonstyleBuilder() {
+    return ElevatedButton.styleFrom(
       side: BorderSide(width: 2.5, color: Colors.white),
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      minimumSize: Size.fromRadius(widget.size * 0.15),
-      maximumSize: Size.fromRadius(widget.size * 0.15),
-      fixedSize: Size.fromRadius(widget.size * 0.15),
+      minimumSize: Size.fromRadius(size * 0.15),
+      maximumSize: Size.fromRadius(size * 0.15),
+      fixedSize: Size.fromRadius(size * 0.15),
       backgroundColor: Colors.grey.shade200,
       shadowColor: Colors.transparent,
       elevation: 0,
@@ -90,7 +80,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
               onPressed: () {
                 Get.back(result: 'camera');
               },
-              child: Text((widget.cameraButtonText ?? 'camera').tr),
+              child: Text((cameraButtonText ?? 'camera').tr),
             ),
             SizedBox(height: 8),
 
@@ -99,7 +89,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
               onPressed: () {
                 Get.back(result: 'gallery');
               },
-              child: Text((widget.cameraButtonText ?? 'gallery').tr),
+              child: Text((cameraButtonText ?? 'gallery').tr),
             ),
             SizedBox(
               child:
@@ -113,9 +103,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
                             onPressed: () {
                               Get.back(result: 'delete');
                             },
-                            child: Text(
-                              (widget.cameraButtonText ?? 'delete').tr,
-                            ),
+                            child: Text((cameraButtonText ?? 'delete').tr),
                           ),
                         ],
                       )
@@ -128,7 +116,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
     );
   }
 
-  void _onTap(bool delete) async {
+  Future<void> _onTap(bool delete) async {
     /// Pick Image Source
     final source = await _imageSource(delete);
 
@@ -142,72 +130,72 @@ class _CustomAvatarState extends State<CustomAvatar> {
       case 'camera':
         final image = await picker.pickImage(source: ImageSource.camera);
         if (image != null) {
-          widget.onSelectImage.call(image.path);
+          onSelectImage.call(image.path);
         }
         break;
       case 'gallery':
         final image = await picker.pickImage(source: ImageSource.gallery);
         if (image != null) {
-          widget.onSelectImage.call(image.path);
+          onSelectImage.call(image.path);
         }
         break;
       case 'delete':
-        widget.onDeleteTap!();
+        onDeleteTap!();
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.imagePath != null && widget.imagePath != '') {
+    if (imagePath != null && imagePath != '') {
       /// Image From Local Storage
       return Stack(
         alignment: Alignment.bottomRight,
         children: [
           Container(
-            height: widget.size,
-            width: widget.size,
+            height: size,
+            width: size,
             decoration: BoxDecoration(
               boxShadow: [defaultShadow],
-              color: widget.color,
-              border: widget.border ?? defaultBorder,
+              color: color,
+              border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(999),
-              child: Image.file(File(widget.imagePath!), fit: BoxFit.cover),
+              child: Image.file(File(imagePath!), fit: BoxFit.cover),
             ),
           ),
           ElevatedButton(
-            style: cicularButtonstyle,
-            onPressed: widget.clearPath,
+            style: cicularButtonstyleBuilder(),
+            onPressed: clearPath,
             child: Icon(
               PhosphorIconsRegular.trash,
-              size: widget.size * 0.175,
+              size: size * 0.175,
               color: const Color(0xFF1C274C),
             ),
           ),
         ],
       );
-    } else if (widget.imageUrl != null && widget.imageUrl != '') {
+    } else if (imageUrl != null && imageUrl != '') {
       /// Image From Network
       return Stack(
         alignment: Alignment.bottomRight,
         children: [
           Container(
-            height: widget.size,
-            width: widget.size,
+            height: size,
+            width: size,
             decoration: BoxDecoration(
               boxShadow: [defaultShadow],
-              color: widget.color,
-              border: widget.border ?? defaultBorder,
+              color: color,
+              border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(999),
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl: widget.imageUrl!,
+                imageUrl: imageUrl!,
                 placeholder: (context, url) {
                   return Shimmer.fromColors(
                     baseColor: Colors.white,
@@ -225,7 +213,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
 
                 errorWidget: (context, url, error) {
                   return Padding(
-                    padding: EdgeInsets.all(widget.size * 0.2),
+                    padding: EdgeInsets.all(size * 0.2),
                     child: SvgPicture.asset(AppAssets.profile),
                   );
                 },
@@ -233,11 +221,11 @@ class _CustomAvatarState extends State<CustomAvatar> {
             ),
           ),
           ElevatedButton(
-            style: cicularButtonstyle,
+            style: cicularButtonstyleBuilder(),
             onPressed: () => _onTap(true),
             child: Icon(
               PhosphorIconsRegular.camera,
-              size: widget.size * 0.175,
+              size: size * 0.175,
               color: const Color(0xFF1C274C),
             ),
           ),
@@ -249,23 +237,23 @@ class _CustomAvatarState extends State<CustomAvatar> {
         alignment: Alignment.bottomRight,
         children: [
           Container(
-            height: widget.size,
-            width: widget.size,
-            padding: EdgeInsets.all(widget.size * 0.2),
+            height: size,
+            width: size,
+            padding: EdgeInsets.all(size * 0.2),
             decoration: BoxDecoration(
               boxShadow: [defaultShadow],
-              color: widget.color,
-              border: widget.border ?? defaultBorder,
+              color: color,
+              border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
             child: SvgPicture.asset(AppAssets.profile),
           ),
           ElevatedButton(
-            style: cicularButtonstyle,
+            style: cicularButtonstyleBuilder(),
             onPressed: () => _onTap(false),
             child: Icon(
               PhosphorIconsRegular.camera,
-              size: widget.size * 0.175,
+              size: size * 0.175,
               color: const Color(0xFF1C274C),
             ),
           ),
