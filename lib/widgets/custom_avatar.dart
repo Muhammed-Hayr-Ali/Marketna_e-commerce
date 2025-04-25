@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:application/utils/import.dart';
 
 class CustomAvatar extends StatefulWidget {
@@ -8,14 +9,13 @@ class CustomAvatar extends StatefulWidget {
   final Color color;
   final BoxBorder? border;
   final String? cameraButtonText, galleryButtonText, deleteButtonText;
-
-  final void Function(String? path) onSelectImage;
   final void Function()? onDeleteTap, clearPath;
+  final void Function(String? path) onSelectImage;
+
   const CustomAvatar({
     super.key,
     this.imageUrl,
     this.imagePath,
-    required this.onSelectImage,
     this.size = 128.0,
     this.color = const Color(0xFFE0E0E0),
     this.border,
@@ -24,6 +24,7 @@ class CustomAvatar extends StatefulWidget {
     this.deleteButtonText,
     this.onDeleteTap,
     this.clearPath,
+    required this.onSelectImage,
   });
 
   @override
@@ -34,8 +35,18 @@ class _CustomAvatarState extends State<CustomAvatar> {
   /// variables
   final ImagePicker picker = ImagePicker();
 
+  Border defaultBorder = Border.all(color: Colors.transparent, width: 0);
+  BoxShadow defaultShadow = const BoxShadow(
+    color: Colors.grey,
+    blurRadius: 4,
+    offset: Offset(0, 0),
+    spreadRadius: 0,
+    blurStyle: BlurStyle.outer,
+  );
+
   ButtonStyle? cicularButtonstyle;
   ButtonStyle fullWidthButtonstyle = ElevatedButton.styleFrom(
+    backgroundColor: Colors.grey.shade200,
     minimumSize: Size(double.infinity, 49),
     elevation: 0,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
@@ -46,6 +57,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
   void initState() {
     super.initState();
     cicularButtonstyle = ElevatedButton.styleFrom(
+      side: BorderSide(width: 2.5, color: Colors.white),
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       minimumSize: Size.fromRadius(widget.size * 0.15),
       maximumSize: Size.fromRadius(widget.size * 0.15),
@@ -78,7 +90,7 @@ class _CustomAvatarState extends State<CustomAvatar> {
               onPressed: () {
                 Get.back(result: 'camera');
               },
-              child: Text(widget.cameraButtonText ?? 'camera'),
+              child: Text((widget.cameraButtonText ?? 'camera').tr),
             ),
             SizedBox(height: 8),
 
@@ -87,23 +99,27 @@ class _CustomAvatarState extends State<CustomAvatar> {
               onPressed: () {
                 Get.back(result: 'gallery');
               },
-              child: Text(widget.cameraButtonText ?? 'gallery'),
+              child: Text((widget.cameraButtonText ?? 'gallery').tr),
             ),
             SizedBox(
-              child: delete ?
-               Column(
-                children: [
-                  SizedBox(height: 8),
-              
-                  ElevatedButton(
-                    style: fullWidthButtonstyle,
-                    onPressed: () {
-                      Get.back(result: 'delete');
-                    },
-                    child: Text(widget.cameraButtonText ?? 'delete'),
-                  ),
-                ],
-              ): null,
+              child:
+                  delete
+                      ? Column(
+                        children: [
+                          SizedBox(height: 8),
+
+                          ElevatedButton(
+                            style: fullWidthButtonstyle,
+                            onPressed: () {
+                              Get.back(result: 'delete');
+                            },
+                            child: Text(
+                              (widget.cameraButtonText ?? 'delete').tr,
+                            ),
+                          ),
+                        ],
+                      )
+                      : null,
             ),
           ],
         ),
@@ -152,8 +168,9 @@ class _CustomAvatarState extends State<CustomAvatar> {
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
+              boxShadow: [defaultShadow],
               color: widget.color,
-              border: widget.border,
+              border: widget.border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
             child: ClipRRect(
@@ -164,7 +181,11 @@ class _CustomAvatarState extends State<CustomAvatar> {
           ElevatedButton(
             style: cicularButtonstyle,
             onPressed: widget.clearPath,
-            child: Icon(Icons.delete, size: widget.size * 0.175),
+            child: Icon(
+              PhosphorIconsRegular.trash,
+              size: widget.size * 0.175,
+              color: const Color(0xFF1C274C),
+            ),
           ),
         ],
       );
@@ -177,8 +198,9 @@ class _CustomAvatarState extends State<CustomAvatar> {
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
+              boxShadow: [defaultShadow],
               color: widget.color,
-              border: widget.border,
+              border: widget.border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
             child: ClipRRect(
@@ -212,8 +234,12 @@ class _CustomAvatarState extends State<CustomAvatar> {
           ),
           ElevatedButton(
             style: cicularButtonstyle,
-            onPressed:()=> _onTap(true),
-            child: Icon(Icons.camera_alt, size: widget.size * 0.175),
+            onPressed: () => _onTap(true),
+            child: Icon(
+              PhosphorIconsRegular.camera,
+              size: widget.size * 0.175,
+              color: const Color(0xFF1C274C),
+            ),
           ),
         ],
       );
@@ -227,8 +253,9 @@ class _CustomAvatarState extends State<CustomAvatar> {
             width: widget.size,
             padding: EdgeInsets.all(widget.size * 0.2),
             decoration: BoxDecoration(
+              boxShadow: [defaultShadow],
               color: widget.color,
-              border: widget.border,
+              border: widget.border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
             child: SvgPicture.asset(AppAssets.profile),
@@ -236,7 +263,11 @@ class _CustomAvatarState extends State<CustomAvatar> {
           ElevatedButton(
             style: cicularButtonstyle,
             onPressed: () => _onTap(false),
-            child: Icon(Icons.camera_alt, size: widget.size * 0.175),
+            child: Icon(
+              PhosphorIconsRegular.camera,
+              size: widget.size * 0.175,
+              color: const Color(0xFF1C274C),
+            ),
           ),
         ],
       );

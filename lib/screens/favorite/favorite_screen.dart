@@ -24,7 +24,7 @@ class FavoriteScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
             ),
             onPressed: () {
-              // Handle button tap
+              Get.toNamed(Routes.IMAGE_PICKER);
             },
             child: Icon(Icons.settings),
           ),

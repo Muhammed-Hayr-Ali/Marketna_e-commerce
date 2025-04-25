@@ -18,7 +18,6 @@ class EditProfileController extends GetxController {
   String? dateBirth;
 
   RxBool isLoading = false.obs;
-  bool imageIsLoading = false;
   User? user;
   String? imagePath;
 
@@ -74,8 +73,6 @@ class EditProfileController extends GetxController {
   Future<void> deleteImage(bool withUpdate) async {
     debugPrint('deleteImage');
 
-    imageIsLoading = true;
-    update();
 
     // Check if the user is logged in
     if (user == null) return;
@@ -121,8 +118,6 @@ class EditProfileController extends GetxController {
         _initialize();
         _profileController.initializeUser();
       }
-      imageIsLoading=false;
-      update();
 
     }
   }
@@ -136,8 +131,6 @@ class EditProfileController extends GetxController {
     debugPrint('try delete old image');
     await deleteImage(false);
 
-    imageIsLoading = true;
-    update();
     try {
       final String fileExtension = DataConverter.getFileExtension(imagePath!);
       final String fileName = Uuid().v1() + fileExtension;
@@ -176,9 +169,7 @@ class EditProfileController extends GetxController {
       );
       debugPrint(error.toString());
     } finally {
-      imageIsLoading = false;
       imagePath = null;
-      update();
     }
   }
 
