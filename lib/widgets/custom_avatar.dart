@@ -17,7 +17,7 @@ class CustomAvatar extends StatelessWidget {
     this.imageUrl,
     this.imagePath,
     this.size = 128.0,
-    this.color = const Color(0xFFE0E0E0),
+    this.color = const Color(0xFFEEEEEE),
     this.border,
     this.cameraButtonText,
     this.galleryButtonText,
@@ -31,13 +31,7 @@ class CustomAvatar extends StatelessWidget {
   final ImagePicker picker = ImagePicker();
 
   final Border defaultBorder = Border.all(color: Colors.transparent, width: 0);
-  final BoxShadow defaultShadow = const BoxShadow(
-    color: Colors.grey,
-    blurRadius: 4,
-    offset: Offset(0, 0),
-    spreadRadius: 0,
-    blurStyle: BlurStyle.outer,
-  );
+
   final ButtonStyle fullWidthButtonstyle = ElevatedButton.styleFrom(
     backgroundColor: Colors.grey.shade200,
     minimumSize: Size(double.infinity, 49),
@@ -52,7 +46,7 @@ class CustomAvatar extends StatelessWidget {
       minimumSize: Size.fromRadius(size * 0.15),
       maximumSize: Size.fromRadius(size * 0.15),
       fixedSize: Size.fromRadius(size * 0.15),
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: color,
       shadowColor: Colors.transparent,
       elevation: 0,
       shape: CircleBorder(),
@@ -156,7 +150,6 @@ class CustomAvatar extends StatelessWidget {
             height: size,
             width: size,
             decoration: BoxDecoration(
-              boxShadow: [defaultShadow],
               color: color,
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
@@ -186,7 +179,6 @@ class CustomAvatar extends StatelessWidget {
             height: size,
             width: size,
             decoration: BoxDecoration(
-              boxShadow: [defaultShadow],
               color: color,
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
@@ -210,7 +202,6 @@ class CustomAvatar extends StatelessWidget {
                     ),
                   );
                 },
-
                 errorWidget: (context, url, error) {
                   return Padding(
                     padding: EdgeInsets.all(size * 0.2),
@@ -241,12 +232,14 @@ class CustomAvatar extends StatelessWidget {
             width: size,
             padding: EdgeInsets.all(size * 0.2),
             decoration: BoxDecoration(
-              boxShadow: [defaultShadow],
               color: color,
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
-            child: SvgPicture.asset(AppAssets.profile),
+            child: SvgPicture.asset(
+              AppAssets.profile,
+              colorFilter: ColorFilter.mode(Color(0xFF1C274C), BlendMode.srcIn),
+            ),
           ),
           ElevatedButton(
             style: cicularButtonstyleBuilder(),

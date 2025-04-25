@@ -1,6 +1,5 @@
 import 'package:application/screens/product_details/product_details_screen.dart';
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/custom_image_view.dart';
 
 class RouteGet {
   static final List<GetPage> getPages = [
@@ -31,6 +30,5 @@ class RouteGet {
     GetPage(name: Routes.ADD_ADDRESSES_SCREEN, page: () => AddAddressScreen()),
     GetPage(name: Routes.SETTINGS_SCREEN, page: () => SettingsScreen()),
     GetPage(name: Routes.PRODUCT_DETAILS, page: () => ProductDetailsScreen()),
-    GetPage(name: Routes.IMAGE_PICKER, page: () => CustomImagePicker()),
   ];
 }

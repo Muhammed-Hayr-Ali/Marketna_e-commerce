@@ -35,6 +35,7 @@ class AppAssets {
 
   // icons
   static const String edit = 'assets/images/svg/edit.svg';
+  static const String userOutline = 'assets/images/svg/user-outline.svg';
   static const String profile = 'assets/images/svg/profile.svg';
   static const String help = 'assets/images/svg/help.svg';
   static const String delivery = 'assets/images/svg/delivery.svg';
