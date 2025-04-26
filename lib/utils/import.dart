@@ -37,7 +37,10 @@ export 'package:application/screens/auth_update_password/controller/update_passw
 export 'package:application/screens/auth_update_password/update_password_screen.dart';
 export 'package:application/screens/cart/cart_screen.dart';
 export 'package:application/screens/favorite/favorite_screen.dart';
+export 'package:application/screens/home/controller/controller.dart';
 export 'package:application/screens/home/home_screen.dart';
+export 'package:application/screens/home/widgets/errorPlaceholder.dart';
+export 'package:application/screens/home/widgets/shimmer_placeholder.dart';
 export 'package:application/screens/main/controllrt/generate_route.dart';
 export 'package:application/screens/main/controllrt/main_controller.dart';
 export 'package:application/screens/main/main_screen.dart';
@@ -45,6 +48,7 @@ export 'package:application/screens/notification/notification_screen.dart';
 export 'package:application/screens/onboarding/onboarding_screen.dart';
 export 'package:application/screens/onboarding/widgets/indicator.dart';
 export 'package:application/screens/onboarding/widgets/page_builder.dart';
+export 'package:application/screens/product_details/controller/controller.dart';
 export 'package:application/screens/profile_edit/controller/controller.dart';
 export 'package:application/screens/profile_edit/controller/main_controller.dart';
 export 'package:application/screens/profile_edit/editprofilescreen.dart';
@@ -57,8 +61,6 @@ export 'package:application/screens/splash_screen/binding/binding.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/data_converter.dart';
-export 'package:application/screens/product_details/controller/controller.dart';
-
 // ==============================
 // **Services**
 // ==============================
@@ -77,15 +79,16 @@ export 'package:application/themes/theme_controller.dart';
 // **Utils**
 // ==============================
 export 'package:application/utils/app_assets.dart';
+export 'package:application/utils/app_constants.dart';
 export 'package:application/utils/app_storage_key.dart';
 export 'package:application/utils/colors.dart';
-export 'package:application/utils/app_constants.dart';
 export 'package:application/utils/keys.dart';
 // ==============================
 // **Widgets**
 // ==============================
 export 'package:application/widgets/custom_bottom_sheet.dart';
 export 'package:application/widgets/custom_button.dart';
+export 'package:application/widgets/custom_carouselslider.dart';
 export 'package:application/widgets/custom_circular_button.dart';
 export 'package:application/widgets/custom_direction.dart';
 export 'package:application/widgets/custom_inkk.dart';

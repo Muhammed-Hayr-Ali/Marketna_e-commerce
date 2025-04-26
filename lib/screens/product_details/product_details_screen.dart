@@ -107,6 +107,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                /// Reviews
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8.0,
@@ -152,18 +153,23 @@ class ProductDetailsScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+
+                                /// Product Name
                                 CustomText(
                                   controller.product!.name ?? '',
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                 ),
-                                const SizedBox(height: 4.0),
+
+                                /// Category
                                 CustomText(
                                   controller.product!.category ?? 'No Category',
                                   fontSize: 12,
                                   color: Colors.grey,
                                 ),
-                                const SizedBox(height: 8.0),
+                                const SizedBox(height: 12.0),
+
+                                /// Price
                                 CustomText(
                                   controller.product!.price != null
                                       ? 'Price: \$${controller.product!.price}'
@@ -172,8 +178,9 @@ class ProductDetailsScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.primaryColor,
                                 ),
-
                                 const SizedBox(height: 16.0),
+
+                                /// Description
                                 Text(
                                   controller.product!.description ??
                                       'No Description',
@@ -198,6 +205,7 @@ Widget _loadingPlaceholder() {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        /// Reviews
         Container(
           margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
           height: 18.0,
@@ -207,6 +215,8 @@ Widget _loadingPlaceholder() {
             borderRadius: BorderRadius.circular(4.0),
           ),
         ),
+
+        /// Product Name
         Container(
           height: 29.0,
           width: Get.width * 0.6,
@@ -215,7 +225,10 @@ Widget _loadingPlaceholder() {
             borderRadius: BorderRadius.circular(4.0),
           ),
         ),
+
         const SizedBox(height: 4.0),
+
+        /// Category
         Container(
           height: 17.0,
           width: 150,
@@ -224,7 +237,9 @@ Widget _loadingPlaceholder() {
             borderRadius: BorderRadius.circular(4.0),
           ),
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 12.0),
+
+        /// Price
         Container(
           height: 23.0,
           width: 200,
@@ -234,6 +249,8 @@ Widget _loadingPlaceholder() {
           ),
         ),
         const SizedBox(height: 16.0),
+
+        /// Description
         Container(
           height: 60.0,
           width: double.infinity,

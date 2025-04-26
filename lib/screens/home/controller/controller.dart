@@ -3,6 +3,7 @@ import 'package:application/utils/import.dart';
 class HomeController extends GetxController {
   final supabase = Supabase.instance.client;
 
+  bool isLoading = true;
   List<Product> premiumProducts = [];
 
   @override
@@ -32,10 +33,11 @@ class HomeController extends GetxController {
       );
 
       debugPrint('Products fetched successfully');
-      debugPrint('Products $premiumProducts');
     } catch (error) {
       debugPrint('Error fetching products: $error');
     } finally {
+      isLoading = false;
+      debugPrint('Loading completed with ${premiumProducts.length} products');
       update();
     }
   }

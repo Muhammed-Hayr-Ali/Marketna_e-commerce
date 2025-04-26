@@ -5,6 +5,11 @@ class CustomCarouselSlider extends StatefulWidget {
   /// Each product should contain an `id` and `imageUrl` for displaying the image.
   final List<Product> products;
 
+  /// Placeholder widget to display while the carousel is loading.
+  final Widget shimmerPlaceholder;
+
+  final Widget errorPlaceholder;
+
   /// Color of the active dot (indicating the current slide).
   final Color activeDotColor;
 
@@ -27,7 +32,7 @@ class CustomCarouselSlider extends StatefulWidget {
   final Duration autoPlayDuration;
 
   /// Aspect ratio of the carousel images (width / height).
-  /// Default value is 21/9, which gives a wide-screen look.
+  /// Default value is 21 / 9, which gives a wide-screen look.
   final double aspectRatio;
 
   /// Number of seconds to pause the auto-play when an image is tapped.
@@ -58,7 +63,9 @@ class CustomCarouselSlider extends StatefulWidget {
     this.aspectRatio = 21 / 9, // Default aspect ratio (wide-screen)
     this.pauseDurationInSeconds = 5, // Default pause duration on tap
     this.onTap, // Optional callback for image tap
-    this.reverseOrder = false, // Whether to reverse the product order
+    this.reverseOrder = false,
+    required this.shimmerPlaceholder,
+    required this.errorPlaceholder, // Whether to reverse the product order
   });
 
   @override

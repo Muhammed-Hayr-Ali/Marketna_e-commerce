@@ -1,33 +1,32 @@
-import 'package:application/screens/home/controller/controller.dart';
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/custom_carouselslider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const CustomText('Home'),
-      ),
-      body: Column(
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          CustomText('HomeScreen'),
           GetBuilder<HomeController>(
+            init: HomeController(),
             builder:
                 (controller) =>
-                    controller.premiumProducts.isEmpty
-                        ? const Center(child: CircularProgressIndicator())
+                    controller.isLoading
+                        ? ShimmerPlaceholder()
+                        : controller.premiumProducts.isEmpty
+                        ? ErrorPlaceholder()
                         : CustomCarouselSlider(
                           products: controller.premiumProducts,
+                          shimmerPlaceholder: ShimmerPlaceholder(),
+                          errorPlaceholder: ErrorPlaceholder(),
                           onTap:
-                              (productId) => Get.toNamed(
+                              (product) => Get.toNamed(
                                 Routes.PRODUCT_DETAILS,
-                                arguments: productId,
+                                arguments: product,
                               ),
-                          reverseOrder: true,
-                          activeDotColor: AppColors.primaryColor,
                         ),
           ),
         ],
