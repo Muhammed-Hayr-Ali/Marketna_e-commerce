@@ -3,9 +3,7 @@ import 'package:application/utils/import.dart';
 import 'package:application/widgets/custom_carouselslider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  final _pageController = Get.put(HomeController());
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +17,18 @@ class HomeScreen extends StatelessWidget {
           GetBuilder<HomeController>(
             builder:
                 (controller) =>
-                controller.premiumProducts.isEmpty
-                    ? const Center(child: CircularProgressIndicator())
-                    :
-                
-                 CustomCarouselSlider(
-                  products: controller.premiumProducts,
-                  onTap:
-                      (productId) => Get.toNamed(
-                        Routes.PRODUCT_DETAILS,
-                        arguments: productId,
-                      ),
-                  reverseOrder: true,
-                  activeDotColor: AppColors.primaryColor,
-                ),
+                    controller.premiumProducts.isEmpty
+                        ? const Center(child: CircularProgressIndicator())
+                        : CustomCarouselSlider(
+                          products: controller.premiumProducts,
+                          onTap:
+                              (productId) => Get.toNamed(
+                                Routes.PRODUCT_DETAILS,
+                                arguments: productId,
+                              ),
+                          reverseOrder: true,
+                          activeDotColor: AppColors.primaryColor,
+                        ),
           ),
         ],
       ),
