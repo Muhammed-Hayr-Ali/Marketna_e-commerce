@@ -8,7 +8,7 @@ class Country {
   String? isoCode;
   String? flag;
   List<Province>? province;
-  DateTime? createdAt;
+  String? createdAt;
 
   Country({
     this.id,
@@ -38,8 +38,7 @@ class Country {
         province!.add(Province.fromJson(v));
       });
     }
-    createdAt =
-        json['created_at'] != null ? DateTime.parse(json['created_at']) : null;
+    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +54,7 @@ class Country {
     if (province != null) {
       data['province'] = province!.map((v) => v.toJson()).toList();
     }
+    data['created_at'] = createdAt;
     return data;
   }
 

@@ -1,18 +1,18 @@
 class Address {
   // Fields
-  final int? id;
-  final String? userId;
-  final String? addressName;
-  final String? country;
-  final String? flag;
-  final String? province;
-  final String? city;
-  final String? street;
-  final String? countryCode;
-  final String? phoneNumber;
-  final String? notes;
-  final Map<String, dynamic>? location;
-  DateTime? createdAt;
+  int? id;
+  String? userId;
+  String? addressName;
+  String? country;
+  String? flag;
+  String? province;
+  String? city;
+  String? street;
+  String? countryCode;
+  String? phoneNumber;
+  String? notes;
+  Map<String, dynamic>? location;
+  String? createdAt;
 
   // Constructor to initialize the fields
   Address({
@@ -46,10 +46,7 @@ class Address {
       phoneNumber: json['phone_number'],
       notes: json['notes'],
       location: json['location'],
-      createdAt:
-          json['created_at'] != null
-              ? DateTime.parse(json['created_at'])
-              : null,
+      createdAt: json['created_at'],
     );
   }
 
@@ -67,24 +64,12 @@ class Address {
       'phone_number': phoneNumber,
       'notes': notes,
       'location': location,
+      'created_at': createdAt,
     };
   }
 
   @override
   String toString() {
-    return 'Address{'
-        'id: $id, '
-        'user_id: $userId, '
-        'addressName: $addressName, '
-        'country: $country, '
-        'flag: $flag, '
-        'province: $province, '
-        'city: $city, '
-        'streetAddress: $street, '
-        'countryCode: $countryCode, '
-        'phoneNumber: $phoneNumber, '
-        'notes: $notes, '
-        'location: $location,'
-        'createdAt: $createdAt}';
+    return 'Address{id: $id, user_id: $userId, addressName: $addressName, country: $country, flag: $flag, province: $province, city: $city, streetAddress: $street, countryCode: $countryCode, phoneNumber: $phoneNumber, notes: $notes, location: $location, createdAt: $createdAt}';
   }
 }

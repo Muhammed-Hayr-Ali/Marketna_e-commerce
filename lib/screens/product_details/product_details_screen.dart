@@ -215,7 +215,6 @@ Widget _loadingPlaceholder() {
             borderRadius: BorderRadius.circular(4.0),
           ),
         ),
-
         /// Product Name
         Container(
           height: 29.0,
@@ -225,9 +224,7 @@ Widget _loadingPlaceholder() {
             borderRadius: BorderRadius.circular(4.0),
           ),
         ),
-
         const SizedBox(height: 4.0),
-
         /// Category
         Container(
           height: 17.0,
@@ -238,7 +235,6 @@ Widget _loadingPlaceholder() {
           ),
         ),
         const SizedBox(height: 12.0),
-
         /// Price
         Container(
           height: 23.0,
@@ -249,7 +245,6 @@ Widget _loadingPlaceholder() {
           ),
         ),
         const SizedBox(height: 16.0),
-
         /// Description
         Container(
           height: 60.0,

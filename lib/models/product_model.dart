@@ -9,7 +9,7 @@ class Product {
   String? quality;
   int? favoriteCount;
   int? viewsCount;
-  DateTime? createdAt;
+  String? createdAt;
 
   Product({
     this.id,
@@ -36,8 +36,7 @@ class Product {
     quality = json['quality'];
     favoriteCount = json['favorite_count'];
     viewsCount = json['views_count'];
-    createdAt =
-        json['created_at'] != null ? DateTime.parse(json['created_at']) : null;
+    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +50,7 @@ class Product {
     data['quality'] = quality;
     data['favorite_count'] = favoriteCount;
     data['views_count'] = viewsCount;
+    data['created_at'] = createdAt;
     return data;
   }
 

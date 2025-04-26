@@ -1,4 +1,4 @@
-import 'package:application/models/rating_model.dart';
+import 'package:application/models/review_model.dart';
 import 'package:application/utils/import.dart';
 
 class ProductDetailsController extends GetxController {
@@ -12,15 +12,20 @@ class ProductDetailsController extends GetxController {
   String uid = '';
 
   bool isLoading = true;
+  bool reviewsLoading = true;
   Product? product;
 
   /// Favorites
-  bool isProductFavorited = false;
   List<int> favoriteProducts = [];
+  bool isProductFavorited = false;
   int? favoriteCount = 0;
 
+  /// Views
   int? viewsCount = 0;
 
+  /// Reviews
+  List<Review> reviews = [];
+  bool isReviewSubmitted = false;
   int reviewCount = 0;
   double reviewRating = 0.0;
 
@@ -29,7 +34,7 @@ class ProductDetailsController extends GetxController {
     uid = _supabase.auth.currentUser!.id;
     _checkIfProductFavorited();
     _fitchProductDetails();
-    _getReviewRating();
+    _getReviews();
 
     // debugPrint('Initializing ProductDetails');
     // _initializing();
@@ -64,25 +69,6 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  // Future<void> _initializing() async {
-  //   debugPrint('Product details initialized');
-
-  //   try {
-  //     final response = await _supabase
-  //         .from(KEYS.PRODUCTS_TABLE)
-  //         .select('''${KEYS.VIEWS_COUNT}, ${KEYS.FAVORITE_COUNT}''')
-  //         .eq(KEYS.ID, product.id!);
-
-  //     if (response.isEmpty) return;
-
-  //     favoriteCount = response[0][KEYS.FAVORITE_COUNT] ?? 0;
-  //     viewsCount = response[0][KEYS.VIEWS_COUNT];
-  //     update();
-  //   } catch (error) {
-  //     debugPrint('Error initializing product details: $error');
-  //   }
-  // }
-
   // Check if Product favorited
   void _checkIfProductFavorited() {
     final result =
@@ -92,24 +78,38 @@ class ProductDetailsController extends GetxController {
     update();
   }
 
-  Future<void> _getReviewRating() async {
+  Future<void> _getReviews() async {
     try {
       final response = await _supabase
-          .from(KEYS.RATINGS_TABLE)
-          .select(KEYS.RATING_VALUE)
-          .eq(KEYS.PRODUCT_ID, productId);
-
+          .from(KEYS.REVIEWS_TABLE)
+          .select('*, profiles: user_id (*)')
+          .eq(KEYS.ID, productId);
       if (response.isEmpty) return;
 
-      /// get review rating
-      List<Rating> rating = response.map((e) => Rating.fromJson(e)).toList();
-      reviewCount = rating.length;
+      /// get all reviews
+      reviews = response.map((e) => Review.fromJson(e)).toList();
+
+      /// check if user has submitted review
+      isReviewSubmitted = reviews.any((e) => e.userId == uid);
+
+      /// calculate review count
+      reviewCount = reviews.length;
+
+      /// calculate review rating
       reviewRating =
-          rating.map((e) => e.ratingValue ?? 0.0).reduce((a, b) => a + b) /
-          rating.length;
-      update();
+          reviews.map((e) => e.ratingValue ?? 0.0).reduce((a, b) => a + b) /
+          reviews.length;
     } catch (error) {
       debugPrint('Error getting review rating: $error');
+    } finally {
+      debugPrint('Reviews fetched successfully');
+      debugPrint('Reviews first: ${reviews.first}');
+      debugPrint('is Review Submitted: $isReviewSubmitted');
+      debugPrint('Review Count: $reviewCount');
+      debugPrint('Review Rating: $reviewRating');
+
+      reviewsLoading = false;
+      update();
     }
   }
 
