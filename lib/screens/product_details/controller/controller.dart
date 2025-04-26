@@ -102,12 +102,6 @@ class ProductDetailsController extends GetxController {
     } catch (error) {
       debugPrint('Error getting review rating: $error');
     } finally {
-      debugPrint('Reviews fetched successfully');
-      debugPrint('Reviews first: ${reviews.first}');
-      debugPrint('is Review Submitted: $isReviewSubmitted');
-      debugPrint('Review Count: $reviewCount');
-      debugPrint('Review Rating: $reviewRating');
-
       reviewsLoading = false;
       update();
     }
