@@ -39,7 +39,7 @@ export 'package:application/screens/cart/cart_screen.dart';
 export 'package:application/screens/favorite/favorite_screen.dart';
 export 'package:application/screens/home/controller/controller.dart';
 export 'package:application/screens/home/home_screen.dart';
-export 'package:application/screens/home/widgets/errorPlaceholder.dart';
+export 'package:application/screens/home/widgets/error_placeholder.dart';
 export 'package:application/screens/home/widgets/shimmer_placeholder.dart';
 export 'package:application/screens/main/controllrt/generate_route.dart';
 export 'package:application/screens/main/controllrt/main_controller.dart';
