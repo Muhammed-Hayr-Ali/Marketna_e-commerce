@@ -118,44 +118,36 @@ class ProductDetailsScreen extends StatelessWidget {
                                     children: [
                                       Icon(
                                         PhosphorIconsRegular.heart,
-                                        color: Colors.black,
-                                        size: 18,
+                                        size: 14,
                                       ),
                                       const SizedBox(width: 4.0),
                                       CustomText(
                                         '${controller.favoriteCount}',
-                                        fontSize: 12,
+                                        fontSize: 10,
                                       ),
                                       const SizedBox(width: 10.0),
-                                      Icon(
-                                        PhosphorIconsRegular.star,
-                                        color: Colors.black,
-                                        size: 18,
-                                      ),
+                                      Icon(PhosphorIconsRegular.star, size: 14),
                                       const SizedBox(width: 4.0),
                                       CustomText(
                                         controller.reviewRating.toStringAsFixed(
                                           1,
                                         ),
-                                        fontSize: 12,
+                                        fontSize: 10,
                                       ),
                                       const SizedBox(width: 4.0),
                                       CustomText(
                                         '(${controller.reviewCount} Reviews)',
-                                        fontSize: 10,
+                                        fontSize: 8,
+                                        color: Colors.grey,
                                       ),
                                       const SizedBox(width: 10.0),
-                                      Icon(
-                                        PhosphorIconsRegular.eye,
-                                        color: Colors.black,
-                                        size: 18,
-                                      ),
+                                      Icon(PhosphorIconsRegular.eye, size: 14),
                                       const SizedBox(width: 4.0),
                                       CustomText(
                                         DataConverter.formatViews(
                                           controller.viewsCount,
                                         ),
-                                        fontSize: 12,
+                                        fontSize: 10,
                                       ),
                                     ],
                                   ),
