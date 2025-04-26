@@ -5,4 +5,5 @@ class AppStorageKey {
 
   static const String FIRST_TIME_LAUNCH = 'firstTimeLaunch';
   static const String LOCALE = 'locale';
+  static const String FAVORITE_PRODUCTS_KEY = 'favoriteProducts';
 }

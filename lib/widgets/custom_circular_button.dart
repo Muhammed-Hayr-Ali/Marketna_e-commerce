@@ -6,7 +6,7 @@ class CustomCicularButton extends StatelessWidget {
   final Color? backgroundColor;
   final double? borderWidth;
   final Color? borderColor;
-  final double? padding;
+  final double padding;
   final void Function()? onPressed;
   const CustomCicularButton({
     super.key,
@@ -16,13 +16,14 @@ class CustomCicularButton extends StatelessWidget {
     this.onPressed,
     this.borderWidth,
     this.borderColor,
-    this.padding,
+    this.padding = 0,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.all(padding),
         side: BorderSide(
           width: borderWidth ?? 0,
           color: borderColor ?? Colors.transparent,
@@ -35,7 +36,6 @@ class CustomCicularButton extends StatelessWidget {
         shadowColor: Colors.transparent,
         elevation: 0,
         shape: CircleBorder(),
-        padding: EdgeInsets.zero,
       ),
       onPressed: onPressed,
       child: child,

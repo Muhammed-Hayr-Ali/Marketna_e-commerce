@@ -3,50 +3,40 @@ import 'package:application/utils/import.dart';
 class HomeController extends GetxController {
   final supabase = Supabase.instance.client;
 
-  // المتغيرات الأساسية
-  RxBool isLoading = false.obs;
-  final RxList<Product> products = RxList<Product>([]);
-  // List<Product> get products => _products;
+  List<Product> premiumProducts = [];
 
   @override
   void onInit() {
+    _fetchPremiumProducts();
     super.onInit();
-    debugPrint('HomeController initialized');
-    initializeData();
-  }
-
-  /// تهيئة البيانات عند بدء الكونترولر
-  Future<void> initializeData() async {
-    await fetchProducts().catchError((error) {
-      handleError(error);
-    });
   }
 
   /// جلب المنتجات من Supabase
-  Future<void> fetchProducts() async {
-    isLoading.value = true;
+  Future<void> _fetchPremiumProducts() async {
     try {
       debugPrint('Fetching products...');
       final response = await supabase
           .from(KEYS.PRODUCTS_TABLE)
-          .select()
-          .eq(KEYS.COLUMN_QUALITY, KEYS.PREMIUM);
+          .select('${KEYS.ID}, ${KEYS.IMAGE_URL}')
+          .eq(KEYS.COLUMN_QUALITY, KEYS.PREMIUM)
+          .limit(10)
+          .order(KEYS.CREATED_AT, ascending: false);
 
       if (response.isEmpty) {
         debugPrint('No products found');
         return;
       }
 
-      debugPrint('Products fetched successfully');
-      products.clear();
-      products.addAll(response.map((product) => Product.fromJson(product)));
-    } finally {
-      isLoading.value = false;
-    }
-  }
+      premiumProducts = List<Product>.from(
+        response.map((product) => Product.fromJson(product)),
+      );
 
-  /// إدارة الأخطاء وإظهار رسائل للمستخدم
-  void handleError(dynamic error) {
-    debugPrint('Error fetching products: $error');
+      debugPrint('Products fetched successfully');
+      debugPrint('Products $premiumProducts');
+    } catch (error) {
+      debugPrint('Error fetching products: $error');
+    } finally {
+      update();
+    }
   }
 }

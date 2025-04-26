@@ -35,7 +35,7 @@ class CustomCarouselSlider extends StatefulWidget {
 
   /// Callback function triggered when an image is tapped.
   /// Provides the `productId` of the tapped product.
-  final void Function(Product product)? onTap;
+  final void Function(Map<String, dynamic> product)? onTap;
 
   /// Whether to reverse the order of the products in the carousel.
   /// If `true`, the list of products will be displayed in reverse order.
@@ -148,9 +148,14 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
               return GestureDetector(
                 onTap: () {
                   if (widget.onTap != null) {
-                    widget.onTap!.call(
-                      _processedProducts[index % _processedProducts.length],
-                    ); // Trigger the onTap callback with the product ID.
+                    widget.onTap!.call({
+                      KEYS.ID:
+                          _processedProducts[index % _processedProducts.length]
+                              .id,
+                      KEYS.IMAGE_URL:
+                          _processedProducts[index % _processedProducts.length]
+                              .imageUrl,
+                    }); // Trigger the onTap callback with the product ID.
                   }
                   setState(() {
                     _isPaused = !_isPaused; // Toggle the auto-play pause state.

@@ -14,14 +14,17 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const CustomText('Home'),
       ),
-      body: Obx(
-        () => Column(
-          children: [
-            _pageController.products.isEmpty
-                ? SizedBox()
-                : CustomCarouselSlider(
-                  products: _pageController.products,
-                  // onTap: (productId) => debugPrint(productId.toString()),
+      body: Column(
+        children: [
+          GetBuilder<HomeController>(
+            builder:
+                (controller) =>
+                controller.premiumProducts.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    :
+                
+                 CustomCarouselSlider(
+                  products: controller.premiumProducts,
                   onTap:
                       (productId) => Get.toNamed(
                         Routes.PRODUCT_DETAILS,
@@ -30,10 +33,8 @@ class HomeScreen extends StatelessWidget {
                   reverseOrder: true,
                   activeDotColor: AppColors.primaryColor,
                 ),
-
-            const SizedBox(height: 100),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

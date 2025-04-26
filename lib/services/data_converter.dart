@@ -67,4 +67,14 @@ class DataConverter {
     final split = fileName.split('.');
     return split.length > 1 ? '.${split.last}' : '';
   }
+
+  static String formatViews(int? views) {
+    if (views == null) return '0';
+    if (views < 1000) {
+      return views.toString(); // عرض الرقم كما هو إذا كان أقل من 1000
+    } else {
+      double formattedViews = views / 1000; // تقسيم الرقم على 1000
+      return '${formattedViews.toStringAsFixed(1)}K'; // عرض الرقم مع الحرف K
+    }
+  }
 }

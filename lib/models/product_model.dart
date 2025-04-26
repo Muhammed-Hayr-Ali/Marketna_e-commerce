@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class Product {
   int? id;
   String? name;
@@ -7,6 +9,8 @@ class Product {
   int? quantity;
   String? category;
   String? quality;
+  int? favoriteCount;
+  int? viewsCount;
   DateTime? createdAt;
 
   Product({
@@ -18,6 +22,8 @@ class Product {
     this.quantity,
     this.category,
     this.quality,
+    this.favoriteCount,
+    this.viewsCount,
     this.createdAt,
   });
 
@@ -30,6 +36,8 @@ class Product {
     quantity = json['quantity'];
     category = json['category'];
     quality = json['quality'];
+    favoriteCount = json['favorite_count'];
+    viewsCount = json['views_count'];
     createdAt =
         json['created_at'] != null ? DateTime.parse(json['created_at']) : null;
   }
@@ -43,11 +51,13 @@ class Product {
     data['quantity'] = quantity;
     data['category'] = category;
     data['quality'] = quality;
+    data['favorite_count'] = favoriteCount;
+    data['views_count'] = viewsCount;
     return data;
   }
 
   @override
   String toString() {
-    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category, quality: $quality, createdAt: $createdAt}';
+    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category, quality: $quality, favoriteCount: $favoriteCount, viewsCount: $viewsCount, createdAt: $createdAt}';
   }
 }
