@@ -2,9 +2,16 @@ import 'package:application/models/review_model.dart';
 import 'package:application/utils/import.dart';
 
 class ProductDetailsController extends GetxController {
-  ProductDetailsController({required this.productId});
+  ProductDetailsController({required this.imageUrl, required this.productId});
 
   final int productId;
+  final String imageUrl;
+
+  /// Images
+  final pageController = PageController();
+  List<String> images = [];
+  RxInt imagesCount = 0.obs;
+  RxInt currentImageIndex = 0.obs;
 
   /// Variables
   final _supabase = Supabase.instance.client;
@@ -32,6 +39,8 @@ class ProductDetailsController extends GetxController {
   @override
   void onInit() {
     uid = _supabase.auth.currentUser!.id;
+    images.insert(0, imageUrl);
+    _fitchProductImages();
     _checkIfProductFavorited();
     _fitchProductDetails();
     _getReviews();
@@ -47,6 +56,28 @@ class ProductDetailsController extends GetxController {
   void onClose() {
     _saveData();
     super.onClose();
+  }
+
+  void _fitchProductImages() async {
+    try {
+      final response = await _supabase
+          .from(KEYS.PRODUCT_IMAGES_TABLE)
+          .select(KEYS.IMAGE_URL)
+          .eq(KEYS.PRODUCT_ID, productId);
+
+      if (response.isEmpty) return;
+      
+      List<String> imagesList =
+          response.map((e) => e['image_url'] as String).toList();
+
+      images.addAll(imagesList);
+      imagesCount.value = images.length;
+      
+    } catch (error) {
+      debugPrint('Error initializing product images: $error');
+    } finally {
+      update();
+    }
   }
 
   Future<void> _fitchProductDetails() async {
@@ -71,11 +102,16 @@ class ProductDetailsController extends GetxController {
 
   // Check if Product favorited
   void _checkIfProductFavorited() {
-    final result =
-        _storage.read(AppStorageKey.FAVORITE_PRODUCTS_KEY + uid) ?? '[]';
-    favoriteProducts = List<int>.from(jsonDecode(result));
-    isProductFavorited = favoriteProducts.contains(productId);
-    update();
+    try {
+      final result =
+          _storage.read(AppStorageKey.FAVORITE_PRODUCTS_KEY + uid) ?? '[]';
+      favoriteProducts = List<int>.from(jsonDecode(result));
+      isProductFavorited = favoriteProducts.contains(productId);
+    } catch (error) {
+      debugPrint('error : ${error.toString()}');
+    } finally {
+      update();
+    }
   }
 
   Future<void> _getReviews() async {
@@ -83,7 +119,8 @@ class ProductDetailsController extends GetxController {
       final response = await _supabase
           .from(KEYS.REVIEWS_TABLE)
           .select('*, profiles: user_id (*)')
-          .eq(KEYS.ID, productId);
+          .eq(KEYS.PRODUCT_ID, productId);
+
       if (response.isEmpty) return;
 
       /// get all reviews
@@ -93,7 +130,7 @@ class ProductDetailsController extends GetxController {
       isReviewSubmitted = reviews.any((e) => e.userId == uid);
 
       /// calculate review count
-      reviewCount = reviews.length;
+      reviewCount = response.length;
 
       /// calculate review rating
       reviewRating =
@@ -127,7 +164,7 @@ class ProductDetailsController extends GetxController {
       AppStorageKey.FAVORITE_PRODUCTS_KEY + uid,
       jsonEncode(favoriteProducts),
     );
-
+    if (product == null) return;
     await _supabase
         .from(KEYS.PRODUCTS_TABLE)
         .update({

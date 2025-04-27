@@ -18,6 +18,7 @@ class EditProfileController extends GetxController {
   String? dateBirth;
 
   RxBool isLoading = false.obs;
+  bool imageLoading = false;
   User? user;
   String? imagePath;
 
@@ -80,6 +81,11 @@ class EditProfileController extends GetxController {
     String? avatarUrl = DataConverter.getAvatarUrl(user!.userMetadata!);
     if (avatarUrl.isEmpty) return;
 
+    if (withUpdate) {
+      imageLoading = true;
+      update();
+    }
+
     try {
       // Get the file name from the avatar URL
       final String fileName = avatarUrl.split('/').last;
@@ -116,6 +122,8 @@ class EditProfileController extends GetxController {
       if (withUpdate) {
         _initialize();
         _profileController.initializeUser();
+        imageLoading = false;
+        update();
       }
     }
   }
@@ -127,6 +135,9 @@ class EditProfileController extends GetxController {
     if (imagePath == null) return;
 
     debugPrint('try delete old image');
+    imageLoading = true;
+    update();
+
     await deleteImage(false);
 
     try {
@@ -167,7 +178,8 @@ class EditProfileController extends GetxController {
       );
       debugPrint(error.toString());
     } finally {
-      imagePath = null;
+      imageLoading = false;
+      update();
     }
   }
 
@@ -250,6 +262,8 @@ class EditProfileController extends GetxController {
       _initialize();
       _profileController.initializeUser();
       isLoading.value = false;
+      imagePath = null;
+      update();
     }
   }
 }

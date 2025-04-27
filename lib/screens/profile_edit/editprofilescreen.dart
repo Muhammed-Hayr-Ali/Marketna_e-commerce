@@ -46,14 +46,23 @@ class EditProfileScreen extends StatelessWidget {
                 // ),
                 GetBuilder<EditProfileController>(
                   builder:
-                      (_) => CustomAvatar(
-                        imagePath: _.imagePath,
-                        imageUrl: DataConverter.getAvatarUrl(
-                          _.user!.userMetadata!,
-                        ),
-                        onSelectImage: (path) => _.updatePath(path),
-                        clearPath: () => _.updatePath(null),
-                        onDeleteTap: () => _.deleteImage(true),
+                      (_) => Stack(
+                        children: [
+                          SizedBox(
+                            height: 128.0,
+                            width: 128.0,
+                            child: _.imageLoading? CircularProgressIndicator() : null,
+                          ),
+                          CustomAvatar(
+                            imagePath: _.imagePath,
+                            imageUrl: DataConverter.getAvatarUrl(
+                              _.user!.userMetadata!,
+                            ),
+                            onSelectImage: (path) => _.updatePath(path),
+                            clearPath: () => _.updatePath(null),
+                            onDeleteTap: () => _.deleteImage(true),
+                          ),
+                        ],
                       ),
                 ),
 

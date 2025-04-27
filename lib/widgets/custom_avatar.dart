@@ -8,6 +8,7 @@ class CustomAvatar extends StatelessWidget {
   final double size;
   final Color backgroundColor;
   final BoxBorder? border;
+  final List<BoxShadow>? boxShadow;
   final String? cameraButtonText, galleryButtonText, deleteButtonText;
   final void Function()? onDeleteTap, clearPath;
   final void Function(String? path) onSelectImage;
@@ -25,19 +26,14 @@ class CustomAvatar extends StatelessWidget {
     this.onDeleteTap,
     this.clearPath,
     required this.onSelectImage,
+    this.boxShadow,
   });
 
   /// variables
   final ImagePicker picker = ImagePicker();
 
   final Border defaultBorder = Border.all(color: Colors.transparent, width: 0);
-  final BoxShadow defaultShadow = const BoxShadow(
-    color: Colors.grey,
-    blurRadius: 4,
-    offset: Offset(0, 0),
-    spreadRadius: 0,
-    blurStyle: BlurStyle.outer,
-  );
+
   final ButtonStyle fullWidthButtonstyle = ElevatedButton.styleFrom(
     backgroundColor: Colors.grey.shade200,
     minimumSize: Size(double.infinity, 49),
@@ -156,7 +152,7 @@ class CustomAvatar extends StatelessWidget {
             height: size,
             width: size,
             decoration: BoxDecoration(
-              boxShadow: [defaultShadow],
+              boxShadow: boxShadow,
               color: backgroundColor,
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
@@ -186,7 +182,7 @@ class CustomAvatar extends StatelessWidget {
             height: size,
             width: size,
             decoration: BoxDecoration(
-              boxShadow: [defaultShadow],
+              boxShadow: boxShadow,
               color: backgroundColor,
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
@@ -196,21 +192,7 @@ class CustomAvatar extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: imageUrl!,
-                placeholder: (context, url) {
-                  return Shimmer.fromColors(
-                    baseColor: Colors.white,
-                    highlightColor: Colors.grey.shade100,
-                    child: Container(
-                      height: Get.width * 0.2,
-                      width: Get.width * 0.2,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                    ),
-                  );
-                },
-
+                placeholder: (context, url) => SizedBox(),
                 errorWidget: (context, url, error) {
                   return Padding(
                     padding: EdgeInsets.all(size * 0.2),
@@ -241,7 +223,7 @@ class CustomAvatar extends StatelessWidget {
             width: size,
             padding: EdgeInsets.all(size * 0.2),
             decoration: BoxDecoration(
-              boxShadow: [defaultShadow],
+              boxShadow: boxShadow,
               color: backgroundColor,
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),

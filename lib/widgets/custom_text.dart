@@ -7,6 +7,9 @@ class CustomText extends StatelessWidget {
   /// The main text to be displayed (required).
   final String text;
 
+  /// TextDecoration  decoration
+  final TextDecoration? decoration;
+
   /// The color of the text (optional). If not provided, the default color is black.
   final Color? color;
 
@@ -44,6 +47,7 @@ class CustomText extends StatelessWidget {
     this.height,
     this.fontFamily,
     this.textDirection,
+    this.decoration,
   });
 
   @override
@@ -55,6 +59,7 @@ class CustomText extends StatelessWidget {
       textAlign: textAlign, // Specifies the text alignment.
       overflow: overflow, // Specifies how to handle overflow text.
       style: TextStyle(
+        decoration: decoration,
         fontFamily: fontFamily, // Specifies the font family.
         fontSize: fontSize, // Specifies the font size.
         color:

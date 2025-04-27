@@ -3,6 +3,7 @@ class Product {
   String? name;
   String? description;
   double? price;
+  double? oldPrice;
   String? imageUrl;
   int? quantity;
   String? category;
@@ -16,6 +17,7 @@ class Product {
     this.name,
     this.description,
     this.price,
+    this.oldPrice,
     this.imageUrl,
     this.quantity,
     this.category,
@@ -29,7 +31,8 @@ class Product {
     id = json['id'];
     name = json['name'];
     description = json['description'];
-    price = json['price'];
+    price = json['price']?.toDouble();
+    oldPrice = json['old_price']?.toDouble();
     imageUrl = json['image_url'];
     quantity = json['quantity'];
     category = json['category'];
@@ -44,6 +47,7 @@ class Product {
     data['name'] = name;
     data['description'] = description;
     data['price'] = price;
+    data['old_price'] = oldPrice;
     data['image_url'] = imageUrl;
     data['quantity'] = quantity;
     data['category'] = category;
@@ -56,6 +60,6 @@ class Product {
 
   @override
   String toString() {
-    return 'Product{id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, quantity: $quantity, category: $category, quality: $quality, favoriteCount: $favoriteCount, viewsCount: $viewsCount, createdAt: $createdAt}';
+    return 'Product{id: $id, name: $name, description: $description, price: $price, oldPrice $oldPrice, imageUrl: $imageUrl, quantity: $quantity, category: $category, quality: $quality, favoriteCount: $favoriteCount, viewsCount: $viewsCount, createdAt: $createdAt}';
   }
 }

@@ -21,7 +21,7 @@ class Review {
     id = json['id'];
     userId = json['user_id'];
     productId = json['product_id'];
-    ratingValue = json['rating_value'];
+    ratingValue = json['rating_value'].toDouble();
     comment = json['comment'];
     profiles =
         json['profiles'] != null ? Profiles.fromJson(json['profiles']) : null;

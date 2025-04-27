@@ -8,22 +8,8 @@ class CustomCarouselSlider extends StatefulWidget {
   /// Placeholder widget to display while the carousel is loading.
   final Widget shimmerPlaceholder;
 
+  /// Placeholder widget to display if there is an error loading the products.
   final Widget errorPlaceholder;
-
-  /// Color of the active dot (indicating the current slide).
-  final Color activeDotColor;
-
-  /// Color of the inactive dots (indicating other slides).
-  final Color inactiveDotColor;
-
-  /// Width of the active dot (used to highlight the current slide).
-  final double activeDotWidth;
-
-  /// Width of the inactive dots (used for non-active slides).
-  final double inactiveDotWidth;
-
-  /// Height of all dots (both active and inactive).
-  final double dotHeight;
 
   /// Duration of the animation when switching between slides or dots.
   final Duration animationDuration;
@@ -49,11 +35,6 @@ class CustomCarouselSlider extends StatefulWidget {
   const CustomCarouselSlider({
     super.key,
     required this.products, // List of products to display
-    this.activeDotColor = Colors.blue, // Default active dot color
-    this.inactiveDotColor = Colors.grey, // Default inactive dot color
-    this.activeDotWidth = 10.0, // Default width for active dot
-    this.inactiveDotWidth = 5.0, // Default width for inactive dots
-    this.dotHeight = 5.0, // Default height for all dots
     this.animationDuration = const Duration(
       milliseconds: 300,
     ), // Default animation duration
@@ -199,29 +180,10 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
           // Add animated dots at the bottom of the carousel.
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(_processedProducts.length, (index) {
-                return AnimatedContainer(
-                  duration: widget.animationDuration, // Animate dot changes.
-                  width:
-                      _currentPage == index
-                          ? widget.activeDotWidth
-                          : widget
-                              .inactiveDotWidth, // Highlight the active dot.
-                  height: widget.dotHeight,
-                  margin: EdgeInsets.symmetric(horizontal: 2),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(5),
-                    color:
-                        _currentPage == index
-                            ? widget.activeDotColor
-                            : widget
-                                .inactiveDotColor, // Change dot color based on the current page.
-                  ),
-                );
-              }),
+            child: CustomIndicator(
+              length: _processedProducts.length,
+              currentIndex: _currentPage,
+              animationDuration: widget.animationDuration,
             ),
           ),
         ],

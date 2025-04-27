@@ -3,8 +3,8 @@ import 'package:application/utils/import.dart';
 class CustomPlaceholder {
   static Widget loading({required Widget child}) {
     return Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
+      baseColor: const Color(0xFFF5F5F5),
+      highlightColor: const Color(0xFFEEEEEE),
     child:child );
   }
 }
