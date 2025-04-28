@@ -28,6 +28,16 @@ class ProductDetailsMainController {
 
                         Row(
                           children: [
+                            CustomText(
+                              DataConverter.dateConverter(
+                                date: review.createdAt!,
+                                dateType: DateType.relative,
+                              ),
+                              fontSize: 10,
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(width: 8.0),
+
                             Icon(PhosphorIconsRegular.star, size: 14),
                             const SizedBox(width: 4.0),
                             CustomText(
@@ -57,7 +67,7 @@ class ProductDetailsMainController {
     required int productId,
   }) async {
     final formKey = GlobalKey<FormState>();
-    double ratingValue = 0.0;
+    double ratingValue = 5.0;
     final commetController = TextEditingController();
     Review? review;
     custombottomSheet(
@@ -70,7 +80,7 @@ class ProductDetailsMainController {
                 CustomText('Rating'),
                 SizedBox(height: 10.0),
                 RatingBar.builder(
-                  initialRating: 0.0,
+                  initialRating: 5.0,
                   minRating: 0,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
@@ -89,41 +99,66 @@ class ProductDetailsMainController {
                 SizedBox(height: 10),
                 Form(
                   key: formKey,
-                  child: CustomTextField(
-                    lines: 5,
-                    hintText: 'comment',
-                    keyboardType: TextInputType.text,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Comment is Required ';
-                      }
-                      return null;
-                    },
-                    controller: commetController,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                          hintText: 'comment',
+                          borderRadius: 99,
+                          autofocus: true,
+                          keyboardType: TextInputType.text,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(
+                              controller.maxCommentLenght,
+                            ),
+                          ],
+                          onChanged:
+                              (text) =>
+                                  controller.calculatePercentage(text.length),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Comment is Required ';
+                            }
+                            return null;
+                          },
+                          controller: commetController,
+                        ),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Obx(
+                            () => CustomCicularButton(
+                              backgroundColor: Colors.grey.shade200,
+                              isLoading: controller.sendCommentISLoading.value,
+                              loadingValue: controller.commentLength.value,
+                              onPressed: () async {
+                                if (!formKey.currentState!.validate()) return;
+                                review = Review(
+                                  userId: uid,
+                                  productId: productId,
+                                  ratingValue: ratingValue,
+                                  comment: commetController.text,
+                                );
+
+                                if (review == null) return;
+
+                                final result = await controller.sendReview(
+                                  review!,
+                                );
+                                result ? Get.back() : null;
+                                commetController.clear();
+                              },
+                              child: Icon(PhosphorIconsRegular.paperPlaneRight),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 10.0),
-                Obx(
-                  () => CustomButton(
-                    width: double.infinity,
-                    isLoading: controller.sendCommentISLoading.value,
-                    onPressed: () async {
-                      if (!formKey.currentState!.validate()) return;
-                      review = Review(
-                        userId: uid,
-                        productId: productId,
-                        ratingValue: ratingValue,
-                        comment: commetController.text,
-                      );
-
-                      if (review == null) return;
-
-                      final result = await controller.sendReview(review!);
-                      result ? Get.back() : null;
-                    },
-                    child: CustomText('Send Comments'),
-                  ),
-                ),
               ],
             ),
           ),

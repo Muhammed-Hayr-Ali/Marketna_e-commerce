@@ -3,6 +3,8 @@ import 'package:application/utils/import.dart';
 /// A customizable text field widget that supports various styles and functionalities.
 /// It can be used for password fields, multi-line input, and more.
 class CustomTextField extends StatefulWidget {
+  final double borderRadius;
+
   /// Indicates whether the text field is a password field.
   /// If true, the text will be obscured by default and a visibility toggle icon will be shown.
   final bool isPasswordField;
@@ -43,6 +45,9 @@ class CustomTextField extends StatefulWidget {
   /// The number of lines for the text field. Defaults to 1 for single-line input.
   final int lines;
 
+  ///
+  final bool autofocus;
+
   /// The text direction for the text field. Can be [TextDirection.ltr] or [TextDirection.rtl].
   final TextDirection? textDirection;
 
@@ -67,6 +72,8 @@ class CustomTextField extends StatefulWidget {
     this.inputFormatters,
     this.lines = 1,
     this.textDirection,
+    this.autofocus = false,
+    this.borderRadius = 8,
   });
 
   @override
@@ -135,10 +142,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           textDirection: widget.textDirection,
           child: TextFormField(
             maxLines: widget.lines,
+
             minLines: widget.lines,
             obscuringCharacter: '●', // Character used to obscure password text
             cursorColor: const Color(0xFF7738C7), // Cursor color
-            autofocus: false,
+            autofocus: widget.autofocus,
             controller: widget.controller,
             keyboardType: widget.keyboardType,
             inputFormatters: widget.inputFormatters,
@@ -196,6 +204,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         ),
                       )
                       : null,
+
+              enabledBorder: buildCustomBorder(
+                borderRadius: widget.borderRadius,
+              ),
+              focusedBorder: buildCustomBorder(
+                borderRadius: widget.borderRadius,
+              ),
+              border: buildCustomBorder(borderRadius: widget.borderRadius),
+              errorBorder: buildCustomBorder(borderRadius: widget.borderRadius),
+              disabledBorder: buildCustomBorder(
+                borderRadius: widget.borderRadius,
+              ),
+              focusedErrorBorder: buildCustomBorder(
+                borderRadius: widget.borderRadius,
+              ),
             ),
           ),
         ),

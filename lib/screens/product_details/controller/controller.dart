@@ -20,7 +20,6 @@ class ProductDetailsController extends GetxController {
 
   bool isLoading = true;
   bool isLoadingFRV = true;
-  RxBool sendCommentISLoading = false.obs;
   Product? product;
 
   /// Favorites
@@ -38,9 +37,23 @@ class ProductDetailsController extends GetxController {
   int reviewCount = 0;
   double reviewRating = 0.0;
 
-  bool haveThieProducr = false;
+  ///Poduct Purchases
+  int productPurchasesCount = 0;
+  bool userPurchasedProduct = false;
 
-  RxDouble ratingValue = 0.0.obs;
+  ///bool haveThieProducr = false;
+
+  RxBool sendCommentISLoading = false.obs;
+  RxDouble ratingValue = 5.0.obs;
+  int maxCommentLenght = 500;
+  RxDouble commentLength = 0.0.obs;
+
+  calculatePercentage(int textLemghth) {
+    if (textLemghth > maxCommentLenght) {
+      commentLength.value = 1.0; // لا تتجاوز النسبة 1.0
+    }
+    commentLength.value = textLemghth / maxCommentLenght;
+  }
 
   @override
   void onInit() {
@@ -121,7 +134,7 @@ class ProductDetailsController extends GetxController {
   Future<void> _fitchProductFRV() async {
     try {
       await _getReviews();
-      haveThieProducr = await _getPurchases();
+      await _getPurchases();
       favoriteCount = product!.favoriteCount;
       viewsCount = product!.viewsCount;
     } catch (error) {
@@ -142,7 +155,8 @@ class ProductDetailsController extends GetxController {
       if (response.isEmpty) return;
 
       /// get all reviews
-      reviews = response.map((e) => Review.fromJson(e)).toList();
+      reviews =
+          response.map((e) => Review.fromJson(e)).toList().reversed.toList();
 
       /// check if user has submitted review
       isReviewSubmitted = reviews.any((e) => e.userId == uid);
@@ -160,17 +174,16 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  Future<bool> _getPurchases() async {
+  Future<void> _getPurchases() async {
     try {
       final response = await _supabase
           .from(KEYS.PURCHASES_TABLE)
           .select()
-          .eq(KEYS.PRODUCT_ID, productId)
-          .eq(KEYS.USER_ID, uid);
+          .eq(KEYS.PRODUCT_ID, productId);
+
       if (response.isNotEmpty) {
-        return true;
-      } else {
-        return false;
+        productPurchasesCount = response.length;
+        userPurchasedProduct = response.any((e) => e['user_id'] == uid);
       }
     } catch (error) {
       debugPrint('error : ${error.toString()}');

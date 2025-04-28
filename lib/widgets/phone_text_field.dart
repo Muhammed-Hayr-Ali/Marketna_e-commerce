@@ -228,7 +228,7 @@ class PhoneTextField extends StatelessWidget {
                     keyboardType: TextInputType.phone,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(12),
+                      LengthLimitingTextInputFormatter(500),
                     ],
                     onChanged: (value) {
                       if (value.length == 12) {

@@ -211,7 +211,7 @@ Widget _productFRV() {
                       vertical: 16.0,
                     ),
                     height: 14.0,
-                    width: Get.width * 0.4,
+                    width: Get.width / 2,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(4.0),
@@ -248,6 +248,15 @@ Widget _productFRV() {
                       const SizedBox(width: 4.0),
                       CustomText(
                         DataConverter.formatViews(controller.viewsCount),
+                        fontSize: 10,
+                      ),
+                      const SizedBox(width: 10.0),
+                      Icon(PhosphorIconsRegular.basket, size: 14),
+                      const SizedBox(width: 4.0),
+                      CustomText(
+                        DataConverter.formatViews(
+                          controller.productPurchasesCount,
+                        ),
                         fontSize: 10,
                       ),
                     ],
@@ -450,26 +459,28 @@ Widget _comments() {
     child: GetBuilder<ProductDetailsController>(
       builder: (controller) {
         if (contrller.isLoadingFRV) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(radius: 20, backgroundColor: Colors.grey.shade200),
-              SizedBox(width: 16),
-              Expanded(
-                child: Container(
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(4.0),
+          return CustomPlaceholder.loading(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(radius: 20, backgroundColor: Colors.grey.shade200),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Container(
+                    height: 69.0,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         } else if (contrller.reviews.isEmpty) {
           return Center(child: CustomText('No comments yet'));
         } else {
-          late Review review = contrller.reviews.last;
+          late Review review = contrller.reviews.first;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -555,7 +566,7 @@ Widget _writeComment() {
   return GetBuilder<ProductDetailsController>(
     builder:
         (controller) =>
-            controller.haveThieProducr
+            controller.userPurchasedProduct
                 ? Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Row(
