@@ -29,6 +29,8 @@ dependencies:
   flutter_pin_code_fields: ^2.2.0
   geolocator: ^13.0.4
   phosphor_flutter: ^2.1.0
+  flutter_rating_bar: ^4.0.1
+  date_time_format: ^2.0.1
 
 
 

@@ -1,4 +1,3 @@
-import 'package:application/models/review_model.dart';
 import 'package:application/utils/import.dart';
 
 class ProductDetailsController extends GetxController {
@@ -17,9 +16,11 @@ class ProductDetailsController extends GetxController {
   final _supabase = Supabase.instance.client;
   final _storage = GetStorage();
   String uid = '';
+  User? user;
 
   bool isLoading = true;
-  bool reviewsLoading = true;
+  bool isLoadingFRV = true;
+  RxBool sendCommentISLoading = false.obs;
   Product? product;
 
   /// Favorites
@@ -31,19 +32,24 @@ class ProductDetailsController extends GetxController {
   int? viewsCount = 0;
 
   /// Reviews
+  bool reviewsLoading = true;
   List<Review> reviews = [];
   bool isReviewSubmitted = false;
   int reviewCount = 0;
   double reviewRating = 0.0;
 
+  bool haveThieProducr = false;
+
+  RxDouble ratingValue = 0.0.obs;
+
   @override
   void onInit() {
-    uid = _supabase.auth.currentUser!.id;
+    user = _supabase.auth.currentUser!;
+    uid = user!.id;
     images.insert(0, imageUrl);
     _fitchProductImages();
     _checkIfProductFavorited();
     _fitchProductDetails();
-    _getReviews();
 
     // debugPrint('Initializing ProductDetails');
     // _initializing();
@@ -66,15 +72,28 @@ class ProductDetailsController extends GetxController {
           .eq(KEYS.PRODUCT_ID, productId);
 
       if (response.isEmpty) return;
-      
+
       List<String> imagesList =
           response.map((e) => e['image_url'] as String).toList();
 
       images.addAll(imagesList);
       imagesCount.value = images.length;
-      
     } catch (error) {
       debugPrint('Error initializing product images: $error');
+    } finally {
+      update();
+    }
+  }
+
+  void _checkIfProductFavorited() {
+    try {
+      final result =
+          _storage.read(AppStorageKey.FAVORITE_PRODUCTS_KEY + uid) ?? '[]';
+      favoriteProducts = List<int>.from(jsonDecode(result));
+      isProductFavorited = favoriteProducts.contains(productId);
+    } catch (error) {
+      debugPrint('error : ${error.toString()}');
+      throw 'An error occurred while favorites';
     } finally {
       update();
     }
@@ -90,8 +109,7 @@ class ProductDetailsController extends GetxController {
       if (response.isEmpty) return;
 
       product = Product.fromJson(response[0]);
-      viewsCount = product!.viewsCount ?? 0;
-      favoriteCount = product!.favoriteCount ?? 0;
+      _fitchProductFRV();
     } catch (error) {
       debugPrint('Error initializing product details: $error');
     } finally {
@@ -100,16 +118,16 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  // Check if Product favorited
-  void _checkIfProductFavorited() {
+  Future<void> _fitchProductFRV() async {
     try {
-      final result =
-          _storage.read(AppStorageKey.FAVORITE_PRODUCTS_KEY + uid) ?? '[]';
-      favoriteProducts = List<int>.from(jsonDecode(result));
-      isProductFavorited = favoriteProducts.contains(productId);
+      await _getReviews();
+      haveThieProducr = await _getPurchases();
+      favoriteCount = product!.favoriteCount;
+      viewsCount = product!.viewsCount;
     } catch (error) {
       debugPrint('error : ${error.toString()}');
     } finally {
+      isLoadingFRV = false;
       update();
     }
   }
@@ -137,10 +155,26 @@ class ProductDetailsController extends GetxController {
           reviews.map((e) => e.ratingValue ?? 0.0).reduce((a, b) => a + b) /
           reviews.length;
     } catch (error) {
-      debugPrint('Error getting review rating: $error');
-    } finally {
-      reviewsLoading = false;
-      update();
+      debugPrint('error : ${error.toString()}');
+      throw 'An error occurred while reviews';
+    }
+  }
+
+  Future<bool> _getPurchases() async {
+    try {
+      final response = await _supabase
+          .from(KEYS.PURCHASES_TABLE)
+          .select()
+          .eq(KEYS.PRODUCT_ID, productId)
+          .eq(KEYS.USER_ID, uid);
+      if (response.isNotEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      debugPrint('error : ${error.toString()}');
+      throw 'An error occurred while Purchases';
     }
   }
 
@@ -159,18 +193,38 @@ class ProductDetailsController extends GetxController {
     update();
   }
 
+  Future<bool> sendReview(Review review) async {
+    sendCommentISLoading.value = true;
+    try {
+      await _supabase.from(KEYS.REVIEWS_TABLE).insert(review.toJson());
+      await _fitchProductFRV();
+      ratingValue.value = 0.0;
+      return true;
+    } catch (error) {
+      debugPrint('error : ${error.toString()}');
+      CustomNotification.showSnackbar(message: 'send Comment Error');
+      return false;
+    } finally {
+      sendCommentISLoading.value = false;
+    }
+  }
+
   Future<void> _saveData() async {
-    await _storage.write(
-      AppStorageKey.FAVORITE_PRODUCTS_KEY + uid,
-      jsonEncode(favoriteProducts),
-    );
-    if (product == null) return;
-    await _supabase
-        .from(KEYS.PRODUCTS_TABLE)
-        .update({
-          KEYS.FAVORITE_COUNT: favoriteCount,
-          KEYS.VIEWS_COUNT: (viewsCount ?? 0) + 1,
-        })
-        .eq(KEYS.ID, productId);
+    try {
+      await _storage.write(
+        AppStorageKey.FAVORITE_PRODUCTS_KEY + uid,
+        jsonEncode(favoriteProducts),
+      );
+      if (product == null) return;
+      await _supabase
+          .from(KEYS.PRODUCTS_TABLE)
+          .update({
+            KEYS.FAVORITE_COUNT: favoriteCount,
+            KEYS.VIEWS_COUNT: (viewsCount ?? 0) + 1,
+          })
+          .eq(KEYS.ID, productId);
+    } catch (error) {
+      debugPrint('error : ${error.toString()}');
+    }
   }
 }

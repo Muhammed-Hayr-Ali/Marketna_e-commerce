@@ -30,15 +30,13 @@ class Review {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['user_id'] = userId;
     data['product_id'] = productId;
-    data['rating_value'] = ratingValue;
+    data['rating_value'] = (ratingValue ?? 0).toDouble();
     data['comment'] = comment;
     if (profiles != null) {
       data['profiles'] = profiles!.toJson();
     }
-    data['created_at'] = createdAt;
     return data;
   }
 

@@ -8,7 +8,7 @@ class AddressCard extends StatelessWidget {
   void _openAddressDetails() {
     custombottomSheet(
       children: [
-        Expanded(
+        Flexible(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(

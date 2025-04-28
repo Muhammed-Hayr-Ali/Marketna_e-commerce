@@ -24,47 +24,57 @@ class ProductDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // ==============================
-            // ** Product Images **
-            // ==============================
-            SizedBox(
-              height: Get.width * 1.1,
-              width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ==============================
+              // ** Product Images **
+              // ==============================
+              SizedBox(
+                height: Get.width * 1.1,
+                width: double.infinity,
 
-              child: Stack(
-                children: [
-                  /// Images
-                  _productImages(productId: product[KEYS.ID]),
+                child: Stack(
+                  children: [
+                    /// Images
+                    _productImages(productId: product[KEYS.ID]),
 
-                  /// Top Bar
-                  _topBar(),
+                    /// Top Bar
+                    _topBar(),
 
-                  /// Image Cont
-                  _indicator(),
-                ],
+                    /// Image Cont
+                    _indicator(),
+                  ],
+                ),
               ),
-            ),
-
-            // ==============================
-            // ** Product Details **
-            // ==============================
-            GetBuilder<ProductDetailsController>(
-              builder:
-                  (controller) =>
-                      controller.isLoading
-                          /// Loading Placeholder
-                          ? _loadingPlaceholder()
-                          : controller.product == null
-                          /// Error Placeholder
-                          ? _errorPlaceholder()
-                          /// Product Details
-                          : _productDetails(controller),
-            ),
-          ],
+              // ==============================
+              // ** FavCont Reviews Views **
+              // ==============================
+              _productFRV(),
+              // ==============================
+              // ** Product Details **
+              // ==============================
+              GetBuilder<ProductDetailsController>(
+                builder:
+                    (controller) =>
+                        controller.isLoading
+                            /// Loading Placeholder
+                            ? _loadingPlaceholder()
+                            : controller.product == null
+                            /// Error Placeholder
+                            ? _errorPlaceholder()
+                            /// Product Details
+                            : _productDetails(controller),
+              ),
+              // ==============================
+              // ** Comments **
+              // ==============================
+              _comments(),
+              _writeComment(),
+            ],
+          ),
         ),
       ),
     );
@@ -186,6 +196,67 @@ Widget _topBar() {
 }
 
 // ==============================
+// ** FavCont Reviews Views **
+// ==============================
+
+Widget _productFRV() {
+  return GetBuilder<ProductDetailsController>(
+    builder:
+        (controller) =>
+            controller.isLoadingFRV
+                ? CustomPlaceholder.loading(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 18.0,
+                      vertical: 16.0,
+                    ),
+                    height: 14.0,
+                    width: Get.width * 0.4,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                )
+                : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0,
+                    vertical: 16.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(PhosphorIconsRegular.heart, size: 14),
+                      const SizedBox(width: 4.0),
+                      CustomText('${controller.favoriteCount}', fontSize: 10),
+                      const SizedBox(width: 10.0),
+                      Icon(PhosphorIconsRegular.star, size: 14),
+                      const SizedBox(width: 4.0),
+                      CustomText(
+                        controller.reviewRating.toStringAsFixed(1),
+                        fontSize: 10,
+                      ),
+                      const SizedBox(width: 4.0),
+                      CustomText(
+                        '(${controller.reviewCount} Reviews)',
+                        fontSize: 8,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(width: 10.0),
+                      Icon(PhosphorIconsRegular.eye, size: 14),
+                      const SizedBox(width: 4.0),
+                      CustomText(
+                        DataConverter.formatViews(controller.viewsCount),
+                        fontSize: 10,
+                      ),
+                    ],
+                  ),
+                ),
+  );
+}
+
+// ==============================
 // ** Product Details **
 // ==============================
 
@@ -198,17 +269,6 @@ Widget _loadingPlaceholder() {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// Reviews
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-            height: 18.0,
-            width: Get.width * 0.4,
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(4.0),
-            ),
-          ),
-
           /// Product Name
           Container(
             height: 29.0,
@@ -271,38 +331,38 @@ Widget _productDetails(var controller) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         /// Reviews
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Icon(PhosphorIconsRegular.heart, size: 14),
-              const SizedBox(width: 4.0),
-              CustomText('${controller.favoriteCount}', fontSize: 10),
-              const SizedBox(width: 10.0),
-              Icon(PhosphorIconsRegular.star, size: 14),
-              const SizedBox(width: 4.0),
-              CustomText(
-                controller.reviewRating.toStringAsFixed(1),
-                fontSize: 10,
-              ),
-              const SizedBox(width: 4.0),
-              CustomText(
-                '(${controller.reviewCount} Reviews)',
-                fontSize: 8,
-                color: Colors.grey,
-              ),
-              const SizedBox(width: 10.0),
-              Icon(PhosphorIconsRegular.eye, size: 14),
-              const SizedBox(width: 4.0),
-              CustomText(
-                DataConverter.formatViews(controller.viewsCount),
-                fontSize: 10,
-              ),
-            ],
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     crossAxisAlignment: CrossAxisAlignment.end,
+        //     children: [
+        //       Icon(PhosphorIconsRegular.heart, size: 14),
+        //       const SizedBox(width: 4.0),
+        //       CustomText('${controller.favoriteCount}', fontSize: 10),
+        //       const SizedBox(width: 10.0),
+        //       Icon(PhosphorIconsRegular.star, size: 14),
+        //       const SizedBox(width: 4.0),
+        //       CustomText(
+        //         controller.reviewRating.toStringAsFixed(1),
+        //         fontSize: 10,
+        //       ),
+        //       const SizedBox(width: 4.0),
+        //       CustomText(
+        //         '(${controller.reviewCount} Reviews)',
+        //         fontSize: 8,
+        //         color: Colors.grey,
+        //       ),
+        //       const SizedBox(width: 10.0),
+        //       Icon(PhosphorIconsRegular.eye, size: 14),
+        //       const SizedBox(width: 4.0),
+        //       CustomText(
+        //         DataConverter.formatViews(controller.viewsCount),
+        //         fontSize: 10,
+        //       ),
+        //     ],
+        //   ),
+        // ),
 
         /// Product Name
         CustomText(
@@ -376,5 +436,163 @@ Widget _productDetails(var controller) {
         Text(controller.product!.description ?? 'No Description'),
       ],
     ),
+  );
+}
+
+// ==============================
+// ** Comments **
+// ==============================
+Widget _comments() {
+  final contrller = Get.find<ProductDetailsController>();
+  final minContrller = ProductDetailsMainController();
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 18.0),
+    child: GetBuilder<ProductDetailsController>(
+      builder: (controller) {
+        if (contrller.isLoadingFRV) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(radius: 20, backgroundColor: Colors.grey.shade200),
+              SizedBox(width: 16),
+              Expanded(
+                child: Container(
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                ),
+              ),
+            ],
+          );
+        } else if (contrller.reviews.isEmpty) {
+          return Center(child: CustomText('No comments yet'));
+        } else {
+          late Review review = contrller.reviews.last;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextButton(
+                onPressed: minContrller.openCommentsList,
+                child: CustomText('Comments (${controller.reviews.length})'),
+              ),
+              SizedBox(height: 8.0),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.grey.shade100,
+                    backgroundImage: NetworkImage(review.profiles!.avatar!),
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(review.profiles!.name ?? ''),
+
+                              Row(
+                                children: [
+                                  CustomText(
+                                    DataConverter.dateConverter(
+                                      date: review.createdAt!,
+                                      dateType: DateType.relative,
+                                    ),
+                                    fontSize: 10,
+                                    color: Colors.grey,
+                                  ),
+                                  const SizedBox(width: 8.0),
+
+                                  Icon(PhosphorIconsRegular.star, size: 14),
+                                  const SizedBox(width: 4.0),
+                                  CustomText(
+                                    review.ratingValue.toString(),
+                                    fontSize: 10,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Divider(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CustomText(
+                              review.comment ?? '',
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        }
+      },
+    ),
+  );
+}
+
+Widget _writeComment() {
+  final minContrller = ProductDetailsMainController();
+
+  return GetBuilder<ProductDetailsController>(
+    builder:
+        (controller) =>
+            controller.haveThieProducr
+                ? Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.grey.shade100,
+                        backgroundImage: NetworkImage(
+                          DataConverter.getAvatarUrl(
+                            controller.user!.userMetadata!,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: CustomButton(
+                          onPressed:
+                              () => minContrller.writeReview(
+                                uid: controller.uid,
+                                productId: controller.productId,
+                              ),
+                          buttonColor: Colors.grey.shade100,
+                          child: Row(
+                            children: [
+                              CustomText(
+                                'Write Comment',
+                                color: Colors.grey,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                : SizedBox.shrink(),
   );
 }
