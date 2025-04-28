@@ -69,6 +69,7 @@ class ProductDetailsMainController {
     final formKey = GlobalKey<FormState>();
     double ratingValue = 5.0;
     final commetController = TextEditingController();
+    controller.commentLength.value = 0;
     Review? review;
     custombottomSheet(
       children: [
@@ -100,6 +101,7 @@ class ProductDetailsMainController {
                 Form(
                   key: formKey,
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: CustomTextField(
@@ -124,12 +126,13 @@ class ProductDetailsMainController {
                           controller: commetController,
                         ),
                       ),
-
+                      SizedBox(width: 6.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Obx(
                             () => CustomCicularButton(
+                              size: 24,
                               backgroundColor: Colors.grey.shade200,
                               isLoading: controller.sendCommentISLoading.value,
                               loadingValue: controller.commentLength.value,

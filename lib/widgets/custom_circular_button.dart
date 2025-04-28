@@ -28,12 +28,14 @@ class CustomCicularButton extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        isLoading
-            ? CircularProgressIndicator(strokeWidth: 1.0)
-            : CircularProgressIndicator(
-              strokeWidth: 1.0,
-              value: loadingValue ?? 0.0,
-            ),
+        SizedBox(height: size * 2, width: size * 2,
+          child: isLoading
+              ? CircularProgressIndicator(strokeWidth: 1.0)
+              : CircularProgressIndicator(
+                strokeWidth: 1.0,
+                value: loadingValue ?? 0.0,
+              ),
+        ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.all(padding),
@@ -42,9 +44,9 @@ class CustomCicularButton extends StatelessWidget {
               color: borderColor ?? Colors.transparent,
             ),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            minimumSize: Size.fromRadius(size - 3),
-            maximumSize: Size.fromRadius(size - 3),
-            fixedSize: Size.fromRadius(size - 3),
+            minimumSize: Size.fromRadius(size),
+            maximumSize: Size.fromRadius(size),
+            fixedSize: Size.fromRadius(size),
             backgroundColor: backgroundColor ?? Colors.grey.shade200,
             shadowColor: Colors.transparent,
             elevation: 0,
