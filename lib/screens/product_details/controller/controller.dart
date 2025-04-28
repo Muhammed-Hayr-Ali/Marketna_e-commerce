@@ -211,7 +211,7 @@ class ProductDetailsController extends GetxController {
     try {
       await _supabase.from(KEYS.REVIEWS_TABLE).insert(review.toJson());
       await _fitchProductFRV();
-      ratingValue.value = 0.0;
+      ratingValue.value = 5.0;
       return true;
     } catch (error) {
       debugPrint('error : ${error.toString()}');

@@ -69,7 +69,7 @@ class ProductDetailsMainController {
     final formKey = GlobalKey<FormState>();
     double ratingValue = 5.0;
     final commetController = TextEditingController();
-    controller.commentLength.value = 0;
+    controller.commentLength.value = 0.0;
     Review? review;
     custombottomSheet(
       children: [
@@ -78,25 +78,27 @@ class ProductDetailsMainController {
             child: Column(
               children: [
                 SizedBox(height: 10.0),
-                CustomText('Rating'),
-                SizedBox(height: 10.0),
-                RatingBar.builder(
-                  initialRating: 5.0,
-                  minRating: 0,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder:
-                      (context, _) => Icon(Icons.star, color: Colors.amber),
-                  itemSize: 28,
-                  onRatingUpdate: (rating) {
-                    ratingValue = rating;
-                    controller.ratingValue.value = rating;
-                  },
+                Row(
+                  children: [
+                    RatingBar.builder(
+                      initialRating: 5.0,
+                      minRating: 0,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder:
+                          (context, _) => Icon(Icons.star, color: Colors.amber),
+                      itemSize: 28,
+                      onRatingUpdate: (rating) {
+                        ratingValue = rating;
+                        controller.ratingValue.value = rating;
+                      },
+                    ),
+                    Spacer(),
+                    Obx(() => CustomText(controller.ratingValue.toString())),
+                  ],
                 ),
-                SizedBox(height: 10.0),
-                Obx(() => CustomText(controller.ratingValue.toString())),
                 SizedBox(height: 10),
                 Form(
                   key: formKey,
