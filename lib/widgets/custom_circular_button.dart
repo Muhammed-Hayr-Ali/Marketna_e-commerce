@@ -8,7 +8,9 @@ class CustomCicularButton extends StatelessWidget {
   final Color? backgroundColor;
   final double borderWidth;
   final Color? borderColor;
-  final double padding;
+  final double progressWidth;
+  final Color? progressColor;
+  final double progressPadding;
   final void Function()? onPressed;
   const CustomCicularButton({
     super.key,
@@ -18,35 +20,49 @@ class CustomCicularButton extends StatelessWidget {
     this.onPressed,
     this.borderWidth = 0.0,
     this.borderColor,
-    this.padding = 0,
+    this.progressPadding = 0,
     this.isLoading = false,
     this.loadingValue,
+    this.progressWidth = 1,
+    this.progressColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    double borderSize = size + borderWidth;
     return Stack(
       alignment: Alignment.center,
       children: [
-        SizedBox(height: size * 2, width: size * 2,
-          child: isLoading
-              ? CircularProgressIndicator(strokeWidth: 1.0)
-              : CircularProgressIndicator(
-                strokeWidth: 1.0,
-                value: loadingValue ?? 0.0,
-              ),
+        Container(
+          height: borderSize,
+          width: borderSize,
+          decoration: BoxDecoration(
+            color: borderColor,
+            borderRadius: BorderRadius.circular(borderSize),
+          ),
+        ),
+        SizedBox(
+          height: size + progressWidth + progressPadding,
+          width: size + progressWidth + progressPadding,
+          child:
+              isLoading
+                  ? CircularProgressIndicator(
+                    strokeWidth: progressWidth,
+                    color: progressColor,
+                  )
+                  : CircularProgressIndicator(
+                    strokeWidth: progressWidth,
+                    color: progressColor,
+                    value: loadingValue ?? 0.0,
+                  ),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(padding),
-            side: BorderSide(
-              width: borderWidth,
-              color: borderColor ?? Colors.transparent,
-            ),
+            padding: EdgeInsets.all(0),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            minimumSize: Size.fromRadius(size),
-            maximumSize: Size.fromRadius(size),
-            fixedSize: Size.fromRadius(size),
+            minimumSize: Size.fromRadius(size / 2),
+            maximumSize: Size.fromRadius(size / 2),
+            fixedSize: Size.fromRadius(size / 2),
             backgroundColor: backgroundColor ?? Colors.grey.shade200,
             shadowColor: Colors.transparent,
             elevation: 0,
