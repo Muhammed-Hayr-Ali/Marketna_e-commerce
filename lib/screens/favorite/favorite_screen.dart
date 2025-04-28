@@ -21,7 +21,6 @@ class FavoriteScreen extends StatelessWidget {
             size: 100,
             borderColor: const Color.fromARGB(255, 229, 230, 229),
             progressWidth: 5,
-            progressColor: Colors.red,
             progressPadding: 5,
             borderWidth: 10,
             loadingValue: 0.5,

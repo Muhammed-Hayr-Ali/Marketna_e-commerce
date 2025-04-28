@@ -30,6 +30,7 @@ custombottomSheet<T>({required List<Widget> children, String? title}) {
                               ),
                               Spacer(),
                               CustomCicularButton(
+                                size: 30,
                                 backgroundColor: Colors.grey.shade200,
                                 onPressed: Get.back,
                                 child: Icon(Icons.close),

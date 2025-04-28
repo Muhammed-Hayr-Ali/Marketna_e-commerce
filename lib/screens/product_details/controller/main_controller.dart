@@ -134,7 +134,8 @@ class ProductDetailsMainController {
                         children: [
                           Obx(
                             () => CustomCicularButton(
-                              size: 24,
+                              size: 47,
+
                               backgroundColor: Colors.grey.shade200,
                               isLoading: controller.sendCommentISLoading.value,
                               loadingValue: controller.commentLength.value,

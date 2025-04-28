@@ -168,7 +168,7 @@ Widget _topBar() {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomCicularButton(
-          size: 20,
+          size: 40,
           backgroundColor: Colors.white54,
           child: Icon(Icons.arrow_back, size: 20.0, color: Colors.white),
           onPressed: () => Get.back(),
@@ -177,7 +177,7 @@ Widget _topBar() {
         GetBuilder<ProductDetailsController>(
           builder:
               (controller) => CustomCicularButton(
-                size: 20,
+                size: 40,
                 backgroundColor: Colors.white54,
                 onPressed: controller.toggleFavorite,
                 child: Icon(

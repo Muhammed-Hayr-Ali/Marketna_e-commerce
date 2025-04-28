@@ -9,7 +9,6 @@ class CustomCicularButton extends StatelessWidget {
   final double borderWidth;
   final Color? borderColor;
   final double progressWidth;
-  final Color? progressColor;
   final double progressPadding;
   final void Function()? onPressed;
   const CustomCicularButton({
@@ -24,7 +23,6 @@ class CustomCicularButton extends StatelessWidget {
     this.isLoading = false,
     this.loadingValue,
     this.progressWidth = 1,
-    this.progressColor,
   });
 
   @override
@@ -48,11 +46,9 @@ class CustomCicularButton extends StatelessWidget {
               isLoading
                   ? CircularProgressIndicator(
                     strokeWidth: progressWidth,
-                    color: progressColor,
                   )
                   : CircularProgressIndicator(
                     strokeWidth: progressWidth,
-                    color: progressColor,
                     value: loadingValue ?? 0.0,
                   ),
         ),
