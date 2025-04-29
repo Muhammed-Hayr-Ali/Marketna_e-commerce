@@ -11,8 +11,7 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    ///TODO:: DELETE THIS LINE
-    ///initializeApp();
+    initializeApp();
     super.onInit();
   }
 

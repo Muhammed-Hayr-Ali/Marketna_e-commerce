@@ -8,7 +8,8 @@ class CustomCicularButton extends StatelessWidget {
   final Color? backgroundColor;
   final double borderWidth;
   final Color? borderColor;
-  final List<Color>? progressColors;
+  final Color progressColor;
+  final List<Color> progressMultiColors;
   final double progressWidth;
   final double progressPadding;
   final void Function()? onPressed;
@@ -24,23 +25,21 @@ class CustomCicularButton extends StatelessWidget {
     this.isLoading = false,
     this.loadingValue,
     this.progressWidth = 1,
-    this.progressColors = const [Colors.orange, Colors.green, Colors.blue],
+    this.progressMultiColors = [],
+    this.progressColor = AppColors.primaryColor,
   });
 
-  List<Color> get defaultColors => const [
-    Colors.orange,
-    Colors.green,
-    Colors.blue,
-  ];
-  Color getDynamicColor(double value, List<Color> colors) {
-    final colorList = colors.length == 3 ? colors : defaultColors;
+  Color getDynamicColor(double value, List<Color>? colors) {
+    if (colors == null || colors.isEmpty || colors.length != 3) {
+      return progressColor;
+    }
 
     if (value <= 0.33) {
-      return colorList[0];
+      return colors[0];
     } else if (value <= 0.66) {
-      return colorList[1];
+      return colors[1];
     } else {
-      return colorList[2];
+      return colors[2];
     }
   }
 
@@ -73,11 +72,11 @@ class CustomCicularButton extends StatelessWidget {
                         tween: ColorTween(
                           begin: getDynamicColor(
                             0.0,
-                            progressColors ?? defaultColors,
+                            progressMultiColors ?? [],
                           ),
                           end: getDynamicColor(
                             value,
-                            progressColors ?? defaultColors,
+                            progressMultiColors ?? [],
                           ),
                         ),
                         duration: const Duration(milliseconds: 500),

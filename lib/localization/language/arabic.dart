@@ -1,5 +1,30 @@
+import 'package:application/utils/import.dart';
+
 class Arabic {
   Map<String, String> get keys => {
+    ///===========================================================================
+    /// Splash Screen
+    ConstantsText.POWERED_BY_PST: 'Powered By PST',
+    ConstantsText.RETRY: 'إعادة المحاولة',
+
+    ///===========================================================================
+    /// Onboarding
+    ConstantsText.ONBOARDING_TITLE_1: 'التسوق عبر الإنترنت',
+    ConstantsText.ONBOARDING_TITLE_2: 'تتبع الطلب',
+    ConstantsText.ONBOARDING_TITLE_3: 'احصل على طلبك',
+    ConstantsText.ONBOARDING_SUBTITLE_1:
+        'استمتع بتجربة تسوق فريدة وسهلة داخل تطبيقنا',
+    ConstantsText.ONBOARDING_SUBTITLE_2: 'تتبع الشحنات في الوقت الفعلي',
+    ConstantsText.ONBOARDING_SUBTITLE_3: 'تسوق منتجاتك المفضلة بأمان وثقة',
+
+    ///===========================================================================
+    /// General Text
+    ConstantsText.SKIP: 'تخطي',
+
+    ///===========================================================================
+
+    /// Onboarding
+
     /// على متن التطبيق (Onboarding)
     'Purchase Online': 'التسوق عبر الإنترنت',
     'Track order': 'تتبع الطلب',
@@ -33,7 +58,6 @@ class Arabic {
     'login': 'تسجيل الدخول',
     'sign_up': 'إنشاء حساب',
     'update': 'تحديث',
-    'retry': 'إعادة المحاولة',
     'or': '- أو -',
     'sign_in_with': 'تسجيل الدخول باستخدام',
     'logout': 'تسجيل الخروج',
@@ -58,7 +82,7 @@ class Arabic {
     'next': 'التالي',
     'previous': 'السابق',
     'done': 'تم',
-    'skip': 'تخطي',
+
     'camera': 'الكاميرا',
     'gallery': 'المعرض',
     'delete_image': 'حذف الصورة',

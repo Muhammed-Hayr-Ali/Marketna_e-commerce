@@ -6,7 +6,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: emptyAppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,6 +25,7 @@ class SplashScreen extends StatelessWidget {
                       child: CustomText(
                         _.errorMessage,
                         fontSize: 12.0,
+                        color: AppColors.red,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -41,15 +42,20 @@ class SplashScreen extends StatelessWidget {
                           ),
                         )
                         : CustomButton(
+                          height: 40,
                           borderRadius: 60,
                           onPressed: _.retryInitialization,
-                          child: CustomText('retry'.tr, fontSize: 10),
+                          child: CustomText(ConstantsText.RETRY, fontSize: 10),
                         ),
                   ],
                 ),
               ),
             ),
-            CustomText('Powered by PST', fontSize: 8, color: Colors.black),
+            CustomText(
+              ConstantsText.POWERED_BY_PST,
+              fontSize: 8,
+              color: Colors.black,
+            ),
           ],
         ),
       ),
