@@ -46,11 +46,14 @@ export 'package:application/screens/main/controllrt/generate_route.dart';
 export 'package:application/screens/main/controllrt/main_controller.dart';
 export 'package:application/screens/main/main_screen.dart';
 export 'package:application/screens/notification/notification_screen.dart';
+export 'package:application/screens/onboarding/controller/controller.dart';
 export 'package:application/screens/onboarding/onboarding_screen.dart';
 export 'package:application/screens/onboarding/widgets/indicator.dart';
 export 'package:application/screens/onboarding/widgets/page_builder.dart';
 export 'package:application/screens/product_details/controller/controller.dart';
 export 'package:application/screens/product_details/controller/main_controller.dart';
+export 'package:application/screens/product_details/product_details_screen.dart';
+export 'package:application/screens/product_details/reviews_screen.dart';
 export 'package:application/screens/profile_edit/controller/controller.dart';
 export 'package:application/screens/profile_edit/controller/main_controller.dart';
 export 'package:application/screens/profile_edit/editprofilescreen.dart';
@@ -62,8 +65,6 @@ export 'package:application/screens/settings/settings_screen.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/data_converter.dart';
-export 'package:application/screens/product_details/product_details_screen.dart';
-export 'package:application/screens/product_details/reviews_screen.dart';
 // ==============================
 // **Services**
 // ==============================
@@ -83,9 +84,9 @@ export 'package:application/themes/theme_controller.dart';
 export 'package:application/utils/app_assets.dart';
 export 'package:application/utils/app_constants.dart';
 export 'package:application/utils/app_storage_key.dart';
+export 'package:application/utils/app_string/app_exception.dart';
 export 'package:application/utils/colors.dart';
 export 'package:application/utils/keys.dart';
-export 'package:application/utils/app_string/app_exception.dart';
 // ==============================
 // **Widgets**
 // ==============================

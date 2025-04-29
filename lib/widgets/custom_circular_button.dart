@@ -8,12 +8,13 @@ class CustomCicularButton extends StatelessWidget {
   final Color? backgroundColor;
   final double borderWidth;
   final Color? borderColor;
+  final List<Color>? progressColors;
   final double progressWidth;
   final double progressPadding;
   final void Function()? onPressed;
   const CustomCicularButton({
     super.key,
-    this.size = 16,
+    this.size = 64,
     this.backgroundColor,
     this.child,
     this.onPressed,
@@ -23,11 +24,30 @@ class CustomCicularButton extends StatelessWidget {
     this.isLoading = false,
     this.loadingValue,
     this.progressWidth = 1,
+    this.progressColors = const [Colors.orange, Colors.green, Colors.blue],
   });
+
+  List<Color> get defaultColors => const [
+    Colors.orange,
+    Colors.green,
+    Colors.blue,
+  ];
+  Color getDynamicColor(double value, List<Color> colors) {
+    final colorList = colors.length == 3 ? colors : defaultColors;
+
+    if (value <= 0.33) {
+      return colorList[0];
+    } else if (value <= 0.66) {
+      return colorList[1];
+    } else {
+      return colorList[2];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     double borderSize = size + borderWidth;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -44,25 +64,45 @@ class CustomCicularButton extends StatelessWidget {
           width: size + progressWidth + progressPadding,
           child:
               isLoading
-                  ? CircularProgressIndicator(
-                    strokeWidth: progressWidth,
-                  )
-                  : CircularProgressIndicator(
-                    strokeWidth: progressWidth,
-                    value: loadingValue ?? 0.0,
+                  ? CircularProgressIndicator(strokeWidth: progressWidth)
+                  : TweenAnimationBuilder<double>(
+                    tween: Tween<double>(begin: 0.0, end: loadingValue ?? 0.0),
+                    duration: const Duration(milliseconds: 500),
+                    builder: (context, value, child) {
+                      return TweenAnimationBuilder<Color?>(
+                        tween: ColorTween(
+                          begin: getDynamicColor(
+                            0.0,
+                            progressColors ?? defaultColors,
+                          ),
+                          end: getDynamicColor(
+                            value,
+                            progressColors ?? defaultColors,
+                          ),
+                        ),
+                        duration: const Duration(milliseconds: 500),
+                        builder: (context, color, child) {
+                          return CircularProgressIndicator(
+                            value: value,
+                            strokeWidth: progressWidth,
+                            valueColor: AlwaysStoppedAnimation(color),
+                          );
+                        },
+                      );
+                    },
                   ),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(0),
+            padding: EdgeInsets.zero,
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             minimumSize: Size.fromRadius(size / 2),
             maximumSize: Size.fromRadius(size / 2),
-            fixedSize: Size.fromRadius(size / 2),
+            fixedSize: Size(size, size),
             backgroundColor: backgroundColor ?? Colors.grey.shade200,
             shadowColor: Colors.transparent,
             elevation: 0,
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
           ),
           onPressed: onPressed,
           child: child ?? Container(),
