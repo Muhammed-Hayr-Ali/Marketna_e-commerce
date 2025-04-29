@@ -1,4 +1,5 @@
 import 'package:application/utils/import.dart';
+import 'package:application/utils/storage_key.dart';
 
 enum CountryPickerMode { address, code }
 
@@ -64,7 +65,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     // Retrieve locale from storage or default to device locale
     local =
-        _storage.read(AppStorageKey.LOCALE) ??
+        _storage.read(STORAGE_KEYS.LOCALE) ??
         Get.deviceLocale?.languageCode ??
         'en';
 

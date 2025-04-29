@@ -27,7 +27,7 @@ class EditProfileMainController {
 
   DateTimePickerLocale _getLocale() {
     final String localeCode =
-        _storage.read<String>(AppStorageKey.LOCALE) ?? Get.deviceLocale!.languageCode;
+        _storage.read<String>(STORAGE_KEYS.LOCALE) ?? Get.deviceLocale!.languageCode;
 
     switch (localeCode) {
       case 'ar':

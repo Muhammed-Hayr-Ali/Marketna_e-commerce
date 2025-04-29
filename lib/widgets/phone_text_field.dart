@@ -1,5 +1,4 @@
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/animation/fade_animation_dy.dart';
 
 class PhoneTextFieldController extends GetxController {
   final SupabaseClient _supabase = Supabase.instance.client;
@@ -12,7 +11,7 @@ class PhoneTextFieldController extends GetxController {
   final RxBool isLoading = false.obs;
 
   String getLocalCode() {
-    final locale = _storage.read(AppStorageKey.LOCALE);
+    final locale = _storage.read(STORAGE_KEYS.LOCALE);
     return locale ?? Get.deviceLocale?.languageCode ?? 'en';
   }
 

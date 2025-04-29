@@ -101,7 +101,7 @@ class ProductDetailsController extends GetxController {
   void _checkIfProductFavorited() {
     try {
       final result =
-          _storage.read(AppStorageKey.FAVORITE_PRODUCTS_KEY + uid) ?? '[]';
+          _storage.read(STORAGE_KEYS.FAVORITE_PRODUCTS + uid) ?? '[]';
       favoriteProducts = List<int>.from(jsonDecode(result));
       isProductFavorited = favoriteProducts.contains(productId);
     } catch (error) {
@@ -225,7 +225,7 @@ class ProductDetailsController extends GetxController {
   Future<void> _saveData() async {
     try {
       await _storage.write(
-        AppStorageKey.FAVORITE_PRODUCTS_KEY + uid,
+        STORAGE_KEYS.FAVORITE_PRODUCTS + uid,
         jsonEncode(favoriteProducts),
       );
       if (product == null) return;
