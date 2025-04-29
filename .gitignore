@@ -43,9 +43,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-<<<<<<< HEAD
 /lib/utils/keys.dart
-=======
-=======
-/lib/utils/constants.dart
->>>>>>> 1dbf0ad (أضف ملفات جديدة)
+/lib/utils/storage_key.dart

@@ -11,7 +11,8 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    initializeApp();
+    ///TODO:: DELETE THIS LINE
+    ///initializeApp();
     super.onInit();
   }
 
@@ -66,7 +67,8 @@ class SplashScreenController extends GetxController {
   ///
   /// Navigates to the [Routes.ONBOARDING_SCREEN].
   Future<void> _showOnboarding() async {
-    await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
+    ///TODO:: DELETE THIS LINE
+    // await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
     await Get.toNamed(Routes.ONBOARDING_SCREEN);
   }
 
