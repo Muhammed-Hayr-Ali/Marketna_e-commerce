@@ -63,6 +63,8 @@ export 'package:application/screens/splash_screen/binding/binding.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/data_converter.dart';
+export 'package:application/screens/product_details/product_details_screen.dart';
+export 'package:application/screens/product_details/reviews_screen.dart';
 // ==============================
 // **Services**
 // ==============================

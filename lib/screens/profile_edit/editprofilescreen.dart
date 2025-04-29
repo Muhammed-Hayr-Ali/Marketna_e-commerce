@@ -21,7 +21,6 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('ui updated');
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

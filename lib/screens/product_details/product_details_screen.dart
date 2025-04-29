@@ -68,6 +68,9 @@ class ProductDetailsScreen extends StatelessWidget {
                             /// Product Details
                             : _productDetails(controller),
               ),
+
+              /// Space
+              SizedBox(height: 28),
               // ==============================
               // ** Comments **
               // ==============================
@@ -200,30 +203,23 @@ Widget _topBar() {
 // ==============================
 
 Widget _productFRV() {
-  return GetBuilder<ProductDetailsController>(
-    builder:
-        (controller) =>
-            controller.isLoadingFRV
-                ? CustomPlaceholder.loading(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 18.0,
-                      vertical: 16.0,
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+    child: GetBuilder<ProductDetailsController>(
+      builder:
+          (controller) =>
+              controller.isLoadingFRV
+                  ? CustomPlaceholder.loading(
+                    child: Container(
+                      height: 14.0,
+                      width: Get.width / 2,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
                     ),
-                    height: 14.0,
-                    width: Get.width / 2,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                  ),
-                )
-                : Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 18.0,
-                    vertical: 16.0,
-                  ),
-                  child: Row(
+                  )
+                  : Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -261,7 +257,7 @@ Widget _productFRV() {
                       ),
                     ],
                   ),
-                ),
+    ),
   );
 }
 
@@ -287,7 +283,7 @@ Widget _loadingPlaceholder() {
               borderRadius: BorderRadius.circular(4.0),
             ),
           ),
-          const SizedBox(height: 4.0),
+          const SizedBox(height: 2.0),
 
           /// Category
           Container(
@@ -298,7 +294,7 @@ Widget _loadingPlaceholder() {
               borderRadius: BorderRadius.circular(4.0),
             ),
           ),
-          const SizedBox(height: 12.0),
+          const SizedBox(height: 20.0),
 
           /// Price
           Container(
@@ -309,9 +305,19 @@ Widget _loadingPlaceholder() {
               borderRadius: BorderRadius.circular(4.0),
             ),
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 24.0),
 
           /// Description
+          Container(
+            height: 20.0,
+            width: 80.0,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(4.0),
+            ),
+          ),
+          const SizedBox(height: 2.0),
+
           Container(
             height: 60.0,
             width: double.infinity,
@@ -324,11 +330,6 @@ Widget _loadingPlaceholder() {
       ),
     ),
   );
-}
-
-/// Error Placeholder
-Widget _errorPlaceholder() {
-  return Expanded(child: Center(child: CustomText('No Product Found')));
 }
 
 /// Product Details
@@ -386,7 +387,8 @@ Widget _productDetails(var controller) {
           fontSize: 12,
           color: Colors.grey,
         ),
-        const SizedBox(height: 12.0),
+
+        const SizedBox(height: 20.0),
 
         /// Price
         Row(
@@ -438,14 +440,19 @@ Widget _productDetails(var controller) {
             ),
           ],
         ),
-
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 24.0),
 
         /// Description
+        CustomText('Description', color: Colors.grey),
         Text(controller.product!.description ?? 'No Description'),
       ],
     ),
   );
+}
+
+/// Error Placeholder
+Widget _errorPlaceholder() {
+  return Expanded(child: Center(child: CustomText('No Product Found')));
 }
 
 // ==============================
@@ -455,7 +462,7 @@ Widget _comments() {
   final contrller = Get.find<ProductDetailsController>();
   final minContrller = ProductDetailsMainController();
   return Padding(
-    padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 18.0),
+    padding: const EdgeInsets.symmetric(horizontal: 10.0),
     child: GetBuilder<ProductDetailsController>(
       builder: (controller) {
         if (contrller.isLoadingFRV) {
@@ -485,8 +492,18 @@ Widget _comments() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.grey.shade50,
+                ),
                 onPressed: minContrller.openCommentsList,
-                child: CustomText('Comments (${controller.reviews.length})'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText('Comments (${controller.reviews.length})'),
+
+                    Icon(Icons.arrow_forward_ios_rounded),
+                  ],
+                ),
               ),
               SizedBox(height: 8.0),
               Row(

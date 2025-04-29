@@ -1,4 +1,3 @@
-import 'package:application/screens/product_details/product_details_screen.dart';
 import 'package:application/utils/import.dart';
 
 class RouteGet {
@@ -30,5 +29,6 @@ class RouteGet {
     GetPage(name: Routes.ADD_ADDRESSES_SCREEN, page: () => AddAddressScreen()),
     GetPage(name: Routes.SETTINGS_SCREEN, page: () => SettingsScreen()),
     GetPage(name: Routes.PRODUCT_DETAILS, page: () => ProductDetailsScreen()),
+    GetPage(name: Routes.REVIEWS_SCREEN, page: () => ReviewsScreen()),
   ];
 }

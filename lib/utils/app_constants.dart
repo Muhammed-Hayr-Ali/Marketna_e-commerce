@@ -203,4 +203,7 @@ abstract class AppConstants {
   static const String PRIVACY = 'dark_mode';
   static const String ABOUT = 'about';
   static const String LOGOUT = 'logout';
+
+  /// ** Product  **
+  static const String REVIEWS = 'reviews';
 }

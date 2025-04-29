@@ -177,6 +177,7 @@ class Arabic {
     'month': 'شهر',
     'years': 'سنوات',
     'year': 'سنة',
+
     /// تصنيفات وفئات
     'category': 'الفئة',
     'all_categories': 'جميع الفئات',
@@ -241,6 +242,9 @@ class Arabic {
     /// الاعدادات
     'language': 'الاشعارات',
     'about': 'حول التطبيق',
+
+    /// 'reviews'
+    'reviews': 'المراجعات',
 
     /// ملاحظات إضافية
     'powered_by': 'مدعوم بواسطة',
