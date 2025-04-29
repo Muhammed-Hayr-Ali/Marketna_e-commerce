@@ -59,7 +59,6 @@ export 'package:application/screens/profile_screen/controller/main_controller.da
 export 'package:application/screens/profile_screen/profile_screen.dart';
 export 'package:application/screens/profile_screen/widgets/menu_item.dart';
 export 'package:application/screens/settings/settings_screen.dart';
-export 'package:application/screens/splash_screen/binding/binding.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/data_converter.dart';
@@ -69,7 +68,6 @@ export 'package:application/screens/product_details/reviews_screen.dart';
 // **Services**
 // ==============================
 export 'package:application/services/image_picker.dart';
-export 'package:application/services/local_storage.dart';
 export 'package:application/services/permission_handler.dart';
 export 'package:application/services/validators.dart';
 // ==============================
@@ -87,6 +85,7 @@ export 'package:application/utils/app_constants.dart';
 export 'package:application/utils/app_storage_key.dart';
 export 'package:application/utils/colors.dart';
 export 'package:application/utils/keys.dart';
+export 'package:application/utils/app_string/app_exception.dart';
 // ==============================
 // **Widgets**
 // ==============================

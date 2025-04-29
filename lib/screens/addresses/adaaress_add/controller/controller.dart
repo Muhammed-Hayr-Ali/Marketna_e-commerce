@@ -5,7 +5,7 @@ class AddAddressController extends GetxController {
   // final int? addressId;
 
   final _supabase = Supabase.instance.client;
-  final _localstorage = AppStorage();
+  final _storage = GetStorage();
   final _ = Get.find<ManageAddressesController>();
 
   /// Form key to validate the address form.
@@ -37,10 +37,9 @@ class AddAddressController extends GetxController {
 
   @override
   void onInit() async {
-    local = await _localstorage.read<String>(
-      key: AppStorageKey.LOCALE,
-      defaultValue: Get.deviceLocale!.languageCode,
-    );
+    local =
+        _storage.read(STORAGE_KEYS.LOCALE) ?? Get.deviceLocale!.languageCode;
+
     super.onInit();
   }
 

@@ -72,6 +72,7 @@ abstract class AppConstants {
   /// ==============================
 
   static const String ERROR = 'an_error_occurred:';
+  static const String NO_INTERNET_CONNECTION = 'no_internet_connection:';
   static const String UNABLE_LOCATION_SERVICES = 'Unable_Location_services';
   static const String LOCATION_PERMISSIONS_DENIED =
       'Location_permissions_denied';

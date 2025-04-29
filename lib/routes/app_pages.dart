@@ -2,11 +2,7 @@ import 'package:application/utils/import.dart';
 
 class RouteGet {
   static final List<GetPage> getPages = [
-    GetPage(
-      name: Routes.SPLASH_SCREEN,
-      page: () => SplashScreen(),
-      binding: SplashScreenBinding(),
-    ),
+    GetPage(name: Routes.SPLASH_SCREEN, page: () => SplashScreen()),
 
     GetPage(name: Routes.LOGIN_SCREEN, page: () => LoginScreen()),
     GetPage(name: Routes.REGISTER_SCREEN, page: () => SignUpScreen()),

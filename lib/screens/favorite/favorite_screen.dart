@@ -16,7 +16,6 @@ class FavoriteScreen extends StatelessWidget {
           Center(child: CustomText('FavoriteScreen')),
           CustomCicularButton(
             onPressed: () {
-              print('object');
             },
             size: 100,
             borderColor: const Color.fromARGB(255, 229, 230, 229),

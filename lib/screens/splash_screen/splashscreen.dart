@@ -2,7 +2,7 @@ import 'package:application/utils/import.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
-  final _ = Get.find<SplashScreenController>();
+  final _ = Get.put<SplashScreenController>(SplashScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,30 +13,43 @@ class SplashScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(),
-            SizedBox(height: 20, width: 20),
+            SizedBox(height: 100),
             SvgPicture.asset(AppAssets.logo, height: 60, width: 60),
-            Obx(
-              () =>
-                  _.loading.value
-                      ? Padding(
-                        padding: const EdgeInsets.all(14.0),
-                        child: SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            color: AppColors.primaryColor,
-                            strokeWidth: 1,
-                          ),
-                        ),
-                      )
-                      : CustomButton(
-                        height: 40,
-                        borderRadius: 60,
-                        onPressed: _.retry,
-                        child: CustomText('retry'.tr, fontSize: 10),
+            SizedBox(
+              height: 100,
+              child: Obx(
+                () => Column(
+                  children: [
+                    SizedBox(
+                      height: 52,
+                      child: CustomText(
+                        _.errorMessage,
+                        fontSize: 12.0,
+                        textAlign: TextAlign.center,
                       ),
+                    ),
+                    _.isLoading
+                        ? Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: AppColors.primaryColor,
+                              strokeWidth: 1,
+                            ),
+                          ),
+                        )
+                        : CustomButton(
+                          borderRadius: 60,
+                          onPressed: _.retryInitialization,
+                          child: CustomText('retry'.tr, fontSize: 10),
+                        ),
+                  ],
+                ),
+              ),
             ),
-            CustomText('Powered by PST', fontSize: 10, color: Colors.black),
+            CustomText('Powered by PST', fontSize: 8, color: Colors.black),
           ],
         ),
       ),
