@@ -66,8 +66,7 @@ class SplashScreenController extends GetxController {
   ///
   /// Navigates to the [Routes.ONBOARDING_SCREEN].
   Future<void> _showOnboarding() async {
-    ///TODO:: DELETE THIS LINE
-    // await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
+    await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
     await Get.toNamed(Routes.ONBOARDING_SCREEN);
   }
 
