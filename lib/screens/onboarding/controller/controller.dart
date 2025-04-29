@@ -1,10 +1,12 @@
 import 'package:application/utils/import.dart';
 
 class OnboardingController extends GetxController {
-  int _selectedIndex = 0;
+  final _storage = GetStorage();
+  final _main = OnboardingMainController();
 
-  final RxDouble _loadingValue = 0.0000.obs;
+  final RxDouble _loadingValue = 0.0.obs;
   double get loadingValue => _loadingValue.value;
+  int _selectedIndex = 0;
 
   final pageController = PageController();
 
@@ -25,4 +27,18 @@ class OnboardingController extends GetxController {
   }
 
   void goToAhth() => Get.offAllNamed(Routes.LOGIN_SCREEN);
+
+  void selectLanguage() async {
+    final oldLanguageCode =
+        _storage.read(STORAGE_KEYS.LOCALE) ?? Get.deviceLocale;
+
+    debugPrint('oldLanguageCode : $oldLanguageCode');
+    final languageCode = await _main.openLanguage(oldLanguageCode);
+    if (languageCode == null) return;
+
+    Get.updateLocale(Locale(languageCode));
+    debugPrint('languageCode : $languageCode');
+
+    _storage.write(STORAGE_KEYS.LOCALE, languageCode);
+  }
 }

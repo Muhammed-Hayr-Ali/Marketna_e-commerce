@@ -24,7 +24,16 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: emptyAppBar(),
+      appBar: customAppBar(
+        // backButton: false,
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(backgroundColor: Colors.grey.shade100),
+            onPressed: _.selectLanguage,
+            child: CustomText(ConstantsText.LANGUAGE),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Obx(
@@ -40,12 +49,14 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
               CustomCicularButton(
-                //   progressMultiColors: [Colors.orange, Colors.green, Colors.blue],
+                isLoading: false,
+                progressColors: [Colors.red, Colors.green, Colors.blue],
+                progressWidth: 1,
                 borderColor: Colors.grey.shade200,
                 borderWidth: 2,
                 loadingValue: _.loadingValue,
                 onPressed: _.nextPage,
-                child: Icon(Icons.arrow_back, size: 32),
+                child: Icon(Icons.arrow_back, size: 32, color: Colors.blueGrey),
               ),
             ],
           ),

@@ -47,6 +47,7 @@ export 'package:application/screens/main/controllrt/main_controller.dart';
 export 'package:application/screens/main/main_screen.dart';
 export 'package:application/screens/notification/notification_screen.dart';
 export 'package:application/screens/onboarding/controller/controller.dart';
+export 'package:application/screens/onboarding/controller/main.dart';
 export 'package:application/screens/onboarding/onboarding_screen.dart';
 export 'package:application/screens/onboarding/widgets/indicator.dart';
 export 'package:application/screens/onboarding/widgets/page_builder.dart';

@@ -6,8 +6,6 @@ class EditProfileMainController {
   final supabase = Supabase.instance.client;
   final GetStorage _storage = GetStorage();
 
-
-
   /// Retrieves the locale setting for the DateTimePicker.
   ///
   /// This function reads the locale code from local storage. If no locale code
@@ -27,7 +25,8 @@ class EditProfileMainController {
 
   DateTimePickerLocale _getLocale() {
     final String localeCode =
-        _storage.read<String>(STORAGE_KEYS.LOCALE) ?? Get.deviceLocale!.languageCode;
+        _storage.read<String>(STORAGE_KEYS.LOCALE) ??
+        Get.deviceLocale!.languageCode;
 
     switch (localeCode) {
       case 'ar':
@@ -73,7 +72,7 @@ class EditProfileMainController {
         const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result:  AppConstants.DELETE),
+          onPressed: () => Get.back(result: AppConstants.DELETE),
           child: const CustomText(AppConstants.DELETE, fontSize: 12),
         ),
       ],
@@ -85,24 +84,23 @@ class EditProfileMainController {
           title: AppConstants.SELECT_GENDER,
           children: [
             TextButton(
-              onPressed: () => Get.back(result:  AppConstants.NOT_SPECIFIED),
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                  value == AppConstants.NOT_SPECIFIED
-                      ? Colors.grey.shade200
-                      : Colors.white,
-                ),
+              onPressed: () => Get.back(result: AppConstants.NOT_SPECIFIED),
+              style: TextButton.styleFrom(
+                backgroundColor:
+                    value == AppConstants.NOT_SPECIFIED
+                        ? Colors.grey.shade200
+                        : Colors.white,
               ),
               child: Row(children: [CustomText(AppConstants.NOT_SPECIFIED)]),
             ),
-
-
 
             TextButton(
               onPressed: () => Get.back(result: AppConstants.MALE),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == AppConstants.MALE ? Colors.grey.shade200 : Colors.white,
+                  value == AppConstants.MALE
+                      ? Colors.grey.shade200
+                      : Colors.white,
                 ),
               ),
               child: Row(children: [CustomText(AppConstants.MALE)]),
@@ -111,7 +109,9 @@ class EditProfileMainController {
               onPressed: () => Get.back(result: AppConstants.FEMALE),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == AppConstants.FEMALE ? Colors.grey.shade200 : Colors.white,
+                  value == AppConstants.FEMALE
+                      ? Colors.grey.shade200
+                      : Colors.white,
                 ),
               ),
               child: Row(children: [CustomText(AppConstants.FEMALE)]),

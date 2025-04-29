@@ -8,8 +8,8 @@ class CustomCicularButton extends StatelessWidget {
   final Color? backgroundColor;
   final double borderWidth;
   final Color? borderColor;
-  final Color progressColor;
-  final List<Color> progressMultiColors;
+
+  final List<Color> progressColors;
   final double progressWidth;
   final double progressPadding;
   final void Function()? onPressed;
@@ -25,22 +25,19 @@ class CustomCicularButton extends StatelessWidget {
     this.isLoading = false,
     this.loadingValue,
     this.progressWidth = 1,
-    this.progressMultiColors = [],
-    this.progressColor = AppColors.primaryColor,
+    this.progressColors = const [],
   });
 
-  Color getDynamicColor(double value, List<Color>? colors) {
-    if (colors == null || colors.isEmpty || colors.length != 3) {
-      return progressColor;
+  Color _getColorFromProgress(double progress, List<Color>? availableColors) {
+    if (availableColors == null ||
+        availableColors == [] ||
+        availableColors.isEmpty) {
+      return const Color(0xFF7738C7);
     }
-
-    if (value <= 0.33) {
-      return colors[0];
-    } else if (value <= 0.66) {
-      return colors[1];
-    } else {
-      return colors[2];
-    }
+    int totalSegments = availableColors.length - 1;
+    final double segmentLength = 1 / totalSegments;
+    final int currentSegment = (progress / segmentLength).floor();
+    return availableColors[currentSegment % availableColors.length];
   }
 
   @override
@@ -70,14 +67,8 @@ class CustomCicularButton extends StatelessWidget {
                     builder: (context, value, child) {
                       return TweenAnimationBuilder<Color?>(
                         tween: ColorTween(
-                          begin: getDynamicColor(
-                            0.0,
-                            progressMultiColors ?? [],
-                          ),
-                          end: getDynamicColor(
-                            value,
-                            progressMultiColors ?? [],
-                          ),
+                          begin: _getColorFromProgress(0.0, progressColors),
+                          end: _getColorFromProgress(value, progressColors),
                         ),
                         duration: const Duration(milliseconds: 500),
                         builder: (context, color, child) {

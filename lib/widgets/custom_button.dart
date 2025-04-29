@@ -1,5 +1,4 @@
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/animation/fade_animation_dy.dart';
 
 /// A customizable button widget that supports various styles and states.
 /// It can display a loading indicator, has customizable dimensions, colors, and margins.

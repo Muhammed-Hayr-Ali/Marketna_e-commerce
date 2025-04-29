@@ -18,22 +18,45 @@ class Arabic {
     ConstantsText.ONBOARDING_SUBTITLE_3: 'تسوق منتجاتك المفضلة بأمان وثقة',
 
     ///===========================================================================
-    /// General Text
-    ConstantsText.SKIP: 'تخطي',
+    /// language
+    ConstantsText.LANGUAGE: 'اللغة',
+    ConstantsText.SELECT_LANGUAGE: 'إختر اللغة',
+    ConstantsText.ARABIC: 'العربية',
+    ConstantsText.ENGLISH: 'الإنجليزية',
+    ConstantsText.GERMAN: 'الالمانية',
+    ConstantsText.FRENCH: 'الفرنسية',
+    ConstantsText.TURKISH: 'التركية',
 
     ///===========================================================================
+    /// General Text
+    ConstantsText.SKIP: 'تخطي',
+    ConstantsText.NEXT: 'التالي',
+    ConstantsText.PREVIOUS: 'السابق',
+    ConstantsText.NO: 'لا',
+    ConstantsText.YES: 'نعم',
+    ConstantsText.ACCEPT: 'قبول',
+    ConstantsText.DECLINE: 'رفض',
+    ConstantsText.ENABLED: 'مفعل',
+    ConstantsText.DISABLED: 'غير مفعل',
+    ConstantsText.TRUE: 'صحيح',
+    ConstantsText.FALSE: 'خاطئ',
+    ConstantsText.CONFIRM: 'تأكيد',
+    ConstantsText.CANCEL: 'إلغاء',
+    ConstantsText.SUBMIT: 'إرسال',
+    ConstantsText.RESET: 'إعادة تعيين',
+    ConstantsText.SAVE: 'حفظ',
+    ConstantsText.DELETE: 'حذف',
+    ConstantsText.SUCCESS: 'نجاح',
+    ConstantsText.FAILURE: 'فشل',
+    ConstantsText.PENDING: 'قيد الانتظار',
+    ConstantsText.COMPLETED: 'مكتمل',
+    ConstantsText.IN_PROGRESS: 'قيد التنفيذ',
 
-    /// Onboarding
+    ///===========================================================================
+    /// AppException
+    AppException.NO_INTERNET_CONNECTION:
+        'حدث خطأ في الاتصال،\nيرجى التحقق من الشبكة والمحاولة مرة أخرى',
 
-    /// على متن التطبيق (Onboarding)
-    'Purchase Online': 'التسوق عبر الإنترنت',
-    'Track order': 'تتبع الطلب',
-    'Get your order': 'احصل على طلبك',
-    'Enjoy a unique and easy shopping experience in our application':
-        'استمتع بتجربة تسوق فريدة وسهلة داخل تطبيقنا',
-    'Track shipments real-time': 'تتبع الشحنات في الوقت الفعلي',
-    'Enjoy your favorite products with confidence and safety':
-        'تسوق منتجاتك المفضلة بأمان وثقة',
     'Next': 'التالي',
     'Login': 'تسجيل الدخول',
 
@@ -66,21 +89,14 @@ class Arabic {
     'agree_to_terms': 'بالمتابعة، توافق على',
     'privacy_policy': 'سياسة الخصوصية',
     'terms_and_conditions': 'الشروط والأحكام',
-    'save': 'حفظ',
-    'yes': 'نعم',
-    'no': 'لا',
     'ok': 'حسناً',
-    'cancel': 'إلغاء',
-    'delete': 'حذف',
     'edit': 'تعديل',
     'add': 'إضافة',
     'search': 'بحث',
     'clear': 'مسح',
     'close': 'إغلاق',
-    'confirm': 'تأكيد',
     'back': 'رجوع',
-    'next': 'التالي',
-    'previous': 'السابق',
+
     'done': 'تم',
 
     'camera': 'الكاميرا',
@@ -146,8 +162,6 @@ class Arabic {
     'enter_email_for_reset': 'أدخل البريد الإلكتروني لاستعادة كلمة المرور',
     'password_updated_successfully': 'تم تحديث كلمة المرور بنجاح',
     'profile_updated_successfully': 'تم تحديث الملف الشخصي بنجاح',
-    'no_internet_connection':
-        'حدث خطأ في الاتصال،\nيرجى التحقق من الشبكة والمحاولة مرة أخرى',
     'user_already_registered': 'المستخدم مسجل بالفعل',
     'Invalid login credentials': 'بيانات تسجيل الدخول غير صحيحة',
     'user_is_banned': 'لقد تم حظر حسابك',
@@ -227,7 +241,6 @@ class Arabic {
     'order_summary': 'ملخص الطلب',
     'order_id': 'رقم الطلب',
     'order_status': 'حالة الطلب',
-    'pending': 'قيد الانتظار',
     'shipped': 'تم الشحن',
     'delivered': 'تم التسليم',
     'cancelled': 'ملغي',
@@ -266,7 +279,6 @@ class Arabic {
     'address_details': 'تفاصيل العنوان',
 
     /// الاعدادات
-    'language': 'الاشعارات',
     'about': 'حول التطبيق',
 
     /// 'reviews'
