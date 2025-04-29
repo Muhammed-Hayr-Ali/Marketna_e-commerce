@@ -8,7 +8,7 @@ custombottomSheet<T>({required List<Widget> children, String? title}) {
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(14.0),
       ),
 
       child: Column(

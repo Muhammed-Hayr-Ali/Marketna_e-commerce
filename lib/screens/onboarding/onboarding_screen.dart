@@ -30,7 +30,7 @@ class OnboardingScreen extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(backgroundColor: Colors.grey.shade100),
             onPressed: _.selectLanguage,
-            child: CustomText(ConstantsText.LANGUAGE),
+            child: CustomText(ConstantsText.LANGUAGE, color: Colors.blueGrey),
           ),
         ],
       ),
@@ -40,19 +40,17 @@ class OnboardingScreen extends StatelessWidget {
           () => Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 64),
               Expanded(
                 child: PageView(
                   controller: _.pageController,
-                  onPageChanged: (index) => _.changeSelectedIndex(index),
+                  onPageChanged: (index) => _.updateSelectedIndex(index),
                   children: pages,
                 ),
               ),
               CustomCicularButton(
                 isLoading: false,
                 progressColors: [Colors.red, Colors.green, Colors.blue],
-                progressWidth: 1,
-                borderColor: Colors.grey.shade200,
+                borderColor: Colors.grey.shade100,
                 borderWidth: 2,
                 loadingValue: _.loadingValue,
                 onPressed: _.nextPage,

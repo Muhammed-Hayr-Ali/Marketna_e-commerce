@@ -95,6 +95,7 @@ class SplashScreenController extends GetxController {
   /// Sets [isLoading] to true, and calls [initializeApp].
   void retryInitialization() {
     _isLoading.value = true;
+    _errorMessage.value = '';
     initializeApp();
   }
 }

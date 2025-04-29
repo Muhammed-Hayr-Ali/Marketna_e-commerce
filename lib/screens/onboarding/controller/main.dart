@@ -3,7 +3,6 @@ import 'package:application/utils/import.dart';
 class OnboardingMainController {
   Future<String?> openLanguage(String? localCode) async {
     return await custombottomSheet(
-      title: ConstantsText.SELECT_LANGUAGE,
       children: [
         TextButton(
           onPressed: () => Get.back(result: 'ar'),

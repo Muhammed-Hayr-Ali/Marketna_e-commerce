@@ -5,7 +5,7 @@ class CustomCicularButton extends StatelessWidget {
   final double? loadingValue;
   final Widget? child;
   final double size;
-  final Color? backgroundColor;
+  final Color backgroundColor;
   final double borderWidth;
   final Color? borderColor;
 
@@ -16,7 +16,7 @@ class CustomCicularButton extends StatelessWidget {
   const CustomCicularButton({
     super.key,
     this.size = 64,
-    this.backgroundColor,
+    this.backgroundColor = const Color(0xFFF5F5F5),
     this.child,
     this.onPressed,
     this.borderWidth = 0.0,
@@ -89,7 +89,7 @@ class CustomCicularButton extends StatelessWidget {
             minimumSize: Size.fromRadius(size / 2),
             maximumSize: Size.fromRadius(size / 2),
             fixedSize: Size(size, size),
-            backgroundColor: backgroundColor ?? Colors.grey.shade200,
+            backgroundColor: backgroundColor,
             shadowColor: Colors.transparent,
             elevation: 0,
             shape: const CircleBorder(),
