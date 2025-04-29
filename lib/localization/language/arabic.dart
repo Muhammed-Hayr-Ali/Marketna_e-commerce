@@ -58,6 +58,7 @@ class Arabic {
     'next': 'التالي',
     'previous': 'السابق',
     'done': 'تم',
+    'skip': 'تخطي',
     'camera': 'الكاميرا',
     'gallery': 'المعرض',
     'delete_image': 'حذف الصورة',
