@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:application/utils/import.dart';
 
 class SplashScreenController extends GetxController {
+  /// Variables
   final _supabase = Supabase.instance.client;
-  final _internetChecker = InternetConnectionChecker.createInstance();
   final _storage = GetStorage();
-
+  final _internetChecker = InternetConnectionChecker.createInstance();
   final RxString _errorMessage = ''.obs;
   String get errorMessage => _errorMessage.value;
 
@@ -17,21 +15,27 @@ class SplashScreenController extends GetxController {
   }
 
   Future<void> initializeApp() async {
-    _errorMessage.value = '';
-
     try {
-      final hasInternet = await _internetChecker.hasConnection;
+      _errorMessage.value = '';
 
-      if (!hasInternet) {
-        _errorMessage.value = 'no_internet_connection';
-        return;
+      final hasInternetConnection = await Future<bool>.delayed(
+        Duration(seconds: 1),
+        () async {
+          return await _internetChecker.hasConnection.timeout(
+            const Duration(seconds: 5),
+          );
+        },
+      );
+
+      if (!hasInternetConnection) {
+        _errorMessage.value = AppException.NO_INTERNET_CONNECTION;
+      } else {
+        await _checkAuthenticationStatus();
       }
-
-      await _checkAuthenticationStatus();
     } on TimeoutException {
-      _errorMessage.value = 'timeout_error';
-    } catch (error) {
-      _errorMessage.value = error.toString();
+      _errorMessage.value = AppException.CONNECTION_TIME_OUT;
+    } on Exception {
+      _errorMessage.value = AppException.SOMETHING_WENT_WRONG;
     }
   }
 
@@ -58,6 +62,4 @@ class SplashScreenController extends GetxController {
       Get.offAllNamed(Routes.LOGIN_SCREEN);
     }
   }
-
-  
 }

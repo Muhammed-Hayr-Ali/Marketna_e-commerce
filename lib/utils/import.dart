@@ -1,6 +1,7 @@
 // ==============================
 // **Localization**
 // ==============================
+export 'dart:async';
 export 'dart:convert';
 
 export 'package:application/localization/localization_controller.dart';
