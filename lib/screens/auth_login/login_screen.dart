@@ -78,13 +78,15 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 16.0),
 
             /// Login Button
-            CustomButton(
-              isLoading: _.isLoading,
-              width: double.infinity,
-              buttonColor: AppColors.primaryColor,
-              progressColor: Colors.white,
-              onPressed: _login,
-              child: CustomText(ConstantsText.LOGIN, color: AppColors.white),
+            Obx(
+              () => CustomButton(
+                isLoading: _.isLoading,
+                width: double.infinity,
+                buttonColor: AppColors.primaryColor,
+                progressColor: Colors.white,
+                onPressed: _login,
+                child: CustomText(ConstantsText.LOGIN, color: AppColors.white),
+              ),
             ),
             const SizedBox(height: 16.0),
 
@@ -100,8 +102,7 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 6),
                         overlayColor: Colors.transparent,
                       ),
-                      onPressed:
-                          () => Get.toNamed(Routes.REGISTER_SCREEN),
+                      onPressed: () => Get.toNamed(Routes.REGISTER_SCREEN),
                       child: CustomText(
                         ConstantsText.SIGN_UP,
                         fontSize: 12,

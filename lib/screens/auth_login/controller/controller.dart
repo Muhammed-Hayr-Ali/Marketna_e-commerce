@@ -6,15 +6,11 @@ class LoginController extends GetxController {
   /// Variables
   final _supabase = Supabase.instance.client;
   final RxBool _isLoading = false.obs;
-  bool get isLoading => _isLoading.value;
   final RxBool _isLoadingGoogle = false.obs;
+  bool get isLoading => _isLoading.value;
   bool get isLoadingGoogle => _isLoadingGoogle.value;
 
   /// Signs the user in with their email and password.
-  ///
-  /// This function uses the Supabase client to authenticate the user.
-  /// If successful, it navigates to the main screen. If an error occurs, a snackbar
-  /// with the error message is displayed.
   Future<void> signInWithEmailAndPassword({
     required String email,
     required String password,
@@ -22,23 +18,19 @@ class LoginController extends GetxController {
     try {
       _isLoading.value = true;
       await _supabase.auth.signInWithPassword(email: email, password: password);
-      Get.offAllNamed(Routes.MAIN_SCREEN);     
+      Get.offAllNamed(Routes.MAIN_SCREEN);
     } on AuthException catch (error) {
       _exptectError(error.message);
+      debugPrint(error.message);
     } finally {
       _isLoading.value = false;
     }
   }
 
   /// Signs the user in with Google.
-  ///
-  /// Initiates a Google OAuth flow and uses the authorization code
-  /// to authenticate with the Supabase backend. Navigates to the
-  /// main screen if successful. Displays an error message if an error occurs.
-
   Future<void> signInWithGoogle() async {
-    _isLoadingGoogle.value = true;
     try {
+      _isLoadingGoogle.value = true;
       final googleSignIn = GoogleSignIn(serverClientId: KEYS.WEB_CLIENT_ID);
       final user = await googleSignIn.signIn();
 
