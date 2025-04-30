@@ -35,6 +35,14 @@ class ConstantsText {
   static const String SIGN_IN_WITH = 'sign_in_with';
   static const String CREATE_ACCOUNT = 'create_account';
 
+
+  ///===========================================================================
+
+  /// Forgot Password
+  static const String RESET_PASSWORD = 'reset_password';
+  static const String ENTER_EMAIL_FOR_RESET = 'enter_email_for_reset';
+
+
   ///===========================================================================
 
   /// General Text
@@ -60,6 +68,10 @@ class ConstantsText {
   static const String PENDING = 'pending';
   static const String COMPLETED = 'completed';
   static const String IN_PROGRESS = 'in_progress';
+  static const String OK = 'ok';
+  static const String DONE = 'done';
+  static const String BACK = 'back';
+  static const String SEND = 'send';
 
   ///===========================================================================
 

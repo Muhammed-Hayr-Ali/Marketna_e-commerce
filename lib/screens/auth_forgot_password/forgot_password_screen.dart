@@ -4,71 +4,60 @@ class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
 
   final _ = Get.put(ForgotPasswordController());
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+
+  Future<void> _sendOTP() async {
+    final isValid = _formKey.currentState!.validate();
+    if (!isValid) return;
+
+    final result = await _.sendOTP(email: _emailController.text.trim());
+    if (result) {
+      Get.toNamed(
+        Routes.UPDATE_PASSWORD,
+        arguments: _emailController.text.trim(),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: Get.back,
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
+      appBar: customAppBar(backButton: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                CustomText(
-                  AppConstants.RESET_PASSWORD,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 16.0),
-                CustomText(
-                  AppConstants.ENTER_EMAIL_FOR_RESET,
-                  color: Colors.grey,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+            CustomPageTitle(
+              title: ConstantsText.RESET_PASSWORD,
+              subtitle: ConstantsText.ENTER_EMAIL_FOR_RESET,
+              padding: EdgeInsets.symmetric(vertical: Get.width * 0.15),
             ),
 
-            Obx(
-              () => Form(
-                key: _.formKey,
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      label: AppConstants.EMAIL.tr,
-                      hintText: AppConstants.EXAMPLE_EMAIL,
-                      controller: _.emailController,
-                      validator: (value) => Validators.email(value!),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-
-                    const SizedBox(height: 48.0),
-
-                    CustomButton(
-                      isLoading: _.isLoading.value,
-                      width: double.infinity,
-                      buttonColor: AppColors.primaryColor,
-                      progressColor: Colors.white,
-                      onPressed: _.resendOTP,
-                      child: CustomText(
-                        AppConstants.SEND.tr,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ],
-                ),
+            /// Form
+            Form(
+              key: _formKey,
+              child: CustomTextField(
+                label: ConstantsText.EMAIL.tr,
+                hintText: ConstantsText.EXAMPLE_EMAIL,
+                controller: _emailController,
+                validator: (value) => Validators.email(value!),
+                keyboardType: TextInputType.emailAddress,
               ),
             ),
-            const SizedBox(),
-            const SizedBox(),
-            const SizedBox(),
-            const SizedBox(),
+            const SizedBox(height: 50.0),
+
+            Obx(
+              () => CustomButton(
+                isLoading: _.isLoading,
+                width: double.infinity,
+                buttonColor: AppColors.primaryColor,
+                progressColor: AppColors.white,
+                onPressed: _sendOTP,
+                child: CustomText(ConstantsText.SEND, color: AppColors.white),
+              ),
+            ),
           ],
         ),
       ),

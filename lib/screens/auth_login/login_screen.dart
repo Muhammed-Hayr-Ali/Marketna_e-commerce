@@ -1,5 +1,4 @@
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/custom_page_title.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -75,7 +74,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 32.0),
 
             /// Login Button
             Obx(
@@ -83,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                 isLoading: _.isLoading,
                 width: double.infinity,
                 buttonColor: AppColors.primaryColor,
-                progressColor: Colors.white,
+                progressColor: AppColors.white,
                 onPressed: _login,
                 child: CustomText(ConstantsText.LOGIN, color: AppColors.white),
               ),

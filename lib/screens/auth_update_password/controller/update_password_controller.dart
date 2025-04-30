@@ -2,12 +2,14 @@ import '../../../utils/import.dart';
 
 class UpdatePasswordController extends GetxController {
   final supabase = Supabase.instance.client;
+
+  ////////////////
   final formKey = GlobalKey<FormState>();
   String? email;
   String? verificationCode;
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
+  /////////////////////
   RxBool isLoading = false.obs;
 
   /// Updates the user's password.
@@ -73,15 +75,13 @@ class UpdatePasswordController extends GetxController {
     } on AuthException catch (error) {
       // Show an error message
       CustomNotification.showSnackbar(message: error.message);
-    }
-     catch (error) {
+    } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
         message: '${AppConstants.ERROR.tr} $error',
       );
       debugPrint(error.toString());
-    } 
-     finally {
+    } finally {
       // Reset the loading state
       isLoading.value = false;
     }

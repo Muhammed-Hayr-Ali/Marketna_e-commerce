@@ -149,8 +149,6 @@ abstract class AppConstants {
   static const String ADDRESS_DETAILS = 'address_details';
 
   /// **Auth**
-  static const String RESET_PASSWORD = 'reset_password';
-  static const String ENTER_EMAIL_FOR_RESET = 'enter_email_for_reset';
   static const String EXAMPLE_EMAIL = 'example@email.com';
   static const String LOGIN = 'login';
   static const String WELCOME_BACK = 'welcome_back';

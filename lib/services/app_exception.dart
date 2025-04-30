@@ -18,6 +18,9 @@ class AppException implements Exception {
     'User_not_found_in_session',
   );
 
+  
+
+
   @override
   String toString() => 'AppException: $message';
 }

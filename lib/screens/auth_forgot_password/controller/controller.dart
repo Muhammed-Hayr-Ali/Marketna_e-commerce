@@ -1,46 +1,42 @@
 import '../../../utils/import.dart';
 
 class ForgotPasswordController extends GetxController {
+  /// Variables
   final supabase = Supabase.instance.client;
-  final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  RxBool isLoading = false.obs;
+  final RxBool _isLoading = false.obs;
+  bool get isLoading => _isLoading.value;
 
-  /// Resends the OTP to the given email
-  ///
-  /// This function will check if the form is valid and the email is not empty.
-  /// If the form is valid, it will call the `resetPasswordForEmail` method of the
-  /// `supabase` client and navigate to the `update_password` route with the
-  /// email as an argument.
-  ///
-  /// If an error occurs, it will show a snackbar with the error message.
-  ///
-  /// Finally, it will set the `isLoading` to false.
-  Future<void> resendOTP() async {
-    // Check if the form is valid
-    if (!formKey.currentState!.validate()) return;
-
-    // Set the loading state to true
-    isLoading.value = true;
-
+  /// Sends an OTP to the given email address.
+  
+  Future<bool> sendOTP({required String email}) async {
     try {
-      // Reset password for the given email
-      await supabase.auth.resetPasswordForEmail(emailController.text.trim());
-      // Navigate to the update password route
-      Get.toNamed(
-        Routes.UPDATE_PASSWORD,
-        arguments: {AppConstants.EMAIL: emailController.text},
-      );
+      _isLoading.value = true;
+      await supabase.auth.resetPasswordForEmail(email);
+      return true;
     } on AuthException catch (error) {
-      // Show a snackbar with the error message
+      if (error.message.contains('after') &&
+          error.message.contains('seconds')) {
+        final translatedMessage = translateDynamicMessage(error.message);
+        CustomNotification.showSnackbar(message: translatedMessage);
+      }
       CustomNotification.showSnackbar(message: error.message);
-    } catch (error) {
-      // Handle other errors and show a snackbar with the error message
-      CustomNotification.showSnackbar(message: '${AppConstants.ERROR.tr} $error');
-      debugPrint(error.toString());
+
+      return false;
+    } on Exception {
+      CustomNotification.showSnackbar(
+        message: AppException.SOMETHING_WENT_WRONG.message,
+      );
+      return false;
     } finally {
-      // Set the loading state to false
-      isLoading.value = false;
+      _isLoading.value = false;
     }
+  }
+
+  String translateDynamicMessage(String originalMessage) {
+    final regex = RegExp(r'\d+');
+    final match = regex.firstMatch(originalMessage);
+    final seconds = int.tryParse(match?.group(0) ?? '60') ?? 60;
+
+    return 'security_message'.trArgs([seconds.toString()]);
   }
 }
