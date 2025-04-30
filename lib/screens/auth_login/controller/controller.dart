@@ -4,9 +4,6 @@ import '../../../utils/import.dart';
 
 class LoginController extends GetxController {
   final _supabase = Supabase.instance.client;
-  final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
@@ -20,32 +17,30 @@ class LoginController extends GetxController {
   final RxBool _isLoadingX = false.obs;
   bool get isLoadingX => _isLoadingX.value;
 
+
   /// Logs the user in with their email and password.
   ///
-  /// This function will first validate the form and retrieve the user's email and
-  /// password. If the form is valid, it will attempt to log the user in using the
-  /// `signInWithPassword` method of the `supabase` client. If successful, it will
-  /// navigate to the main screen. If an error occurs, it will show an error message
-  /// in a snackbar.
-  Future<void> login() async {
-    // Set loading state
-    _isLoading.value = true;
-
-    // Retrieve the user's email and password
-    if (!formKey.currentState!.validate()) return;
-    final email = emailController.text.trim();
-    final password = passwordController.text.trim();
-
+  /// This function sets the loading state to true, attempts to log the user in
+  /// using the `signInWithPassword` method of the `supabase.auth` client, and
+  /// navigates to the main screen if successful. If an error occurs, it shows
+  /// a snackbar with the error message. Finally, it resets the loading state
+  /// to false.
+  Future<void> login({
+    required String email,
+    required String password,
+  }) async {
     try {
-      // Attempt to log the user in
-      await _supabase.auth.signInWithPassword(email: email, password: password);
-      // Navigate to the main screen
+      _isLoading.value = true;
+
+      await _supabase.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+
       Get.offAllNamed(Routes.MAIN_SCREEN);
-    } on AuthException catch (error) {
-      // Handle authentication errors
-      CustomNotification.showSnackbar(message: error.message);
+    } on AuthException catch (e) {
+      CustomNotification.showSnackbar(message: e.message);
     } finally {
-      // Reset loading state to false
       _isLoading.value = false;
     }
   }

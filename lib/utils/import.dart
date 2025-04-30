@@ -30,7 +30,7 @@ export 'package:application/screens/addresses/addresses_manage/widgets/address_c
 export 'package:application/screens/addresses/addresses_manage/widgets/no_addresses.dart';
 export 'package:application/screens/auth_forgot_password/controller/controller.dart';
 export 'package:application/screens/auth_forgot_password/forgot_password_screen.dart';
-export 'package:application/screens/auth_login/controller/login_controller.dart';
+export 'package:application/screens/auth_login/controller/controller.dart';
 export 'package:application/screens/auth_login/login_screen.dart';
 export 'package:application/screens/auth_sign_up/controller/signup_controller.dart';
 export 'package:application/screens/auth_sign_up/sign_up_screen.dart';
