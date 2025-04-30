@@ -17,10 +17,12 @@ class AppException implements Exception {
   static const USER_NOT_FOUND_SESSION = AppException(
     'User_not_found_in_session',
   );
+  static const SECURITY_MESSAGE = AppException('security_message');
+  static const TOKEN_EXPIRED = AppException('Token has expired or is invalid');
 
-  
-
-
+  static const PASSWORD_UPDATED_SUCCESSFULLY = AppException(
+    'Password updated successfully',
+  );
   @override
   String toString() => 'AppException: $message';
 }

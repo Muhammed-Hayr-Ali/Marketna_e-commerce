@@ -11,15 +11,16 @@ class UpdatePasswordScreen extends StatelessWidget {
   final _confirmPasswordController = TextEditingController();
 
   Future<void> _updatePassword() async {
-    final codeIsValid = _.chekCodeIsValid(
+    final isVerificationCodeValid = _.isVerificationCodeValid(
       _verificationCodeController.text.trim(),
     );
-    final isValid = _formKey.currentState!.validate();
-    if (!codeIsValid || !isValid) return;
+    final isFormValid = _formKey.currentState!.validate();
+    if (!isVerificationCodeValid || !isFormValid) return;
+
     await _.updatePassword(
       email: _email,
       verificationCode: _verificationCodeController.text.trim(),
-      password: _passwordController.text.trim(),
+      newPassword: _passwordController.text.trim(),
     );
   }
 
@@ -55,7 +56,6 @@ class UpdatePasswordScreen extends StatelessWidget {
                       fieldBorderStyle: FieldBorderStyle.square,
                       responsive: true,
                       fieldHeight: Get.width * 0.175,
-                      // fieldWidth: 40.0,
                       borderWidth: 1.0,
                       activeBorderColor: Colors.blueGrey,
                       fieldBackgroundColor: Colors.grey.shade200,
@@ -125,26 +125,24 @@ class UpdatePasswordScreen extends StatelessWidget {
                     keyboardType: TextInputType.text,
                   ),
 
-                  const SizedBox(height: 48.0),
+                  const SizedBox(height: 50.0),
 
-                  CustomButton(
-                    isLoading: _.isLoading,
-                    width: double.infinity,
-                    buttonColor: AppColors.primaryColor,
-                    progressColor: Colors.white,
-                    onPressed: _updatePassword,
-                    child: CustomText(
-                      ConstantsText.UPDATE.tr,
-                      color: AppColors.white,
+                  Obx(
+                    () => CustomButton(
+                      isLoading: _.isLoading,
+                      width: double.infinity,
+                      buttonColor: AppColors.primaryColor,
+                      progressColor: Colors.white,
+                      onPressed: _updatePassword,
+                      child: CustomText(
+                        ConstantsText.UPDATE.tr,
+                        color: AppColors.white,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-
-            const SizedBox(),
-            const SizedBox(),
-            const SizedBox(),
           ],
         ),
       ),

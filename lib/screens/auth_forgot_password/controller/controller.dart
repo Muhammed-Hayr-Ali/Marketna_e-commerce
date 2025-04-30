@@ -7,7 +7,7 @@ class ForgotPasswordController extends GetxController {
   bool get isLoading => _isLoading.value;
 
   /// Sends an OTP to the given email address.
-  
+
   Future<bool> sendOTP({required String email}) async {
     try {
       _isLoading.value = true;
@@ -18,8 +18,9 @@ class ForgotPasswordController extends GetxController {
           error.message.contains('seconds')) {
         final translatedMessage = translateDynamicMessage(error.message);
         CustomNotification.showSnackbar(message: translatedMessage);
+      } else {
+        CustomNotification.showSnackbar(message: error.message);
       }
-      CustomNotification.showSnackbar(message: error.message);
 
       return false;
     } on Exception {

@@ -81,7 +81,11 @@ class Arabic {
         'فشل الحصول على Token أو لم يتم العثور على المستخدم',
     AppException.USER_NOT_FOUND_SESSION.message:
         'تعذر العثور على حسابك. يرجى المحاولة مجددًا أو التواصل مع الدعم',
-    'security_message': 'يمكنك طلب رمز إعادة التعيين مرة أخرى بعد %s ثانية.',
+    AppException.SECURITY_MESSAGE.message:
+        'يمكنك طلب رمز إعادة التعيين مرة أخرى بعد %s ثانية.',
+    AppException.TOKEN_EXPIRED.message: 'رمز التحقق غير صالح',
+    AppException.PASSWORD_UPDATED_SUCCESSFULLY.message:
+        'تم تحديث كلمة المرور بنجاح',
 
     /// عناوين وأوصاف الشاشات
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',

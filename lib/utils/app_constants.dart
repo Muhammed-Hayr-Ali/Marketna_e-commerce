@@ -175,8 +175,6 @@ abstract class ConstantsText {
       'verification_code_cannot_be_empty';
   static const String VERIFICATION_CODE_INVALID_LENGTH =
       'verification_code_invalid_length';
-  static const String PASSWORD_UPDATED_SUCCESSFULLY =
-      'password_updated_successfully';
   static const String EMAIL_COPIED = 'email_copied';
   static const String PROFILE_UPDATED_SUCCESSFULLY =
       'profile_updated_successfully';
