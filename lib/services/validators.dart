@@ -95,14 +95,14 @@ class Validators {
 
   static String? city(String city) {
     if (city.isEmpty) {
-      return AppConstants.SELECT_CITY_REQUIRED.tr;
+      return ConstantsText.SELECT_CITY_REQUIRED.tr;
     }
     return null;
   }
 
   static String? province(String stateProvince) {
     if (stateProvince.isEmpty) {
-      return AppConstants.SELECT_PROVINCE_REQUIRED.tr;
+      return ConstantsText.SELECT_PROVINCE_REQUIRED.tr;
     }
     return null;
   }
@@ -111,29 +111,29 @@ class Validators {
 
   static String? country(String country) {
     if (country.isEmpty) {
-      return AppConstants.SELECT_COUNTRY_REQUIRED.tr;
+      return ConstantsText.SELECT_COUNTRY_REQUIRED.tr;
     }
     return null;
   }
 
   static String? phoneNumber(String phoneNumber) {
     if (phoneNumber.isEmpty) {
-      return AppConstants.PHONE_NUMBER_REQUIRED.tr;
+      return ConstantsText.PHONE_NUMBER_REQUIRED.tr;
     }
 
     if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phoneNumber)) {
-      return AppConstants.PHONE_NUMBER_INVALID.tr;
+      return ConstantsText.PHONE_NUMBER_INVALID.tr;
     }
     return null;
   }
 
   static String? countryCode(String countryCode) {
     if (countryCode.isEmpty) {
-      return AppConstants.COUNTRY_CODE_REQUIRED.tr;
+      return ConstantsText.COUNTRY_CODE_REQUIRED.tr;
     }
 
     if (!RegExp(r'^\+[0-9]{1,4}$').hasMatch(countryCode)) {
-      return AppConstants.COUNTRY_CODE_INVALID.tr;
+      return ConstantsText.COUNTRY_CODE_INVALID.tr;
     }
     return null;
   }

@@ -91,19 +91,19 @@ class AddAddressController extends GetxController {
   Future<Position> _determinePosition() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw AppConstants.UNABLE_LOCATION_SERVICES;
+      throw ConstantsText.UNABLE_LOCATION_SERVICES;
     }
 
     final permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       final requestedPermission = await Geolocator.requestPermission();
       if (requestedPermission == LocationPermission.denied) {
-        throw AppConstants.LOCATION_PERMISSIONS_DENIED;
+        throw ConstantsText.LOCATION_PERMISSIONS_DENIED;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw AppConstants.LOCATION_PERMISSIONS_DENIED_REQUEST_PERMISSIONS;
+      throw ConstantsText.LOCATION_PERMISSIONS_DENIED_REQUEST_PERMISSIONS;
     }
 
     return await Geolocator.getCurrentPosition();
@@ -148,8 +148,8 @@ class AddAddressController extends GetxController {
         flag: selectedCountryFlag,
         notes: notesController.text,
         location: {
-          AppConstants.LATITUDE: currentPosition.latitude,
-          AppConstants.LONGITUDE: currentPosition.longitude,
+          ConstantsText.LATITUDE: currentPosition.latitude,
+          ConstantsText.LONGITUDE: currentPosition.longitude,
         },
       );
 
@@ -160,7 +160,7 @@ class AddAddressController extends GetxController {
             .eq('id', addressId!)
             .whenComplete(() {
               CustomNotification.showSnackbar(
-                message: AppConstants.ADDRESS_UPDATED_SUCCESSFULLY,
+                message: ConstantsText.ADDRESS_UPDATED_SUCCESSFULLY,
               );
               _.loadAddresses();
             });
@@ -170,14 +170,14 @@ class AddAddressController extends GetxController {
             .insert(newAddress.toJson())
             .whenComplete(() {
               CustomNotification.showSnackbar(
-                message: AppConstants.ADDRESS_ADDED_SUCCESSFULLY,
+                message: ConstantsText.ADDRESS_ADDED_SUCCESSFULLY,
               );
               _disposeControllers();
               _.loadAddresses();
             });
       }
     } catch (error) {
-      CustomNotification.showSnackbar(message: AppConstants.DATA_SENDING_ERROR);
+      CustomNotification.showSnackbar(message: ConstantsText.DATA_SENDING_ERROR);
       debugPrint(error.toString());
     } finally {
       isLoading.value = false;

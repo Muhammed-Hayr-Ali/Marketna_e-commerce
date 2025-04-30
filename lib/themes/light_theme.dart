@@ -1,7 +1,7 @@
 import 'package:application/utils/import.dart';
 
 ThemeData lightTheme = ThemeData(
-  fontFamily: AppConstants.fontFamily,
+  fontFamily: ConstantsText.fontFamily,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
     elevation: 0,
@@ -10,7 +10,7 @@ ThemeData lightTheme = ThemeData(
     titleTextStyle: TextStyle(
       color: Colors.black,
       fontSize: 16.0,
-      fontFamily: AppConstants.fontFamily,
+      fontFamily: ConstantsText.fontFamily,
       fontWeight: FontWeight.w400,
     ),
     surfaceTintColor: Colors.transparent,
@@ -25,7 +25,7 @@ ThemeData lightTheme = ThemeData(
   dialogTheme: DialogTheme(
     titleTextStyle: TextStyle(
       fontSize: 16.0,
-      fontFamily: AppConstants.fontFamily,
+      fontFamily: ConstantsText.fontFamily,
       fontWeight: FontWeight.w500,
     ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),

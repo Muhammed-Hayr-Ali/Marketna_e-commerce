@@ -86,7 +86,6 @@ export 'package:application/services/app_exception.dart';
 // ==============================
 // **Utils**
 // ==============================
-export 'package:application/utils/app_string/constants_text.dart';
 export 'package:application/utils/colors.dart';
 export 'package:application/utils/keys.dart';
 export 'package:application/utils/storage_key.dart';

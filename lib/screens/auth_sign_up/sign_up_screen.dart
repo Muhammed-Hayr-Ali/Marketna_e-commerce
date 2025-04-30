@@ -21,13 +21,13 @@ class SignUpScreen extends StatelessWidget {
             Column(
               children: [
                 CustomText(
-                  AppConstants.CREATE_ACCOUNT,
+                  ConstantsText.CREATE_ACCOUNT,
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 16.0),
                 CustomText(
-                  AppConstants.FILL_YOUR_DETAILS,
+                  ConstantsText.FILL_YOUR_DETAILS,
                   color: Colors.grey,
                   textAlign: TextAlign.center,
                 ),
@@ -39,24 +39,24 @@ class SignUpScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: AppConstants.FULL_NAME.tr,
-                      hintText: AppConstants.DEFAULT_NAME,
+                      label: ConstantsText.FULL_NAME.tr,
+                      hintText: ConstantsText.DEFAULT_NAME,
                       controller: _.nameController,
                       validator: (value) => Validators.name(value!),
                       keyboardType: TextInputType.name,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.EMAIL.tr,
-                      hintText: AppConstants.EXAMPLE_EMAIL,
+                      label: ConstantsText.EMAIL.tr,
+                      hintText: ConstantsText.EXAMPLE_EMAIL,
                       controller: _.emailController,
                       validator: (value) => Validators.email(value!),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.PASSWORD.tr,
-                      hintText: AppConstants.EXAMPLE_PASSWORD,
+                      label: ConstantsText.PASSWORD.tr,
+                      hintText: ConstantsText.EXAMPLE_PASSWORD,
                       controller: _.passwordController,
                       validator:
                           (value) => Validators.password(
@@ -68,8 +68,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.CONFIRM_PASSWORD.tr,
-                      hintText: AppConstants.EXAMPLE_PASSWORD,
+                      label: ConstantsText.CONFIRM_PASSWORD.tr,
+                      hintText: ConstantsText.EXAMPLE_PASSWORD,
                       controller: _.confirmPasswordController,
                       validator:
                           (value) => Validators.confirmPassword(
@@ -89,7 +89,7 @@ class SignUpScreen extends StatelessWidget {
                       progressColor: Colors.white,
                       onPressed: _.signUp,
                       child: CustomText(
-                        AppConstants.SIGN_UP,
+                        ConstantsText.SIGN_UP,
                         color: AppColors.white,
                       ),
                     ),
@@ -107,12 +107,12 @@ class SignUpScreen extends StatelessWidget {
                   child: Icon(Icons.check, color: Colors.white, size: 12),
                 ),
                 const SizedBox(width: 2),
-                CustomText(AppConstants.AGREE_TO_TERMS, fontSize: 10),
+                CustomText(ConstantsText.AGREE_TO_TERMS, fontSize: 10),
                 const SizedBox(width: 2),
                 GestureDetector(
                   onTap: _.openPrivacyPolicy,
                   child: CustomText(
-                    AppConstants.PRIVACY_POLICY,
+                    ConstantsText.PRIVACY_POLICY,
                     fontSize: 10,
                     color: AppColors.primaryColor,
                   ),

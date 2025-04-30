@@ -54,24 +54,24 @@ class EditProfileMainController {
 
   Future<String?> openSelectImageSource() async {
     return await custombottomSheet<String?>(
-      title: AppConstants.SELECT_IMAGE_SOURCE,
+      title: ConstantsText.SELECT_IMAGE_SOURCE,
       children: [
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result: AppConstants.CAMERA),
-          child: const CustomText(AppConstants.CAMERA, fontSize: 12),
+          onPressed: () => Get.back(result: ConstantsText.CAMERA),
+          child: const CustomText(ConstantsText.CAMERA, fontSize: 12),
         ),
         const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result: AppConstants.GALLERY),
-          child: const CustomText(AppConstants.GALLERY, fontSize: 12),
+          onPressed: () => Get.back(result: ConstantsText.GALLERY),
+          child: const CustomText(ConstantsText.GALLERY, fontSize: 12),
         ),
         const SizedBox(height: 16),
         CustomButton(
           width: double.infinity,
-          onPressed: () => Get.back(result: AppConstants.DELETE),
-          child: const CustomText(AppConstants.DELETE, fontSize: 12),
+          onPressed: () => Get.back(result: ConstantsText.DELETE),
+          child: const CustomText(ConstantsText.DELETE, fontSize: 12),
         ),
       ],
     );
@@ -79,45 +79,45 @@ class EditProfileMainController {
 
   Future<String> openGenderBottomSheet(String? value) async {
     return await custombottomSheet<String?>(
-          title: AppConstants.SELECT_GENDER,
+          title: ConstantsText.SELECT_GENDER,
           children: [
             TextButton(
-              onPressed: () => Get.back(result: AppConstants.NOT_SPECIFIED),
+              onPressed: () => Get.back(result: ConstantsText.NOT_SPECIFIED),
               style: TextButton.styleFrom(
                 backgroundColor:
-                    value == AppConstants.NOT_SPECIFIED
+                    value == ConstantsText.NOT_SPECIFIED
                         ? Colors.grey.shade200
                         : Colors.white,
               ),
-              child: Row(children: [CustomText(AppConstants.NOT_SPECIFIED)]),
+              child: Row(children: [CustomText(ConstantsText.NOT_SPECIFIED)]),
             ),
 
             TextButton(
-              onPressed: () => Get.back(result: AppConstants.MALE),
+              onPressed: () => Get.back(result: ConstantsText.MALE),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == AppConstants.MALE
+                  value == ConstantsText.MALE
                       ? Colors.grey.shade200
                       : Colors.white,
                 ),
               ),
-              child: Row(children: [CustomText(AppConstants.MALE)]),
+              child: Row(children: [CustomText(ConstantsText.MALE)]),
             ),
             TextButton(
-              onPressed: () => Get.back(result: AppConstants.FEMALE),
+              onPressed: () => Get.back(result: ConstantsText.FEMALE),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  value == AppConstants.FEMALE
+                  value == ConstantsText.FEMALE
                       ? Colors.grey.shade200
                       : Colors.white,
                 ),
               ),
-              child: Row(children: [CustomText(AppConstants.FEMALE)]),
+              child: Row(children: [CustomText(ConstantsText.FEMALE)]),
             ),
           ],
         ) ??
         value ??
-        AppConstants.NOT_SPECIFIED;
+        ConstantsText.NOT_SPECIFIED;
   }
 
   /// Opens a bottom sheet with a date picker and a confirm button.
@@ -137,7 +137,7 @@ class EditProfileMainController {
     DateTime? selectedDate;
 
     custombottomSheet(
-      title: AppConstants.CHOOSE_YOUR_DATE_OF_BIRTH,
+      title: ConstantsText.CHOOSE_YOUR_DATE_OF_BIRTH,
       children: [
         DatePickerWidget(
           locale: _getLocale(),
@@ -148,7 +148,7 @@ class EditProfileMainController {
               initialDate != null
                   ? DateTime.tryParse(initialDate)
                   : DateTime.now(),
-          dateFormat: AppConstants.DATE_FORMAT,
+          dateFormat: ConstantsText.DATE_FORMAT,
           pickerTheme: DateTimePickerTheme(),
           onChange: (date, _) => selectedDate = date,
         ),
@@ -162,7 +162,7 @@ class EditProfileMainController {
               }
               Get.back();
             },
-            child: CustomText(AppConstants.CONFIRM),
+            child: CustomText(ConstantsText.CONFIRM),
           ),
         ),
       ],

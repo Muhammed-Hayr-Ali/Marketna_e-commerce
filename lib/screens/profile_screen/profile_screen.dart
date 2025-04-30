@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const CustomText(AppConstants.PROFILE),
+        title: const CustomText(ConstantsText.PROFILE),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -113,39 +113,39 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   MenuItem(
-                    title: AppConstants.EDIT_PROFILE,
+                    title: ConstantsText.EDIT_PROFILE,
                     icon: AppAssets.profile,
                     onTap: () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
-                    title: AppConstants.MY_ADDRESSES,
+                    title: ConstantsText.MY_ADDRESSES,
                     icon: AppAssets.mapPoint,
                     onTap:
                         () =>
                             _.navigateToScreen(Routes.MANAGER_ADDRESSES_SCREEN),
                   ),
                   MenuItem(
-                    title: AppConstants.MY_ORDERS,
+                    title: ConstantsText.MY_ORDERS,
                     icon: AppAssets.delivery,
                     onTap: () {},
                   ),
                   MenuItem(
-                    title: AppConstants.SETTINGS,
+                    title: ConstantsText.SETTINGS,
                     icon: AppAssets.settings,
                     onTap: () => _.navigateToScreen(Routes.SETTINGS_SCREEN),
                   ),
                   MenuItem(
-                    title: AppConstants.SECURITY,
+                    title: ConstantsText.SECURITY,
                     icon: AppAssets.security,
                     onTap: () {},
                   ),
                   MenuItem(
-                    title: AppConstants.HELP_CENTER,
+                    title: ConstantsText.HELP_CENTER,
                     icon: AppAssets.help,
                     onTap: () {},
                   ),
                   MenuItem(
-                    title: AppConstants.LOGOUT,
+                    title: ConstantsText.LOGOUT,
                     icon: AppAssets.logout,
                     divider: false,
                     onTap: _.signOut,

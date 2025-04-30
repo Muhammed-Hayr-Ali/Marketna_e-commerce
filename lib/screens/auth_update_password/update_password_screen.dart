@@ -10,139 +10,138 @@ class UpdatePasswordScreen extends StatelessWidget {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  Future<void> _updatePassword() async {
+    final codeIsValid = _.chekCodeIsValid(
+      _verificationCodeController.text.trim(),
+    );
+    final isValid = _formKey.currentState!.validate();
+    if (!codeIsValid || !isValid) return;
+    await _.updatePassword(
+      email: _email,
+      verificationCode: _verificationCodeController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: Get.back,
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
+      appBar: customAppBar(backButton: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                CustomText(
-                  AppConstants.UPDATE_PASSWORD,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 16.0),
-                CustomText(
-                  AppConstants.UPDATE_PASSWORD_DESC,
-                  color: Colors.grey,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+            CustomPageTitle(
+              title: ConstantsText.UPDATE_PASSWORD,
+              subtitle: ConstantsText.UPDATE_PASSWORD_DESC,
+              padding: EdgeInsets.only(bottom: Get.width * 0.15),
             ),
-            Obx(
-              () => Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    PinCodeFields(
+
+            /// Form
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: PinCodeFields(
+                      animation: Animations.slideInUp,
+                      padding: EdgeInsets.zero,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: Get.width * 0.022,
+                      ),
                       length: 6,
-                      fieldBorderStyle: FieldBorderStyle.leftRight,
-                      responsive: false,
-                      fieldHeight: 50.0,
-                      fieldWidth: 40.0,
-                      borderWidth: 0,
-                      activeBorderColor: Colors.grey.shade200,
+                      fieldBorderStyle: FieldBorderStyle.square,
+                      responsive: true,
+                      fieldHeight: Get.width * 0.175,
+                      // fieldWidth: 40.0,
+                      borderWidth: 1.0,
+                      activeBorderColor: Colors.blueGrey,
+                      fieldBackgroundColor: Colors.grey.shade200,
                       activeBackgroundColor: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(6.0),
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       autoHideKeyboard: false,
-                      fieldBackgroundColor: Colors.grey.shade200,
                       borderColor: Colors.black12,
                       textStyle: TextStyle(
-                        fontFamily: AppConstants.fontFamily,
-                        fontSize: 14.0,
+                        fontFamily: ConstantsText.fontFamily,
+                        fontSize: 22.0,
                         fontWeight: FontWeight.w500,
                       ),
                       controller: _verificationCodeController,
                       onComplete: (String value) {},
                     ),
+                  ),
+                  Obx(
+                    () =>
+                        _.verificationCodeErrorMessage != ''
+                            ? FadeAnimationDy(
+                              delay: 200,
+                              dy: 6,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                  6.0,
+                                  2.0,
+                                  6.0,
+                                  0,
+                                ),
+                                child: Text(
+                                  (_.verificationCodeErrorMessage).tr,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                            )
+                            : const SizedBox.shrink(),
+                  ),
+                  const SizedBox(height: 16.0),
+                  CustomTextField(
+                    label: ConstantsText.PASSWORD.tr,
+                    hintText: ConstantsText.EXAMPLE_PASSWORD,
+                    controller: _passwordController,
+                    validator:
+                        (value) => Validators.password(
+                          value!,
+                          _confirmPasswordController.text,
+                        ),
+                    isPasswordField: true,
+                    keyboardType: TextInputType.text,
+                  ),
+                  const SizedBox(height: 16.0),
+                  CustomTextField(
+                    label: ConstantsText.CONFIRM_PASSWORD.tr,
+                    hintText: ConstantsText.EXAMPLE_PASSWORD,
+                    controller: _confirmPasswordController,
+                    validator:
+                        (value) => Validators.confirmPassword(
+                          value!,
+                          _passwordController.text,
+                        ),
+                    isPasswordField: true,
+                    keyboardType: TextInputType.text,
+                  ),
 
-                    // const SizedBox(height: 16.0),
-                    // const SizedBox(height: 16.0),
-                    // Directionality(
-                    //   textDirection: TextDirection.ltr,
-                    //   child: PinCodeFields(
-                    //     length: 6,
-                    //     fieldBorderStyle: FieldBorderStyle.square,
-                    //     responsive: false,
-                    //     fieldHeight: 50.0,
-                    //     fieldWidth: 40.0,
-                    //     borderWidth: 0,
-                    //     activeBorderColor: Colors.grey.shade200,
-                    //     activeBackgroundColor: Colors.grey.shade200,
-                    //     borderRadius: BorderRadius.circular(6.0),
-                    //     keyboardType: TextInputType.number,
-                    //     inputFormatters: [
-                    //       FilteringTextInputFormatter.digitsOnly,
-                    //     ],
-                    //     autoHideKeyboard: false,
-                    //     fieldBackgroundColor: Colors.grey.shade200,
-                    //     borderColor: Colors.black12,
-                    //     textStyle: TextStyle(
-                    //       fontFamily: AppConstants.fontFamily,
-                    //       fontSize: 14.0,
-                    //       fontWeight: FontWeight.w500,
-                    //     ),
-                    //     controller: _verificationCodeController,
-                    //     onComplete: (String value) {},
-                    //   ),
-                    // ),
+                  const SizedBox(height: 48.0),
 
-                    // const SizedBox(height: 16.0),
-                    CustomTextField(
-                      label: AppConstants.PASSWORD.tr,
-                      hintText: AppConstants.EXAMPLE_PASSWORD,
-                      controller: _passwordController,
-                      validator:
-                          (value) => Validators.password(
-                            value!,
-                            _confirmPasswordController.text,
-                          ),
-                      isPasswordField: true,
-                      keyboardType: TextInputType.text,
+                  CustomButton(
+                    isLoading: _.isLoading,
+                    width: double.infinity,
+                    buttonColor: AppColors.primaryColor,
+                    progressColor: Colors.white,
+                    onPressed: _updatePassword,
+                    child: CustomText(
+                      ConstantsText.UPDATE.tr,
+                      color: AppColors.white,
                     ),
-                    const SizedBox(height: 16.0),
-                    CustomTextField(
-                      label: AppConstants.CONFIRM_PASSWORD.tr,
-                      hintText: AppConstants.EXAMPLE_PASSWORD,
-                      controller: _confirmPasswordController,
-                      validator:
-                          (value) => Validators.confirmPassword(
-                            value!,
-                            _passwordController.text,
-                          ),
-                      isPasswordField: true,
-                      keyboardType: TextInputType.text,
-                    ),
-
-                    const SizedBox(height: 48.0),
-
-                    CustomButton(
-                      isLoading: _.isLoading.value,
-                      width: double.infinity,
-                      buttonColor: AppColors.primaryColor,
-                      progressColor: Colors.white,
-                      onPressed: _.updatePassword,
-                      child: CustomText(
-                        AppConstants.UPDATE.tr,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
+
             const SizedBox(),
             const SizedBox(),
             const SizedBox(),

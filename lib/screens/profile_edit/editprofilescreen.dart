@@ -28,7 +28,7 @@ class EditProfileScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
 
-        title: const CustomText(AppConstants.EDIT_PROFILE),
+        title: const CustomText(ConstantsText.EDIT_PROFILE),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -76,8 +76,8 @@ class EditProfileScreen extends StatelessWidget {
 
                             /// name
                             CustomTextField(
-                              label: AppConstants.FULL_NAME.tr,
-                              hintText: AppConstants.DEFAULT_NAME,
+                              label: ConstantsText.FULL_NAME.tr,
+                              hintText: ConstantsText.DEFAULT_NAME,
                               controller: _.nameController,
                               validator: (value) => Validators.name(value!),
                               keyboardType: TextInputType.name,
@@ -87,7 +87,7 @@ class EditProfileScreen extends StatelessWidget {
                             /// email
                             CustomButton(
                               width: double.infinity,
-                              label: AppConstants.EMAIL.tr,
+                              label: ConstantsText.EMAIL.tr,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -109,9 +109,9 @@ class EditProfileScreen extends StatelessWidget {
                             GetBuilder<EditProfileController>(
                               builder:
                                   (_) => PhoneTextField(
-                                    hintPhone: AppConstants.DEFAULT_PHONE,
-                                    hintCode: AppConstants.DEFAULT_COUNTRY_CODE,
-                                    labelText: AppConstants.PHONE.tr,
+                                    hintPhone: ConstantsText.DEFAULT_PHONE,
+                                    hintCode: ConstantsText.DEFAULT_COUNTRY_CODE,
+                                    labelText: ConstantsText.PHONE.tr,
                                     selectedCode: _.selectedCountryCode,
                                     phoneController: _.phoneController,
                                     onSelectedCode:
@@ -128,8 +128,8 @@ class EditProfileScreen extends StatelessWidget {
                             //     Expanded(
                             //       child: CustomTextField(
                             //         textDirection: TextDirection.ltr,
-                            //         label: AppConstants.PHONE.tr,
-                            //         hintText: AppConstants.DEFAULT_PHONE,
+                            //         label: ConstantsText.PHONE.tr,
+                            //         hintText: ConstantsText.DEFAULT_PHONE,
                             //         controller: _.phoneController,
                             //         validator:
                             //             (value) => Validators.phone(value!),
@@ -162,10 +162,10 @@ class EditProfileScreen extends StatelessWidget {
                                   flex: 1,
                                   child: CustomButton(
                                     width: double.infinity,
-                                    label: AppConstants.GENDER.tr,
+                                    label: ConstantsText.GENDER.tr,
                                     child: CustomText(
                                       (_.gender == null || _.gender == '')
-                                          ? AppConstants.NOT_SPECIFIED
+                                          ? ConstantsText.NOT_SPECIFIED
                                           : _.gender!,
                                       color:
                                           (_.gender == null || _.gender == '')
@@ -183,10 +183,10 @@ class EditProfileScreen extends StatelessWidget {
                                   flex: 1,
                                   child: CustomButton(
                                     width: double.infinity,
-                                    label: AppConstants.DATE_OF_BIRTH.tr,
+                                    label: ConstantsText.DATE_OF_BIRTH.tr,
                                     child: CustomText(
                                       (_.dateBirth == null || _.dateBirth == '')
-                                          ? AppConstants.DATE_FORMAT
+                                          ? ConstantsText.DATE_FORMAT
                                           : _.dateBirth!,
                                       color:
                                           (_.dateBirth == null ||
@@ -221,7 +221,7 @@ class EditProfileScreen extends StatelessWidget {
                     buttonColor: AppColors.primaryColor,
                     progressColor: AppColors.white,
                     child: CustomText(
-                      AppConstants.UPDATE,
+                      ConstantsText.UPDATE,
                       color: AppColors.white,
                     ),
                   ),

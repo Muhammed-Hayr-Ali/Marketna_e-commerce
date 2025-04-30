@@ -50,16 +50,16 @@ class EditProfileController extends GetxController {
     // Set the country code to the user's country code
 
     // Set the country code controller text to the user's country code
-    selectedCountryCode = userMetadata?[AppConstants.COUNTRY_CODE];
+    selectedCountryCode = userMetadata?[ConstantsText.COUNTRY_CODE];
 
     // Set the phone controller text to the user's phone number
-    phoneController.text = userMetadata?[AppConstants.PHONE] ?? '';
+    phoneController.text = userMetadata?[ConstantsText.PHONE] ?? '';
 
     // Set the gender to the user's gender
-    gender = userMetadata?[AppConstants.GENDER] ?? '';
+    gender = userMetadata?[ConstantsText.GENDER] ?? '';
 
     // Set the date of birth to the user's date of birth
-    dateBirth = userMetadata?[AppConstants.DATE_BIRTH] ?? '';
+    dateBirth = userMetadata?[ConstantsText.DATE_BIRTH] ?? '';
 
     // Update the UI
     update();
@@ -99,9 +99,9 @@ class EditProfileController extends GetxController {
             () async => await supabase.auth.updateUser(
               UserAttributes(
                 data: {
-                  AppConstants.AVATAR: null,
-                  AppConstants.AVATAR_URL: null,
-                  AppConstants.PICTURE: null,
+                  ConstantsText.AVATAR: null,
+                  ConstantsText.AVATAR_URL: null,
+                  ConstantsText.PICTURE: null,
                 },
               ),
             ),
@@ -114,7 +114,7 @@ class EditProfileController extends GetxController {
     } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${AppConstants.ERROR.tr} $error',
+        message: '${ConstantsText.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {
@@ -161,9 +161,9 @@ class EditProfileController extends GetxController {
       await supabase.auth.updateUser(
         UserAttributes(
           data: {
-            AppConstants.AVATAR: url,
-            AppConstants.AVATAR_URL: url,
-            AppConstants.PICTURE: url,
+            ConstantsText.AVATAR: url,
+            ConstantsText.AVATAR_URL: url,
+            ConstantsText.PICTURE: url,
           },
         ),
       );
@@ -174,7 +174,7 @@ class EditProfileController extends GetxController {
     } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${AppConstants.ERROR.tr} $error',
+        message: '${ConstantsText.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {
@@ -188,7 +188,7 @@ class EditProfileController extends GetxController {
     if (email == null) return;
 
     Clipboard.setData(ClipboardData(text: email!));
-    CustomNotification.showToast(message: AppConstants.EMAIL_COPIED);
+    CustomNotification.showToast(message: ConstantsText.EMAIL_COPIED);
   }
 
   /// updates Country Code
@@ -232,21 +232,21 @@ class EditProfileController extends GetxController {
       await supabase.auth.updateUser(
         UserAttributes(
           data: {
-            AppConstants.DISPLAY_NAME: nameController.text.trim(),
-            AppConstants.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(
+            ConstantsText.DISPLAY_NAME: nameController.text.trim(),
+            ConstantsText.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(
               email!.trim(),
             ),
-            AppConstants.COUNTRY_CODE: selectedCountryCode,
-            AppConstants.PHONE: phoneController.text.trim(),
-            AppConstants.GENDER: gender,
-            AppConstants.DATE_BIRTH: dateBirth,
+            ConstantsText.COUNTRY_CODE: selectedCountryCode,
+            ConstantsText.PHONE: phoneController.text.trim(),
+            ConstantsText.GENDER: gender,
+            ConstantsText.DATE_BIRTH: dateBirth,
           },
         ),
       );
 
       // Show a snackbar with the message 'Profile updated successfully'
       CustomNotification.showSnackbar(
-        message: AppConstants.PROFILE_UPDATED_SUCCESSFULLY,
+        message: ConstantsText.PROFILE_UPDATED_SUCCESSFULLY,
       );
     } on AuthException catch (error) {
       // Show a snackbar with the error message
@@ -254,7 +254,7 @@ class EditProfileController extends GetxController {
     } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${AppConstants.ERROR.tr} $error',
+        message: '${ConstantsText.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {

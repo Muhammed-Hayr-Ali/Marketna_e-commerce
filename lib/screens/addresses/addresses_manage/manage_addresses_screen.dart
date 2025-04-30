@@ -21,7 +21,7 @@ class ManageAddressesScreen extends StatelessWidget {
               vertical: 10.0,
             ),
             child: const CustomText(
-              AppConstants.MANAGE_ADDRESSES,
+              ConstantsText.MANAGE_ADDRESSES,
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
@@ -55,7 +55,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 8.0),
                                       const CustomText(
-                                        AppConstants.ADD_NEW_ADDRESS,
+                                        ConstantsText.ADD_NEW_ADDRESS,
                                         fontSize: 14,
                                         color: Colors.grey,
                                       ),

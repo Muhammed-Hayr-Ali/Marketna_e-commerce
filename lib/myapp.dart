@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Run app
     return GetMaterialApp(
-      title: AppConstants.appName,
+      title: ConstantsText.appName,
       debugShowCheckedModeBanner: false,
 
       // Theme configuration

@@ -5,51 +5,37 @@ class UpdatePasswordController extends GetxController {
 
   ////////////////
   final formKey = GlobalKey<FormState>();
-  String? email;
-  String? verificationCode;
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+
   /////////////////////
-  RxBool isLoading = false.obs;
+  final RxBool _isLoading = false.obs;
+  final RxString _verificationCodeErrorMessage = ''.obs;
 
-  /// Updates the user's password.
-  ///
-  /// This function verifies the user's email and verification code, and then
-  /// updates the user's password. If the verification code is invalid, or if the
-  /// password is empty, it will show an error message. If the password is updated
-  /// successfully, it will log the user out and navigate to the login screen.
-  ///
-  /// The user's email and verification code are passed as parameters to this
-  /// function. The verification code is a 6-digit code that is sent to the user's
-  /// email.
-  ///
-  /// The user's password is updated using the `updateUser` method of the
-  /// `supabase` client. The `updateUser` method takes a `UserAttributes` object
-  /// as a parameter, which contains the new password.
-  ///
-  /// If an error occurs while updating the user's password, it will show an error
-  /// message.
-  ///
-  /// Finally, the user is logged out using the `signOut` method of the `supabase`
-  /// client, and then navigated to the login screen.
-  Future<void> updatePassword() async {
-    if (verificationCode == null) {
-      CustomNotification.showSnackbar(
-        message: AppConstants.VERIFICATION_CODE_CANNOT_BE_EMPTY,
-      );
-      return;
-    } else if (verificationCode!.length != 6) {
-      CustomNotification.showSnackbar(
-        message: AppConstants.VERIFICATION_CODE_INVALID_LENGTH,
-      );
-      return;
+  bool get isLoading => _isLoading.value;
+  String get verificationCodeErrorMessage =>
+      _verificationCodeErrorMessage.value;
+
+  bool chekCodeIsValid(String code) {
+    if (code.isEmpty) {
+      _verificationCodeErrorMessage.value =
+          ConstantsText.VERIFICATION_CODE_CANNOT_BE_EMPTY;
+      return false;
+    } else if (code.length != 6) {
+      _verificationCodeErrorMessage.value =
+          ConstantsText.VERIFICATION_CODE_INVALID_LENGTH;
+      return false;
     }
+    _verificationCodeErrorMessage.value = '';
+    return true;
+  }
 
-    if (!formKey.currentState!.validate()) return;
-
-    isLoading.value = true;
-
+  Future<void> updatePassword({
+    required String? email,
+    required String? verificationCode,
+    required String password,
+  }) async {
     try {
+      _isLoading.value = true;
+
       // Verify the user's email and verification code
       await supabase.auth.verifyOTP(
         email: email!,
@@ -58,9 +44,7 @@ class UpdatePasswordController extends GetxController {
       );
 
       // Update the user's password
-      await supabase.auth.updateUser(
-        UserAttributes(password: passwordController.text.trim()),
-      );
+      await supabase.auth.updateUser(UserAttributes(password: password));
 
       // Log the user out
       await supabase.auth.signOut();
@@ -70,7 +54,7 @@ class UpdatePasswordController extends GetxController {
 
       // Show a success message
       CustomNotification.showSnackbar(
-        message: AppConstants.PASSWORD_UPDATED_SUCCESSFULLY,
+        message: ConstantsText.PASSWORD_UPDATED_SUCCESSFULLY,
       );
     } on AuthException catch (error) {
       // Show an error message
@@ -78,12 +62,12 @@ class UpdatePasswordController extends GetxController {
     } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${AppConstants.ERROR.tr} $error',
+        message: '${ConstantsText.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {
       // Reset the loading state
-      isLoading.value = false;
+      _isLoading.value = false;
     }
   }
 }

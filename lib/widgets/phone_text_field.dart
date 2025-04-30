@@ -247,7 +247,7 @@ class PhoneTextField extends StatelessWidget {
                       suffix: _clearTextWidget(),
                       hintText: hintPhone,
                       hintStyle: TextStyle(
-                        fontFamily: fontFamily ?? AppConstants.fontFamily,
+                        fontFamily: fontFamily ?? ConstantsText.fontFamily,
                         fontSize: fontSize ?? 14,
                         fontWeight: fontWeight ?? FontWeight.w500,
                         color: Colors.grey.shade400,

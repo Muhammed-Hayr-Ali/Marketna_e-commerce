@@ -20,7 +20,7 @@ class AddAddressScreen extends StatelessWidget {
           onPressed: Get.back,
           icon: const Icon(Icons.arrow_back_ios),
         ),
-        title: const CustomText(AppConstants.ADD_NEW_ADDRESS),
+        title: const CustomText(ConstantsText.ADD_NEW_ADDRESS),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,7 +34,7 @@ class AddAddressScreen extends StatelessWidget {
                   children: [
                     /// address name
                     CustomTextField(
-                      label: AppConstants.ADDRESS_NAME.tr,
+                      label: ConstantsText.ADDRESS_NAME.tr,
                       controller: _.addressNameController,
                       validator: (value) => Validators.saddressName(value!),
                     ),
@@ -44,7 +44,7 @@ class AddAddressScreen extends StatelessWidget {
 
                     /// street address
                     CustomTextField(
-                      label: AppConstants.STREET_ADDRESS.tr,
+                      label: ConstantsText.STREET_ADDRESS.tr,
                       controller: _.streetAddressController,
                       validator: (value) => Validators.streetAddress(value!),
                     ),
@@ -82,9 +82,9 @@ class AddAddressScreen extends StatelessWidget {
                       builder:
                           (_) => PhoneTextField(
                             enableCode: false,
-                            hintPhone: AppConstants.DEFAULT_PHONE,
-                            hintCode: AppConstants.DEFAULT_COUNTRY_CODE,
-                            labelText: AppConstants.PHONE.tr,
+                            hintPhone: ConstantsText.DEFAULT_PHONE,
+                            hintCode: ConstantsText.DEFAULT_COUNTRY_CODE,
+                            labelText: ConstantsText.PHONE.tr,
                             selectedCode: _.selectedCountryCode,
                             phoneController: _.phoneNumberController,
                             // onSelectedCode:
@@ -103,8 +103,8 @@ class AddAddressScreen extends StatelessWidget {
                     //     Expanded(
                     //       child: CustomTextField(
                     //         textDirection: TextDirection.ltr,
-                    //         label: AppConstants.PHONENUMBER.tr,
-                    //         hintText: AppConstants.DEFAULT_PHONE.tr,
+                    //         label: ConstantsText.PHONENUMBER.tr,
+                    //         hintText: ConstantsText.DEFAULT_PHONE.tr,
                     //         controller: _.phoneNumberController,
                     //         validator: (value) => Validators.phone(value!),
                     //         keyboardType: TextInputType.phone,
@@ -120,13 +120,13 @@ class AddAddressScreen extends StatelessWidget {
                     //       init: AddAddressController(),
                     //       builder:
                     //           (_) => CustomButton(
-                    //             label: AppConstants.COUNTRY_CODE,
+                    //             label: ConstantsText.COUNTRY_CODE,
                     //             errorMessage: _.countryCodeErrorMessage,
 
                     //             child: CustomText(
                     //               textDirection: TextDirection.ltr,
                     //               _.selectedCountryCode ??
-                    //                   AppConstants.DEFAULT_COUNTRY_CODE.tr,
+                    //                   ConstantsText.DEFAULT_COUNTRY_CODE.tr,
                     //               color:
                     //                   _.selectedCountryCode == null
                     //                       ? Colors.grey.shade400
@@ -143,7 +143,7 @@ class AddAddressScreen extends StatelessWidget {
                     /// notes
                     CustomTextField(
                       lines: 5,
-                      label: AppConstants.NOTES.tr,
+                      label: ConstantsText.NOTES.tr,
                       controller: _.notesController,
                     ),
                   ],
@@ -164,8 +164,8 @@ class AddAddressScreen extends StatelessWidget {
                   onPressed: _.addAddress,
                   child: CustomText(
                     address != null
-                        ? AppConstants.UPDATE
-                        : AppConstants.ADD_NEW_ADDRESS,
+                        ? ConstantsText.UPDATE
+                        : ConstantsText.ADD_NEW_ADDRESS,
                     color: AppColors.white,
                   ),
                 ),

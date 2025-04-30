@@ -1,7 +1,7 @@
 import 'package:application/utils/import.dart';
 
 ThemeData darkTheme = ThemeData(
-  fontFamily: AppConstants.fontFamily,
+  fontFamily: ConstantsText.fontFamily,
   scaffoldBackgroundColor: Colors.black,
   appBarTheme: const AppBarTheme(
     elevation: 0,
@@ -10,7 +10,7 @@ ThemeData darkTheme = ThemeData(
     titleTextStyle: TextStyle(
       color: Colors.white,
       fontSize: 16.0,
-      fontFamily: AppConstants.fontFamily,
+      fontFamily: ConstantsText.fontFamily,
       fontWeight: FontWeight.w400,
     ),
     surfaceTintColor: Colors.transparent,

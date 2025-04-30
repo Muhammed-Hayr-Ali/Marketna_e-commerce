@@ -7,7 +7,7 @@ class SignUpController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final Uri _url = Uri.parse(AppConstants.PRIVACY_POLICY_URL);
+  final Uri _url = Uri.parse(ConstantsText.PRIVACY_POLICY_URL);
   RxBool isLoading = false.obs;
 
   /// Signs the user up with email and password.
@@ -31,10 +31,10 @@ class SignUpController extends GetxController {
         email: email,
         password: password,
         data: {
-          AppConstants.DISPLAY_NAME: displayName,
-          AppConstants.NAME: displayName,
-          AppConstants.FULL_NAME: displayName,
-          AppConstants.USER_NAME: userName,
+          ConstantsText.DISPLAY_NAME: displayName,
+          ConstantsText.NAME: displayName,
+          ConstantsText.FULL_NAME: displayName,
+          ConstantsText.USER_NAME: userName,
         },
       );
 
@@ -45,7 +45,7 @@ class SignUpController extends GetxController {
     } catch (error) {
       // Handle other errors and show error message in a snackbar
       CustomNotification.showSnackbar(
-        message: '${AppConstants.ERROR.tr} $error',
+        message: '${ConstantsText.ERROR.tr} $error',
       );
       debugPrint(error.toString());
     } finally {
@@ -71,7 +71,7 @@ class SignUpController extends GetxController {
     }
 
     /// If the URL cannot be launched, throw an exception.
-    throw Exception(AppConstants.PRIVACY_POLICY_CANNOT_BE_OPENED);
+    throw Exception(ConstantsText.PRIVACY_POLICY_CANNOT_BE_OPENED);
     
   }
 }

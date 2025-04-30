@@ -197,7 +197,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               hintStyle:
                   widget.hintStyle ??
                   TextStyle(
-                    fontFamily: AppConstants.fontFamily,
+                    fontFamily: ConstantsText.fontFamily,
                     color: Colors.grey.shade400,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -218,7 +218,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         ),
                       )
                       : null,
-              errorStyle: const TextStyle(fontSize: 10),
+              errorStyle: const TextStyle(fontSize: 10, color: Colors.red),
               enabledBorder: buildBorder(),
               focusedBorder: buildBorder(),
               border: buildBorder(),

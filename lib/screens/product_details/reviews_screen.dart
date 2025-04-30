@@ -13,7 +13,7 @@ class ReviewsScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
 
-        title: const CustomText(AppConstants.REVIEWS),
+        title: const CustomText(ConstantsText.REVIEWS),
       ),    );
   }
 }

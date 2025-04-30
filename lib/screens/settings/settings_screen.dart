@@ -24,7 +24,7 @@ class SettingsScreen extends StatelessWidget {
             child: Row(
               children: [
                 const CustomText(
-                  AppConstants.SETTINGS_TITLE,
+                  ConstantsText.SETTINGS_TITLE,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -35,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.notifications),
             title: const CustomText(
-              AppConstants.NOTIFICATIONS,
+              ConstantsText.NOTIFICATIONS,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -45,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.language),
             title: const CustomText(
-              AppConstants.LANGUAGE,
+              ConstantsText.LANGUAGE,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -55,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.lock),
             title: const CustomText(
-              AppConstants.PRIVACY_POLICY,
+              ConstantsText.PRIVACY_POLICY,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -65,7 +65,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.info),
             title: const CustomText(
-              AppConstants.ABOUT,
+              ConstantsText.ABOUT,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout),
             title: const CustomText(
-              AppConstants.LOGOUT,
+              ConstantsText.LOGOUT,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -88,7 +88,7 @@ class SettingsScreen extends StatelessWidget {
           const Spacer(),
           Center(
             child: CustomText(
-              'version ${AppConstants.VERSION}',
+              'version ${ConstantsText.VERSION}',
               fontSize: 12,
               color: Colors.grey,
             ),

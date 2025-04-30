@@ -17,7 +17,7 @@ class AddressCard extends StatelessWidget {
                 children: [
                   /// address name
                   CustomText(
-                    '${AppConstants.ADDRESS_NAME.tr} : ',
+                    '${ConstantsText.ADDRESS_NAME.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -33,7 +33,7 @@ class AddressCard extends StatelessWidget {
 
                   /// street address
                   CustomText(
-                    '${AppConstants.STREET_ADDRESS.tr} : ',
+                    '${ConstantsText.STREET_ADDRESS.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -49,7 +49,7 @@ class AddressCard extends StatelessWidget {
 
                   /// location
                   CustomText(
-                    '${AppConstants.COUNTRY.tr} : ',
+                    '${ConstantsText.COUNTRY.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -63,7 +63,7 @@ class AddressCard extends StatelessWidget {
                   ),
                   Divider(color: Colors.grey.shade200),
                   CustomText(
-                    '${AppConstants.STATE_PROVINCE.tr} : ',
+                    '${ConstantsText.STATE_PROVINCE.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -77,7 +77,7 @@ class AddressCard extends StatelessWidget {
                   ),
                   Divider(color: Colors.grey.shade200),
                   CustomText(
-                    '${AppConstants.CITY.tr} : ',
+                    '${ConstantsText.CITY.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -93,7 +93,7 @@ class AddressCard extends StatelessWidget {
 
                   /// Phone
                   CustomText(
-                    '${AppConstants.PHONENUMBER.tr} : ',
+                    '${ConstantsText.PHONENUMBER.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -110,7 +110,7 @@ class AddressCard extends StatelessWidget {
 
                   /// Notes
                   CustomText(
-                    '${AppConstants.NOTES.tr} : ',
+                    '${ConstantsText.NOTES.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,

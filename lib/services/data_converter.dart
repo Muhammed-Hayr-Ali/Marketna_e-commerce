@@ -14,9 +14,9 @@ class DataConverter {
   /// [returns] The avatar URL or null if no URL is available.
 
   static String getAvatarUrl(Map<String, dynamic> userMetadata) =>
-      userMetadata[AppConstants.AVATAR] ??
-      userMetadata[AppConstants.AVATAR_URL] ??
-      userMetadata[AppConstants.PICTURE] ??
+      userMetadata[ConstantsText.AVATAR] ??
+      userMetadata[ConstantsText.AVATAR_URL] ??
+      userMetadata[ConstantsText.PICTURE] ??
       '';
 
   /// Retrieves the user's name from the metadata.
@@ -31,11 +31,11 @@ class DataConverter {
   /// [returns] The user's name or null if no name is available.
 
   static String getUserName(Map<String, dynamic> userMetadata) =>
-      userMetadata[AppConstants.DISPLAY_NAME] ??
-      userMetadata[AppConstants.NAME] ??
-      userMetadata[AppConstants.FULL_NAME] ??
-      userMetadata[AppConstants.USER_NAME] ??
-      userMetadata[AppConstants.PREFERRED_USERNAME] ??
+      userMetadata[ConstantsText.DISPLAY_NAME] ??
+      userMetadata[ConstantsText.NAME] ??
+      userMetadata[ConstantsText.FULL_NAME] ??
+      userMetadata[ConstantsText.USER_NAME] ??
+      userMetadata[ConstantsText.PREFERRED_USERNAME] ??
       '';
 
   /// Removes the text after the '@' symbol in the given input string.
