@@ -3,8 +3,8 @@ import 'package:application/utils/import.dart';
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
 
-  final _ =  Get.put<SplashScreenController>(SplashScreenController());
-  
+  final _ = Get.put<SplashScreenController>(SplashScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,20 +20,9 @@ class SplashScreen extends StatelessWidget {
             SizedBox(
               height: 100,
               child: Obx(
-                () => Column(
-                  children: [
-                    SizedBox(
-                      height: 52,
-                      child: CustomText(
-                        _.errorMessage,
-                        fontSize: 12.0,
-                        color: AppColors.red,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    _.isLoading
-                        ? Padding(
-                          padding: const EdgeInsets.all(10.0),
+                () =>
+                    _.errorMessage == ''
+                        ? Center(
                           child: SizedBox(
                             height: 20,
                             width: 20,
@@ -43,14 +32,35 @@ class SplashScreen extends StatelessWidget {
                             ),
                           ),
                         )
-                        : CustomButton(
-                          height: 40,
-                          borderRadius: 60,
-                          onPressed: _.retryInitialization,
-                          child: CustomText(ConstantsText.RETRY, fontSize: 10),
+                        : Column(
+                          children: [
+                            SizedBox(
+                              height: 50,
+                              child: Center(
+                                child: CustomText(
+                                  _.errorMessage,
+                                  fontSize: 12.0,
+                                  color: AppColors.red,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () => _.initializeApp(),
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.grey.shade100,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(99),
+                                ),
+                              ),
+                              child: CustomText(
+                                ConstantsText.RETRY,
+                                fontSize: 10.0,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                          ],
                         ),
-                  ],
-                ),
               ),
             ),
             CustomText(

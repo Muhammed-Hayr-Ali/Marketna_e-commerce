@@ -30,10 +30,5 @@ ThemeData lightTheme = ThemeData(
     ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
   ),
-  textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
-      overlayColor: Colors.transparent,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-    ),
-  ),
+ 
 );

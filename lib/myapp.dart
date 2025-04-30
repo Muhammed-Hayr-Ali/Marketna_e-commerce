@@ -1,4 +1,3 @@
-import 'package:application/screens/splash_screen/controller/binding.dart';
 import 'package:application/utils/import.dart';
 
 class MyApp extends StatelessWidget {
@@ -30,7 +29,6 @@ class MyApp extends StatelessWidget {
       
       getPages: RouteGet.getPages,
       initialRoute: Routes.SPLASH_SCREEN,
-      initialBinding: SplashScreenBinding(),
     );
   }
 }
