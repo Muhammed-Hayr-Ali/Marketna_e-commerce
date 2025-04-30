@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:application/utils/import.dart';
 
 class EditProfileMainController {

@@ -108,6 +108,8 @@ export 'package:application/widgets/custom_text.dart';
 export 'package:application/widgets/custom_text_field.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:date_time_format/date_time_format.dart';
+export 'package:application/widgets/animation/fade_animation_dx.dart';
+
 // ==============================
 // **External Packages**
 // ==============================

@@ -69,26 +69,18 @@ class Arabic {
 
     ///===========================================================================
     /// AppException
-    AppException.SOMETHING_WENT_WRONG: 'حدث خطاء، يرجى المحاولة مرة اخرى',
-    AppException.NO_INTERNET_CONNECTION:
+    AppException.SOMETHING_WENT_WRONG.message:
+        'حدث خطاء، يرجى المحاولة مرة اخرى',
+    AppException.NO_INTERNET_CONNECTION.message:
         'حدث خطأ في الاتصال،\nيرجى التحقق من الشبكة والمحاولة مرة أخرى',
-    AppException.INVALID_LOGIN_CREDENTIALS: 'بيانات تسجيل الدخول غير صحيحة',
-    AppException.GOOGLE_SIGN_IN_FAILED: 'فشل الحصول على معلومات حساب Google',
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
+    AppException.INVALID_LOGIN_CREDENTIALS.message:
+        'بيانات تسجيل الدخول غير صحيحة',
+    AppException.GOOGLE_SIGN_IN_FAILED.message:
+        'فشل الحصول على معلومات حساب Google',
+    AppException.MISSING_ACCESS_OR_ID_TOKEN.message:
+        'فشل الحصول على Token أو لم يتم العثور على المستخدم',
+    AppException.USER_NOT_FOUND_SESSION.message:
+        'تعذر العثور على حسابك. يرجى المحاولة مجددًا أو التواصل مع الدعم',
 
     /// عناوين وأوصاف الشاشات
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',

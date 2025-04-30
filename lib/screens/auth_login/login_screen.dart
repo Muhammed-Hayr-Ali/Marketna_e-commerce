@@ -1,4 +1,5 @@
 import 'package:application/utils/import.dart';
+import 'package:application/widgets/custom_page_title.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -8,10 +9,10 @@ class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _login() {
+  void _login() async {
     final isValid = _formKey.currentState!.validate();
     if (!isValid) return;
-    _.login(
+    await _.signInWithEmailAndPassword(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
@@ -27,23 +28,11 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             /// Screen Title
-            Column(
-              children: [
-                CustomText(
-                  ConstantsText.LOGIN,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 16.0),
-                CustomText(
-                  ConstantsText.WELCOME_BACK,
-                  color: Colors.grey,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+            CustomPageTitle(
+              title: ConstantsText.LOGIN,
+              subtitle: ConstantsText.WELCOME_BACK,
+              padding: EdgeInsets.only(bottom: Get.width * 0.15),
             ),
-
-            SizedBox(height: 48),
 
             /// Form
             Form(
@@ -66,15 +55,13 @@ class LoginScreen extends StatelessWidget {
                     isPasswordField: true,
                     keyboardType: TextInputType.text,
                   ),
-                  const SizedBox(height: 16.0),
                   Row(
                     children: [
                       TextButton(
                         style: TextButton.styleFrom(
                           overlayColor: Colors.transparent,
                         ),
-                        onPressed:
-                            () => _.navigateToScreen(Routes.FORGOT_PASSWORD),
+                        onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
                         child: CustomText(
                           ConstantsText.FORGOT_PASSWORD,
                           fontSize: 12,
@@ -88,7 +75,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 48.0),
+            const SizedBox(height: 16.0),
 
             /// Login Button
             CustomButton(
@@ -99,7 +86,7 @@ class LoginScreen extends StatelessWidget {
               onPressed: _login,
               child: CustomText(ConstantsText.LOGIN, color: AppColors.white),
             ),
-            const SizedBox(height: 48.0),
+            const SizedBox(height: 16.0),
 
             /// Others
             Column(
@@ -108,10 +95,13 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomText(ConstantsText.DONT_HAVE_ACCOUNT, fontSize: 12),
-                    const SizedBox(width: 5),
                     TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 6),
+                        overlayColor: Colors.transparent,
+                      ),
                       onPressed:
-                          () => _.navigateToScreen(Routes.REGISTER_SCREEN),
+                          () => Get.toNamed(Routes.REGISTER_SCREEN),
                       child: CustomText(
                         ConstantsText.SIGN_UP,
                         fontSize: 12,
@@ -139,39 +129,43 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     /// Login with github
                     CustomCicularButton(
-                      size: 42,
-                      isLoading: _.isLoadingGitHub,
+                      backgroundColor: Colors.grey.shade200,
+                      size: 48,
                       onPressed: _.signInWithGithub,
                       child: SvgPicture.asset(
                         AppAssets.github,
-                        height: 16,
-                        width: 16,
+                        height: 22,
+                        width: 22,
                       ),
                     ),
                     const SizedBox(width: 16.0),
 
                     /// Login with google
-                    CustomCicularButton(
-                      size: 42,
-                      isLoading: _.isLoadingGoogle,
-                      onPressed: _.signInWithGoogle,
-                      child: SvgPicture.asset(
-                        AppAssets.google,
-                        height: 16,
-                        width: 16,
+                    Obx(
+                      () => CustomCicularButton(
+                        backgroundColor: Colors.grey.shade200,
+                        size: 48,
+                        isLoading: _.isLoadingGoogle,
+                        onPressed: _.signInWithGoogle,
+                        child: SvgPicture.asset(
+                          AppAssets.google,
+                          height: 22,
+                          width: 22,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 16.0),
 
                     /// Login with x
                     CustomCicularButton(
-                      size: 42,
-                      isLoading: _.isLoadingX,
+                      backgroundColor: Colors.grey.shade200,
+
+                      size: 48,
                       onPressed: _.signInWithX,
                       child: SvgPicture.asset(
                         AppAssets.x,
-                        height: 16,
-                        width: 16,
+                        height: 22,
+                        width: 22,
                       ),
                     ),
                   ],

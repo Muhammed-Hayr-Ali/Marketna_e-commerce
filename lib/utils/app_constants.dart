@@ -84,7 +84,6 @@ abstract class AppConstants {
 
   static const String DATA_SENDING_ERROR = 'data_sending_error';
   static const String DATA_LOADING_ERROR = 'data_loading_error';
-  static const String GOOGLE_SIGN_IN_FAILED = 'google_sign_in_failed';
   static const String PRIVACY_POLICY_CANNOT_BE_OPENED =
       'privacy_policy_cannot_be_opened';
   static const String VERIFICATION_CODE_CANNOT_BE_EMPTY =
