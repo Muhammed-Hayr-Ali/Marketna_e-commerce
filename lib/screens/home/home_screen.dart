@@ -10,25 +10,25 @@ class HomeScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomText('HomeScreen'),
-          GetBuilder<HomeController>(
-            init: HomeController(),
-            builder:
-                (controller) =>
-                    controller.isLoading
-                        ? ShimmerPlaceholder()
-                        : controller.premiumProducts.isEmpty
-                        ? ErrorPlaceholder()
-                        : CustomCarouselSlider(
-                          products: controller.premiumProducts,
-                          shimmerPlaceholder: ShimmerPlaceholder(),
-                          errorPlaceholder: ErrorPlaceholder(),
-                          onTap:
-                              (product) => Get.toNamed(
-                                Routes.PRODUCT_DETAILS,
-                                arguments: product,
-                              ),
-                        ),
-          ),
+          //   GetBuilder<HomeController>(
+          //     init: HomeController(),
+          //     builder:
+          //         (controller) =>
+          //             controller.isLoading
+          //                 ? ShimmerPlaceholder()
+          //                 : controller.premiumProducts.isEmpty
+          //                 ? ErrorPlaceholder()
+          //                 : CustomCarouselSlider(
+          //                   products: controller.premiumProducts,
+          //                   shimmerPlaceholder: ShimmerPlaceholder(),
+          //                   errorPlaceholder: ErrorPlaceholder(),
+          //                   onTap:
+          //                       (product) => Get.toNamed(
+          //                         Routes.PRODUCT_DETAILS,
+          //                         arguments: product,
+          //                       ),
+          //                 ),
+          //   ),
         ],
       ),
     );

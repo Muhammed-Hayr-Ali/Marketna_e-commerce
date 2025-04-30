@@ -3,5 +3,7 @@
 class AppException {
   AppException._();
   static const String NO_INTERNET_CONNECTION = 'no_internet_connection';
-  static const String SOMETHING_WENT_WRONG = 'Something went wrong';
+  static const String SOMETHING_WENT_WRONG = 'something_went_wrong';
+  static const String INVALID_LOGIN_CREDENTIALS = 'Invalid login credentials';
+  static const String GOOGLE_SIGN_IN_FAILED = 'Null check operator used on a null value';
 }

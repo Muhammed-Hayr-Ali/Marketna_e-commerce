@@ -1,7 +1,7 @@
 import 'package:application/utils/import.dart';
 
 PreferredSizeWidget emptyAppBar() {
-  return AppBar(automaticallyImplyLeading: false);
+  return AppBar(automaticallyImplyLeading: false, toolbarHeight: 0);
 }
 
 PreferredSizeWidget customAppBar({

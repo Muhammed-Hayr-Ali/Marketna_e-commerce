@@ -15,7 +15,7 @@ class AppAssets {
 
   static const String github = 'assets/images/svg/github.svg';
   static const String google = 'assets/images/svg/google.svg';
-  static const String twitter = 'assets/images/svg/twitter.svg';
+  static const String x = 'assets/images/svg/twitter.svg';
 
   //bottomNavbar
   static const String cartActive = 'assets/bottomNavbar/cartActive.svg';

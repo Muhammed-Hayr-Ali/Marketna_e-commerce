@@ -1,3 +1,4 @@
+import 'package:application/screens/splash_screen/controller/binding.dart';
 import 'package:application/utils/import.dart';
 
 class MyApp extends StatelessWidget {
@@ -26,8 +27,10 @@ class MyApp extends StatelessWidget {
       locale: LocalizationController().language,
 
       // Route configuration
+      
       getPages: RouteGet.getPages,
       initialRoute: Routes.SPLASH_SCREEN,
+      initialBinding: SplashScreenBinding(),
     );
   }
 }

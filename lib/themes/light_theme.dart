@@ -31,10 +31,9 @@ ThemeData lightTheme = ThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
   ),
   textButtonTheme: TextButtonThemeData(
-    style: ButtonStyle(
-      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      ),
+    style: TextButton.styleFrom(
+      overlayColor: Colors.transparent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
     ),
   ),
 );

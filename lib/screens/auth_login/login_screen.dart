@@ -5,14 +5,10 @@ class LoginScreen extends StatelessWidget {
 
   final _ = Get.put(LoginController());
 
-  void _navigateToScreen(String route) {
-    Get.toNamed(route);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: emptyAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
@@ -21,34 +17,36 @@ class LoginScreen extends StatelessWidget {
             Column(
               children: [
                 CustomText(
-                  AppConstants.LOGIN,
+                  ConstantsText.LOGIN,
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 16.0),
                 CustomText(
-                  AppConstants.WELCOME_BACK,
+                  ConstantsText.WELCOME_BACK,
                   color: Colors.grey,
                   textAlign: TextAlign.center,
                 ),
               ],
             ),
+            SizedBox(),
+
             Obx(
               () => Form(
                 key: _.formKey,
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: AppConstants.EMAIL.tr,
-                      hintText: AppConstants.EXAMPLE_EMAIL,
+                      label: ConstantsText.EMAIL.tr,
+                      hintText: ConstantsText.EXAMPLE_EMAIL,
                       controller: _.emailController,
                       validator: (value) => Validators.email(value!),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: AppConstants.PASSWORD.tr,
-                      hintText: AppConstants.EXAMPLE_PASSWORD,
+                      label: ConstantsText.PASSWORD.tr,
+                      hintText: ConstantsText.EXAMPLE_PASSWORD,
                       controller: _.passwordController,
                       validator: (value) => Validators.passwordOnly(value!),
                       isPasswordField: true,
@@ -57,11 +55,14 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 16.0),
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap:
-                              () => _navigateToScreen(Routes.FORGOT_PASSWORD),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            overlayColor: Colors.transparent,
+                          ),
+                          onPressed:
+                              () => _.navigateToScreen(Routes.FORGOT_PASSWORD),
                           child: CustomText(
-                            AppConstants.FORGOT_PASSWORD,
+                            ConstantsText.FORGOT_PASSWORD,
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                             color: AppColors.primaryColor,
@@ -73,13 +74,13 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 48.0),
 
                     CustomButton(
-                      isLoading: _.isLoading.value,
+                      isLoading: _.isLoading,
                       width: double.infinity,
                       buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _.login,
                       child: CustomText(
-                        AppConstants.LOGIN,
+                        ConstantsText.LOGIN,
                         color: AppColors.white,
                       ),
                     ),
@@ -87,17 +88,19 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
+
             Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText(AppConstants.DONT_HAVE_ACCOUNT, fontSize: 12),
+                    CustomText(ConstantsText.DONT_HAVE_ACCOUNT, fontSize: 12),
                     const SizedBox(width: 5),
-                    GestureDetector(
-                      onTap: () => _navigateToScreen(Routes.REGISTER_SCREEN),
+                    TextButton(
+                      onPressed:
+                          () => _.navigateToScreen(Routes.REGISTER_SCREEN),
                       child: CustomText(
-                        AppConstants.SIGN_UP,
+                        ConstantsText.SIGN_UP,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: AppColors.primaryColor,
@@ -105,54 +108,62 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12.0),
-                CustomText(AppConstants.OR, color: Colors.grey, fontSize: 10.0),
-                const SizedBox(height: 12.0),
                 CustomText(
-                  AppConstants.SIGN_IN_WITH,
+                  ConstantsText.OR,
                   color: Colors.grey,
                   fontSize: 10.0,
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 12.0),
+                CustomText(
+                  ConstantsText.SIGN_IN_WITH,
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                const SizedBox(height: 28.0),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    /// Login with github
-                    CustomCicularButton(
-                      size: 16,
-                      onPressed: _.signInWithGithub,
-                      child: SvgPicture.asset(
-                        AppAssets.github,
-                        height: 16,
-                        width: 16,
+                Obx(
+                  () => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      /// Login with github
+                      CustomCicularButton(
+                        size: 42,
+                        isLoading: _.isLoadingGitHub,
+                        onPressed: _.signInWithGithub,
+                        child: SvgPicture.asset(
+                          AppAssets.github,
+                          height: 16,
+                          width: 16,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 16.0),
+                      const SizedBox(width: 16.0),
 
-                    /// Login with google
-                    CustomCicularButton(
-                      size: 16,
-                      onPressed: _.googleSignIn,
-                      child: SvgPicture.asset(
-                        AppAssets.google,
-                        height: 16,
-                        width: 16,
+                      /// Login with google
+                      CustomCicularButton(
+                        size: 42,
+                        isLoading: _.isLoadingGoogle,
+                        onPressed: _.signInWithGoogle,
+                        child: SvgPicture.asset(
+                          AppAssets.google,
+                          height: 16,
+                          width: 16,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 16.0),
+                      const SizedBox(width: 16.0),
 
-                    /// Login with x
-                    CustomCicularButton(
-                      size: 16,
-                      onPressed: _.signInWithTwitter,
-                      child: SvgPicture.asset(
-                        AppAssets.twitter,
-                        height: 16,
-                        width: 16,
+                      /// Login with x
+                      CustomCicularButton(
+                        size: 42,
+                        isLoading: _.isLoadingX,
+                        onPressed: _.signInWithX,
+                        child: SvgPicture.asset(
+                          AppAssets.x,
+                          height: 16,
+                          width: 16,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

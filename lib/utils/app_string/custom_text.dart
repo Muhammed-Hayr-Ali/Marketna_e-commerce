@@ -21,6 +21,22 @@ class ConstantsText {
 
   ///===========================================================================
 
+  /// Login
+  static const String WELCOME_BACK = 'welcome_back';
+  static const String EXAMPLE_EMAIL = 'example@email.com';
+  static const String EXAMPLE_PASSWORD = '●●●●●●●●●';
+  static const String EMAIL = 'email';
+  static const String PASSWORD = 'password';
+  static const String FORGOT_PASSWORD = 'forgot_password';
+  static const String LOGIN = 'login';
+  static const String DONT_HAVE_ACCOUNT = 'dont_have_account';
+  static const String SIGN_UP = 'sign_up';
+  static const String OR = 'or';
+  static const String SIGN_IN_WITH = 'sign_in_with';
+  static const String CREATE_ACCOUNT = 'create_account';
+
+  ///===========================================================================
+
   /// General Text
   static const String SKIP = 'skip';
   static const String NEXT = 'next';

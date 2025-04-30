@@ -26,27 +26,13 @@ class ProfileController extends GetxController {
   /// screen. If the sign out fails, it will show an error message in a snackbar.
   Future<void> signOut() async {
     // Prompt the user to confirm sign out
-    final shouldSignOut = await _main.shouldSignOut();
+    bool shouldSignOut = await _main.shouldSignOut();
     if (!shouldSignOut) return;
-
-    // Set loading state
-    isLoading.value = true;
-
     try {
-      // Attempt to sign the user out using the Supabase client
       await _supabase.auth.signOut();
       Get.offAllNamed(Routes.LOGIN_SCREEN);
-    } on AuthException catch (error) {
-      // Handle authentication errors
-      CustomNotification.showSnackbar(message: error.message);
-      debugPrint(error.message);
     } catch (error) {
-      // Handle any other exceptions that may occur during sign out
-      CustomNotification.showSnackbar(message: error.toString());
       debugPrint(error.toString());
-    } finally {
-      // Reset loading state to false
-      isLoading.value = false;
     }
   }
 

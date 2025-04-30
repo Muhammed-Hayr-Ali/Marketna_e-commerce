@@ -49,7 +49,5 @@ custombottomSheet<T>({required List<Widget> children, String? title}) {
       ),
     ),
     barrierColor: Colors.black26,
-    enterBottomSheetDuration: Duration(milliseconds: 500),
-    exitBottomSheetDuration: Duration(milliseconds: 500),
   );
 }

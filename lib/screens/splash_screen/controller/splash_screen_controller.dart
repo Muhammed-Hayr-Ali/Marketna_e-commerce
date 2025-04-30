@@ -11,8 +11,8 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    initializeApp();
     super.onInit();
+    initializeApp();
   }
 
   /// Initializes the app.
@@ -40,7 +40,7 @@ class SplashScreenController extends GetxController {
     final hasConnection =
         await InternetConnectionChecker.instance.hasConnection;
     if (!hasConnection) {
-      throw AppException.NO_INTERNET_CONNECTION;
+      throw Exception(AppException.NO_INTERNET_CONNECTION);
     }
   }
 
@@ -67,7 +67,7 @@ class SplashScreenController extends GetxController {
   /// Navigates to the [Routes.ONBOARDING_SCREEN].
   Future<void> _showOnboarding() async {
     await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
-    await Get.toNamed(Routes.ONBOARDING_SCREEN);
+    Get.toNamed(Routes.ONBOARDING_SCREEN);
   }
 
   /// Checks the authentication status of the user.
@@ -83,9 +83,9 @@ class SplashScreenController extends GetxController {
       final user = await _supabase.auth.getUser();
       final isLoggedIn = user.user != null;
       final route = isLoggedIn ? Routes.MAIN_SCREEN : Routes.LOGIN_SCREEN;
-      await Get.toNamed(route);
+      Get.offAndToNamed(route);
     } catch (error) {
-      await Get.toNamed(Routes.LOGIN_SCREEN);
+      Get.offAndToNamed(Routes.LOGIN_SCREEN);
     }
   }
 

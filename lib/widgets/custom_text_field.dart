@@ -51,6 +51,9 @@ class CustomTextField extends StatefulWidget {
   /// The text direction for the text field. Can be [TextDirection.ltr] or [TextDirection.rtl].
   final TextDirection? textDirection;
 
+  ///
+  final Color fillColor;
+
   /// Creates an instance of [CustomTextField].
   ///
   /// [controller] is required and is used to manage the text field's content.
@@ -74,6 +77,7 @@ class CustomTextField extends StatefulWidget {
     this.textDirection,
     this.autofocus = false,
     this.borderRadius = 8,
+    this.fillColor = const Color(0xFFF5F5F5),
   });
 
   @override
@@ -114,6 +118,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 
+  UnderlineInputBorder buildBorder() {
+    return UnderlineInputBorder(
+      borderSide: const BorderSide(style: BorderStyle.none),
+      borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -142,7 +153,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
           textDirection: widget.textDirection,
           child: TextFormField(
             maxLines: widget.lines,
-
             minLines: widget.lines,
             obscuringCharacter: '●', // Character used to obscure password text
             cursorColor: const Color(0xFF7738C7), // Cursor color
@@ -168,6 +178,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       fontWeight: FontWeight.w500,
                     ), // Default text style
             decoration: InputDecoration(
+              fillColor: widget.fillColor,
+              filled: true,
+
               counterText: '', // Hide character counter
               contentPadding:
                   widget.lines > 1
@@ -184,6 +197,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               hintStyle:
                   widget.hintStyle ??
                   TextStyle(
+                    fontFamily: AppConstants.fontFamily,
                     color: Colors.grey.shade400,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -204,21 +218,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         ),
                       )
                       : null,
-
-              enabledBorder: buildCustomBorder(
-                borderRadius: widget.borderRadius,
-              ),
-              focusedBorder: buildCustomBorder(
-                borderRadius: widget.borderRadius,
-              ),
-              border: buildCustomBorder(borderRadius: widget.borderRadius),
-              errorBorder: buildCustomBorder(borderRadius: widget.borderRadius),
-              disabledBorder: buildCustomBorder(
-                borderRadius: widget.borderRadius,
-              ),
-              focusedErrorBorder: buildCustomBorder(
-                borderRadius: widget.borderRadius,
-              ),
+              errorStyle: const TextStyle(fontSize: 10),
+              enabledBorder: buildBorder(),
+              focusedBorder: buildBorder(),
+              border: buildBorder(),
+              errorBorder: buildBorder(),
+              disabledBorder: buildBorder(),
+              focusedErrorBorder: buildBorder(),
             ),
           ),
         ),

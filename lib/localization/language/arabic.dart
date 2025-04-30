@@ -53,16 +53,44 @@ class Arabic {
     ConstantsText.IN_PROGRESS: 'قيد التنفيذ',
 
     ///===========================================================================
+    /// Login
+    ConstantsText.WELCOME_BACK: 'مرحبًا بعودتك! لقد افتقدناك',
+    ConstantsText.EXAMPLE_EMAIL: 'example@email.com',
+    ConstantsText.EXAMPLE_PASSWORD: '●●●●●●●●●',
+    ConstantsText.EMAIL: 'البريد الإلكتروني',
+    ConstantsText.PASSWORD: 'كلمة المرور',
+    ConstantsText.FORGOT_PASSWORD: 'نسيت كلمة المرور؟',
+    ConstantsText.LOGIN: 'تسجيل الدخول',
+    ConstantsText.DONT_HAVE_ACCOUNT: 'ليس لديك حساب؟',
+    ConstantsText.SIGN_UP: 'إنشاء حساب',
+    ConstantsText.OR: '- أو -',
+    ConstantsText.SIGN_IN_WITH: 'الدخول باستخدام',
+    ConstantsText.CREATE_ACCOUNT: 'إنشاء حساب جديد',
+
+    ///===========================================================================
     /// AppException
+    AppException.SOMETHING_WENT_WRONG: 'حدث خطاء، يرجى المحاولة مرة اخرى',
     AppException.NO_INTERNET_CONNECTION:
         'حدث خطأ في الاتصال،\nيرجى التحقق من الشبكة والمحاولة مرة أخرى',
+    AppException.INVALID_LOGIN_CREDENTIALS: 'بيانات تسجيل الدخول غير صحيحة',
+    AppException.GOOGLE_SIGN_IN_FAILED: 'فشل الحصول على معلومات حساب Google',
 
-    'Next': 'التالي',
-    'Login': 'تسجيل الدخول',
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
     /// عناوين وأوصاف الشاشات
-    'welcome_back': 'مرحبًا بعودتك! لقد افتقدناك',
-    'create_account': 'إنشاء حساب جديد',
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',
     'update_password': 'تحديث كلمة المرور',
     'update_password_desc': 'أدخل رمز التحقق وكلمة المرور الجديدة',
@@ -78,14 +106,8 @@ class Arabic {
 
     /// أزرار وعناصر واجهة المستخدم
     'send': 'إرسال',
-    'login': 'تسجيل الدخول',
-    'sign_up': 'إنشاء حساب',
     'update': 'تحديث',
-    'or': '- أو -',
-    'sign_in_with': 'تسجيل الدخول باستخدام',
     'logout': 'تسجيل الخروج',
-    'forgot_password': 'نسيت كلمة المرور؟',
-    'dont_have_account': 'ليس لديك حساب؟',
     'agree_to_terms': 'بالمتابعة، توافق على',
     'privacy_policy': 'سياسة الخصوصية',
     'terms_and_conditions': 'الشروط والأحكام',
@@ -106,8 +128,6 @@ class Arabic {
 
     /// مدخلات المستخدم
     'select_image_source': 'اختر مصدر الصورة',
-    'email': 'البريد الإلكتروني',
-    'password': 'كلمة المرور',
     'new_password': 'كلمة المرور الجديدة',
     'confirm_password': 'تأكيد كلمة المرور',
     'full_name': 'الاسم الكامل',
@@ -163,13 +183,11 @@ class Arabic {
     'password_updated_successfully': 'تم تحديث كلمة المرور بنجاح',
     'profile_updated_successfully': 'تم تحديث الملف الشخصي بنجاح',
     'user_already_registered': 'المستخدم مسجل بالفعل',
-    'Invalid login credentials': 'بيانات تسجيل الدخول غير صحيحة',
     'user_is_banned': 'لقد تم حظر حسابك',
     'are_you_sure_logout': 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
     'password_updated_successfully_response': 'تم تعديل كلمة المرور بنجاح',
     'account_deleted_successfully': 'تم حذف الحساب بنجاح',
     'action_cannot_be_undone': 'هذا الإجراء لا يمكن التراجع عنه',
-    'something_went_wrong': 'حدث خطأ ما!',
     'please_try_again': 'يرجى المحاولة مرة أخرى',
     'no_data_found': 'لم يتم العثور على بيانات',
     'loading': 'جارٍ التحميل',
