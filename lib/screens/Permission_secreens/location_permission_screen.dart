@@ -15,7 +15,7 @@ class LocationPermissionScreen extends StatelessWidget {
       Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
       return;
     }
-    Get.offAllNamed(Routes.HOME_SCREEN);
+    Get.offAllNamed(Routes.MAIN_SCREEN);
   }
 
   @override
@@ -24,7 +24,8 @@ class LocationPermissionScreen extends StatelessWidget {
       appBar: emptyAppBar(),
       body: Center(
         child: Column(
-          children: [CustomText('Location Permission Screen'),
+          children: [
+            CustomText('Location Permission Screen'),
             TextButton(
               onPressed: _navigateToNextScreen,
               child: CustomText('Go To Notification Permission Screen'),

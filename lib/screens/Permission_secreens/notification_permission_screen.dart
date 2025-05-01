@@ -4,7 +4,7 @@ class NotificationPermissionScreen extends StatelessWidget {
   const NotificationPermissionScreen({super.key});
 
   Future<void> _navigateToNextScreen() async {
-    Get.offAllNamed(Routes.HOME_SCREEN);
+    Get.offAllNamed(Routes.MAIN_SCREEN);
   }
 
   @override
@@ -14,7 +14,7 @@ class NotificationPermissionScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            CustomText('Location Permission Screen'),
+            CustomText('Notification Permission Screen'),
             TextButton(
               onPressed: _navigateToNextScreen,
               child: CustomText('Go To Home Screen'),
