@@ -1,25 +1,54 @@
 import 'package:application/utils/import.dart';
 
 class NotificationPermissionScreen extends StatelessWidget {
-  const NotificationPermissionScreen({super.key});
+  NotificationPermissionScreen({super.key});
 
-  Future<void> _navigateToNextScreen() async {
-    Get.offAllNamed(Routes.MAIN_SCREEN);
-  }
+  final _ = Get.put(AuthPermissionController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: emptyAppBar(),
-      body: Center(
-        child: Column(
-          children: [
-            CustomText('Notification Permission Screen'),
-            TextButton(
-              onPressed: _navigateToNextScreen,
-              child: CustomText('Go To Home Screen'),
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: Get.width * 0.5,
+                width: Get.width * 0.5,
+                padding: EdgeInsets.all(Get.width * 0.1),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: SvgPicture.asset(
+                  AppAssets.bill,
+                  colorFilter: ColorFilter.mode(
+                    AppColors.primaryColor,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 48),
+              CustomPageTitle(
+                title: ConstantsText.WHAT_IS_YOUR_NOTIFICATION,
+                subtitle: ConstantsText.WHAT_IS_YOUR_NOTIFICATION_DESC,
+              ),
+              const SizedBox(height: 24),
+              CustomButton(
+                borderRadius: 999,
+                onPressed: _.checkNotificationPermission,
+                // buttonColor: AppColors.primaryColor,
+                padding: EdgeInsets.symmetric(horizontal: 30.0),
+                child: CustomText(
+                  ConstantsText.ALLOW_NOTIFICATION_ACCESS,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ],
+          ),
         ),
       ), //Center(child: CustomText('LocationPermissionScreen'))),
     );

@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 abstract class ConstantsText {
-
   // ==============================
   // **App**
   // ==============================
@@ -85,7 +84,7 @@ abstract class ConstantsText {
 
   ///===========================================================================
 
-  /// Login
+  /// auth
   static const String WELCOME_BACK = 'welcome_back';
   static const String EXAMPLE_EMAIL = 'example@email.com';
   static const String EXAMPLE_PASSWORD = '●●●●●●●●●';
@@ -97,14 +96,27 @@ abstract class ConstantsText {
   static const String OR = 'or';
   static const String SIGN_IN_WITH = 'sign_in_with';
   static const String CREATE_ACCOUNT = 'create_account';
-
-  ///===========================================================================
-
-  /// Forgot Password
   static const String RESET_PASSWORD = 'reset_password';
   static const String ENTER_EMAIL_FOR_RESET = 'enter_email_for_reset';
   static const String UPDATE_PASSWORD = 'update_password';
   static const String UPDATE_PASSWORD_DESC = 'update_password_desc';
+
+  ///===========================================================================
+  static const String WHAT_IS_YOUR_LOCATION = 'What_is_your_location?';
+  static const String WHAT_IS_YOUR_LOCATION_DESC =
+      'was your location description';
+
+  static const String WHAT_IS_YOUR_NOTIFICATION = 'What_is_your_notification?';
+  static const String WHAT_IS_YOUR_NOTIFICATION_DESC =
+      'was your notification description';
+
+  static const String ALLOW_LOCATION_ACCESS = 'allow_location_access';
+  static const String ALLOW_NOTIFICATION_ACCESS = 'allow_notification_access';
+  static const String LOCATION_PERMISSION_Denied = 'location_permission_denied';
+  static const String NOTIFICATION_PERMISSION_Denied =
+      'notification_permission_denied';
+  static const String PERMISSION_SETTINGS = 'permission_settings';
+  static const String GO_TO_SETTINGS = 'go_to_settings';
 
   ///===========================================================================
 
@@ -145,12 +157,6 @@ abstract class ConstantsText {
   static const String GERMAN = 'german';
   static const String FRENCH = 'french';
   static const String TURKISH = 'turkish';
-
-
-
-
-
-
 
   /// ==============================
   /// **Notification**
@@ -231,7 +237,6 @@ abstract class ConstantsText {
   static const String PRIVACY_POLICY = 'privacy_policy';
   static const String UPDATE = 'update';
 
- 
   /// **Profile**
   static const String PROFILE = 'profile';
   static const String EDIT_PROFILE = 'edit_profile';

@@ -41,6 +41,7 @@ class AppAssets {
   static const String delivery = 'assets/images/svg/delivery.svg';
   static const String settings = 'assets/images/svg/settings.svg';
   static const String mapPoint = 'assets/images/svg/map-point.svg';
+  static const String bill = 'assets/images/svg/bell.svg';
   static const String trashBin = 'assets/images/svg/trash-bin.svg';
   static const String camera = 'assets/images/svg/camera.svg';
   static const String security = 'assets/images/svg/security.svg';

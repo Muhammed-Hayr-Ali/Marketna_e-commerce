@@ -53,7 +53,7 @@ class Arabic {
     ConstantsText.IN_PROGRESS: 'قيد التنفيذ',
 
     ///===========================================================================
-    /// Login
+    /// auth
     ConstantsText.WELCOME_BACK: 'مرحبًا بعودتك! لقد افتقدناك',
     ConstantsText.EXAMPLE_EMAIL: 'example@email.com',
     ConstantsText.EXAMPLE_PASSWORD: '●●●●●●●●●',
@@ -66,6 +66,21 @@ class Arabic {
     ConstantsText.OR: '- أو -',
     ConstantsText.SIGN_IN_WITH: 'الدخول باستخدام',
     ConstantsText.CREATE_ACCOUNT: 'إنشاء حساب جديد',
+
+    ///===========================================================================
+    ConstantsText.WHAT_IS_YOUR_LOCATION: 'ما هو موقعك؟',
+    ConstantsText.WHAT_IS_YOUR_LOCATION_DESC:
+        'يرجى السماح لنا بإستخدام موقعك لنتمكن من تقديم أفضل خدمات التوصيل والتسوق',
+    ConstantsText.WHAT_IS_YOUR_NOTIFICATION: 'الوصول للإشعارات؟',
+    ConstantsText.WHAT_IS_YOUR_NOTIFICATION_DESC:
+        'يرجى السماح لنا بإرسال التنبيهات لنتمكن من تقديم خدماتك بطريقة سهلة وسريعة',
+    ConstantsText.ALLOW_LOCATION_ACCESS: 'السماح بالوصول للموقع',
+    ConstantsText.ALLOW_NOTIFICATION_ACCESS: 'السماح بالوصول للتنبيهات',
+    ConstantsText.LOCATION_PERMISSIONS_DENIED:
+        'تم رفض الوصول للموقع, هل ترعب بالذهاب الى الإعدادات و منح الاذن المطلوب',
+    ConstantsText.NOTIFICATION_PERMISSION_Denied:
+        'تم رفض الوصول للموقع, هل ترعب بالذهاب الى الإعدادات و منح الاذن المطلوب',
+    ConstantsText.GO_TO_SETTINGS: 'إعدادات التطبيق',
 
     ///===========================================================================
     /// AppException
@@ -88,7 +103,8 @@ class Arabic {
         'تم تحديث كلمة المرور بنجاح',
 
     AppException.USER_ALREADY_REGISTERED.message: 'المستخدم مسجل بالفعل',
-    AppException.UNABLE_TO_SEND_PASSWORD_RESET_CODE.message: 'غير قادر على ارسال رمز التحقق. يرجى المحاولة مرة اخرى.',
+    AppException.UNABLE_TO_SEND_PASSWORD_RESET_CODE.message:
+        'غير قادر على ارسال رمز التحقق. يرجى المحاولة مرة اخرى.',
 
     /// عناوين وأوصاف الشاشات
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',
@@ -199,10 +215,6 @@ class Arabic {
         'تعذر الحصول على معلومات المستخدم يرجى إعادة تسجيل الدخول',
     'Unable_Location_services':
         'تعذر الوصول إلى خدمات الموقع يرجى تفعيل خدمات الموقع',
-    'Location_permissions_denied':
-        'تم رفض أذونات الموقع يرجى تفعيل أذونات الموقع',
-    'Location_permissions_denied_request_permissions':
-        'تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات',
     'data_loading_error': 'حدث خطأ أثناء تحميل البيانات يرجى المحاولة مرة أخرى',
     'an_error_occurred': 'حدث خطأ:',
     'session_is_null': 'تعذر الحصول على معلومات الجلسة',

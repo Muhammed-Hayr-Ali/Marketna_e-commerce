@@ -1,22 +1,9 @@
 import 'package:application/utils/import.dart';
 
 class LocationPermissionScreen extends StatelessWidget {
-  const LocationPermissionScreen({super.key});
+  LocationPermissionScreen({super.key});
 
-  Future<bool> _hasNotificationPermission() async {
-    final status = await Permission.notification.status;
-    debugPrint(status.isGranted.toString());
-    return status.isGranted;
-  }
-
-  Future<void> _navigateToNextScreen() async {
-    bool notificationPermission = await _hasNotificationPermission();
-    if (!notificationPermission) {
-      Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
-      return;
-    }
-    Get.offAllNamed(Routes.MAIN_SCREEN);
-  }
+  final _ = Get.put(AuthPermissionController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,28 +33,19 @@ class LocationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               CustomPageTitle(
-                title: 'What is Your Location?',
-                subtitle:
-                    'we need your location\nto give you the best experience',
+                title: ConstantsText.WHAT_IS_YOUR_LOCATION,
+                subtitle: ConstantsText.WHAT_IS_YOUR_LOCATION_DESC,
               ),
               const SizedBox(height: 24),
               CustomButton(
                 borderRadius: 999,
-                onPressed: _navigateToNextScreen,
-                buttonColor: AppColors.primaryColor,
+                onPressed: _.checkLocationPermission,
+                // buttonColor: AppColors.primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: CustomText(
-                  'Allow Location Access',
-                  color: AppColors.white,
+                  ConstantsText.ALLOW_LOCATION_ACCESS,
+                  color: AppColors.primaryColor,
                 ),
-              ),
-              const SizedBox(height: 16),
-              CustomButton(
-                borderRadius: 999,
-                onPressed: () => Get.offAllNamed(Routes.MAIN_SCREEN),
-                buttonColor: AppColors.white,
-                padding: EdgeInsets.symmetric(horizontal: 30.0),
-                child: CustomText('Skip', color: AppColors.primaryColor),
               ),
             ],
           ),

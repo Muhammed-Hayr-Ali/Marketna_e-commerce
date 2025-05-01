@@ -29,19 +29,19 @@ class SignUpController extends GetxController {
         },
       );
 
-      // bool locationPermission = await _hasLocationPermission();
-      // if (!locationPermission) {
-      //   Get.offAllNamed(Routes.LOCATION_PERMISSION_SCREEN);
-      //   return;
-      // }
+      bool locationPermission = await _hasLocationPermission();
+      if (!locationPermission) {
+        Get.offAllNamed(Routes.LOCATION_PERMISSION_SCREEN);
+        return;
+      }
 
-      // bool notificationPermission = await _hasNotificationPermission();
-      // if (!notificationPermission) {
-      //   Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
-      //   return;
-      // }
+      bool notificationPermission = await _hasNotificationPermission();
+      if (!notificationPermission) {
+        Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
+        return;
+      }
 
-      Get.offAllNamed(Routes.LOGIN_SCREEN);
+      Get.offAllNamed(Routes.MAIN_SCREEN);
     } on AuthException catch (error) {
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
@@ -52,17 +52,6 @@ class SignUpController extends GetxController {
       _isLoading.value = false;
     }
   }
-
-  // Future<bool> _hasLocationPermission() async {
-  //   try {
-  //     final LocationPermission currentPermission =
-  //         await Geolocator.checkPermission();
-  //     return currentPermission == LocationPermission.always ||
-  //         currentPermission == LocationPermission.whileInUse;
-  //   } catch (_) {
-  //     return false;
-  //   }
-  // }
 
   Future<bool> _hasLocationPermission() async {
     final status = await Permission.location.status;
