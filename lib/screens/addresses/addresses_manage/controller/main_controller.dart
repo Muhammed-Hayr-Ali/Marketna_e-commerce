@@ -1,12 +1,15 @@
 import 'package:application/utils/import.dart';
 
 class ManageAddressesMainController {
-
-
-  Future<bool> shouldDeleteAddress() async {
+  Future<bool> shouldDeleteAddress(String addressName) async {
     return await custombottomSheet<bool>(
-          title: ConstantsText.WANT_DELETE_ADDRESS,
           children: [
+            const SizedBox(height: 16),
+            CustomText(ConstantsText.WANT_DELETE_ADDRESS.tr),
+            const SizedBox(height: 14),
+
+            CustomText(addressName, fontWeight: FontWeight.w500),
+            const SizedBox(height: 20),
             CustomButton(
               width: double.infinity,
               onPressed: () => Get.back(result: false),
@@ -22,5 +25,4 @@ class ManageAddressesMainController {
         ) ??
         false;
   }
-
 }

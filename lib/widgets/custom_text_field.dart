@@ -77,7 +77,7 @@ class CustomTextField extends StatefulWidget {
     this.textDirection,
     this.autofocus = false,
     this.borderRadius = 8,
-    this.fillColor = const Color(0xFFF5F5F5),
+    this.fillColor = const Color(0xFFEEEEEE),
   });
 
   @override
@@ -218,7 +218,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         ),
                       )
                       : null,
-              errorStyle: const TextStyle(fontSize: 10, color: AppColors.errorRed,
+              errorStyle: const TextStyle(
+                fontSize: 10,
+                color: AppColors.errorRed,
               ),
               enabledBorder: buildBorder(),
               focusedBorder: buildBorder(),

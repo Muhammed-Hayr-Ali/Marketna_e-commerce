@@ -65,9 +65,9 @@ class ManageAddressesController extends GetxController {
   /// addresses list to reflect the changes in the UI. If an error occurs during
   /// the deletion process, an error message is logged and a notification is shown.
 
-  Future<void> dateAddress(int addressId) async {
+  Future<void> dateAddress(int addressId, String addressName) async {
     debugPrint('Updating address...');
-    bool result = await _main.shouldDeleteAddress();
+    bool result = await _main.shouldDeleteAddress(addressName);
     if (!result) return; // User chose not to delete the address
     try {
       // Update the address in the database

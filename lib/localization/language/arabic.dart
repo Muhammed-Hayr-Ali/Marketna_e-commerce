@@ -104,7 +104,7 @@ class Arabic {
 
     AppException.USER_ALREADY_REGISTERED.message: 'المستخدم مسجل بالفعل',
     AppException.UNABLE_TO_SEND_PASSWORD_RESET_CODE.message:
-        'غير قادر على ارسال رمز التحقق. يرجى المحاولة مرة اخرى.',
+        'غير قادر على ارسال رمز التحقق. يرجى المحاولة مرة اخرى في وقت لاحق.',
 
     /// عناوين وأوصاف الشاشات
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',
@@ -140,7 +140,7 @@ class Arabic {
     'camera': 'الكاميرا',
     'gallery': 'المعرض',
     'delete_image': 'حذف الصورة',
-    'want_delete_address': 'هل ترغب في حذف هذا العنوان؟',
+    'want_delete_address': 'هل ترغب في حذف العنوان ',
 
     /// مدخلات المستخدم
     'select_image_source': 'اختر مصدر الصورة',

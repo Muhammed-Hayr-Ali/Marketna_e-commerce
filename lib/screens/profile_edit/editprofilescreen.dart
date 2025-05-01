@@ -122,39 +122,7 @@ class EditProfileScreen extends StatelessWidget {
                                         _.countryCodeErrorMessage,
                                   ),
                             ),
-                            // Row(
-                            //   crossAxisAlignment: CrossAxisAlignment.start,
-                            //   children: [
-                            //     Expanded(
-                            //       child: CustomTextField(
-                            //         textDirection: TextDirection.ltr,
-                            //         label: ConstantsText.PHONE.tr,
-                            //         hintText: ConstantsText.DEFAULT_PHONE,
-                            //         controller: _.phoneController,
-                            //         validator:
-                            //             (value) => Validators.phone(value!),
-                            //         keyboardType: TextInputType.phone,
-                            //         inputFormatters: [
-                            //           FilteringTextInputFormatter.allow(
-                            //             RegExp(r'[0-9]'),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
 
-                            //     SizedBox(width: 16.0),
-
-                            //     CustomCountryPicker(
-                            //       countryPickerMode: CountryPickerMode.code,
-                            //       selectedCountryCode: _.countryCode,
-                            //       countryCodeErrorMessage:
-                            //           _.countryCodeErrorMessage,
-                            //       onChangedCountry: (value) {
-                            //         _.updateCountryCode(value.code);
-                            //       },
-                            //     ),
-                            //   ],
-                            // ),
                             const SizedBox(height: 16.0),
                             Row(
                               children: [

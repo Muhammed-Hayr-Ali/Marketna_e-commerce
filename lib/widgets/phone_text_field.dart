@@ -112,6 +112,7 @@ class PhoneTextField extends StatelessWidget {
   final void Function(String?)? onSelectedCode;
   final TextEditingController? phoneController;
   final String? errorMessage;
+  final String? disableMessage;
 
   PhoneTextField({
     super.key,
@@ -126,6 +127,7 @@ class PhoneTextField extends StatelessWidget {
     this.onSelectedCode,
     this.phoneController,
     this.errorMessage,
+    this.disableMessage,
   });
 
   final _ = Get.put(PhoneTextFieldController());
@@ -170,6 +172,12 @@ class PhoneTextField extends StatelessWidget {
                   child: Obx(
                     () => TextButton(
                       style: TextButton.styleFrom(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                          ),
+                        ),
                         padding: EdgeInsets.symmetric(
                           vertical: 14,
                           horizontal: 14,
@@ -185,6 +193,12 @@ class PhoneTextField extends StatelessWidget {
                                     onSelectedCode!.call(value!);
                                   }
                                 });
+                              }
+                              : disableMessage != null
+                              ? () {
+                                CustomNotification.showSnackbar(
+                                  message: disableMessage!,
+                                );
                               }
                               : null,
                       child:

@@ -102,7 +102,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                         if (direction ==
                                             DismissDirection.endToStart) {
                                           // التمرير من اليمين إلى اليسار (حذف)
-                                          controller.dateAddress(address.id!);
+                                          controller.dateAddress(address.id!, address.addressName!);
                                           return false; // لا تحذف العنصر من القائمة
                                         } else if (direction ==
                                             DismissDirection.startToEnd) {
