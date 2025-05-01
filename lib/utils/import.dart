@@ -18,8 +18,8 @@ export 'package:application/models/review_model.dart';
 // ==============================
 export 'package:application/routes/app_pages.dart';
 export 'package:application/routes/app_routes.dart';
-export 'package:application/screens/Permission_secreens/location_permission_screen.dart';
-export 'package:application/screens/Permission_secreens/notification_permission_screen.dart';
+export 'package:application/screens/auth_permission_secreens/location_permission_screen.dart';
+export 'package:application/screens/auth_permission_secreens/notification_permission_screen.dart';
 // ==============================
 // **Screens**
 // ==============================

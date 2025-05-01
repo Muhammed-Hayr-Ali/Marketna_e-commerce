@@ -27,6 +27,10 @@ class AppException implements Exception {
   static const USER_ALREADY_REGISTERED = AppException(
     'User already registered',
   );
+
+  static const UNABLE_TO_SEND_PASSWORD_RESET_CODE = AppException(
+    'Unable to send password reset code at this time. Please try again later.',
+  );
   @override
   String toString() => 'AppException: $message';
 }

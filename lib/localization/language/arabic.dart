@@ -88,6 +88,7 @@ class Arabic {
         'تم تحديث كلمة المرور بنجاح',
 
     AppException.USER_ALREADY_REGISTERED.message: 'المستخدم مسجل بالفعل',
+    AppException.UNABLE_TO_SEND_PASSWORD_RESET_CODE.message: 'غير قادر على ارسال رمز التحقق. يرجى المحاولة مرة اخرى.',
 
     /// عناوين وأوصاف الشاشات
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',

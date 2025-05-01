@@ -14,14 +14,18 @@ class ForgotPasswordController extends GetxController {
       await supabase.auth.resetPasswordForEmail(email);
       return true;
     } on AuthException catch (error) {
-      if (error.message.contains('after') &&
-          error.message.contains('seconds')) {
-        final translatedMessage = translateDynamicMessage(error.message);
-        CustomNotification.showSnackbar(message: translatedMessage);
-      } else {
-        CustomNotification.showSnackbar(message: error.message);
+      String errorMessagre = error.message;
+
+      if (error.message.contains('unexpected_failure')) {
+        errorMessagre = AppException.UNABLE_TO_SEND_PASSWORD_RESET_CODE.message;
       }
 
+      if (error.message.contains('after') &&
+          error.message.contains('seconds')) {
+        errorMessagre = translateDynamicMessage(error.message);
+      }
+
+      CustomNotification.showSnackbar(message: errorMessagre);
       return false;
     } on Exception {
       CustomNotification.showSnackbar(

@@ -29,17 +29,17 @@ class SignUpController extends GetxController {
         },
       );
 
-      bool locationPermission = await _hasLocationPermission();
-      if (!locationPermission) {
-        Get.offAllNamed(Routes.LOCATION_PERMISSION_SCREEN);
-        return;
-      }
+      // bool locationPermission = await _hasLocationPermission();
+      // if (!locationPermission) {
+      //   Get.offAllNamed(Routes.LOCATION_PERMISSION_SCREEN);
+      //   return;
+      // }
 
-      bool notificationPermission = await _hasNotificationPermission();
-      if (!notificationPermission) {
-        Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
-        return;
-      }
+      // bool notificationPermission = await _hasNotificationPermission();
+      // if (!notificationPermission) {
+      //   Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
+      //   return;
+      // }
 
       Get.offAllNamed(Routes.LOGIN_SCREEN);
     } on AuthException catch (error) {
@@ -71,10 +71,10 @@ class SignUpController extends GetxController {
   }
 
   Future<bool> _hasNotificationPermission() async {
-  final status = await Permission.notification.status;
+    final status = await Permission.notification.status;
     debugPrint(status.isGranted.toString());
     return status.isGranted;
-  }  
+  }
 
   // void _showOpenSettingsDialog() {
   //   Get.defaultDialog(
