@@ -28,7 +28,12 @@ class OnboardingScreen extends StatelessWidget {
         // backButton: false,
         actions: [
           TextButton(
-            style: TextButton.styleFrom(backgroundColor: Colors.grey.shade100),
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.grey.shade100,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
             onPressed: _.selectLanguage,
             child: CustomText(ConstantsText.LANGUAGE, color: Colors.blueGrey),
           ),

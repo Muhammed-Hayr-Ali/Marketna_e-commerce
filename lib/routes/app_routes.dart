@@ -26,5 +26,7 @@ abstract class Routes {
   static const PRODUCT_DETAILS = '/productDetails';
   static const IMAGE_PICKER = '/customImagePicker';
   static const REVIEWS_SCREEN = '/reviewsScreen';
+  static const LOCATION_PERMISSION_SCREEN = '/locationPermissionScreen';
+  static const NOTIFICATION_PERMISSION_SCREEN = '/notificationPermissionScreen';
 
 }

@@ -123,10 +123,7 @@ class SignUpScreen extends StatelessWidget {
                   width: double.infinity,
                   buttonColor: AppColors.primaryColor,
                   progressColor: Colors.white,
-
-                  /// onPressed: _signUp,
-                  /// TODO:: وضيفة تجريبية
-                  onPressed: _.checkLocationPermission,
+                  onPressed: _signUp,
                   child: CustomText(
                     ConstantsText.SIGN_UP,
                     color: AppColors.white,

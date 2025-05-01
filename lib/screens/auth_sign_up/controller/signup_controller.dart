@@ -29,7 +29,19 @@ class SignUpController extends GetxController {
         },
       );
 
-      Get.offAllNamed(Routes.MAIN_SCREEN);
+      bool locationPermission = await _hasLocationPermission();
+      if (!locationPermission) {
+        Get.offAllNamed(Routes.LOCATION_PERMISSION_SCREEN);
+        return;
+      }
+
+      bool notificationPermission = await _hasNotificationPermission();
+      if (!notificationPermission) {
+        Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
+        return;
+      }
+
+      Get.offAllNamed(Routes.LOGIN_SCREEN);
     } on AuthException catch (error) {
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
@@ -41,76 +53,44 @@ class SignUpController extends GetxController {
     }
   }
 
+  // Future<bool> _hasLocationPermission() async {
+  //   try {
+  //     final LocationPermission currentPermission =
+  //         await Geolocator.checkPermission();
+  //     return currentPermission == LocationPermission.always ||
+  //         currentPermission == LocationPermission.whileInUse;
+  //   } catch (_) {
+  //     return false;
+  //   }
+  // }
 
-  void checkLocationPermission() async {
-    final hasPermission = await hasLocationPermission();
-    debugPrint(hasPermission.toString());
+  Future<bool> _hasLocationPermission() async {
+    final status = await Permission.location.status;
+    debugPrint(status.toString());
+    return status.isGranted;
   }
 
-Future<bool> hasLocationPermission() async {
-  LocationPermission permission;
+  Future<bool> _hasNotificationPermission() async {
+  final status = await Permission.notification.status;
+    debugPrint(status.isGranted.toString());
+    return status.isGranted;
+  }  
 
-  try {
-    permission = await Geolocator.checkPermission();
-  } on Exception catch (_) {
-    return false;
-  }
-  return permission == LocationPermission.always ||
-      permission == LocationPermission.whileInUse;
-}
-
-// Future<bool> hasLocationPermission() async {
-//     LocationPermission permission;
-
-//     try {
-//       permission = await Geolocator.checkPermission();
-//     } on Exception catch (_) {
-//       return false;
-//     }
-
-//     if (permission == LocationPermission.denied) {
-//       permission = await Geolocator.requestPermission();
-//       if (permission == LocationPermission.denied) {
-//         _showPermissionDeniedDialog();
-//         return false;
-//       }
-//     }
-
-//     if (permission == LocationPermission.deniedForever) {
-//       _showOpenSettingsDialog();
-//       return false;
-//     }
-
-//     return permission == LocationPermission.always ||
-//         permission == LocationPermission.whileInUse;
-//   }
-
-  // وظيفة لإظهار رسالة عندما يرفض المستخدم الإذن
-  void _showPermissionDeniedDialog() {
-    Get.defaultDialog(
-      title: "Location Permission Denied",
-      content: Text("Location access is required to provide accurate results."),
-      textConfirm: "OK",
-      onConfirm: Get.back,
-    );
-  }
-
-  // وظيفة لتوجيه المستخدم إلى إعدادات التطبيق
-  void _showOpenSettingsDialog() {
-    Get.defaultDialog(
-      title: "Enable Location",
-      content: Text(
-        "Location permission is permanently denied. Please enable it from app settings.",
-      ),
-      textConfirm: "Open Settings",
-      textCancel: "Cancel",
-      onConfirm: () async {
-        await Geolocator.openAppSettings();
-        Get.back();
-      },
-      onCancel: () {},
-    );
-  }
+  // void _showOpenSettingsDialog() {
+  //   Get.defaultDialog(
+  //     title: "Enable Location",
+  //     content: Text(
+  //       "Location permission is permanently denied. Please enable it from app settings.",
+  //     ),
+  //     textConfirm: "Open Settings",
+  //     textCancel: "Cancel",
+  //     onConfirm: () async {
+  //       await Geolocator.openAppSettings();
+  //       Get.back();
+  //     },
+  //     onCancel: () {},
+  //   );
+  // }
 
   /// Opens the privacy policy URL in the browser.
   Future<void> openPrivacyPolicy() async {

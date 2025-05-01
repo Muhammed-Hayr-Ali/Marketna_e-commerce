@@ -6,6 +6,8 @@ class RouteGet {
 
     GetPage(name: Routes.LOGIN_SCREEN, page: () => LoginScreen()),
     GetPage(name: Routes.REGISTER_SCREEN, page: () => SignUpScreen()),
+    GetPage(name: Routes.LOCATION_PERMISSION_SCREEN, page: () => LocationPermissionScreen()),
+    GetPage(name: Routes.NOTIFICATION_PERMISSION_SCREEN, page: () => NotificationPermissionScreen()),
     GetPage(name: Routes.FORGOT_PASSWORD, page: () => ForgotPasswordScreen()),
     GetPage(name: Routes.UPDATE_PASSWORD, page: () => UpdatePasswordScreen()),
     GetPage(name: Routes.ONBOARDING_SCREEN, page: () => OnboardingScreen()),

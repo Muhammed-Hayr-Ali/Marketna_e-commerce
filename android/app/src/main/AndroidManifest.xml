@@ -6,14 +6,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- Read storage permission for Android 12 and lower -->
      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!--
-      Granular media permissions for Android 13 and newer.
-      See https://developer.android.com/about/versions/13/behavior-changes-13#granular-media-permissions
-      for more information.
-    -->
+    <!--Granular media permissions for Android 13 and newer.-->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+    <!-- Permissions for flutter_local_notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
 
     <!-- Permissions options for the `camera` group -->
     <uses-permission android:name="android.permission.CAMERA"/>
