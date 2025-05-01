@@ -152,7 +152,7 @@ class CustomButton extends StatelessWidget {
                                   (errorMessage ?? '').tr,
                                   style: TextStyle(
                                     fontSize: 10,
-                                    color: Colors.red,
+                                    color: AppColors.errorRed,
                                   ),
                                 ),
                               ),

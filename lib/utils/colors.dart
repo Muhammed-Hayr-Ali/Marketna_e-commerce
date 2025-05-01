@@ -7,7 +7,5 @@ class AppColors {
   static const Color black = Color(0xFF161616);
   static const Color admiralBlue = Color(0xFF4e5e80);
   static const Color red = Color.fromARGB(255, 255, 0, 0);
-
-
-
+  static const Color errorRed = Color.fromARGB(255, 224, 25, 25);
 }

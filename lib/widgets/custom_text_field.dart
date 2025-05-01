@@ -218,7 +218,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         ),
                       )
                       : null,
-              errorStyle: const TextStyle(fontSize: 10, color: Colors.red),
+              errorStyle: const TextStyle(fontSize: 10, color: AppColors.errorRed,
+              ),
               enabledBorder: buildBorder(),
               focusedBorder: buildBorder(),
               border: buildBorder(),

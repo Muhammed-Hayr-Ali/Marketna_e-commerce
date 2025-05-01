@@ -87,6 +87,8 @@ class Arabic {
     AppException.PASSWORD_UPDATED_SUCCESSFULLY.message:
         'تم تحديث كلمة المرور بنجاح',
 
+    AppException.USER_ALREADY_REGISTERED.message: 'المستخدم مسجل بالفعل',
+
     /// عناوين وأوصاف الشاشات
     'fill_your_details': 'انضم إلى عائلتنا\nاملأ بياناتك أدناه',
     'update_password': 'تحديث كلمة المرور',
@@ -179,7 +181,6 @@ class Arabic {
     'enter_email_for_reset': 'أدخل البريد الإلكتروني لاستعادة كلمة المرور',
     'password_updated_successfully': 'تم تحديث كلمة المرور بنجاح',
     'profile_updated_successfully': 'تم تحديث الملف الشخصي بنجاح',
-    'user_already_registered': 'المستخدم مسجل بالفعل',
     'user_is_banned': 'لقد تم حظر حسابك',
     'are_you_sure_logout': 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
     'password_updated_successfully_response': 'تم تعديل كلمة المرور بنجاح',

@@ -23,6 +23,10 @@ class AppException implements Exception {
   static const PASSWORD_UPDATED_SUCCESSFULLY = AppException(
     'Password updated successfully',
   );
+
+  static const USER_ALREADY_REGISTERED = AppException(
+    'User already registered',
+  );
   @override
   String toString() => 'AppException: $message';
 }
