@@ -23,8 +23,6 @@ class SignUpController extends GetxController {
         password: password,
         data: {
           ConstantsText.DISPLAY_NAME: standardizedDisplayName,
-          ConstantsText.NAME: standardizedDisplayName,
-          ConstantsText.FULL_NAME: standardizedDisplayName,
           ConstantsText.USER_NAME: extractedUserName,
         },
       );

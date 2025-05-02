@@ -37,12 +37,6 @@ class EditProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Obx(
-                //   () => CustomAvatar(
-                //     sourceImage: SourceImage.localImage,
-                //     imageUrl: _.imagePath.value,
-                //   ),
-                // ),
                 GetBuilder<EditProfileController>(
                   builder:
                       (_) => Stack(
@@ -57,12 +51,13 @@ class EditProfileScreen extends StatelessWidget {
                           ),
                           CustomAvatar(
                             imagePath: _.imagePath,
-                            imageUrl: DataConverter.getAvatarUrl(
-                              _.user!.userMetadata!,
-                            ),
+                            imageUrl:
+                                _.user!.userMetadata![ConstantsText.AVATAR] ??
+                                _.user!.userMetadata![ConstantsText.AVATAR_URL],
+
                             onSelectImage: (path) => _.updatePath(path),
                             clearPath: () => _.updatePath(null),
-                            onDeleteTap: () => _.deleteImage(true),
+                            onDeleteTap: () => _.deleteImage(false),
                           ),
                         ],
                       ),

@@ -592,9 +592,10 @@ Widget _writeComment() {
                         radius: 20,
                         backgroundColor: Colors.grey.shade100,
                         backgroundImage: NetworkImage(
-                          DataConverter.getAvatarUrl(
-                            controller.user!.userMetadata!,
-                          ),
+                          controller.user!.userMetadata![ConstantsText
+                                  .AVATAR] ??
+                              controller.user!.userMetadata![ConstantsText
+                                  .AVATAR_URL],
                         ),
                       ),
                       SizedBox(width: 16),

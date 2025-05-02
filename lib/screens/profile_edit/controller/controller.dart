@@ -78,8 +78,11 @@ class EditProfileController extends GetxController {
     if (user == null) return;
 
     // Get the avatar URL from the user's metadata
-    String? avatarUrl = DataConverter.getAvatarUrl(user!.userMetadata!);
-    if (avatarUrl.isEmpty) return;
+    String? avatarUrl =
+        user!.userMetadata![ConstantsText.AVATAR] ??
+        user!.userMetadata![ConstantsText.AVATAR_URL];
+
+    if (avatarUrl == null || avatarUrl.isEmpty) return;
 
     if (withUpdate) {
       imageLoading = true;
@@ -97,13 +100,7 @@ class EditProfileController extends GetxController {
           .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
           .whenComplete(
             () async => await supabase.auth.updateUser(
-              UserAttributes(
-                data: {
-                  ConstantsText.AVATAR: null,
-                  ConstantsText.AVATAR_URL: null,
-                  ConstantsText.PICTURE: null,
-                },
-              ),
+              UserAttributes(data: {ConstantsText.AVATAR: null}),
             ),
           );
 
@@ -159,13 +156,7 @@ class EditProfileController extends GetxController {
           .getPublicUrl('${KEYS.PROFILE_FOLDER}/$folderName/$fileName');
 
       await supabase.auth.updateUser(
-        UserAttributes(
-          data: {
-            ConstantsText.AVATAR: url,
-            ConstantsText.AVATAR_URL: url,
-            ConstantsText.PICTURE: url,
-          },
-        ),
+        UserAttributes(data: {ConstantsText.AVATAR: url}),
       );
     } on StorageException catch (error) {
       // Show an error message if the upload or update process failed
@@ -233,7 +224,7 @@ class EditProfileController extends GetxController {
         UserAttributes(
           data: {
             ConstantsText.DISPLAY_NAME: nameController.text.trim(),
-            ConstantsText.PREFERRED_USERNAME: DataConverter.removeTextAfterAt(
+            ConstantsText.USER_NAME: DataConverter.removeTextAfterAt(
               email!.trim(),
             ),
             ConstantsText.COUNTRY_CODE: selectedCountryCode,

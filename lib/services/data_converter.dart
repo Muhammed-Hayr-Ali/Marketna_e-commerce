@@ -13,11 +13,11 @@ class DataConverter {
   /// [userMetadata] A map containing user metadata as returned by the Supabase client.
   /// [returns] The avatar URL or null if no URL is available.
 
-  static String getAvatarUrl(Map<String, dynamic> userMetadata) =>
-      userMetadata[ConstantsText.AVATAR] ??
-      userMetadata[ConstantsText.AVATAR_URL] ??
-      userMetadata[ConstantsText.PICTURE] ??
-      '';
+  // static String getAvatarUrl(Map<String, dynamic> userMetadata) =>
+  //     userMetadata[ConstantsText.AVATAR] ??
+  //     userMetadata[ConstantsText.AVATAR_URL] ??
+  //     userMetadata[ConstantsText.PICTURE] ??
+  //     '';
 
   /// Retrieves the user's name from the metadata.
   ///
