@@ -20,7 +20,7 @@ class ProductDetailsController extends GetxController {
 
   bool isLoading = true;
   bool isLoadingFRV = true;
-  Product? product;
+  ProductModel? product;
 
   /// Favorites
   List<int> favoriteProducts = [];
@@ -32,7 +32,7 @@ class ProductDetailsController extends GetxController {
 
   /// Reviews
   bool reviewsLoading = true;
-  List<Review> reviews = [];
+  List<ReviewModel> reviews = [];
   bool isReviewSubmitted = false;
   int reviewCount = 0;
   double reviewRating = 0.0;
@@ -121,7 +121,7 @@ class ProductDetailsController extends GetxController {
 
       if (response.isEmpty) return;
 
-      product = Product.fromJson(response[0]);
+      product = ProductModel.fromJson(response[0]);
       _fitchProductFRV();
     } catch (error) {
       debugPrint('Error initializing product details: $error');
@@ -156,7 +156,7 @@ class ProductDetailsController extends GetxController {
 
       /// get all reviews
       reviews =
-          response.map((e) => Review.fromJson(e)).toList().reversed.toList();
+          response.map((e) => ReviewModel.fromJson(e)).toList().reversed.toList();
 
       /// check if user has submitted review
       isReviewSubmitted = reviews.any((e) => e.userId == uid);
@@ -206,7 +206,7 @@ class ProductDetailsController extends GetxController {
     update();
   }
 
-  Future<bool> sendReview(Review review) async {
+  Future<bool> sendReview(ReviewModel review) async {
     sendCommentISLoading.value = true;
     try {
       await _supabase.from(KEYS.REVIEWS_TABLE).insert(review.toJson());

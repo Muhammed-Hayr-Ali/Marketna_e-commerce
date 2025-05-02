@@ -5,7 +5,7 @@ class PhoneTextFieldController extends GetxController {
   final GetStorage _storage = GetStorage();
 
   /// The list of country codes.
-  final RxList<Country> countries = RxList<Country>([]);
+  final RxList<CountryModel> countries = RxList<CountryModel>([]);
 
   /// The loading state.
   final RxBool isLoading = false.obs;
@@ -15,7 +15,7 @@ class PhoneTextFieldController extends GetxController {
     return locale ?? Get.deviceLocale?.languageCode ?? 'en';
   }
 
-  Future<List<Country>?> fetchCountryCodes() async {
+  Future<List<CountryModel>?> fetchCountryCodes() async {
     try {
       isLoading.value = true;
       debugPrint('Fetching country codes...');
@@ -27,8 +27,8 @@ class PhoneTextFieldController extends GetxController {
       }
 
       /// Map the response to a list of Country objects
-      return response.map<Country>((item) {
-        return Country.fromJson(item);
+      return response.map<CountryModel>((item) {
+        return CountryModel.fromJson(item);
       }).toList();
     } catch (e) {
       debugPrint('Error fetching country codes: $e');
@@ -39,7 +39,7 @@ class PhoneTextFieldController extends GetxController {
   }
 
   Future<String?> openCountryPicker() async {
-    final List<Country> countriesList;
+    final List<CountryModel> countriesList;
     if (countries.isNotEmpty) {
       countriesList = countries;
     } else {

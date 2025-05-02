@@ -1,8 +1,13 @@
 import 'package:application/utils/import.dart';
 
 class ProfileController extends GetxController {
+
   final _supabase = Supabase.instance.client;
   final _main = ProfileMainController();
+  
+
+
+
   User? user;
   RxBool isLoading = false.obs;
 

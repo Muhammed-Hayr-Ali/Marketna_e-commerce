@@ -1,4 +1,4 @@
-class Country {
+class CountryModel {
   int? id;
   String? name;
   String? nameAr;
@@ -10,7 +10,7 @@ class Country {
   List<Province>? province;
   String? createdAt;
 
-  Country({
+  CountryModel({
     this.id,
     this.name,
     this.nameAr,
@@ -23,7 +23,7 @@ class Country {
     this.createdAt,
   });
 
-  Country.fromJson(Map<String, dynamic> json) {
+  CountryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     nameAr = json['name_ar'];
@@ -60,7 +60,7 @@ class Country {
 
   @override
   String toString() {
-    return 'Country{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province, createdAt: $createdAt}';
+    return 'CountryModel{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province, createdAt: $createdAt}';
   }
 }
 

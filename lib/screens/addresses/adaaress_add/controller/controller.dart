@@ -44,7 +44,7 @@ class AddAddressController extends GetxController {
   }
 
   /// Initializes the controller and sets the initial values for the address fields.
-  void loadAddress(Address? address) async {
+  void loadAddress(AddressModel? address) async {
     if (address == null) return;
     addressId = address.id;
     addressNameController.text = address.addressName ?? '';
@@ -61,7 +61,7 @@ class AddAddressController extends GetxController {
     update();
   }
 
-  Future<void> onChangedCountry(Country value) async {
+  Future<void> onChangedCountry(CountryModel value) async {
     selectedCountry = local != 'ar' ? value.name : value.nameAr;
     selectedCountryCode = value.code;
     selectedCountryFlag = value.flag;
@@ -137,7 +137,7 @@ class AddAddressController extends GetxController {
 
       final currentPosition = await _determinePosition();
 
-      final newAddress = Address(
+      final newAddress = AddressModel(
         userId: userId,
         email: email,
         addressName: addressNameController.text,

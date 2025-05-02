@@ -5,7 +5,7 @@ class ManageAddressesController extends GetxController {
   final _main = ManageAddressesMainController();
   String? userId;
   bool isLoading = true;
-  List<Address> addresses = [];
+  List<AddressModel> addresses = [];
 
   @override
   void onInit() {
@@ -40,8 +40,8 @@ class ManageAddressesController extends GetxController {
       }
 
       // Update the addresses list with the fetched data
-      addresses = List<Address>.from(
-        response.map((address) => Address.fromJson(address)),
+      addresses = List<AddressModel>.from(
+        response.map((address) => AddressModel.fromJson(address)),
       );
       // Update the state to notify listeners
     } catch (error) {

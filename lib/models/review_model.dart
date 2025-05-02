@@ -1,4 +1,4 @@
-class Review {
+class ReviewModel {
   int? id;
   String? userId;
   int? productId;
@@ -7,7 +7,7 @@ class Review {
   Profiles? profiles;
   String? createdAt;
 
-  Review({
+  ReviewModel({
     this.id,
     this.userId,
     this.productId,
@@ -17,7 +17,7 @@ class Review {
     this.createdAt,
   });
 
-  Review.fromJson(Map<String, dynamic> json) {
+  ReviewModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     productId = json['product_id'];
@@ -42,7 +42,7 @@ class Review {
 
   @override
   String toString() {
-    return 'Review{id: $id, userId: $userId, productId: $productId, ratingValue: $ratingValue,  comment: $comment, profiles: $profiles, createdAt: $createdAt,}';
+    return 'ReviewModel{id: $id, userId: $userId, productId: $productId, ratingValue: $ratingValue,  comment: $comment, profiles: $profiles, createdAt: $createdAt,}';
   }
 }
 

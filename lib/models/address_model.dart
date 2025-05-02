@@ -1,4 +1,4 @@
-class Address {
+class AddressModel {
   // Fields
   int? id;
   String? userId;
@@ -16,7 +16,7 @@ class Address {
   String? createdAt;
 
   // Constructor to initialize the fields
-  Address({
+  AddressModel({
     this.id,
     this.userId,
     this.email,
@@ -34,8 +34,8 @@ class Address {
   });
 
   // Factory method to create an instance from a map
-  factory Address.fromJson(Map<String, dynamic> json) {
-    return Address(
+  factory AddressModel.fromJson(Map<String, dynamic> json) {
+    return AddressModel(
       id: json['id'],
       userId: json['user_id'],
       email: json['email'],
@@ -74,6 +74,6 @@ class Address {
 
   @override
   String toString() {
-    return 'Address{id: $id, user_id: $userId, email: $email, addressName: $addressName, country: $country, flag: $flag, province: $province, city: $city, streetAddress: $street, countryCode: $countryCode, phoneNumber: $phoneNumber, notes: $notes, location: $location, createdAt: $createdAt}';
+    return 'AddressModel{id: $id, user_id: $userId, email: $email, addressName: $addressName, country: $country, flag: $flag, province: $province, city: $city, streetAddress: $street, countryCode: $countryCode, phoneNumber: $phoneNumber, notes: $notes, location: $location, createdAt: $createdAt}';
   }
 }

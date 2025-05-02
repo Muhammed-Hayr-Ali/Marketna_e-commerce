@@ -1,4 +1,4 @@
-class User {
+class UserModel {
   String? id;
   String? role;
   String? email;
@@ -8,7 +8,7 @@ class User {
   String? updatedAt;
   RawUserMetaData? rawUserMetaData;
 
-  User({
+  UserModel({
     this.id,
     this.role,
     this.email,
@@ -19,7 +19,7 @@ class User {
     this.rawUserMetaData,
   });
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     role = json['role'];
     email = json['email'];

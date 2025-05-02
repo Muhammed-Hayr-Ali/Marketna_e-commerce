@@ -5,7 +5,7 @@ import 'package:application/widgets/phone_text_field.dart';
 class AddAddressScreen extends StatelessWidget {
   AddAddressScreen({super.key});
   final _ = Get.put(AddAddressController());
-  final address = Get.arguments as Address?;
+  final address = Get.arguments as AddressModel?;
 
   @override
   Widget build(BuildContext context) {

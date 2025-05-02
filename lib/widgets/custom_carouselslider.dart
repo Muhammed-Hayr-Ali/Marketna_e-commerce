@@ -3,7 +3,7 @@ import 'package:application/utils/import.dart';
 class CustomCarouselSlider extends StatefulWidget {
   /// List of products to be displayed in the carousel slider.
   /// Each product should contain an `id` and `imageUrl` for displaying the image.
-  final List<Product> products;
+  final List<ProductModel> products;
 
   /// Placeholder widget to display while the carousel is loading.
   final Widget shimmerPlaceholder;
@@ -67,7 +67,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
 
   /// Processed list of products after applying the `reverseOrder` logic.
   /// If `reverseOrder` is true, the list is reversed; otherwise, it remains as is.
-  late List<Product> _processedProducts;
+  late List<ProductModel> _processedProducts;
 
   @override
   void initState() {

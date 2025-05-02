@@ -1,7 +1,7 @@
 import 'package:application/utils/import.dart';
 
 class AddressCard extends StatelessWidget {
-  final Address address;
+  final AddressModel address;
 
   const AddressCard({super.key, required this.address});
 

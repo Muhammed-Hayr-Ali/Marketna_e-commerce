@@ -27,7 +27,7 @@ class CustomCountryPicker extends StatefulWidget {
   final String? countryErrorMessage;
   final String? provinceErrorMessage;
   final String? cityErrorMessage;
-  final void Function(Country)? onChangedCountry;
+  final void Function(CountryModel)? onChangedCountry;
   final void Function(Province)? onChangedProvince;
   final void Function(City)? onChangedCity;
 
@@ -42,7 +42,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   String? local;
   bool isLoading = false;
 
-  List<Country> countries = [];
+  List<CountryModel> countries = [];
   List<Province> provinces = [];
   List<City> city = [];
 
@@ -68,7 +68,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
       setState(() {
         // Convert response to a list of Country instances
-        countries = response.map((data) => Country.fromJson(data)).toList();
+        countries = response.map((data) => CountryModel.fromJson(data)).toList();
       });
 
       return true;
@@ -83,7 +83,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   /// On country changed
   /// This function is called when a country is selected from the picker.
-  void _onCountryChanged(Country selectedCountry) {
+  void _onCountryChanged(CountryModel selectedCountry) {
     widget.onChangedCountry?.call(selectedCountry);
     provinces = selectedCountry.province ?? [];
     city = [];

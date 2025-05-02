@@ -487,7 +487,7 @@ Widget _comments() {
         } else if (contrller.reviews.isEmpty) {
           return Center(child: CustomText('No comments yet'));
         } else {
-          late Review review = contrller.reviews.first;
+          late ReviewModel review = contrller.reviews.first;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

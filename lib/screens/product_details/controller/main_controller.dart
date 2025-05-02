@@ -11,7 +11,7 @@ class ProductDetailsMainController {
           child: ListView.separated(
             itemCount: controller.reviews.length,
             itemBuilder: (context, index) {
-              final Review review = controller.reviews[index];
+              final ReviewModel review = controller.reviews[index];
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 decoration: BoxDecoration(
@@ -70,7 +70,7 @@ class ProductDetailsMainController {
     double ratingValue = 5.0;
     final commetController = TextEditingController();
     controller.commentLength.value = 0.0;
-    Review? review;
+    ReviewModel? review;
     custombottomSheet(
       children: [
         Flexible(
@@ -141,7 +141,7 @@ class ProductDetailsMainController {
                               loadingValue: controller.commentLength.value,
                               onPressed: () async {
                                 if (!formKey.currentState!.validate()) return;
-                                review = Review(
+                                review = ReviewModel(
                                   userId: uid,
                                   productId: productId,
                                   ratingValue: ratingValue,
