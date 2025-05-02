@@ -110,12 +110,12 @@ class AddAddressController extends GetxController {
   }
 
   Future<void> addAddress() async {
-    final currentUserId = _supabase.auth.currentUser?.id;
-    if (currentUserId == null) {
-      isLoading.value = false;
+    final currentUser = _supabase.auth.currentUser;
+    if (currentUser == null) {
       return;
     }
-
+    String userId = currentUser.id;
+    final email = currentUser.email;
     countryErrorMessage = Validators.country(selectedCountry ?? '');
     provinceErrorMessage = Validators.province(selectedProvince ?? '');
     cityErrorMessage = Validators.city(selectedCity ?? '');
@@ -138,7 +138,8 @@ class AddAddressController extends GetxController {
       final currentPosition = await _determinePosition();
 
       final newAddress = Address(
-        userId: currentUserId,
+        userId: userId,
+        email: email,
         addressName: addressNameController.text,
         street: streetAddressController.text,
         country: selectedCountry,
