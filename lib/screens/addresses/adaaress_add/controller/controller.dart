@@ -131,9 +131,10 @@ class AddAddressController extends GetxController {
         phoneErrorMessage != null) {
       return;
     }
-    isLoading.value = true;
 
     try {
+      isLoading.value = true;
+
       final currentPosition = await _determinePosition();
 
       final newAddress = Address(
@@ -157,27 +158,21 @@ class AddAddressController extends GetxController {
         await _supabase
             .from(KEYS.ADDRESSES_TABLE)
             .update(newAddress.toJson())
-            .eq('id', addressId!)
-            .whenComplete(() {
-              CustomNotification.showSnackbar(
-                message: ConstantsText.ADDRESS_UPDATED_SUCCESSFULLY,
-              );
-              _.loadAddresses();
-            });
+            .eq('id', addressId!);
       } else {
-        await _supabase
-            .from(KEYS.ADDRESSES_TABLE)
-            .insert(newAddress.toJson())
-            .whenComplete(() {
-              CustomNotification.showSnackbar(
-                message: ConstantsText.ADDRESS_ADDED_SUCCESSFULLY,
-              );
-              _disposeControllers();
-              _.loadAddresses();
-            });
+        await _supabase.from(KEYS.ADDRESSES_TABLE).insert(newAddress.toJson());
+      }
+
+      _.loadAddresses();
+
+      if (addressId == null) {
+        _disposeControllers();
+        Get.back();
       }
     } catch (error) {
-      CustomNotification.showSnackbar(message: ConstantsText.DATA_SENDING_ERROR);
+      CustomNotification.showSnackbar(
+        message: ConstantsText.DATA_SENDING_ERROR,
+      );
       debugPrint(error.toString());
     } finally {
       isLoading.value = false;

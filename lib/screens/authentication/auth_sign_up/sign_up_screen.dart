@@ -121,7 +121,6 @@ class SignUpScreen extends StatelessWidget {
                 () => CustomButton(
                   isLoading: _.isLoading,
                   width: double.infinity,
-                  buttonColor: AppColors.primaryColor,
                   progressColor: Colors.white,
                   onPressed: _signUp,
                   child: CustomText(

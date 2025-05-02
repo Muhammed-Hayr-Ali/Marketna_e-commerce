@@ -605,7 +605,7 @@ Widget _writeComment() {
                                 uid: controller.uid,
                                 productId: controller.productId,
                               ),
-                          buttonColor: Colors.grey.shade100,
+                          backgroundColor: Colors.grey.shade100,
                           child: Row(
                             children: [
                               CustomText(

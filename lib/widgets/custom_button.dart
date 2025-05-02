@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
   final double borderRadius;
 
   /// The background color of the button. If not provided, a default light gray color is used.
-  final Color? buttonColor;
+  final Color backgroundColor;
 
   /// Indicates whether the button is in a loading state.
   /// When true, a loading indicator is displayed instead of the button's content.
@@ -56,7 +56,7 @@ class CustomButton extends StatelessWidget {
     this.onPressed,
     this.height,
     this.width,
-    this.buttonColor,
+    this.backgroundColor = AppColors.primaryColor,
     this.isLoading = false,
     this.margin,
     this.elevation,
@@ -72,33 +72,41 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed:
           isLoading ? null : onPressed, // Disable the button during loading
-      style: ButtonStyle(
-        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-          padding ?? const EdgeInsets.symmetric(horizontal: 8.0),
+      style: ElevatedButton.styleFrom(
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 8.0),
+        minimumSize: Size(
+          width ?? double.infinity,
+          height ?? 48,
+        ), // Default size of the button
+        backgroundColor: backgroundColor, // Default background color
+        disabledBackgroundColor: backgroundColor,
+        shadowColor: Colors.transparent, // Default shadow color
+        foregroundColor: Colors.black, // Default text color
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius), // Rounded corners
         ),
-        minimumSize: WidgetStateProperty.all<Size>(
-          Size(width ?? 100, height ?? 48), // Default size of the button
-        ),
-        backgroundColor: WidgetStateProperty.all<Color>(
-          buttonColor ?? Colors.grey.shade200, // Default background color
-        ),
-        shadowColor: WidgetStateProperty.all<Color>(
-          Colors.grey.shade400, // Default shadow color
-        ),
-        foregroundColor: WidgetStateProperty.all<Color>(
-          Colors.black, // Default text color
-        ),
-        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              borderRadius,
-            ), // Rounded corners
-          ),
-        ),
-        elevation: WidgetStateProperty.all<double>(
-          elevation ?? 0, // Default elevation
+        elevation: elevation ?? 0, // Default elevation
+        textStyle: const TextStyle(
+          fontFamily: ConstantsText.fontFamily,
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
         ),
       ),
+
+      // style: ButtonStyle(
+
+      //   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+      //     RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(
+      //         borderRadius,
+      //       ), // Rounded corners
+      //     ),
+      //   ),
+      //   elevation: WidgetStateProperty.all<double>(
+      //     elevation ?? 0, // Default elevation
+      //   ),
+      // ),
       child:
           isLoading
               ? SizedBox(

@@ -29,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
         actions: [
           TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: Colors.grey.shade100,
+              backgroundColor: AppColors.grey,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -54,12 +54,16 @@ class OnboardingScreen extends StatelessWidget {
               ),
               CustomCicularButton(
                 isLoading: false,
-                progressColors: [Colors.red, Colors.green, Colors.blue],
-                borderColor: Colors.grey.shade100,
-                borderWidth: 2,
+                //      progressColors: [Colors.red, Colors.green, Colors.blue],
+                borderColor: AppColors.grey,
+                borderWidth: 3,
                 loadingValue: _.loadingValue,
                 onPressed: _.nextPage,
-                child: Icon(Icons.arrow_back, size: 32, color: Colors.blueGrey),
+                child: Icon(
+                  Icons.arrow_back,
+                  size: 32,
+                  color: AppColors.primaryColor,
+                ),
               ),
             ],
           ),

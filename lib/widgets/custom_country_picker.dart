@@ -1,13 +1,8 @@
 import 'package:application/utils/import.dart';
 
-enum CountryPickerMode { address, code }
-
-
 class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
     super.key,
-
-    required this.countryPickerMode,
 
     this.onChangedCountry,
     this.onChangedProvince,
@@ -20,19 +15,16 @@ class CustomCountryPicker extends StatefulWidget {
     this.selectedCity,
 
     this.countryErrorMessage,
-    this.countryCodeErrorMessage,
     this.provinceErrorMessage,
     this.cityErrorMessage,
   });
 
-  final CountryPickerMode countryPickerMode;
   final String? selectedCountry;
   final String? selectedCountryCode;
   final String? selectedCountryFlag;
   final String? selectedProvince;
   final String? selectedCity;
   final String? countryErrorMessage;
-  final String? countryCodeErrorMessage;
   final String? provinceErrorMessage;
   final String? cityErrorMessage;
   final void Function(Country)? onChangedCountry;
@@ -42,7 +34,6 @@ class CustomCountryPicker extends StatefulWidget {
   @override
   State<CustomCountryPicker> createState() => _CustomCountryPickerState();
 }
-
 
 class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Variables
@@ -231,34 +222,9 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     );
   }
 
-  /// Code mode picker
-  /// This widget is used to select a country code.
-  Widget _pickerCodeMode() {
-    return CustomButton(
-      label: 'countryCode',
-      errorMessage: widget.countryCodeErrorMessage,
-      isLoading: isLoading,
-      onPressed: _openCountrypicker,
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Transform.translate(
-          offset: Offset(-1, 1),
-          child: CustomText(
-            widget.selectedCountryCode ?? '963',
-            fontWeight: FontWeight.w500,
-            color:
-                widget.selectedCountryCode == null
-                    ? Colors.grey.shade400
-                    : Colors.black,
-          ),
-        ),
-      ),
-    );
-  }
-
   /// Address mode picker
   /// This widget is used to select the country, province, and city for an address.
-  Widget _pickerAddressMode() {
+  Widget _addressPicker() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,9 +232,9 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
         ///country
         CustomButton(
           label: 'country',
+          backgroundColor: AppColors.grey,
           errorMessage: widget.countryErrorMessage,
           isLoading: isLoading,
-          width: double.infinity,
           onPressed: _openCountrypicker,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -312,8 +278,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
               Expanded(
                 child: CustomButton(
                   label: 'state/province',
+                  backgroundColor: AppColors.grey,
                   errorMessage: widget.provinceErrorMessage,
-                  width: double.infinity,
                   onPressed: _openProvincePicker,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -330,7 +296,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                 child: CustomButton(
                   label: 'city',
                   errorMessage: widget.cityErrorMessage,
-                  width: double.infinity,
+                  backgroundColor: AppColors.grey,
                   onPressed: _openCityPicker,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -351,8 +317,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.countryPickerMode == CountryPickerMode.code
-        ? _pickerCodeMode()
-        : _pickerAddressMode();
+    return _addressPicker();
   }
 }

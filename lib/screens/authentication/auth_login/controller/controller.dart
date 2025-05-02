@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../utils/import.dart';
+import '../../../../utils/import.dart';
 
 class LoginController extends GetxController {
   /// Variables

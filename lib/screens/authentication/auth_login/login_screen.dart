@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                 () => CustomButton(
                   isLoading: _.isLoading,
                   width: double.infinity,
-                  buttonColor: AppColors.primaryColor,
+                  backgroundColor: AppColors.primaryColor,
                   progressColor: AppColors.white,
                   onPressed: _login,
                   child: CustomText(
@@ -133,7 +133,6 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       /// Login with github
                       CustomCicularButton(
-                        backgroundColor: Colors.grey.shade200,
                         size: 48,
                         onPressed: _.signInWithGithub,
                         child: SvgPicture.asset(
@@ -147,7 +146,6 @@ class LoginScreen extends StatelessWidget {
                       /// Login with google
                       Obx(
                         () => CustomCicularButton(
-                          backgroundColor: Colors.grey.shade200,
                           size: 48,
                           isLoading: _.isLoadingGoogle,
                           onPressed: _.signInWithGoogle,
@@ -162,8 +160,6 @@ class LoginScreen extends StatelessWidget {
 
                       /// Login with x
                       CustomCicularButton(
-                        backgroundColor: Colors.grey.shade200,
-
                         size: 48,
                         onPressed: _.signInWithX,
                         child: SvgPicture.asset(

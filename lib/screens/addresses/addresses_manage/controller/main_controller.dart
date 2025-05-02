@@ -11,13 +11,13 @@ class ManageAddressesMainController {
             CustomText(addressName, fontWeight: FontWeight.w500),
             const SizedBox(height: 20),
             CustomButton(
-              width: double.infinity,
+              backgroundColor: AppColors.grey,
               onPressed: () => Get.back(result: false),
               child: CustomText(ConstantsText.NO, fontSize: 12),
             ),
             const SizedBox(height: 16),
             CustomButton(
-              width: double.infinity,
+              backgroundColor: AppColors.grey,
               onPressed: () => Get.back(result: true),
               child: CustomText(ConstantsText.YES, fontSize: 12),
             ),

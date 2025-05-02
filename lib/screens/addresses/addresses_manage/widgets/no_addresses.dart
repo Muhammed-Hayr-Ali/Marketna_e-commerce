@@ -12,11 +12,10 @@ Widget noAddressesWidget() {
         const SizedBox(height: 32),
 
         CustomButton(
+          width: Get.width * 0.5,
           padding: EdgeInsets.symmetric(horizontal: 16),
-          height: 40,
-          borderRadius: 60,
           onPressed: () => Get.toNamed(Routes.ADD_ADDRESSES_SCREEN),
-          child: CustomText(ConstantsText.ADD_NEW_ADDRESS),
+          child: CustomText(ConstantsText.ADD_NEW_ADDRESS, color: Colors.white),
         ),
       ],
     ),

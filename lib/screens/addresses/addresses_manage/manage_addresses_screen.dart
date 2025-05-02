@@ -43,6 +43,7 @@ class ManageAddressesScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: CustomButton(
+                                  backgroundColor: AppColors.grey,
                                   onPressed: () {
                                     Get.toNamed(Routes.ADD_ADDRESSES_SCREEN);
                                   },
@@ -102,7 +103,10 @@ class ManageAddressesScreen extends StatelessWidget {
                                         if (direction ==
                                             DismissDirection.endToStart) {
                                           // التمرير من اليمين إلى اليسار (حذف)
-                                          controller.dateAddress(address.id!, address.addressName!);
+                                          controller.dateAddress(
+                                            address.id!,
+                                            address.addressName!,
+                                          );
                                           return false; // لا تحذف العنصر من القائمة
                                         } else if (direction ==
                                             DismissDirection.startToEnd) {

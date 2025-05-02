@@ -18,9 +18,6 @@ class ManageAddressesController extends GetxController {
   }
 
   /// Loads the addresses for the current user.
-  ///
-  /// This function fetches the list of addresses associated with the current user
-  /// from the database and updates the [addresses] observable list.
   Future<void> loadAddresses() async {
     debugPrint('Loading addresses...');
 
@@ -58,12 +55,6 @@ class ManageAddressesController extends GetxController {
     }
   }
 
-  /// Deletes an address from the database based on the provided [addressId].
-  ///
-  /// This function attempts to delete an address entry from the `ADDRESSES_TABLE`
-  /// using the given [addressId]. If the deletion is successful, it reloads the
-  /// addresses list to reflect the changes in the UI. If an error occurs during
-  /// the deletion process, an error message is logged and a notification is shown.
 
   Future<void> dateAddress(int addressId, String addressName) async {
     debugPrint('Updating address...');

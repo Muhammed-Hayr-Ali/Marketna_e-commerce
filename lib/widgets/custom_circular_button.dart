@@ -16,7 +16,7 @@ class CustomCicularButton extends StatelessWidget {
   const CustomCicularButton({
     super.key,
     this.size = 64,
-    this.backgroundColor = const Color(0xFFF5F5F5),
+    this.backgroundColor = AppColors.grey,
     this.child,
     this.onPressed,
     this.borderWidth = 0.0,

@@ -2,6 +2,7 @@ class Address {
   // Fields
   int? id;
   String? userId;
+  String? email;
   String? addressName;
   String? country;
   String? flag;
@@ -18,6 +19,7 @@ class Address {
   Address({
     this.id,
     this.userId,
+    this.email,
     this.addressName,
     this.country,
     this.flag,
@@ -36,6 +38,7 @@ class Address {
     return Address(
       id: json['id'],
       userId: json['user_id'],
+      email: json['email'],
       addressName: json['address_name'],
       country: json['country'],
       flag: json['flag'],
@@ -54,6 +57,7 @@ class Address {
   Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
+      'email': email,
       'address_name': addressName,
       'country': country,
       'flag': flag,
@@ -70,6 +74,6 @@ class Address {
 
   @override
   String toString() {
-    return 'Address{id: $id, user_id: $userId, addressName: $addressName, country: $country, flag: $flag, province: $province, city: $city, streetAddress: $street, countryCode: $countryCode, phoneNumber: $phoneNumber, notes: $notes, location: $location, createdAt: $createdAt}';
+    return 'Address{id: $id, user_id: $userId, email: $email, addressName: $addressName, country: $country, flag: $flag, province: $province, city: $city, streetAddress: $street, countryCode: $countryCode, phoneNumber: $phoneNumber, notes: $notes, location: $location, createdAt: $createdAt}';
   }
 }

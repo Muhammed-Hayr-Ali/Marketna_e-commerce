@@ -5,7 +5,7 @@ class UpdatePasswordScreen extends StatelessWidget {
 
   final _ = Get.put(UpdatePasswordController());
   final _formKey = GlobalKey<FormState>();
-  final _email = Get.arguments as String;
+  final _email = Get.arguments as String?;
   final _verificationCodeController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -16,6 +16,8 @@ class UpdatePasswordScreen extends StatelessWidget {
     );
     final isFormValid = _formKey.currentState!.validate();
     if (!isVerificationCodeValid || !isFormValid) return;
+
+    if (_email == null) return;
 
     await _.updatePassword(
       email: _email,
@@ -58,7 +60,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       fieldHeight: Get.width * 0.175,
                       borderWidth: 1.0,
                       activeBorderColor: Colors.blueGrey,
-                      fieldBackgroundColor: Colors.grey.shade200,
+                      fieldBackgroundColor: AppColors.grey,
                       activeBackgroundColor: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(6.0),
                       keyboardType: TextInputType.number,
@@ -131,7 +133,6 @@ class UpdatePasswordScreen extends StatelessWidget {
                     () => CustomButton(
                       isLoading: _.isLoading,
                       width: double.infinity,
-                      buttonColor: AppColors.primaryColor,
                       progressColor: Colors.white,
                       onPressed: _updatePassword,
                       child: CustomText(

@@ -40,7 +40,7 @@ class SplashScreen extends StatelessWidget {
                                 child: CustomText(
                                   _.errorMessage,
                                   fontSize: 12.0,
-                                  color: AppColors.red,
+                                  color: AppColors.errorRed,
                                   textAlign: TextAlign.center,
                                 ),
                               ),

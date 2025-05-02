@@ -77,7 +77,7 @@ class CustomTextField extends StatefulWidget {
     this.textDirection,
     this.autofocus = false,
     this.borderRadius = 8,
-    this.fillColor = const Color(0xFFEEEEEE),
+    this.fillColor = AppColors.grey,
   });
 
   @override

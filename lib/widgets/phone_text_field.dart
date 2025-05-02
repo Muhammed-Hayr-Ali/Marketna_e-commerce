@@ -113,6 +113,7 @@ class PhoneTextField extends StatelessWidget {
   final TextEditingController? phoneController;
   final String? errorMessage;
   final String? disableMessage;
+  final Color fillColor;
 
   PhoneTextField({
     super.key,
@@ -128,6 +129,7 @@ class PhoneTextField extends StatelessWidget {
     this.phoneController,
     this.errorMessage,
     this.disableMessage,
+    this.fillColor = AppColors.grey,
   });
 
   final _ = Get.put(PhoneTextFieldController());
@@ -160,7 +162,7 @@ class PhoneTextField extends StatelessWidget {
           height: 48,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.grey.shade200,
+            color: fillColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Directionality(

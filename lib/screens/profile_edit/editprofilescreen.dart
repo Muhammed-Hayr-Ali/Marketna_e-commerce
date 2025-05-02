@@ -50,7 +50,10 @@ class EditProfileScreen extends StatelessWidget {
                           SizedBox(
                             height: 128.0,
                             width: 128.0,
-                            child: _.imageLoading? CircularProgressIndicator() : null,
+                            child:
+                                _.imageLoading
+                                    ? CircularProgressIndicator()
+                                    : null,
                           ),
                           CustomAvatar(
                             imagePath: _.imagePath,
@@ -86,7 +89,7 @@ class EditProfileScreen extends StatelessWidget {
 
                             /// email
                             CustomButton(
-                              width: double.infinity,
+                              backgroundColor: AppColors.grey,
                               label: ConstantsText.EMAIL.tr,
                               child: Row(
                                 mainAxisAlignment:
@@ -110,7 +113,8 @@ class EditProfileScreen extends StatelessWidget {
                               builder:
                                   (_) => PhoneTextField(
                                     hintPhone: ConstantsText.DEFAULT_PHONE,
-                                    hintCode: ConstantsText.DEFAULT_COUNTRY_CODE,
+                                    hintCode:
+                                        ConstantsText.DEFAULT_COUNTRY_CODE,
                                     labelText: ConstantsText.PHONE.tr,
                                     selectedCode: _.selectedCountryCode,
                                     phoneController: _.phoneController,
@@ -129,7 +133,7 @@ class EditProfileScreen extends StatelessWidget {
                                 Expanded(
                                   flex: 1,
                                   child: CustomButton(
-                                    width: double.infinity,
+                                    backgroundColor: AppColors.grey,
                                     label: ConstantsText.GENDER.tr,
                                     child: CustomText(
                                       (_.gender == null || _.gender == '')
@@ -150,7 +154,8 @@ class EditProfileScreen extends StatelessWidget {
                                 Expanded(
                                   flex: 1,
                                   child: CustomButton(
-                                    width: double.infinity,
+                                    backgroundColor: AppColors.grey,
+
                                     label: ConstantsText.DATE_OF_BIRTH.tr,
                                     child: CustomText(
                                       (_.dateBirth == null || _.dateBirth == '')
@@ -183,10 +188,8 @@ class EditProfileScreen extends StatelessWidget {
 
                 Obx(
                   () => CustomButton(
-                    width: double.infinity,
                     isLoading: _.isLoading.value,
                     onPressed: _.updateUser,
-                    buttonColor: AppColors.primaryColor,
                     progressColor: AppColors.white,
                     child: CustomText(
                       ConstantsText.UPDATE,

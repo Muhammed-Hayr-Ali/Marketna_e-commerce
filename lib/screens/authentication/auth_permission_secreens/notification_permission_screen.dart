@@ -1,7 +1,7 @@
 import 'package:application/utils/import.dart';
 
-class LocationPermissionScreen extends StatelessWidget {
-  LocationPermissionScreen({super.key});
+class NotificationPermissionScreen extends StatelessWidget {
+  NotificationPermissionScreen({super.key});
 
   final _ = Get.put(AuthPermissionController());
 
@@ -24,7 +24,7 @@ class LocationPermissionScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: SvgPicture.asset(
-                  AppAssets.mapPoint,
+                  AppAssets.bill,
                   colorFilter: ColorFilter.mode(
                     AppColors.primaryColor,
                     BlendMode.srcIn,
@@ -33,17 +33,15 @@ class LocationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               CustomPageTitle(
-                title: ConstantsText.WHAT_IS_YOUR_LOCATION,
-                subtitle: ConstantsText.WHAT_IS_YOUR_LOCATION_DESC,
+                title: ConstantsText.WHAT_IS_YOUR_NOTIFICATION,
+                subtitle: ConstantsText.WHAT_IS_YOUR_NOTIFICATION_DESC,
               ),
               const SizedBox(height: 24),
-              CustomButton(
-                borderRadius: 999,
-                onPressed: _.checkLocationPermission,
+              TextButton(
+                onPressed: _.checkNotificationPermission,
                 // buttonColor: AppColors.primaryColor,
-                padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: CustomText(
-                  ConstantsText.ALLOW_LOCATION_ACCESS,
+                  ConstantsText.ALLOW_NOTIFICATION_ACCESS,
                   color: AppColors.primaryColor,
                 ),
               ),

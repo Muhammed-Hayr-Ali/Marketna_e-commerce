@@ -30,5 +30,17 @@ ThemeData lightTheme = ThemeData(
     ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
   ),
- 
+
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      backgroundColor: Colors.transparent,
+      foregroundColor: Colors.black,
+      textStyle: const TextStyle(
+        fontSize: 14.0,
+        fontFamily: ConstantsText.fontFamily,
+        fontWeight: FontWeight.w500,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(99.0)),
+    ),
+  ),
 );

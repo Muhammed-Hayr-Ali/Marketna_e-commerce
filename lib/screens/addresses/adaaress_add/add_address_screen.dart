@@ -56,7 +56,6 @@ class AddAddressScreen extends StatelessWidget {
                     GetBuilder<AddAddressController>(
                       builder:
                           (_) => CustomCountryPicker(
-                            countryPickerMode: CountryPickerMode.address,
                             selectedCountry: _.selectedCountry,
                             selectedCountryCode: _.selectedCountryCode,
                             selectedCountryFlag: _.selectedCountryFlag,
@@ -96,46 +95,6 @@ class AddAddressScreen extends StatelessWidget {
                           ),
                     ),
 
-                    ///
-                    // Row(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     Expanded(
-                    //       child: CustomTextField(
-                    //         textDirection: TextDirection.ltr,
-                    //         label: ConstantsText.PHONENUMBER.tr,
-                    //         hintText: ConstantsText.DEFAULT_PHONE.tr,
-                    //         controller: _.phoneNumberController,
-                    //         validator: (value) => Validators.phone(value!),
-                    //         keyboardType: TextInputType.phone,
-                    //         inputFormatters: [
-                    //           FilteringTextInputFormatter.allow(
-                    //             RegExp(r'[0-9]'),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 16),
-                    //     GetBuilder<AddAddressController>(
-                    //       init: AddAddressController(),
-                    //       builder:
-                    //           (_) => CustomButton(
-                    //             label: ConstantsText.COUNTRY_CODE,
-                    //             errorMessage: _.countryCodeErrorMessage,
-
-                    //             child: CustomText(
-                    //               textDirection: TextDirection.ltr,
-                    //               _.selectedCountryCode ??
-                    //                   ConstantsText.DEFAULT_COUNTRY_CODE.tr,
-                    //               color:
-                    //                   _.selectedCountryCode == null
-                    //                       ? Colors.grey.shade400
-                    //                       : Colors.black,
-                    //             ),
-                    //           ),
-                    //     ),
-                    //   ],
-                    // ),
 
                     /// space
                     SizedBox(height: 16),
@@ -159,7 +118,6 @@ class AddAddressScreen extends StatelessWidget {
                   isLoading: _.isLoading.value,
                   width: double.infinity,
 
-                  buttonColor: AppColors.primaryColor,
                   progressColor: AppColors.white,
                   onPressed: _.addAddress,
                   child: CustomText(

@@ -18,8 +18,8 @@ export 'package:application/models/review_model.dart';
 // ==============================
 export 'package:application/routes/app_pages.dart';
 export 'package:application/routes/app_routes.dart';
-export 'package:application/screens/auth_permission_secreens/location_permission_screen.dart';
-export 'package:application/screens/auth_permission_secreens/notification_permission_screen.dart';
+export 'package:application/screens/authentication/auth_permission_secreens/location_permission_screen.dart';
+export 'package:application/screens/authentication/auth_permission_secreens/notification_permission_screen.dart';
 // ==============================
 // **Screens**
 // ==============================
@@ -31,14 +31,14 @@ export 'package:application/screens/addresses/addresses_manage/controller/main_c
 export 'package:application/screens/addresses/addresses_manage/manage_addresses_screen.dart';
 export 'package:application/screens/addresses/addresses_manage/widgets/address_card.dart';
 export 'package:application/screens/addresses/addresses_manage/widgets/no_addresses.dart';
-export 'package:application/screens/auth_forgot_password/controller/controller.dart';
-export 'package:application/screens/auth_forgot_password/forgot_password_screen.dart';
-export 'package:application/screens/auth_login/controller/controller.dart';
-export 'package:application/screens/auth_login/login_screen.dart';
-export 'package:application/screens/auth_sign_up/controller/signup_controller.dart';
-export 'package:application/screens/auth_sign_up/sign_up_screen.dart';
-export 'package:application/screens/auth_update_password/controller/update_password_controller.dart';
-export 'package:application/screens/auth_update_password/update_password_screen.dart';
+export 'package:application/screens/authentication/auth_forgot_password/controller/controller.dart';
+export 'package:application/screens/authentication/auth_forgot_password/forgot_password_screen.dart';
+export 'package:application/screens/authentication/auth_login/controller/controller.dart';
+export 'package:application/screens/authentication/auth_login/login_screen.dart';
+export 'package:application/screens/authentication/auth_sign_up/controller/signup_controller.dart';
+export 'package:application/screens/authentication/auth_sign_up/sign_up_screen.dart';
+export 'package:application/screens/authentication/auth_update_password/controller/update_password_controller.dart';
+export 'package:application/screens/authentication/auth_update_password/update_password_screen.dart';
 export 'package:application/screens/cart/cart_screen.dart';
 export 'package:application/screens/favorite/favorite_screen.dart';
 export 'package:application/screens/home/controller/controller.dart';
@@ -70,7 +70,7 @@ export 'package:application/screens/splash_screen/controller/splash_screen_contr
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/app_exception.dart';
 export 'package:application/services/data_converter.dart';
-export 'package:application/screens/auth_permission_secreens/controller/controller.dart';
+export 'package:application/screens/authentication/auth_permission_secreens/controller/controller.dart';
 
 // ==============================
 // **Services**
