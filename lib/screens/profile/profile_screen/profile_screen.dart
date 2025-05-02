@@ -16,6 +16,8 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
+
+            ProfileWidget(),
             /// User Info
             // GetBuilder<ProfileController>(
             //   builder:

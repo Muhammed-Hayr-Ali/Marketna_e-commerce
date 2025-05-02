@@ -18,8 +18,6 @@ export 'package:application/models/review_model.dart';
 // ==============================
 export 'package:application/routes/app_pages.dart';
 export 'package:application/routes/app_routes.dart';
-export 'package:application/screens/authentication/auth_permission_secreens/location_permission_screen.dart';
-export 'package:application/screens/authentication/auth_permission_secreens/notification_permission_screen.dart';
 // ==============================
 // **Screens**
 // ==============================
@@ -35,6 +33,9 @@ export 'package:application/screens/authentication/auth_forgot_password/controll
 export 'package:application/screens/authentication/auth_forgot_password/forgot_password_screen.dart';
 export 'package:application/screens/authentication/auth_login/controller/controller.dart';
 export 'package:application/screens/authentication/auth_login/login_screen.dart';
+export 'package:application/screens/authentication/auth_permission_secreens/controller/controller.dart';
+export 'package:application/screens/authentication/auth_permission_secreens/location_permission_screen.dart';
+export 'package:application/screens/authentication/auth_permission_secreens/notification_permission_screen.dart';
 export 'package:application/screens/authentication/auth_sign_up/controller/signup_controller.dart';
 export 'package:application/screens/authentication/auth_sign_up/sign_up_screen.dart';
 export 'package:application/screens/authentication/auth_update_password/controller/update_password_controller.dart';
@@ -65,13 +66,12 @@ export 'package:application/screens/profile/profile_screen/controller/controller
 export 'package:application/screens/profile/profile_screen/controller/main_controller.dart';
 export 'package:application/screens/profile/profile_screen/profile_screen.dart';
 export 'package:application/screens/profile/profile_screen/widgets/menu_item.dart';
+export 'package:application/screens/profile/profile_screen/widgets/profile_widget.dart';
 export 'package:application/screens/settings/settings_screen.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/app_exception.dart';
 export 'package:application/services/data_converter.dart';
-export 'package:application/screens/authentication/auth_permission_secreens/controller/controller.dart';
-
 // ==============================
 // **Services**
 // ==============================

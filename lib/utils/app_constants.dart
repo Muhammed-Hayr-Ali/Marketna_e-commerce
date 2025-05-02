@@ -55,7 +55,7 @@ abstract class ConstantsText {
   static const String FULL_NAME = 'full_name';
   static const String USER_NAME = 'user_name';
   static const String PREFERRED_USERNAME = 'preferred_username';
-  static const String COUNTRY_CODE = 'countryCode';
+  static const String COUNTRY_CODE = 'country_code';
   static const String PHONE = 'phone';
   static const String GENDER = 'gender';
   static const String DATE_BIRTH = 'date_birth';

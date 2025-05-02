@@ -10,33 +10,36 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get: ^4.7.2
-  get_storage: ^2.1.1
-  supabase_flutter: ^2.8.4
-  google_sign_in: ^6.3.0
-  fluttertoast: ^8.2.12
-  shimmer: ^3.0.0
-  flutter_svg: ^2.0.17
-  permission_handler: ^11.4.0
-  image_picker: ^1.1.2
-  cached_network_image: ^3.4.1
-  internet_connection_checker: ^3.0.1
-  url_launcher: ^6.3.1
-  rename_app: ^1.6.2
-  # change_app_package_name: ^1.5.0
-  uuid: ^4.5.1
-  flutter_holo_date_picker: ^2.0.0
-  flutter_pin_code_fields: ^2.2.0
-  geolocator: ^13.0.4
-  phosphor_flutter: ^2.1.0
-  flutter_rating_bar: ^4.0.1
-  date_time_format: ^2.0.1
+  get: ^4.7.2 # State Management
+  get_storage: ^2.1.1 # Local Storage
+  supabase_flutter: ^2.8.4 # Supabase SDK
+  google_sign_in: ^6.3.0 # Google Sign In
+  fluttertoast: ^8.2.12 # Flutter Toast
+  shimmer: ^3.0.0 # Shimmer Effect
+  flutter_svg: ^2.0.17 # SVG Images
+  permission_handler: ^11.4.0 # Permission Handler
+  image_picker: ^1.1.2 # Image Picker
+  cached_network_image: ^3.4.1 # Cached Network Image
+  internet_connection_checker: ^3.0.1 # Internet Connection Checker
+  url_launcher: ^6.3.1 # URL Launcher
+  rename_app: ^1.6.2 # Rename App Package
+  uuid: ^4.5.1 # UUID Generator
+  flutter_holo_date_picker: ^2.0.0 # Date Picker
+  flutter_pin_code_fields: ^2.2.0 # Pin Code Fields
+  geolocator: ^13.0.4 # Geolocator
+  phosphor_flutter: ^2.1.0 # Phosphor Icons
+  flutter_rating_bar: ^4.0.1 # Flutter Rating Bar
+  date_time_format: ^2.0.1 # Date Time Format
+  freezed_annotation: ^2.0.0 # Required for Freezed
+  json_annotation: ^4.8.0 # Required for JSON serialization
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^5.0.0
+  flutter_lints: ^5.0.0 # Lints
+  build_runner: ^2.0.0 # Code generation tool
+  freezed: ^2.0.0 # Freezed for immutable data and union types
+  json_serializable: ^6.0.0 # JSON serialization tool
 
 flutter:
   uses-material-design: true

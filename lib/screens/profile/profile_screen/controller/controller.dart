@@ -1,26 +1,33 @@
+import 'package:application/models/user_model/user_model.dart';
 import 'package:application/utils/import.dart';
 
 class ProfileController extends GetxController {
-
   final _supabase = Supabase.instance.client;
   final _main = ProfileMainController();
-  
 
+  final RxBool _isLoading = false.obs;
+  bool get isLoading => _isLoading.value;
 
-
-  User? user;
-  RxBool isLoading = false.obs;
+  final _user = UserModel().obs;
+  UserModel get user => _user.value;
 
   @override
-  /// Called when the controller is initialized.
-  ///
-  /// This function invokes the `super.onInit` method to ensure any
-  /// initialization logic in the parent class is executed. It also
-  /// calls `initializeUser` to set up the current user and update
-  /// the UI accordingly.
   void onInit() {
     super.onInit();
     initializeUser();
+  }
+
+  void initializeUser() {
+    try {
+      _isLoading.value = true;
+
+      final User? currentUser = _supabase.auth.currentUser;
+      _user.value = UserModel.fromJson(currentUser?.toJson() ?? {});
+    } catch (error) {
+      debugPrint(error.toString());
+    } finally {
+      _isLoading.value = false;
+    }
   }
 
   /// Signs the user out of the application.
@@ -45,10 +52,6 @@ class ProfileController extends GetxController {
   ///
   /// This function sets the current user to the user from the Supabase client's
   /// `currentUser` property and triggers a UI update.
-  void initializeUser() {
-    user = _supabase.auth.currentUser;
-    update();
-  }
 
   /// Navigates to the given route using GetX's `Get.toNamed` method.
   void navigateToScreen(String route) {

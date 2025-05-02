@@ -81,7 +81,7 @@ class RawUserMetaData {
     displayName = json['display_name'];
     name = json['name'];
     userName = json['user_name'];
-    countryCode = json['countryCode'];
+    countryCode = json['country_code'];
     phone = json['phone'];
     gender = json['gender'];
     dateBirth = json['date_birth'];
@@ -96,7 +96,7 @@ class RawUserMetaData {
     data['display_name'] = displayName;
     data['name'] = name;
     data['user_name'] = userName;
-    data['countryCode'] = countryCode;
+    data['country_code'] = countryCode;
     data['phone'] = phone;
     data['gender'] = gender;
     data['date_birth'] = dateBirth;
