@@ -2,6 +2,7 @@ class English {
   Map<String, String> get keys => {
     ///===========================================================================
     /// Splash Screen
+    'language': 'Language',
     'No Internet Connection Available': 'No Internet Connection Available',
     'Connection Time Out Please try again':
         'Connection Time Out Please try again',

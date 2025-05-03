@@ -10,7 +10,7 @@ class OnboardingMainController {
             backgroundColor:
                 localCode == 'ar' ? Colors.grey.shade200 : Colors.white,
           ),
-          child: Row(children: [CustomText('arabic')]),
+          child: Row(children: [CustomText('العربية')]),
         ),
 
         TextButton(
@@ -19,7 +19,7 @@ class OnboardingMainController {
             backgroundColor:
                 localCode == 'en' ? Colors.grey.shade200 : Colors.white,
           ),
-          child: Row(children: [CustomText('english')]),
+          child: Row(children: [CustomText('English')]),
         ),
 
         TextButton(
@@ -28,7 +28,7 @@ class OnboardingMainController {
             backgroundColor:
                 localCode == 'de' ? Colors.grey.shade200 : Colors.white,
           ),
-          child: Row(children: [CustomText('german')]),
+          child: Row(children: [CustomText('Deutsch')]),
         ),
 
         TextButton(
@@ -37,7 +37,7 @@ class OnboardingMainController {
             backgroundColor:
                 localCode == 'fr' ? Colors.grey.shade200 : Colors.white,
           ),
-          child: Row(children: [CustomText('french')]),
+          child: Row(children: [CustomText('Français')]),
         ),
 
         TextButton(
@@ -46,7 +46,7 @@ class OnboardingMainController {
             backgroundColor:
                 localCode == 'tr' ? Colors.grey.shade200 : Colors.white,
           ),
-          child: Row(children: [CustomText('turkish')]),
+          child: Row(children: [CustomText('Türkçe')]),
         ),
       ],
     );

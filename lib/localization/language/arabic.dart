@@ -2,6 +2,7 @@ class Arabic {
   Map<String, String> get keys => {
     ///===========================================================================
     /// Splash Screen
+    'language': 'اللغة',
     'No Internet Connection Available': 'لا يوجد اتصال متاح بالإنترنت',
     'Connection Time Out Please try again':
         'إنتهت مهلة الاتصال بالانترنت يرجى المحاولة مرة اخرى',
