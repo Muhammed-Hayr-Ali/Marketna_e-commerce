@@ -85,7 +85,7 @@ abstract class ConstantsText {
   ///===========================================================================
 
   /// auth
-  static const String WELCOME_BACK = 'welcome_back';
+  static const String WELCOME_BACK_TITLE = 'welcome_back_title';
   static const String EXAMPLE_EMAIL = 'example@email.com';
   static const String EXAMPLE_PASSWORD = '●●●●●●●●●';
   static const String PASSWORD = 'password';
@@ -238,6 +238,7 @@ abstract class ConstantsText {
   static const String UPDATE = 'update';
 
   /// **Profile**
+  static const String WELCOME = 'welcome';
   static const String PROFILE = 'profile';
   static const String EDIT_PROFILE = 'edit_profile';
   static const String MY_ADDRESSES = 'my_addresses';

@@ -30,16 +30,11 @@ dependencies:
   phosphor_flutter: ^2.1.0 # Phosphor Icons
   flutter_rating_bar: ^4.0.1 # Flutter Rating Bar
   date_time_format: ^2.0.1 # Date Time Format
-  freezed_annotation: ^2.0.0 # Required for Freezed
-  json_annotation: ^4.8.0 # Required for JSON serialization
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0 # Lints
-  build_runner: ^2.0.0 # Code generation tool
-  freezed: ^2.0.0 # Freezed for immutable data and union types
-  json_serializable: ^6.0.0 # JSON serialization tool
 
 flutter:
   uses-material-design: true

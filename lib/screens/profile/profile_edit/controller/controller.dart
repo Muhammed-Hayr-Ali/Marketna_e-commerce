@@ -118,7 +118,7 @@ class EditProfileController extends GetxController {
       // If [withUpdate] is true, refresh the UI
       if (withUpdate) {
         _initialize();
-        _profileController.initializeCurrentUser();
+        _profileController.initializeUser();
         imageLoading = false;
         update();
       }
@@ -251,7 +251,7 @@ class EditProfileController extends GetxController {
     } finally {
       // Reset the form and set the loading state to false
       _initialize();
-      _profileController.initializeCurrentUser();
+      _profileController.initializeUser();
       isLoading.value = false;
       imagePath = null;
       update();

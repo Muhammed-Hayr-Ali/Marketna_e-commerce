@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
               /// Screen Title
               CustomPageTitle(
                 title: ConstantsText.LOGIN,
-                subtitle: ConstantsText.WELCOME_BACK,
+                subtitle: ConstantsText.WELCOME_BACK_TITLE,
                 padding: EdgeInsets.symmetric(vertical: Get.width * 0.15),
               ),
 

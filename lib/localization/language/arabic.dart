@@ -54,7 +54,7 @@ class Arabic {
 
     ///===========================================================================
     /// auth
-    ConstantsText.WELCOME_BACK: 'مرحبًا بعودتك! لقد افتقدناك',
+    ConstantsText.WELCOME_BACK_TITLE: 'مرحبًا بعودتك! لقد افتقدناك',
     ConstantsText.EXAMPLE_EMAIL: 'example@email.com',
     ConstantsText.EXAMPLE_PASSWORD: '●●●●●●●●●',
     ConstantsText.EMAIL: 'البريد الإلكتروني',
@@ -81,6 +81,9 @@ class Arabic {
     ConstantsText.NOTIFICATION_PERMISSION_Denied:
         'تم رفض الوصول للموقع, هل ترعب بالذهاب الى الإعدادات و منح الاذن المطلوب',
     ConstantsText.GO_TO_SETTINGS: 'إعدادات التطبيق',
+
+///===========================================================================
+    ConstantsText.WELCOME: 'مرحبًا بك',
 
     ///===========================================================================
     /// AppException
