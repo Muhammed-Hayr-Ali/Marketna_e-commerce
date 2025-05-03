@@ -25,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
             ),
 
             /// User Info
+            SizedBox(height: 16),
 
             /// menu
             Expanded(
