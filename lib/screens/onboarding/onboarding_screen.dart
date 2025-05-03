@@ -7,18 +7,18 @@ class OnboardingScreen extends StatelessWidget {
   final List<Widget> pages = <Widget>[
     pageBuilder(
       image: AppAssets.onBoarding_1,
-      title: ConstantsText.ONBOARDING_TITLE_1,
-      subtitle: ConstantsText.ONBOARDING_SUBTITLE_1,
+      title: 'onboarding_title_1',
+      subtitle: 'onboarding_sub_title_1',
     ),
     pageBuilder(
       image: AppAssets.onBoarding_2,
-      title: ConstantsText.ONBOARDING_TITLE_2,
-      subtitle: ConstantsText.ONBOARDING_SUBTITLE_2,
+      title: 'onboarding_title_2',
+      subtitle: 'onboarding_sub_title_2',
     ),
     pageBuilder(
       image: AppAssets.onBoarding_3,
-      title: ConstantsText.ONBOARDING_TITLE_3,
-      subtitle: ConstantsText.ONBOARDING_SUBTITLE_3,
+      title: 'onboarding_title_3',
+      subtitle: 'onboarding_sub_title_3',
     ),
   ];
   @override
@@ -35,7 +35,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             onPressed: _.selectLanguage,
-            child: CustomText(ConstantsText.LANGUAGE, color: Colors.black),
+            child: CustomText('language', color: Colors.black),
           ),
         ],
       ),

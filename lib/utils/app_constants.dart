@@ -74,13 +74,6 @@ abstract class ConstantsText {
 
   /// Onboarding
 
-  static const String ONBOARDING_TITLE_1 = 'purchase_online';
-  static const String ONBOARDING_TITLE_2 = 'track_order';
-  static const String ONBOARDING_TITLE_3 = 'get_your_order';
-
-  static const String ONBOARDING_SUBTITLE_1 = 'Enjoy_a_unique';
-  static const String ONBOARDING_SUBTITLE_2 = 'Track_shipments_real-time';
-  static const String ONBOARDING_SUBTITLE_3 = 'Enjoy_your_favorite';
 
   ///===========================================================================
 
@@ -149,14 +142,7 @@ abstract class ConstantsText {
 
   ///===========================================================================
 
-  /// Language
-  static const String LANGUAGE = 'language';
-  static const String SELECT_LANGUAGE = 'select_language';
-  static const String ARABIC = 'arabic';
-  static const String ENGLISH = 'english';
-  static const String GERMAN = 'german';
-  static const String FRENCH = 'french';
-  static const String TURKISH = 'turkish';
+
 
   /// ==============================
   /// **Notification**

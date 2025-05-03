@@ -28,16 +28,14 @@ class SplashScreenController extends GetxController {
       );
 
       if (!hasInternetConnection) {
-        throw AppException.NO_INTERNET_CONNECTION;
+        _errorMessage.value = 'No Internet Connection Available';
       } else {
         await _checkAuthenticationStatus();
       }
-    } on AppException catch (error) {
-      _errorMessage.value = error.message;
     } on TimeoutException {
-      _errorMessage.value = AppException.NO_INTERNET_CONNECTION.message;
+      _errorMessage.value = 'Connection Time Out Please try again';
     } catch (e) {
-      _errorMessage.value = AppException.NO_INTERNET_CONNECTION.message;
+      _errorMessage.value = 'Something Went Wrong Please try again';
     }
   }
 

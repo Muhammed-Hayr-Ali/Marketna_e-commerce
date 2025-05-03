@@ -54,7 +54,7 @@ class SplashScreen extends StatelessWidget {
                                 ),
                               ),
                               child: CustomText(
-                                ConstantsText.RETRY,
+                                'Retry',
                                 fontSize: 10.0,
                                 color: Colors.blueGrey,
                               ),
@@ -63,11 +63,7 @@ class SplashScreen extends StatelessWidget {
                         ),
               ),
             ),
-            CustomText(
-              ConstantsText.POWERED_BY_PST,
-              fontSize: 8,
-              color: Colors.black,
-            ),
+            CustomText('Powered by PST', fontSize: 8, color: Colors.black),
           ],
         ),
       ),

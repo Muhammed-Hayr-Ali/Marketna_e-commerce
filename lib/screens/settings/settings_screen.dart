@@ -45,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.language),
             title: const CustomText(
-              ConstantsText.LANGUAGE,
+              'language',
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),

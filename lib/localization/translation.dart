@@ -3,7 +3,6 @@ import 'package:application/localization/language/english.dart';
 import 'package:application/localization/language/farsi.dart';
 import 'package:application/localization/language/french.dart';
 import 'package:application/localization/language/german.dart';
-import 'package:application/localization/language/kurdish.dart';
 import 'package:application/localization/language/turkish.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +14,6 @@ class Localization extends Translations {
         'fr': French().keys,
         'de': German().keys,
         'tr': Turkish().keys,
-        'ku': Kurdish().keys,
         'fa': Farsi().keys,
       };
 }
