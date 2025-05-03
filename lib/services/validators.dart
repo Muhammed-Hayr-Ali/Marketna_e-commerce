@@ -67,7 +67,7 @@ class Validators {
 
   static String? name(String name) {
     if (name.isEmpty) {
-      return 'name_cannot_be_empty'.tr;
+      return 'Name cannot be empty'.tr;
     }
     return null;
   }

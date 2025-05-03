@@ -36,8 +36,8 @@ class SignUpScreen extends StatelessWidget {
             children: [
               /// Title
               CustomPageTitle(
-                title: ConstantsText.CREATE_ACCOUNT,
-                subtitle: ConstantsText.FILL_YOUR_DETAILS,
+                title: 'Create New Account',
+                subtitle: 'Fill your details to continue',
                 padding: EdgeInsets.only(bottom: Get.width * 0.15),
               ),
 
@@ -47,24 +47,24 @@ class SignUpScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: ConstantsText.FULL_NAME.tr,
-                      hintText: ConstantsText.DEFAULT_NAME,
+                      label: 'Full Name',
+                      hintText: 'John Doe',
                       controller: _nameController,
                       validator: (value) => Validators.name(value!),
                       keyboardType: TextInputType.name,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: ConstantsText.EMAIL.tr,
-                      hintText: ConstantsText.EXAMPLE_EMAIL,
+                      label: 'Email',
+                      hintText: 'example@email.com',
                       controller: _emailController,
                       validator: (value) => Validators.email(value!),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: ConstantsText.PASSWORD.tr,
-                      hintText: ConstantsText.EXAMPLE_PASSWORD,
+                      label: 'Password',
+                      hintText: '●●●●●●●●●',
                       controller: _passwordController,
                       validator:
                           (value) => Validators.password(
@@ -76,8 +76,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: ConstantsText.CONFIRM_PASSWORD.tr,
-                      hintText: ConstantsText.EXAMPLE_PASSWORD,
+                      label: 'Confirm Password',
+                      hintText: '●●●●●●●●●',
                       controller: _confirmPasswordController,
                       validator:
                           (value) => Validators.confirmPassword(
@@ -102,12 +102,21 @@ class SignUpScreen extends StatelessWidget {
                     child: Icon(Icons.check, color: Colors.white, size: 12),
                   ),
                   const SizedBox(width: 2),
-                  CustomText(ConstantsText.AGREE_TO_TERMS, fontSize: 10),
+                  CustomText('I agree to the', fontSize: 10),
                   const SizedBox(width: 2),
                   GestureDetector(
                     onTap: _.openPrivacyPolicy,
                     child: CustomText(
-                      ConstantsText.PRIVACY_POLICY,
+                      'Terms of Use',
+                      fontSize: 10,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                  CustomText(' and ', fontSize: 10),
+                  GestureDetector(
+                    onTap: _.openPrivacyPolicy,
+                    child: CustomText(
+                      'Privacy Policy',
                       fontSize: 10,
                       color: AppColors.primaryColor,
                     ),
@@ -123,10 +132,7 @@ class SignUpScreen extends StatelessWidget {
                   width: double.infinity,
                   progressColor: Colors.white,
                   onPressed: _signUp,
-                  child: CustomText(
-                    ConstantsText.SIGN_UP,
-                    color: AppColors.white,
-                  ),
+                  child: CustomText('Sign Up', color: AppColors.white),
                 ),
               ),
               const SizedBox(height: 16.0),

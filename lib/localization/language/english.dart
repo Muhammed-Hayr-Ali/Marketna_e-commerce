@@ -48,10 +48,21 @@ class English {
     ///===========================================================================
     /// Update Password
     'Update Password': 'Update Password',
-    'Confirm Password' : 'Confirm Password',
+    'Confirm Password': 'Confirm Password',
     'Enter your verification code and new password':
         'Enter your verification code and new password',
     'Password updated successfully': 'Password updated successfully',
+
+    ///===========================================================================
+    /// Sign Up
+    'Create New Account': 'Create New Account',
+    'Fill your details to continue': 'Fill your details to continue',
+    'Full Name': 'Full Name',
+    'John Doe': 'John Doe',
+    'I agree to the': 'I agree to the',
+    'Terms of Use': 'Terms of Use',
+    ' and ': ' and ',
+    'Privacy Policy': 'Privacy Policy',
 
     ///===========================================================================
     /// App Exception
@@ -68,6 +79,8 @@ class English {
         'You can request a security code again in %s seconds.',
     'Unable to send password reset code at this time. Please try again later.':
         'Unable to send password reset code at this time. Please try again later.',
+    'Privacy policy URL could not be launched.':
+        'Privacy policy URL could not be launched.',
 
     ///===========================================================================
     /// Validators
@@ -82,6 +95,7 @@ class English {
     'Confirm password cannot be empty': 'Confirm password cannot be empty',
     'Confirm password must be at least 6 characters':
         'Confirm password must be at least 6 characters',
+    'Name cannot be empty': 'Name cannot be empty',
 
     ///===========================================================================
     /// Home Screen

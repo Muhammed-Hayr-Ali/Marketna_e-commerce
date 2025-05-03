@@ -27,13 +27,14 @@ class SignUpController extends GetxController {
         },
       );
 
-      bool locationPermission = await _hasLocationPermission();
+      bool locationPermission = await Permission.location.status.isGranted;
       if (!locationPermission) {
         Get.offAllNamed(Routes.LOCATION_PERMISSION_SCREEN);
         return;
       }
 
-      bool notificationPermission = await _hasNotificationPermission();
+      bool notificationPermission =
+          await Permission.notification.status.isGranted;
       if (!notificationPermission) {
         Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN);
         return;
@@ -44,40 +45,12 @@ class SignUpController extends GetxController {
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
       CustomNotification.showSnackbar(
-        message: AppException.SOMETHING_WENT_WRONG.message,
+        message: 'Something went wrong please try again',
       );
     } finally {
       _isLoading.value = false;
     }
   }
-
-  Future<bool> _hasLocationPermission() async {
-    final status = await Permission.location.status;
-    debugPrint(status.toString());
-    return status.isGranted;
-  }
-
-  Future<bool> _hasNotificationPermission() async {
-    final status = await Permission.notification.status;
-    debugPrint(status.isGranted.toString());
-    return status.isGranted;
-  }
-
-  // void _showOpenSettingsDialog() {
-  //   Get.defaultDialog(
-  //     title: "Enable Location",
-  //     content: Text(
-  //       "Location permission is permanently denied. Please enable it from app settings.",
-  //     ),
-  //     textConfirm: "Open Settings",
-  //     textCancel: "Cancel",
-  //     onConfirm: () async {
-  //       await Geolocator.openAppSettings();
-  //       Get.back();
-  //     },
-  //     onCancel: () {},
-  //   );
-  // }
 
   /// Opens the privacy policy URL in the browser.
   Future<void> openPrivacyPolicy() async {
@@ -90,6 +63,6 @@ class SignUpController extends GetxController {
     }
 
     /// If the URL cannot be launched, throw an exception.
-    throw Exception(ConstantsText.PRIVACY_POLICY_CANNOT_BE_OPENED);
+    throw Exception('Privacy policy URL could not be launched.');
   }
 }
