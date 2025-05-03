@@ -27,36 +27,47 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            CustomPageTitle(
-              title: ConstantsText.RESET_PASSWORD,
-              subtitle: ConstantsText.ENTER_EMAIL_FOR_RESET,
-              padding: EdgeInsets.symmetric(vertical: Get.width * 0.15),
+            /// Screen Title
+            Column(
+              children: [
+                CustomPageTitle(
+                  title: 'Forgot Password',
+                  subtitle: 'Enter your email to reset your password',
+                  padding: EdgeInsets.symmetric(vertical: Get.width * 0.15),
+                ),
+
+                /// Form
+                Form(
+                  key: _formKey,
+                  child: CustomTextField(
+                    label: 'Email',
+                    hintText: 'example@email.com',
+                    controller: _emailController,
+                    validator: (value) => Validators.email(value!),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                ),
+                const SizedBox(height: 50.0),
+
+                /// Button
+                Obx(
+                  () => CustomButton(
+                    isLoading: _.isLoading,
+                    width: double.infinity,
+                    progressColor: AppColors.white,
+                    onPressed: _sendOTP,
+                    child: CustomText(
+                      'Send Reset Code',
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
 
-            /// Form
-            Form(
-              key: _formKey,
-              child: CustomTextField(
-                label: ConstantsText.EMAIL.tr,
-                hintText: ConstantsText.EXAMPLE_EMAIL,
-                controller: _emailController,
-                validator: (value) => Validators.email(value!),
-                keyboardType: TextInputType.emailAddress,
-              ),
-            ),
-            const SizedBox(height: 50.0),
-
-            Obx(
-              () => CustomButton(
-                isLoading: _.isLoading,
-                width: double.infinity,
-                progressColor: AppColors.white,
-                onPressed: _sendOTP,
-                child: CustomText(ConstantsText.SEND, color: AppColors.white),
-              ),
-            ),
+            SizedBox(),
           ],
         ),
       ),

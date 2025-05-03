@@ -4,7 +4,7 @@ class RouteGet {
   static final List<GetPage> getPages = [
     GetPage(name: Routes.SPLASH_SCREEN, page: () => SplashScreen()),
 
-    GetPage(name: Routes.LOGIN_SCREEN, page: () => LoginScreen()),
+    GetPage(name: Routes.SIGN_IN_SCREEN, page: () => SignInScreen()),
     GetPage(name: Routes.REGISTER_SCREEN, page: () => SignUpScreen()),
     GetPage(name: Routes.LOCATION_PERMISSION_SCREEN, page: () => LocationPermissionScreen()),
     GetPage(name: Routes.NOTIFICATION_PERMISSION_SCREEN, page: () => NotificationPermissionScreen()),

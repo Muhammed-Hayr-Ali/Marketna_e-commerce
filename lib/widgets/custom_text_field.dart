@@ -33,10 +33,6 @@ class CustomTextField extends StatefulWidget {
   final String? label;
 
   /// The style of the text inside the text field.
-  final TextStyle? textStyle;
-
-  /// The style of the hint text.
-  final TextStyle? hintStyle;
 
   /// A list of input formatters to apply to the text field.
   /// These can restrict the input format, such as allowing only numbers or limiting the length.
@@ -59,7 +55,7 @@ class CustomTextField extends StatefulWidget {
   /// [controller] is required and is used to manage the text field's content.
   /// [isPasswordField] is optional and defaults to false.
   /// [showSuffixIcon] is optional and defaults to true.
-  /// [keyboardType], [validator], [onChanged], [hintText], [label], [textStyle], [hintStyle], [inputFormatters], [lines], and [textDirection] are all optional.
+  /// [keyboardType], [validator], [onChanged], [hintText], [label], [inputFormatters], [lines], and [textDirection] are all optional.
   const CustomTextField({
     super.key,
     this.isPasswordField = false,
@@ -70,8 +66,6 @@ class CustomTextField extends StatefulWidget {
     this.showSuffixIcon = true,
     this.hintText,
     this.label,
-    this.textStyle,
-    this.hintStyle,
     this.inputFormatters,
     this.lines = 1,
     this.textDirection,
@@ -137,10 +131,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           Padding(
             padding: const EdgeInsets.only(bottom: 6.0),
             child: Text(
-              widget.label!,
+              (widget.label ?? '').tr,
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.grey,
+                color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -166,17 +160,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     : false, // Obscure text if it's a password field
             validator: widget.validator, // Validation logic
             onChanged: widget.onChanged, // Callback on text change
-            style:
-                widget.textStyle != null
-                    ? widget.textStyle!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    )
-                    : TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ), // Default text style
+            style: TextStyle(
+              fontFamily: ConstantsText.fontFamily,
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+            ), // Default text style
             decoration: InputDecoration(
               fillColor: widget.fillColor,
               filled: true,
@@ -194,14 +183,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       ), // Padding inside the text field
 
               hintText: widget.hintText, // Placeholder text
-              hintStyle:
-                  widget.hintStyle ??
-                  TextStyle(
-                    fontFamily: ConstantsText.fontFamily,
-                    color: Colors.grey.shade400,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ), // Default hint style
+              hintStyle: TextStyle(
+                fontFamily: ConstantsText.fontFamily,
+                color: Colors.grey.shade400,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+              ), // Default hint style
               /// Suffix Icon
               ///
               /// Displays a visibility toggle icon for password fields or a clear icon for regular fields.

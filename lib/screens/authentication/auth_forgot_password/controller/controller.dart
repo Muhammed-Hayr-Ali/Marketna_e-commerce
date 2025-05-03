@@ -17,7 +17,8 @@ class ForgotPasswordController extends GetxController {
       String errorMessagre = error.message;
 
       if (error.message.contains('unexpected_failure')) {
-        errorMessagre = AppException.UNABLE_TO_SEND_PASSWORD_RESET_CODE.message;
+        errorMessagre =
+            'Unable to send password reset code at this time. Please try again later.';
       }
 
       if (error.message.contains('after') &&
@@ -29,7 +30,7 @@ class ForgotPasswordController extends GetxController {
       return false;
     } on Exception {
       CustomNotification.showSnackbar(
-        message: AppException.SOMETHING_WENT_WRONG.message,
+        message: 'Something Went Wrong Please try again',
       );
       return false;
     } finally {
@@ -42,6 +43,6 @@ class ForgotPasswordController extends GetxController {
     final match = regex.firstMatch(originalMessage);
     final seconds = int.tryParse(match?.group(0) ?? '60') ?? 60;
 
-    return 'security_message'.trArgs([seconds.toString()]);
+    return 'security_code_request'.trArgs([seconds.toString()]);
   }
 }

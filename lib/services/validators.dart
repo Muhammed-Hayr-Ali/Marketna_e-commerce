@@ -5,22 +5,22 @@ class Validators {
 
   static String? email(String email) {
     if (email.isEmpty) {
-      return 'email_cannot_be_empty'.tr;
+      return 'Email cannot be empty'.tr;
     }
     if (!RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(email)) {
-      return 'invalid_email'.tr;
+      return 'Invalid email'.tr;
     }
     return null;
   }
 
   static String? passwordOnly(String password) {
     if (password.isEmpty) {
-      return 'password_cannot_be_empty'.tr;
+      return 'Password cannot be empty'.tr;
     }
     if (password.length < 6) {
-      return 'password_min_length'.tr;
+      return 'Password must be at least 6 characters'.tr;
     }
 
     return null;
@@ -28,13 +28,13 @@ class Validators {
 
   static String? password(String password, String confirmPassword) {
     if (password.isEmpty) {
-      return 'password_min_length'.tr;
+      return 'Password cannot be empty'.tr;
     }
     if (password.length < 6) {
-      return 'password_min_length'.tr;
+      return 'Password must be at least 6 characters'.tr;
     }
     if (password != confirmPassword) {
-      return 'passwords_do_not_match'.tr;
+      return 'Passwords do not match'.tr;
     }
 
     return null;
@@ -42,13 +42,13 @@ class Validators {
 
   static String? confirmPassword(String confirmPassword, String password) {
     if (confirmPassword.isEmpty) {
-      return 'confirm_password_cannot_be_empty'.tr;
+      return 'Confirm password cannot be empty'.tr;
     }
     if (confirmPassword.length < 6) {
-      return 'confirm_password_min_length'.tr;
+      return 'Confirm password must be at least 6 characters'.tr;
     }
     if (password != confirmPassword) {
-      return 'passwords_do_not_match'.tr;
+      return 'Passwords do not match'.tr;
     }
 
     return null;

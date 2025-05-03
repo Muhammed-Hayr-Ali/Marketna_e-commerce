@@ -31,8 +31,8 @@ export 'package:application/screens/addresses/addresses_manage/widgets/address_c
 export 'package:application/screens/addresses/addresses_manage/widgets/no_addresses.dart';
 export 'package:application/screens/authentication/auth_forgot_password/controller/controller.dart';
 export 'package:application/screens/authentication/auth_forgot_password/forgot_password_screen.dart';
-export 'package:application/screens/authentication/auth_login/controller/controller.dart';
-export 'package:application/screens/authentication/auth_login/login_screen.dart';
+export 'package:application/screens/authentication/auth_sign_in/controller/controller.dart';
+export 'package:application/screens/authentication/auth_sign_in/sign_in_screen.dart';
 export 'package:application/screens/authentication/auth_permission_secreens/controller/controller.dart';
 export 'package:application/screens/authentication/auth_permission_secreens/location_permission_screen.dart';
 export 'package:application/screens/authentication/auth_permission_secreens/notification_permission_screen.dart';

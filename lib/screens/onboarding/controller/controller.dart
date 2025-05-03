@@ -28,7 +28,7 @@ class OnboardingController extends GetxController {
   void nextPage() {
     final int nextIndex = _selectedIndex + 1;
     if (nextIndex > 2) {
-      Get.offAllNamed(Routes.LOGIN_SCREEN);
+      Get.offAllNamed(Routes.SIGN_IN_SCREEN);
     } else {
       pageController.nextPage(
         duration: const Duration(milliseconds: 500),

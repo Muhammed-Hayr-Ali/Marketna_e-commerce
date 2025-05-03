@@ -36,8 +36,8 @@ class UpdatePasswordScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CustomPageTitle(
-              title: ConstantsText.UPDATE_PASSWORD,
-              subtitle: ConstantsText.UPDATE_PASSWORD_DESC,
+              title: 'Update Password',
+              subtitle: 'Enter your verification code and new password',
               padding: EdgeInsets.only(bottom: Get.width * 0.15),
             ),
 
@@ -102,8 +102,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
-                    label: ConstantsText.PASSWORD.tr,
-                    hintText: ConstantsText.EXAMPLE_PASSWORD,
+                    label: 'Password',
+                    hintText: '●●●●●●●●●',
                     controller: _passwordController,
                     validator:
                         (value) => Validators.password(
@@ -115,8 +115,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
-                    label: ConstantsText.CONFIRM_PASSWORD.tr,
-                    hintText: ConstantsText.EXAMPLE_PASSWORD,
+                    label: 'Confirm Password',
+                    hintText: '●●●●●●●●●',
                     controller: _confirmPasswordController,
                     validator:
                         (value) => Validators.confirmPassword(
@@ -136,7 +136,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       progressColor: Colors.white,
                       onPressed: _updatePassword,
                       child: CustomText(
-                        ConstantsText.UPDATE.tr,
+                        'Update Password',
                         color: AppColors.white,
                       ),
                     ),

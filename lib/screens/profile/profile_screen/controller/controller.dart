@@ -31,7 +31,7 @@ class ProfileController extends GetxController {
     if (!shouldSignOut) return;
     try {
       await _supabase.auth.signOut();
-      Get.offAllNamed(Routes.LOGIN_SCREEN);
+      Get.offAllNamed(Routes.SIGN_IN_SCREEN);
     } catch (error) {
       debugPrint(error.toString());
     }

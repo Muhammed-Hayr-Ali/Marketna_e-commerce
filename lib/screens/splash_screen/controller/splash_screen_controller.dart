@@ -59,7 +59,7 @@ class SplashScreenController extends GetxController {
       await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
       Get.offAllNamed(Routes.ONBOARDING_SCREEN);
     } else {
-      Get.offAllNamed(Routes.LOGIN_SCREEN);
+      Get.offAllNamed(Routes.SIGN_IN_SCREEN);
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../utils/import.dart';
 
-class LoginController extends GetxController {
+class SignInScreenController extends GetxController {
   /// Variables
   final _supabase = Supabase.instance.client;
   final RxBool _isLoading = false.obs;
@@ -35,7 +35,7 @@ class LoginController extends GetxController {
       final user = await googleSignIn.signIn();
 
       if (user == null) {
-        throw AppException.GOOGLE_SIGN_IN_FAILED;
+        throw AppException('Google sign in failed');
       }
 
       final auth = await user.authentication;
@@ -44,7 +44,7 @@ class LoginController extends GetxController {
       final idToken = auth.idToken;
 
       if (accessToken == null || idToken == null) {
-        throw AppException.MISSING_ACCESS_OR_ID_TOKEN;
+        throw AppException('Missing access or ID token');
       }
 
       final session = await _supabase.auth.signInWithIdToken(
@@ -54,7 +54,7 @@ class LoginController extends GetxController {
       );
 
       if (session.user == null) {
-        throw AppException.USER_NOT_FOUND_SESSION;
+        throw AppException('User Not Found In Session');
       }
 
       Get.offAllNamed(Routes.MAIN_SCREEN);
@@ -63,7 +63,7 @@ class LoginController extends GetxController {
     } on AuthException catch (error) {
       _exptectError(error.message);
     } on Exception {
-      _exptectError(AppException.SOMETHING_WENT_WRONG.message);
+      _exptectError('Something Went Wrong Please try again');
     } finally {
       _isLoadingGoogle.value = false;
     }
@@ -78,7 +78,7 @@ class LoginController extends GetxController {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
     } on Exception {
-      _exptectError(AppException.SOMETHING_WENT_WRONG.message);
+      _exptectError('Something Went Wrong Please try again');
     }
   }
 
@@ -91,7 +91,7 @@ class LoginController extends GetxController {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
     } on Exception {
-      _exptectError(AppException.SOMETHING_WENT_WRONG.message);
+      _exptectError('Something Went Wrong Please try again');
     }
   }
 

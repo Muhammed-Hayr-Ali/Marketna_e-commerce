@@ -1,7 +1,6 @@
 import '../../../../utils/import.dart';
 
 class UpdatePasswordController extends GetxController {
-
   /// Variables
   final _supabase = Supabase.instance.client;
   final RxBool _isLoading = false.obs;
@@ -10,17 +9,13 @@ class UpdatePasswordController extends GetxController {
   String get verificationCodeErrorMessage =>
       _verificationCodeErrorMessage.value;
 
-
-
-
   bool isVerificationCodeValid(String verificationCode) {
     if (verificationCode.isEmpty) {
-      _verificationCodeErrorMessage.value =
-          ConstantsText.VERIFICATION_CODE_CANNOT_BE_EMPTY.tr;
+      _verificationCodeErrorMessage.value = 'Verification code cannot be empty';
       return false;
     } else if (verificationCode.length != 6) {
       _verificationCodeErrorMessage.value =
-          ConstantsText.VERIFICATION_CODE_INVALID_LENGTH.tr;
+          'Verification code must be 6 digits';
       return false;
     }
     _verificationCodeErrorMessage.value = '';
@@ -49,11 +44,11 @@ class UpdatePasswordController extends GetxController {
       await _supabase.auth.signOut();
 
       // Navigate to the login screen
-      Get.offAllNamed(Routes.LOGIN_SCREEN);
+      Get.offAllNamed(Routes.SIGN_IN_SCREEN);
 
       // Show a success message
       CustomNotification.showSnackbar(
-        message: AppException.PASSWORD_UPDATED_SUCCESSFULLY.message,
+        message: 'Password updated successfully',
       );
     } on AuthException catch (error) {
       // Show an error message
