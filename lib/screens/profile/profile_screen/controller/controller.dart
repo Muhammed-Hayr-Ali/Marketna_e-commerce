@@ -1,32 +1,32 @@
-import 'package:application/models/user_model/user_model.dart';
 import 'package:application/utils/import.dart';
 
 class ProfileController extends GetxController {
   final _supabase = Supabase.instance.client;
   final _main = ProfileMainController();
 
-  final RxBool _isLoading = false.obs;
-  bool get isLoading => _isLoading.value;
+  bool isLoading = true;
 
-  final _user = UserModel().obs;
-  UserModel get user => _user.value;
+  User? user;
 
   @override
   void onInit() {
     super.onInit();
-    initializeUser();
+    initializeCurrentUser();
   }
 
-  void initializeUser() {
+  /// Initializes the user by fetching the current user from Supabase.
+  ///
+  /// This function wraps the initialization of the user in a try-catch block to
+  /// handle any exceptions that may be thrown when fetching the user.
+  void initializeCurrentUser() {
     try {
-      _isLoading.value = true;
-
-      final User? currentUser = _supabase.auth.currentUser;
-      _user.value = UserModel.fromJson(currentUser?.toJson() ?? {});
-    } catch (error) {
-      debugPrint(error.toString());
+      final currentUser = _supabase.auth.currentUser;
+      user = currentUser;
+    } on Exception {
+      // Ignore exceptions
     } finally {
-      _isLoading.value = false;
+      isLoading = false;
+      update();
     }
   }
 

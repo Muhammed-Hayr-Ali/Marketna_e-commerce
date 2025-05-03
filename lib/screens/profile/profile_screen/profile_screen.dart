@@ -16,8 +16,8 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
-
             ProfileWidget(),
+
             /// User Info
             // GetBuilder<ProfileController>(
             //   builder:
@@ -122,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   MenuItem(
                     title: ConstantsText.EDIT_PROFILE,
-                    icon: AppAssets.profile,
+                    icon: AppAssets.avatar,
                     onTap: () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
@@ -173,6 +173,10 @@ class ProfileScreen extends StatelessWidget {
             //     child: CustomText('logout'.tr, color: AppColors.white),
             //   ),
             // ),
+            CustomButton(
+              child: Text('data'),
+              onPressed: () => _.initializeCurrentUser(),
+            ),
           ],
         ),
       ),

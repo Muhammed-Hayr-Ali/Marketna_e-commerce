@@ -196,7 +196,7 @@ class CustomAvatar extends StatelessWidget {
                 errorWidget: (context, url, error) {
                   return Padding(
                     padding: EdgeInsets.all(size * 0.2),
-                    child: SvgPicture.asset(AppAssets.profile),
+                    child: SvgPicture.asset(AppAssets.avatar),
                   );
                 },
               ),
@@ -228,7 +228,7 @@ class CustomAvatar extends StatelessWidget {
               border: border ?? defaultBorder,
               borderRadius: BorderRadius.circular(999),
             ),
-            child: SvgPicture.asset(AppAssets.profile),
+            child: SvgPicture.asset(AppAssets.avatar),
           ),
           ElevatedButton(
             style: cicularButtonstyleBuilder(),
