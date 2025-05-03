@@ -8,10 +8,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const CustomText(ConstantsText.PROFILE),
-      ),
+      appBar: customAppBar(title: 'Profile'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
@@ -25,46 +22,37 @@ class ProfileScreen extends StatelessWidget {
             ),
 
             /// User Info
-            SizedBox(height: 16),
+            SizedBox(height: 32),
 
             /// menu
             Expanded(
               child: Column(
                 children: [
                   MenuItem(
-                    title: ConstantsText.EDIT_PROFILE,
+                    title: 'Edit Profile',
                     icon: AppAssets.avatar,
                     onTap: () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
-                    title: ConstantsText.MY_ADDRESSES,
+                    title: 'My Addresses',
                     icon: AppAssets.mapPoint,
                     onTap:
                         () =>
                             _.navigateToScreen(Routes.MANAGER_ADDRESSES_SCREEN),
                   ),
                   MenuItem(
-                    title: ConstantsText.MY_ORDERS,
+                    title: 'My Orders',
                     icon: AppAssets.delivery,
                     onTap: () {},
                   ),
                   MenuItem(
-                    title: ConstantsText.SETTINGS,
+                    title: 'Settings',
                     icon: AppAssets.settings,
                     onTap: () => _.navigateToScreen(Routes.SETTINGS_SCREEN),
                   ),
+                  MenuItem(title: 'Help', icon: AppAssets.help, onTap: () {}),
                   MenuItem(
-                    title: ConstantsText.SECURITY,
-                    icon: AppAssets.security,
-                    onTap: () {},
-                  ),
-                  MenuItem(
-                    title: ConstantsText.HELP_CENTER,
-                    icon: AppAssets.help,
-                    onTap: () {},
-                  ),
-                  MenuItem(
-                    title: ConstantsText.LOGOUT,
+                    title: 'Logout',
                     icon: AppAssets.logout,
                     divider: false,
                     onTap: _.signOut,
@@ -84,10 +72,6 @@ class ProfileScreen extends StatelessWidget {
             //     child: CustomText('logout'.tr, color: AppColors.white),
             //   ),
             // ),
-            CustomButton(
-              child: Text('data'),
-              onPressed: () => _.initializeUser(),
-            ),
           ],
         ),
       ),

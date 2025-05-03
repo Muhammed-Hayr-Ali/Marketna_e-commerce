@@ -30,6 +30,7 @@ dependencies:
   phosphor_flutter: ^2.1.0 # Phosphor Icons
   flutter_rating_bar: ^4.0.1 # Flutter Rating Bar
   date_time_format: ^2.0.1 # Date Time Format
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

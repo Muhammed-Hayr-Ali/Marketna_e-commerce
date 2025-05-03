@@ -13,6 +13,7 @@ export 'package:application/models/address_model.dart';
 export 'package:application/models/country_model.dart';
 export 'package:application/models/product_model.dart';
 export 'package:application/models/review_model.dart';
+export 'package:application/models/user_meta_data_model.dart';
 // ==============================
 // **Routes**
 // ==============================
@@ -135,5 +136,6 @@ export 'package:shimmer/shimmer.dart';
 export 'package:supabase_flutter/supabase_flutter.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:uuid/uuid.dart';
+export 'package:intl/intl.dart' hide TextDirection;
 
 // ==============================

@@ -18,12 +18,8 @@ class ProfileWidget extends StatelessWidget {
 
   String _getUserName(Map<String, dynamic>? metadata) {
     if (metadata == null || metadata.isEmpty) return 'Guest';
-    return metadata['display_name'] ??
-        metadata['name'] ??
-        metadata['full_name'] ??
-        metadata['user_name'] ??
-        metadata['preferred_username'] ??
-        'Guest';
+
+    return DataConverter.getUserName(metadata);
   }
 
   @override
@@ -62,7 +58,7 @@ class ProfileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomText(ConstantsText.WELCOME),
+                CustomText('Welcome'),
                 CustomText(_getUserName(metadata), fontWeight: FontWeight.bold),
                 CustomText(
                   metadata?['email'] ?? '',

@@ -81,6 +81,8 @@ class English {
         'Unable to send password reset code at this time. Please try again later.',
     'Privacy policy URL could not be launched.':
         'Privacy policy URL could not be launched.',
+    'An error occurred while uploading the image':
+        'An error occurred while uploading the image',
 
     ///===========================================================================
     /// Validators
@@ -98,6 +100,41 @@ class English {
     'Name cannot be empty': 'Name cannot be empty',
 
     ///===========================================================================
-    /// Home Screen
+    /// Profile Screen
+    'Profile': 'Profile',
+    'Welcome': 'Welcome',
+    'Edit Profile': 'Edit Profile',
+    'My Addresses': 'My Addresses',
+    'My Orders': 'My Orders',
+    'Settings': 'Settings',
+    'Help': 'Help',
+    'Logout': 'Logout',
+    'Are you sure you want to logout?': 'Are you sure you want to logout?',
+    'Logout Now': 'Logout Now',
+    'Cancel': 'Cancel',
+
+    ///===========================================================================
+    /// Edit Profile Screen
+    'Select Image': 'Select Image',
+    'Choose Profile Image Source': 'Choose Profile Image Source',
+    'Camera': 'Camera',
+    'Gallery': 'Gallery',
+    'Delete': 'Delete',
+    'Status Message': 'Status Message',
+    'Email copied to clipboard': 'Email copied to clipboard',
+    'Phone Number': 'Phone Number',
+    '963': '963',
+    '0987654321': '0987654321',
+    'Country Code': 'Country Code',
+    'Select your country code': 'Select your country code',
+    'Gender': 'Gender',
+    'Select your gender': 'Select your gender',
+    'Male': 'Male',
+    'Female': 'Female',
+    'Not Specified': 'Not Specified',
+    'Date of Birth': 'Date of Birth',
+    'Choose Your Date of Birth': 'Choose Your Date of Birth',
+    'Select Date': 'Select Date',
+    'Confirm': 'Confirm',
   };
 }

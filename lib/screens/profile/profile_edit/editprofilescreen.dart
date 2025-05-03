@@ -1,195 +1,127 @@
 import 'package:application/utils/import.dart';
-import 'package:application/widgets/custom_avatar.dart';
 import 'package:application/widgets/phone_text_field.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
   final _ = Get.put<EditProfileController>(EditProfileController());
-  final _main = EditProfileMainController();
-
-  void _selectGender() async {
-    final result = await _main.openGenderBottomSheet(_.gender);
-    _.updateGender(result);
-  }
-
-  void _selectDate() async {
-    final result = await _main.openDateOfBirth(initialDate: _.dateBirth);
-    if (result == null) return;
-    debugPrint(result.toString());
-    _.updateDateBirth(result.toString().substring(0, 10));
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: Get.back,
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-
-        title: const CustomText(ConstantsText.EDIT_PROFILE),
-      ),
-      body: SingleChildScrollView(
+      appBar: customAppBar(backButton: true, title: 'Edit Profile'),
+      body: Form(
+        key: _.formKey,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.0),
-          child: Center(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                GetBuilder<EditProfileController>(
-                  builder:
-                      (_) => Stack(
-                        children: [
-                          SizedBox(
-                            height: 128.0,
-                            width: 128.0,
-                            child:
-                                _.imageLoading
-                                    ? CircularProgressIndicator()
-                                    : null,
-                          ),
-                          CustomAvatar(
-                            imagePath: _.imagePath,
-                            imageUrl:
-                                _.user!.userMetadata![ConstantsText.AVATAR] ??
-                                _.user!.userMetadata![ConstantsText.AVATAR_URL],
-
-                            onSelectImage: (path) => _.updatePath(path),
-                            clearPath: () => _.updatePath(null),
-                            onDeleteTap: () => _.deleteImage(false),
-                          ),
-                        ],
-                      ),
+                /// name
+                CustomTextField(
+                  label: 'Full Name',
+                  hintText: 'John Doe',
+                  controller: _.nameController,
+                  validator: (value) => Validators.name(value!),
+                  keyboardType: TextInputType.name,
                 ),
+                const SizedBox(height: 16.0),
 
-                const SizedBox(height: 20),
-                Form(
-                  key: _.formKey,
-                  child: GetBuilder<EditProfileController>(
-                    builder:
-                        (_) => Column(
-                          children: [
-                            SizedBox(height: 20),
+                /// status message
+                CustomTextField(
+                  label: 'Status Message',
+                  hintText: 'Hello world!',
+                  controller: _.statusMessageController,
+                  keyboardType: TextInputType.text,
+                ),
+                const SizedBox(height: 16.0),
 
-                            /// name
-                            CustomTextField(
-                              label: ConstantsText.FULL_NAME.tr,
-                              hintText: ConstantsText.DEFAULT_NAME,
-                              controller: _.nameController,
-                              validator: (value) => Validators.name(value!),
-                              keyboardType: TextInputType.name,
-                            ),
-                            const SizedBox(height: 16.0),
-
-                            /// email
-                            CustomButton(
-                              backgroundColor: AppColors.grey,
-                              label: ConstantsText.EMAIL.tr,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CustomText(
-                                    _.email ?? '',
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  GestureDetector(
-                                    onTap: _.copyEmailToClipboard,
-                                    child: Icon(Icons.copy),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            const SizedBox(height: 16.0),
-                            GetBuilder<EditProfileController>(
-                              builder:
-                                  (_) => PhoneTextField(
-                                    hintPhone: ConstantsText.DEFAULT_PHONE,
-                                    hintCode:
-                                        ConstantsText.DEFAULT_COUNTRY_CODE,
-                                    labelText: ConstantsText.PHONE.tr,
-                                    selectedCode: _.selectedCountryCode,
-                                    phoneController: _.phoneController,
-                                    onSelectedCode:
-                                        (countryCode) =>
-                                            _.updateCountryCode(countryCode),
-                                    errorMessage:
-                                        _.phoneErrorMessage ??
-                                        _.countryCodeErrorMessage,
-                                  ),
-                            ),
-
-                            const SizedBox(height: 16.0),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: CustomButton(
-                                    backgroundColor: AppColors.grey,
-                                    label: ConstantsText.GENDER.tr,
-                                    child: CustomText(
-                                      (_.gender == null || _.gender == '')
-                                          ? ConstantsText.NOT_SPECIFIED
-                                          : _.gender!,
-                                      color:
-                                          (_.gender == null || _.gender == '')
-                                              ? Colors.grey
-                                              : Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    onPressed: () => _selectGender(),
-                                  ),
-                                ),
-
-                                const SizedBox(width: 16.0),
-
-                                Expanded(
-                                  flex: 1,
-                                  child: CustomButton(
-                                    backgroundColor: AppColors.grey,
-
-                                    label: ConstantsText.DATE_OF_BIRTH.tr,
-                                    child: CustomText(
-                                      (_.dateBirth == null || _.dateBirth == '')
-                                          ? ConstantsText.DATE_FORMAT
-                                          : _.dateBirth!,
-                                      color:
-                                          (_.dateBirth == null ||
-                                                  _.dateBirth == '')
-                                              ? Colors.grey
-                                              : Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    onPressed: () => _selectDate(),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                /// email
+                CustomButton(
+                  backgroundColor: AppColors.grey,
+                  label: 'Email',
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        _.email,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      GestureDetector(
+                        onTap: () => _.copyEmailToClipboard(_.email),
+                        child: Icon(Icons.copy),
+                      ),
+                    ],
                   ),
                 ),
+                const SizedBox(height: 16.0),
 
-                // const SizedBox(height: 48.0),
-                // CustomButton(
-                //   child: CustomText('openCupertinoDatePicker'),
-                //   onPressed: () => _main.openCupertinoDatePicker(initialDate: _.dateBirth,
-                //       ),
-                // ),
+                /// phone number
+                Obx(
+                  () => PhoneTextField(
+                    labelText: 'Phone Number',
+                    hintCode: '963',
+                    hintPhone: '0987654321',
+                    selectedCode: _.countryCode,
+                    phoneController: _.phoneController,
+                    onSelectedCode: (cc) => _.updateCountryCode(cc!),
+                    errorMessage: _.phoneEM != '' ? _.phoneEM : _.cCodeEMe,
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+
+                /// gender and date of birth
+                Obx(
+                  () => Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: CustomButton(
+                          backgroundColor: AppColors.grey,
+                          label: 'Gender',
+                          child: CustomText(
+                            _.gender == '' ? 'Not Specified' : _.gender,
+                            color: _.gender == '' ? Colors.grey : Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          onPressed: () => _.updateGender(_.gender),
+                        ),
+                      ),
+
+                      const SizedBox(width: 16.0),
+
+                      Expanded(
+                        flex: 1,
+                        child: CustomButton(
+                          backgroundColor: AppColors.grey,
+
+                          label: 'Date of Birth',
+                          child: CustomText(
+                            (_.dateBirth == '') ? 'yyyy-MM-dd' : _.dateBirth,
+                            color:
+                                (_.dateBirth == '')
+                                    ? Colors.grey
+                                    : Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+
+                          onPressed: () => _.updateDateOfBirth(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 48.0),
 
-                Obx(
-                  () => CustomButton(
-                    isLoading: _.isLoading.value,
-                    onPressed: _.updateUser,
-                    progressColor: AppColors.white,
-                    child: CustomText(
-                      ConstantsText.UPDATE,
-                      color: AppColors.white,
-                    ),
+                /// Button
+                CustomButton(
+                  isLoading: _.isUpdateLoading,
+                  // onPressed: _.updateUser,
+                  progressColor: AppColors.white,
+                  child: CustomText(
+                    ConstantsText.UPDATE,
+                    color: AppColors.white,
                   ),
                 ),
               ],

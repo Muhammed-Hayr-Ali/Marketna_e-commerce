@@ -42,82 +42,45 @@ class EditProfileMainController {
     }
   }
 
-  /// Displays a bottom sheet for selecting an image source.
-  ///
-  /// This function presents a bottom sheet with options to select an image
-  /// from the camera, the gallery, or to delete the image. It returns a
-  /// [Future] that resolves with the user's selection as a string: 'camera',
-  /// 'gallery', or 'delete'.
-  ///
-  /// Returns a [Future<String?>] that resolves to the selected image source
-  /// or null if no selection is made.
-
-  Future<String?> openSelectImageSource() async {
+  Future<String?> openGenderBottomSheet(String? value) async {
     return await custombottomSheet<String?>(
-      title: ConstantsText.SELECT_IMAGE_SOURCE,
       children: [
-        CustomButton(
-          width: double.infinity,
-          onPressed: () => Get.back(result: ConstantsText.CAMERA),
-          child: const CustomText(ConstantsText.CAMERA, fontSize: 12),
+        CustomPageTitle(
+          title: 'Gender',
+          subtitle: 'Select your gender',
+          padding: EdgeInsets.only(bottom: 16.0),
         ),
-        const SizedBox(height: 16),
-        CustomButton(
-          width: double.infinity,
-          onPressed: () => Get.back(result: ConstantsText.GALLERY),
-          child: const CustomText(ConstantsText.GALLERY, fontSize: 12),
+
+        TextButton(
+          onPressed: () => Get.back(result: 'Male'),
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(
+              value == 'Male' ? Colors.grey.shade200 : Colors.white,
+            ),
+          ),
+          child: Row(children: [CustomText('Male')]),
         ),
-        const SizedBox(height: 16),
-        CustomButton(
-          width: double.infinity,
-          onPressed: () => Get.back(result: ConstantsText.DELETE),
-          child: const CustomText(ConstantsText.DELETE, fontSize: 12),
+
+        TextButton(
+          onPressed: () => Get.back(result: 'Female'),
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(
+              value == 'Female' ? Colors.grey.shade200 : Colors.white,
+            ),
+          ),
+          child: Row(children: [CustomText('Female')]),
+        ),
+
+        TextButton(
+          onPressed: () => Get.back(result: 'Not Specified'),
+          style: TextButton.styleFrom(
+            backgroundColor:
+                value == 'Not Specified' ? Colors.grey.shade200 : Colors.white,
+          ),
+          child: Row(children: [CustomText('Not Specified')]),
         ),
       ],
     );
-  }
-
-  Future<String> openGenderBottomSheet(String? value) async {
-    return await custombottomSheet<String?>(
-          title: ConstantsText.SELECT_GENDER,
-          children: [
-            TextButton(
-              onPressed: () => Get.back(result: ConstantsText.NOT_SPECIFIED),
-              style: TextButton.styleFrom(
-                backgroundColor:
-                    value == ConstantsText.NOT_SPECIFIED
-                        ? Colors.grey.shade200
-                        : Colors.white,
-              ),
-              child: Row(children: [CustomText(ConstantsText.NOT_SPECIFIED)]),
-            ),
-
-            TextButton(
-              onPressed: () => Get.back(result: ConstantsText.MALE),
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                  value == ConstantsText.MALE
-                      ? Colors.grey.shade200
-                      : Colors.white,
-                ),
-              ),
-              child: Row(children: [CustomText(ConstantsText.MALE)]),
-            ),
-            TextButton(
-              onPressed: () => Get.back(result: ConstantsText.FEMALE),
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                  value == ConstantsText.FEMALE
-                      ? Colors.grey.shade200
-                      : Colors.white,
-                ),
-              ),
-              child: Row(children: [CustomText(ConstantsText.FEMALE)]),
-            ),
-          ],
-        ) ??
-        value ??
-        ConstantsText.NOT_SPECIFIED;
   }
 
   /// Opens a bottom sheet with a date picker and a confirm button.
@@ -137,8 +100,13 @@ class EditProfileMainController {
     DateTime? selectedDate;
 
     custombottomSheet(
-      title: ConstantsText.CHOOSE_YOUR_DATE_OF_BIRTH,
       children: [
+        CustomPageTitle(
+          title: 'Date of Birth',
+          subtitle: 'Choose Your Date of Birth',
+          padding: EdgeInsets.only(bottom: 16.0),
+        ),
+
         DatePickerWidget(
           locale: _getLocale(),
           looping: false,
@@ -155,6 +123,7 @@ class EditProfileMainController {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: CustomButton(
+            backgroundColor: AppColors.grey,
             width: double.infinity,
             onPressed: () {
               if (selectedDate != null) {
@@ -162,7 +131,7 @@ class EditProfileMainController {
               }
               Get.back();
             },
-            child: CustomText(ConstantsText.CONFIRM),
+            child: CustomText('Confirm'),
           ),
         ),
       ],

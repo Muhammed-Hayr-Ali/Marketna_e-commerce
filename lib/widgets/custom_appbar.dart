@@ -6,11 +6,12 @@ PreferredSizeWidget emptyAppBar() {
 
 PreferredSizeWidget customAppBar({
   bool backButton = false,
-
+  String? title,
   List<Widget>? actions,
 }) {
   return AppBar(
     automaticallyImplyLeading: false,
+    title: title != null ? CustomText(title) : null,
     leading:
         backButton
             ? IconButton(

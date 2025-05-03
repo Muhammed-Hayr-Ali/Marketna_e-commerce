@@ -38,7 +38,7 @@ class PhoneTextFieldController extends GetxController {
     }
   }
 
-  Future<String?> openCountryPicker() async {
+  Future<String?> openCountryPicker(String? countryCode) async {
     final List<CountryModel> countriesList;
     if (countries.isNotEmpty) {
       countriesList = countries;
@@ -54,13 +54,23 @@ class PhoneTextFieldController extends GetxController {
 
     String result =
         await custombottomSheet(
-          title: 'select_country',
           children: [
+            CustomPageTitle(
+              title: 'Country Code',
+              subtitle: 'Select your country code',
+            ),
+            Divider(),
             Flexible(
               child: ListView.builder(
                 itemCount: countriesList.length,
                 itemBuilder:
                     (context, index) => TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                            countryCode == countriesList[index].code
+                                ? Colors.grey.shade200
+                                : Colors.white,
+                      ),
                       onPressed:
                           () => Get.back(result: countriesList[index].code),
                       child: Row(
@@ -149,14 +159,16 @@ class PhoneTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          labelText.tr,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        labelText != ''
+            ? Text(
+              labelText.tr,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+                fontWeight: FontWeight.w500,
+              ),
+            )
+            : SizedBox(),
         const SizedBox(height: 6.0),
         Container(
           height: 48,
@@ -189,7 +201,9 @@ class PhoneTextField extends StatelessWidget {
                       onPressed:
                           enableCode == true
                               ? () {
-                                final result = _.openCountryPicker();
+                                final result = _.openCountryPicker(
+                                  selectedCode,
+                                );
                                 result.then((value) {
                                   if (onSelectedCode != null) {
                                     onSelectedCode!.call(value!);
@@ -278,27 +292,24 @@ class PhoneTextField extends StatelessWidget {
                     ),
                   ),
                 ),
-                //    IconButton(onPressed: clarPhone, icon: const Icon(Icons.clear)),
+                  //  IconButton(onPressed: clarPhone, icon: const Icon(Icons.clear)),
               ],
             ),
           ),
         ),
-        SizedBox(
-          child:
-              errorMessage != null
-                  ? FadeAnimationDy(
-                    delay: 200,
-                    dy: 6,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(6.0, 2.0, 6.0, 0),
-                      child: Text(
-                        (errorMessage ?? '').tr,
-                        style: TextStyle(fontSize: 10, color: Colors.red),
-                      ),
-                    ),
-                  )
-                  : const SizedBox.shrink(),
-        ),
+        errorMessage != ''
+            ? FadeAnimationDy(
+              delay: 200,
+              dy: 6,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(6.0, 2.0, 6.0, 0),
+                child: Text(
+                  (errorMessage ?? '').tr,
+                  style: TextStyle(fontSize: 10, color: Colors.red),
+                ),
+              ),
+            )
+            : SizedBox(),
       ],
     );
   }
