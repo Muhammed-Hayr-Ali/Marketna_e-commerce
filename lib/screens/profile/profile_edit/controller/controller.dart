@@ -102,7 +102,8 @@ class EditProfileController extends GetxController {
         CustomNotification.showSnackbar(message: error.message);
       } catch (error) {
         CustomNotification.showSnackbar(
-          message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
+          message:
+              'Something has gone wrong somewhere, and we will try to fix it right away.',
         );
       } finally {
         _isImageLoading.value = false;
@@ -221,11 +222,8 @@ class EditProfileController extends GetxController {
         return;
       }
 
-      if (_avatar.value.isNotEmpty) {
+      if (_imagePath.value != '') {
         await _removeImage(_imagePath.value);
-      }
-
-      if (_imagePath.value.isNotEmpty) {
         _avatar.value = await _uploadImage(_imagePath.value) ?? _avatar.value;
       }
 
