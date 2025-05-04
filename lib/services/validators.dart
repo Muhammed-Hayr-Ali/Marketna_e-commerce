@@ -56,10 +56,10 @@ class Validators {
 
   static String? verificationCode(String verificationCode) {
     if (verificationCode.isEmpty) {
-      return 'verification_code_cannot_be_empty'.tr;
+      return 'Verification code cannot be empty'.tr;
     }
     if (verificationCode.length != 6) {
-      return 'verification_code_invalid_length'.tr;
+      return 'Verification code must be 6 digits'.tr;
     }
 
     return null;
@@ -74,35 +74,35 @@ class Validators {
 
   static String? phone(String phone) {
     if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phone)) {
-      return 'invalid_phone'.tr;
+      return 'Invalid phone number'.tr;
     }
     return null;
   }
 
-  static String? saddressName(String streetAddress) {
+  static String? addressName(String streetAddress) {
     if (streetAddress.isEmpty) {
-      return 'addressName_cannot_be_empty'.tr;
+      return 'Address name cannot be empty'.tr;
     }
     return null;
   }
 
   static String? streetAddress(String streetAddress) {
     if (streetAddress.isEmpty) {
-      return 'streetAddress_cannot_be_empty'.tr;
+      return 'Street address cannot be empty'.tr;
     }
     return null;
   }
 
   static String? city(String city) {
     if (city.isEmpty) {
-      return ConstantsText.SELECT_CITY_REQUIRED.tr;
+      return 'Select city required'.tr;
     }
     return null;
   }
 
   static String? province(String stateProvince) {
     if (stateProvince.isEmpty) {
-      return ConstantsText.SELECT_PROVINCE_REQUIRED.tr;
+      return 'Select state or province required'.tr;
     }
     return null;
   }
@@ -111,29 +111,29 @@ class Validators {
 
   static String? country(String country) {
     if (country.isEmpty) {
-      return ConstantsText.SELECT_COUNTRY_REQUIRED.tr;
+      return 'Select country required'.tr;
     }
     return null;
   }
 
   static String? phoneNumber(String phoneNumber) {
     if (phoneNumber.isEmpty) {
-      return ConstantsText.PHONE_NUMBER_REQUIRED.tr;
+      return 'Phone number cannot be empty'.tr;
     }
 
     if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phoneNumber)) {
-      return ConstantsText.PHONE_NUMBER_INVALID.tr;
+      return 'Invalid phone number'.tr;
     }
     return null;
   }
 
   static String? countryCode(String countryCode) {
     if (countryCode.isEmpty) {
-      return ConstantsText.COUNTRY_CODE_REQUIRED.tr;
+      return 'Country code cannot be empty'.tr;
     }
 
     if (!RegExp(r'^\+[0-9]{1,4}$').hasMatch(countryCode)) {
-      return ConstantsText.COUNTRY_CODE_INVALID.tr;
+      return 'Invalid country code'.tr;
     }
     return null;
   }

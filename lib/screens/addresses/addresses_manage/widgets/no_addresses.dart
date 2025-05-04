@@ -7,7 +7,11 @@ Widget noAddressesWidget() {
       children: [
         SvgPicture.asset(AppAssets.noLocation, width: Get.width * 0.25),
         const SizedBox(height: 24),
-        const CustomText(ConstantsText.NO_ADDRESSES, fontSize: 14),
+        const CustomText(
+          'You don\'t have an address yet. Add your shipping addresses.',
+          fontSize: 14,
+          textAlign: TextAlign.center,
+        ),
 
         const SizedBox(height: 32),
 
@@ -15,7 +19,7 @@ Widget noAddressesWidget() {
           width: Get.width * 0.5,
           padding: EdgeInsets.symmetric(horizontal: 16),
           onPressed: () => Get.toNamed(Routes.ADD_ADDRESSES_SCREEN),
-          child: CustomText(ConstantsText.ADD_NEW_ADDRESS, color: Colors.white),
+          child: CustomText('Add New Address', color: Colors.white),
         ),
       ],
     ),

@@ -15,12 +15,9 @@ class AddAddressScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: Get.back,
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        title: const CustomText(ConstantsText.ADD_NEW_ADDRESS),
+      appBar: customAppBar(
+        backButton: true,
+        title: address != null ? 'Edit Address' : 'Add New Address',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,9 +31,9 @@ class AddAddressScreen extends StatelessWidget {
                   children: [
                     /// address name
                     CustomTextField(
-                      label: ConstantsText.ADDRESS_NAME.tr,
+                      label: 'Address Name',
                       controller: _.addressNameController,
-                      validator: (value) => Validators.saddressName(value!),
+                      validator: (value) => Validators.addressName(value!),
                     ),
 
                     /// space
@@ -44,7 +41,7 @@ class AddAddressScreen extends StatelessWidget {
 
                     /// street address
                     CustomTextField(
-                      label: ConstantsText.STREET_ADDRESS.tr,
+                      label: 'Street Address',
                       controller: _.streetAddressController,
                       validator: (value) => Validators.streetAddress(value!),
                     ),
@@ -81,9 +78,9 @@ class AddAddressScreen extends StatelessWidget {
                       builder:
                           (_) => PhoneTextField(
                             enableCode: false,
-                            hintPhone: ConstantsText.DEFAULT_PHONE,
-                            hintCode: ConstantsText.DEFAULT_COUNTRY_CODE,
-                            labelText: ConstantsText.PHONE.tr,
+                            hintPhone: '0987654321',
+                            hintCode: '963',
+                            labelText: 'Phone Number',
                             selectedCode: _.selectedCountryCode,
                             phoneController: _.phoneNumberController,
                             // onSelectedCode:
@@ -94,7 +91,6 @@ class AddAddressScreen extends StatelessWidget {
                                 _.countryCodeErrorMessage,
                           ),
                     ),
-
 
                     /// space
                     SizedBox(height: 16),
@@ -121,9 +117,7 @@ class AddAddressScreen extends StatelessWidget {
                   progressColor: AppColors.white,
                   onPressed: _.addAddress,
                   child: CustomText(
-                    address != null
-                        ? ConstantsText.UPDATE
-                        : ConstantsText.ADD_NEW_ADDRESS,
+                    address != null ? 'Update Address' : 'Save Address',
                     color: AppColors.white,
                   ),
                 ),

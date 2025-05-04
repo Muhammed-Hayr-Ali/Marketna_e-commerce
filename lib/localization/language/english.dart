@@ -83,7 +83,9 @@ class English {
         'Privacy policy URL could not be launched.',
     'An error occurred while uploading the image':
         'An error occurred while uploading the image',
-'An error occurred while deleting the image' : 'An error occurred while deleting the image',
+    'An error occurred while deleting the image':
+        'An error occurred while deleting the image',
+
     ///===========================================================================
     /// Validators
     'Email cannot be empty': 'Email cannot be empty',
@@ -100,6 +102,15 @@ class English {
     'Name cannot be empty': 'Name cannot be empty',
     'Country code is required': 'Country code is required',
     'Phone number is required': 'Phone number is required',
+    'Address name cannot be empty': 'Address name cannot be empty',
+    'Street address cannot be empty': 'Street address cannot be empty',
+    'Select city required': 'Select city required',
+    'Select state or province required': 'Select state or province required',
+    'Select country required': 'Select country required',
+    'Phone number cannot be empty': 'Phone number cannot be empty',
+    'Invalid phone number': 'Invalid phone number',
+    'Country code cannot be empty': 'Country code cannot be empty',
+    'Invalid country code': 'Invalid country code',
 
     ///===========================================================================
     /// Profile Screen
@@ -138,5 +149,27 @@ class English {
     'Choose Your Date of Birth': 'Choose Your Date of Birth',
     'Select Date': 'Select Date',
     'Confirm': 'Confirm',
+
+    ///===========================================================================
+    /// My Address Screen
+    'Manage Addresses': 'Manage Addresses',
+    'You don\'t have an address yet. Add your shipping addresses.':
+        'You don\'t have an address yet. Add your shipping addresses.',
+    'Add New Address': 'Add New Address',
+    'Address Name': 'Address Name',
+    'Street Address': 'Street Address',
+    'country': 'country',
+    'Select Country': 'Select Country',
+    'State / Province': 'State / Province',
+    'Select Province': 'Select Province',
+    'City': 'City',
+    'Select City': 'Select City',
+    'Notes': 'Notes',
+    'Save Address': 'Save Address',
+    'Update Address': 'Update Address',
+    'Edit Address': 'Edit Address',
+    'Are you sure you want to delete this address?':
+        'Are you sure you want to delete this address?',
+    'Delete Address': 'Delete Address',
   };
 }

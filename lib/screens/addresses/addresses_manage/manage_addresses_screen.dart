@@ -6,12 +6,7 @@ class ManageAddressesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: Get.back,
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
+      appBar: customAppBar(backButton: true),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -21,7 +16,7 @@ class ManageAddressesScreen extends StatelessWidget {
               vertical: 10.0,
             ),
             child: const CustomText(
-              ConstantsText.MANAGE_ADDRESSES,
+              'Manage Addresses',
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),

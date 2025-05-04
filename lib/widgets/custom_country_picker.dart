@@ -44,7 +44,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   List<CountryModel> countries = [];
   List<Province> provinces = [];
-  List<City> city = [];
+  List<City> cities = [];
 
   /// Functions
   /// Load countries
@@ -68,7 +68,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
       setState(() {
         // Convert response to a list of Country instances
-        countries = response.map((data) => CountryModel.fromJson(data)).toList();
+        countries =
+            response.map((data) => CountryModel.fromJson(data)).toList();
       });
 
       return true;
@@ -86,7 +87,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   void _onCountryChanged(CountryModel selectedCountry) {
     widget.onChangedCountry?.call(selectedCountry);
     provinces = selectedCountry.province ?? [];
-    city = [];
+    cities = [];
     Get.back();
   }
 
@@ -94,7 +95,14 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// This function is called when a province is selected from the picker.
   void _onProvinceChanged(Province province) {
     widget.onChangedProvince?.call(province);
-    city = province.city ?? [];
+    // cities = province.city ?? [];
+    if (province.city != null && province.city!.isNotEmpty) {
+      cities = province.city!;
+    } else {
+      String provinceName =
+          (local == 'ar' ? province.nameAr : province.name) ?? 'null';
+      cities = [City(name: provinceName)];
+    }
     Get.back();
   }
 
@@ -108,7 +116,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Open Country picker
   /// This function is called when the country button is pressed.
   /// It opens a bottom sheet with a list of countries to select from.
-  void _openCountrypicker() async {
+  void _openCountrypicker(String? country) async {
     /// Check if countries are loaded, if not load them
     if (countries.isEmpty) {
       bool result = await _loadCountries();
@@ -119,13 +127,24 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     /// open country picker
     custombottomSheet(
-      title: 'select_country',
       children: [
+        CustomPageTitle(
+          title: 'Select Country',
+          subtitle: 'Select your country from the list below',
+        ),
+        Divider(),
+
         Flexible(
           child: ListView.builder(
             itemCount: countries.length,
             itemBuilder:
                 (context, index) => TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor:
+                        country == countries[index].code
+                            ? Colors.grey.shade200
+                            : Colors.white,
+                  ),
                   onPressed: () => _onCountryChanged(countries[index]),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,19 +183,32 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Open Province picker
   /// This function is called when the province button is pressed.
   /// It opens a bottom sheet with a list of provinces to select from.
-  void _openProvincePicker() {
+  void _openProvincePicker(String? province) {
     /// Check if provinces are loaded, if not load them
     if (provinces.isEmpty || widget.selectedCountry == null) return;
 
     /// open province picker
     custombottomSheet(
-      title: 'select_province',
       children: [
+        CustomPageTitle(
+          title: 'Select Province',
+          subtitle: 'Select your province from the list below',
+        ),
+        Divider(),
+
         Flexible(
           child: ListView.builder(
             itemCount: provinces.length,
             itemBuilder:
                 (context, index) => TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor:
+                        province == provinces[index].nameAr ||
+                                province == provinces[index].name
+                            ? Colors.grey.shade200
+                            : Colors.white,
+                  ),
+
                   onPressed: () => _onProvinceChanged(provinces[index]),
                   child: Row(
                     children: [
@@ -200,21 +232,33 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// It opens a bottom sheet with a list of cities to select from.
   void _openCityPicker() {
     /// Check if cities are loaded, if not load them
-    if (city.isEmpty || widget.selectedProvince == null) {
+    if (cities.isEmpty || widget.selectedProvince == null) {
       return;
     }
 
     /// open city picker
     custombottomSheet(
-      title: 'select_city',
       children: [
+        CustomPageTitle(
+          title: 'Select City',
+          subtitle: 'Select your city from the list below',
+        ),
+        Divider(),
+
         Flexible(
           child: ListView.builder(
-            itemCount: city.length,
+            itemCount: cities.length,
             itemBuilder:
                 (context, index) => TextButton(
-                  onPressed: () => _onCityChanged(city[index]),
-                  child: Row(children: [CustomText(city[index].name ?? '')]),
+                  style: TextButton.styleFrom(
+                    backgroundColor:
+                        'city' == cities[index].name
+                            ? Colors.grey.shade200
+                            : Colors.white,
+                  ),
+
+                  onPressed: () => _onCityChanged(cities[index]),
+                  child: Row(children: [CustomText(cities[index].name ?? '')]),
                 ),
           ),
         ),
@@ -224,18 +268,20 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   /// Address mode picker
   /// This widget is used to select the country, province, and city for an address.
-  Widget _addressPicker() {
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ///country
         CustomButton(
-          label: 'country',
+          label: 'Country',
           backgroundColor: AppColors.grey,
           errorMessage: widget.countryErrorMessage,
           isLoading: isLoading,
-          onPressed: _openCountrypicker,
+          onPressed: () => _openCountrypicker(widget.selectedCountryCode),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -261,7 +307,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                             ),
                   ),
                   SizedBox(width: 8),
-                  CustomText(widget.selectedCountry ?? 'select_country'),
+                  CustomText(widget.selectedCountry ?? 'Select Country'),
                 ],
               ),
               Icon(Icons.keyboard_arrow_down_rounded),
@@ -277,14 +323,22 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
             children: [
               Expanded(
                 child: CustomButton(
-                  label: 'state/province',
+                  label: 'State / Province',
                   backgroundColor: AppColors.grey,
                   errorMessage: widget.provinceErrorMessage,
-                  onPressed: _openProvincePicker,
+                  onPressed:
+                      () =>
+                          widget.selectedCountry == null
+                              ? _openCountrypicker(widget.selectedCountryCode)
+                              : _openProvincePicker(widget.selectedProvince),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomText(widget.selectedProvince ?? 'select_province'),
+                      Flexible(
+                        child: CustomText(
+                          widget.selectedProvince ?? 'Select Province',
+                        ),
+                      ),
 
                       Icon(Icons.keyboard_arrow_down_rounded),
                     ],
@@ -294,15 +348,23 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
               SizedBox(width: 16),
               Expanded(
                 child: CustomButton(
-                  label: 'city',
+                  label: 'City',
                   errorMessage: widget.cityErrorMessage,
                   backgroundColor: AppColors.grey,
-                  onPressed: _openCityPicker,
+                  onPressed:
+                      () =>
+                          widget.selectedCountry == null
+                              ? _openCountrypicker(widget.selectedCountryCode)
+                              : widget.selectedProvince == null
+                              ? _openProvincePicker(widget.selectedProvince)
+                              : _openCityPicker(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(widget.selectedCity ?? 'select_city'),
+                      Flexible(
+                        child: CustomText(widget.selectedCity ?? 'Select City'),
+                      ),
                       Icon(Icons.keyboard_arrow_down_rounded),
                     ],
                   ),
@@ -313,10 +375,5 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
         ),
       ],
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _addressPicker();
   }
 }

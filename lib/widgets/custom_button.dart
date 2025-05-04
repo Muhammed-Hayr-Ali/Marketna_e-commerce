@@ -137,7 +137,7 @@ class CustomButton extends StatelessWidget {
                     (label ?? '').tr,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey,
+                      color: Colors.black,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

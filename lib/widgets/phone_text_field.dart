@@ -164,7 +164,7 @@ class PhoneTextField extends StatelessWidget {
               labelText.tr,
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.grey,
+                color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),
             )
@@ -292,7 +292,7 @@ class PhoneTextField extends StatelessWidget {
                     ),
                   ),
                 ),
-                  //  IconButton(onPressed: clarPhone, icon: const Icon(Icons.clear)),
+                //  IconButton(onPressed: clarPhone, icon: const Icon(Icons.clear)),
               ],
             ),
           ),
