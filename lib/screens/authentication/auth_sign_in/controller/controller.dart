@@ -63,7 +63,7 @@ class SignInScreenController extends GetxController {
     } on AuthException catch (error) {
       _exptectError(error.message);
     } on Exception {
-      _exptectError('Something Went Wrong Please try again');
+      _exptectError('Something has gone wrong somewhere, and we will try to fix it right away.');
     } finally {
       _isLoadingGoogle.value = false;
     }
@@ -78,7 +78,7 @@ class SignInScreenController extends GetxController {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
     } on Exception {
-      _exptectError('Something Went Wrong Please try again');
+      _exptectError('Something has gone wrong somewhere, and we will try to fix it right away.');
     }
   }
 
@@ -91,7 +91,7 @@ class SignInScreenController extends GetxController {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
     } on Exception {
-      _exptectError('Something Went Wrong Please try again');
+      _exptectError('Something has gone wrong somewhere, and we will try to fix it right away.');
     }
   }
 

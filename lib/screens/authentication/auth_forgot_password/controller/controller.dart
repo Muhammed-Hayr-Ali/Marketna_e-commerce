@@ -30,7 +30,7 @@ class ForgotPasswordController extends GetxController {
       return false;
     } on Exception {
       CustomNotification.showSnackbar(
-        message: 'Something Went Wrong Please try again',
+        message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
       );
       return false;
     } finally {

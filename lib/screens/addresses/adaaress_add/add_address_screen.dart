@@ -98,7 +98,7 @@ class AddAddressScreen extends StatelessWidget {
                     /// notes
                     CustomTextField(
                       lines: 5,
-                      label: ConstantsText.NOTES.tr,
+                      label: 'Notes',
                       controller: _.notesController,
                     ),
                   ],

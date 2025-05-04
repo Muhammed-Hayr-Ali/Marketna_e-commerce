@@ -35,7 +35,7 @@ class SplashScreenController extends GetxController {
     } on TimeoutException {
       _errorMessage.value = 'Connection Time Out Please try again';
     } catch (e) {
-      _errorMessage.value = 'Something Went Wrong Please try again';
+      _errorMessage.value = 'Something has gone wrong somewhere, and we will try to fix it right away.';
     }
   }
 

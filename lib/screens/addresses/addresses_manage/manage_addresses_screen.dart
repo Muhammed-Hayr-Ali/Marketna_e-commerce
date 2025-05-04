@@ -51,7 +51,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 8.0),
                                       const CustomText(
-                                        ConstantsText.ADD_NEW_ADDRESS,
+                                        'Add New Address',
                                         fontSize: 14,
                                         color: Colors.grey,
                                       ),
@@ -74,22 +74,45 @@ class ManageAddressesScreen extends StatelessWidget {
                                         color:
                                             AppColors
                                                 .primaryColor, // خلفية زرقاء عند التمرير من اليسار إلى اليمين
-                                        alignment: Alignment.centerRight,
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Icon(
-                                          Icons.edit,
-                                          color: Colors.white,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 20,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+
+                                          children: [
+                                            Icon(
+                                              Icons.edit,
+                                              color: Colors.white,
+                                            ),
+                                            Icon(
+                                              Icons.edit,
+                                              color: Colors.white,
+                                            ),
+                                          ],
                                         ), // أيقونة التعديل
                                       ),
                                       secondaryBackground: Container(
                                         color:
                                             Colors
                                                 .red, // خلفية حمراء عند التمرير من اليمين إلى اليسار
-                                        alignment: Alignment.centerLeft,
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Icon(
-                                          Icons.delete,
-                                          color: Colors.white,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                            ),
+                                            Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                            ),
+                                          ],
                                         ), // أيقونة الحذف
                                       ),
 

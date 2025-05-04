@@ -45,7 +45,7 @@ class SignUpController extends GetxController {
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
       CustomNotification.showSnackbar(
-        message: 'Something went wrong please try again',
+        message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
       );
     } finally {
       _isLoading.value = false;

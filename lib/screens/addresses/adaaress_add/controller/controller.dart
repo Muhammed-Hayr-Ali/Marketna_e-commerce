@@ -168,7 +168,6 @@ class AddAddressController extends GetxController {
 
       if (addressId == null) {
         _disposeControllers();
-        Get.back();
       }
     } catch (error) {
       CustomNotification.showSnackbar(

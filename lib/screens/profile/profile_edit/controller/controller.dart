@@ -102,7 +102,7 @@ class EditProfileController extends GetxController {
         CustomNotification.showSnackbar(message: error.message);
       } catch (error) {
         CustomNotification.showSnackbar(
-          message: 'Something Went Wrong Please try again',
+          message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
         );
       } finally {
         _isImageLoading.value = false;

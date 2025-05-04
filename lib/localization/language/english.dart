@@ -73,8 +73,8 @@ class English {
     'No Internet Connection Available': 'No Internet Connection Available',
     'Connection Time Out Please try again':
         'Connection Time Out Please try again',
-    'Something Went Wrong Please try again':
-        'Something Went Wrong Please try again',
+    'Something has gone wrong somewhere, and we will try to fix it right away.':
+        'Something has gone wrong somewhere, and we will try to fix it right away.',
     'security_code_request':
         'You can request a security code again in %s seconds.',
     'Unable to send password reset code at this time. Please try again later.':
@@ -158,7 +158,7 @@ class English {
     'Add New Address': 'Add New Address',
     'Address Name': 'Address Name',
     'Street Address': 'Street Address',
-    'country': 'country',
+    'Country': 'Country',
     'Select Country': 'Select Country',
     'State / Province': 'State / Province',
     'Select Province': 'Select Province',
@@ -171,5 +171,7 @@ class English {
     'Are you sure you want to delete this address?':
         'Are you sure you want to delete this address?',
     'Delete Address': 'Delete Address',
+    'Address deleted successfully.': 'Address deleted successfully.',
+    'Close': 'Close',
   };
 }
