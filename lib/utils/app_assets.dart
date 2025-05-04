@@ -43,6 +43,7 @@ class AppAssets {
   static const String mapPoint = 'assets/images/svg/map-point.svg';
   static const String bill = 'assets/images/svg/bell.svg';
   static const String trashBin = 'assets/images/svg/trash-bin.svg';
+  static const String gallery = 'assets/images/svg/gallery.svg';
   static const String camera = 'assets/images/svg/camera.svg';
   static const String security = 'assets/images/svg/security.svg';
   static const String logout = 'assets/images/svg/logout.svg';

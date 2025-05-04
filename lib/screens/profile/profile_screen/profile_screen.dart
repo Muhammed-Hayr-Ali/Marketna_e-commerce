@@ -13,12 +13,8 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
-            GetBuilder<ProfileController>(
-              builder:
-                  (_) => ProfileWidget(
-                    isLoading: _.isLoading,
-                    metadata: _.userMetadata,
-                  ),
+            Obx(
+              () => ProfileWidget(isLoading: _.isLoading, metadata: _.metadata),
             ),
 
             /// User Info

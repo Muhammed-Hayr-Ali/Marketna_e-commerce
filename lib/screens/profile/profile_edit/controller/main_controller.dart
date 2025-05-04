@@ -4,23 +4,60 @@ class EditProfileMainController {
   final supabase = Supabase.instance.client;
   final GetStorage _storage = GetStorage();
 
-  /// Retrieves the locale setting for the DateTimePicker.
-  ///
-  /// This function reads the locale code from local storage. If no locale code
-  /// is stored, it defaults to the device's language code. It then maps the
-  /// locale code to a corresponding `DateTimePickerLocale` value.
-  ///
-  /// Supported locale codes include:
-  /// - 'ar' for Arabic
-  /// - 'en' for English (United States)
-  /// - 'fr' for French
-  /// - 'de' for German
-  /// - 'tr' for Turkish
-  ///
-  /// If the locale code is not recognized, it defaults to English (United States).
-  ///
-  /// Returns a `DateTimePickerLocale` corresponding to the stored or device locale.
+  Future<String?> openImageSource(bool isDelete) async {
+    return await custombottomSheet<String?>(
+      children: [
+        CustomPageTitle(
+          title: 'Select Image',
+          subtitle: 'Choose Profile Image Source',
+          padding: EdgeInsets.only(bottom: 16.0),
+        ),
+        SizedBox(height: 16),
 
+        CustomButton(
+          backgroundColor: AppColors.grey,
+          onPressed: () => Get.back(result: 'camera'),
+          child: Row(
+            children: [
+              CustomText('Camera'),
+              const Spacer(),
+              SvgPicture.asset(AppAssets.camera),
+            ],
+          ),
+        ),
+        SizedBox(height: 16),
+
+        CustomButton(
+          backgroundColor: AppColors.grey,
+          onPressed: () => Get.back(result: 'gallery'),
+          child: Row(
+            children: [
+              CustomText('Gallery'),
+              const Spacer(),
+              SvgPicture.asset(AppAssets.gallery),
+            ],
+          ),
+        ),
+        SizedBox(height: isDelete ? 16 : 0),
+
+        isDelete
+            ? CustomButton(
+              backgroundColor: AppColors.grey,
+              onPressed: () => Get.back(result: 'delete'),
+              child: Row(
+                children: [
+                  CustomText('Delete'),
+                  const Spacer(),
+                  SvgPicture.asset(AppAssets.trashBin),
+                ],
+              ),
+            )
+            : Container(),
+      ],
+    );
+  }
+
+  /// Retrieves the locale setting for the DateTimePicker.
   DateTimePickerLocale _getLocale() {
     final String localeCode =
         _storage.read<String>(STORAGE_KEYS.LOCALE) ??
@@ -84,17 +121,6 @@ class EditProfileMainController {
   }
 
   /// Opens a bottom sheet with a date picker and a confirm button.
-  ///
-  /// The picker is limited to dates between 1920 and 10 years ago.
-  /// The initial date is either the [initialDate] parameter or the current date.
-  ///
-  /// When the user selects a date and clicks the confirm button, the future
-  /// returned by this function completes with the selected date.
-  ///
-  /// If the user cancels the bottom sheet, the future completes with null.
-  ///
-  /// The bottom sheet is decorated with the 'choose_your_date_of_birth' title.
-  ///
   Future<DateTime?> openDateOfBirth({String? initialDate}) {
     final completer = Completer<DateTime>();
     DateTime? selectedDate;
@@ -120,19 +146,16 @@ class EditProfileMainController {
           pickerTheme: DateTimePickerTheme(),
           onChange: (date, _) => selectedDate = date,
         ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: CustomButton(
-            backgroundColor: AppColors.grey,
-            width: double.infinity,
-            onPressed: () {
-              if (selectedDate != null) {
-                completer.complete(selectedDate);
-              }
-              Get.back();
-            },
-            child: CustomText('Confirm'),
-          ),
+        CustomButton(
+          backgroundColor: AppColors.grey,
+          width: double.infinity,
+          onPressed: () {
+            if (selectedDate != null) {
+              completer.complete(selectedDate);
+            }
+            Get.back();
+          },
+          child: CustomText('Confirm'),
         ),
       ],
     );

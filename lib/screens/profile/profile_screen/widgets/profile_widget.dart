@@ -3,23 +3,39 @@ import 'package:application/utils/import.dart';
 class ProfileWidget extends StatelessWidget {
   final bool isLoading;
   final double size;
-  final Map<String, dynamic>? metadata;
+  final UserMetaDataModel? metadata;
   const ProfileWidget({
     super.key,
-    this.metadata,
     this.isLoading = true,
     this.size = 64,
+    this.metadata,
   });
 
-  String? _getAvatar(Map<String, dynamic>? metadata) {
-    if (metadata == null || metadata.isEmpty) return null;
-    return metadata['avatar'] ?? metadata['avatar_url'];
-  }
+  Widget _getAvatar(String? avatar) {
+    final placeholder = Container(
+      width: size,
+      height: size,
+      padding: EdgeInsets.all(size * 0.1),
+      decoration: BoxDecoration(color: AppColors.grey, shape: BoxShape.circle),
+      child: SvgPicture.asset(AppAssets.avatar),
+    );
 
-  String _getUserName(Map<String, dynamic>? metadata) {
-    if (metadata == null || metadata.isEmpty) return 'Guest';
-
-    return DataConverter.getUserName(metadata);
+    if (avatar == null || avatar.isEmpty || avatar == '') {
+      return placeholder;
+    }
+    return CachedNetworkImage(
+      width: size,
+      height: size,
+      imageUrl: avatar,
+      imageBuilder:
+          (context, imageProvider) => DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            ),
+          ),
+      errorWidget: (context, url, error) => placeholder,
+    );
   }
 
   @override
@@ -28,40 +44,23 @@ class ProfileWidget extends StatelessWidget {
         ? _loadingPlaceholder(size)
         : Row(
           children: [
-            CachedNetworkImage(
-              width: size,
-              height: size,
-              imageUrl: '${_getAvatar(metadata)}',
-              imageBuilder:
-                  (context, imageProvider) => DecoratedBox(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-
-              errorWidget:
-                  (context, url, error) => Container(
-                    padding: EdgeInsets.all(size * 0.1),
-                    decoration: BoxDecoration(
-                      color: AppColors.grey,
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset(AppAssets.avatar),
-                  ),
-            ),
+            _getAvatar(metadata!.avatar ?? metadata!.avatarUrl),
             SizedBox(width: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomText('Welcome'),
-                CustomText(_getUserName(metadata), fontWeight: FontWeight.bold),
                 CustomText(
-                  metadata?['email'] ?? '',
+                  DataConverter.getUserName(metadata!),
+                  fontWeight: FontWeight.bold,
+                ),
+                CustomText(
+                  metadata!.email ?? '',
+                  fontSize: 10,
+                  color: Colors.grey,
+                ),
+                CustomText(
+                  metadata!.statusMessage ?? '',
                   fontSize: 10,
                   color: Colors.grey,
                 ),

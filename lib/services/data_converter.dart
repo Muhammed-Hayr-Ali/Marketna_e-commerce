@@ -30,13 +30,13 @@ class DataConverter {
   /// [userMetadata] A map containing user metadata as returned by the Supabase client.
   /// [returns] The user's name or null if no name is available.
 
-  static String getUserName(Map<String, dynamic> userMetadata) =>
-      userMetadata[ConstantsText.DISPLAY_NAME] ??
-      userMetadata[ConstantsText.NAME] ??
-      userMetadata[ConstantsText.FULL_NAME] ??
-      userMetadata[ConstantsText.USER_NAME] ??
-      userMetadata[ConstantsText.PREFERRED_USERNAME] ??
-      '';
+  static String getUserName(UserMetaDataModel metadata) =>
+      metadata.displayName ??
+      metadata.name ??
+      metadata.fullName ??
+      metadata.userName ??
+      metadata.preferredUsername ??
+      'Guest';
 
   /// Removes the text after the '@' symbol in the given input string.
   ///

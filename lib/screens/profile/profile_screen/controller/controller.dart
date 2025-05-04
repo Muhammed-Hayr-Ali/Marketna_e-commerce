@@ -4,8 +4,10 @@ class ProfileController extends GetxController {
   final _supabase = Supabase.instance.client;
   final _main = ProfileMainController();
 
-  Map<String, dynamic>? userMetadata;
-  bool isLoading = true;
+  final RxBool _isLoading = true.obs;
+  bool get isLoading => _isLoading.value;
+  final Rx<UserMetaDataModel> _metadata = UserMetaDataModel().obs;
+  UserMetaDataModel get metadata => _metadata.value;
 
   @override
   void onInit() {
@@ -15,12 +17,15 @@ class ProfileController extends GetxController {
 
   Future<void> initializeUser() async {
     try {
+      _isLoading.value = true;
       final currentUser = _supabase.auth.currentUser;
       User? user = currentUser;
-      userMetadata = user?.userMetadata;
+
+      if (user == null || user.userMetadata == null) return;
+      _metadata.value = UserMetaDataModel.fromJson(user.userMetadata ?? {});
+      _metadata.value.email = user.email ?? '';
     } finally {
-      isLoading = false;
-      update();
+      _isLoading.value = false;
     }
   }
 

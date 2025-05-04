@@ -83,7 +83,7 @@ class English {
         'Privacy policy URL could not be launched.',
     'An error occurred while uploading the image':
         'An error occurred while uploading the image',
-
+'An error occurred while deleting the image' : 'An error occurred while deleting the image',
     ///===========================================================================
     /// Validators
     'Email cannot be empty': 'Email cannot be empty',
@@ -98,6 +98,8 @@ class English {
     'Confirm password must be at least 6 characters':
         'Confirm password must be at least 6 characters',
     'Name cannot be empty': 'Name cannot be empty',
+    'Country code is required': 'Country code is required',
+    'Phone number is required': 'Phone number is required',
 
     ///===========================================================================
     /// Profile Screen

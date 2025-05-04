@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:application/utils/import.dart';
 import 'package:application/widgets/phone_text_field.dart';
 
@@ -17,6 +19,69 @@ class EditProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Obx(
+                  () => SizedBox(
+                    height: 128,
+                    width: 128,
+                    child: Stack(
+                      children: [
+                        _.imagePath.isNotEmpty
+                            ? CircleAvatar(
+                              radius: 64,
+                              backgroundColor: Colors.grey.shade200,
+                              backgroundImage: FileImage(File(_.imagePath)),
+                            )
+                            : _.avatar.isNotEmpty
+                            ? CircleAvatar(
+                              radius: 64,
+                              backgroundColor: Colors.grey.shade200,
+                              backgroundImage: NetworkImage(_.avatar),
+                            )
+                            : CircleAvatar(
+                              radius: 64,
+                              backgroundColor: Colors.grey.shade200,
+                              child: SvgPicture.asset(
+                                height: 64,
+                                width: 64,
+                                AppAssets.avatar,
+                              ),
+                            ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child:
+                              _.imagePath.isNotEmpty
+                                  ? CustomCicularButton(
+                                    size: 30,
+                                    borderWidth: 4,
+                                    isLoading: _.isImageLoading,
+                                    borderColor: Colors.white,
+                                    child: Icon(Icons.delete),
+                                    onPressed: () => _.updateImagePath(''),
+                                  )
+                                  : _.avatar.isNotEmpty
+                                  ? CustomCicularButton(
+                                    size: 30,
+                                    borderWidth: 4,
+                                    isLoading: _.isImageLoading,
+                                    borderColor: Colors.white,
+                                    child: Icon(Icons.edit),
+                                    onPressed: () => _.pickImage(true),
+                                  )
+                                  : CustomCicularButton(
+                                    size: 30,
+                                    borderWidth: 4,
+                                    isLoading: _.isImageLoading,
+                                    borderColor: Colors.white,
+                                    child: Icon(Icons.camera),
+                                    onPressed: () => _.pickImage(false),
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 32.0),
+
                 /// name
                 CustomTextField(
                   label: 'Full Name',
@@ -115,13 +180,15 @@ class EditProfileScreen extends StatelessWidget {
                 const SizedBox(height: 48.0),
 
                 /// Button
-                CustomButton(
-                  isLoading: _.isUpdateLoading,
-                  // onPressed: _.updateUser,
-                  progressColor: AppColors.white,
-                  child: CustomText(
-                    ConstantsText.UPDATE,
-                    color: AppColors.white,
+                Obx(
+                  () => CustomButton(
+                    isLoading: _.isUpdateLoading,
+                    onPressed: _.updateUserProfile,
+                    progressColor: AppColors.white,
+                    child: CustomText(
+                      ConstantsText.UPDATE,
+                      color: AppColors.white,
+                    ),
                   ),
                 ),
               ],
