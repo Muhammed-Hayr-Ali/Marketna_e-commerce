@@ -168,7 +168,7 @@ class CustomAvatar extends StatelessWidget {
             child: Icon(
               PhosphorIconsRegular.trash,
               size: size * 0.175,
-              color: const Color(0xFF1C274C),
+              color: AppColors.rurikonBlue
             ),
           ),
         ],
@@ -208,7 +208,7 @@ class CustomAvatar extends StatelessWidget {
             child: Icon(
               PhosphorIconsRegular.camera,
               size: size * 0.175,
-              color: const Color(0xFF1C274C),
+              color: AppColors.rurikonBlue,
             ),
           ),
         ],
@@ -236,7 +236,7 @@ class CustomAvatar extends StatelessWidget {
             child: Icon(
               PhosphorIconsRegular.camera,
               size: size * 0.175,
-              color: const Color(0xFF1C274C),
+              color:  AppColors.rurikonBlue,
             ),
           ),
         ],

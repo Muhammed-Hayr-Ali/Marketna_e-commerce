@@ -187,6 +187,7 @@ class PhoneTextField extends StatelessWidget {
                   child: Obx(
                     () => TextButton(
                       style: TextButton.styleFrom(
+                        fixedSize: Size(100, 48),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),

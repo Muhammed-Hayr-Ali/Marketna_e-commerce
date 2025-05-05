@@ -55,7 +55,10 @@ class EditProfileScreen extends StatelessWidget {
                                     borderWidth: 4,
                                     isLoading: _.isImageLoading,
                                     borderColor: Colors.white,
-                                    child: Icon(Icons.delete),
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: AppColors.rurikonBlue,
+                                    ),
                                     onPressed: () => _.updateImagePath(''),
                                   )
                                   : _.avatar.isNotEmpty
@@ -64,7 +67,10 @@ class EditProfileScreen extends StatelessWidget {
                                     borderWidth: 4,
                                     isLoading: _.isImageLoading,
                                     borderColor: Colors.white,
-                                    child: Icon(Icons.edit),
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: AppColors.rurikonBlue,
+                                    ),
                                     onPressed: () => _.pickImage(true),
                                   )
                                   : CustomCicularButton(
@@ -72,7 +78,10 @@ class EditProfileScreen extends StatelessWidget {
                                     borderWidth: 4,
                                     isLoading: _.isImageLoading,
                                     borderColor: Colors.white,
-                                    child: Icon(Icons.camera),
+                                    child: Icon(
+                                      Icons.camera,
+                                      color: AppColors.rurikonBlue,
+                                    ),
                                     onPressed: () => _.pickImage(false),
                                   ),
                         ),
@@ -115,7 +124,7 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () => _.copyEmailToClipboard(_.email),
-                        child: Icon(Icons.copy),
+                        child: Icon(Icons.copy, color: AppColors.rurikonBlue),
                       ),
                     ],
                   ),
@@ -163,6 +172,7 @@ class EditProfileScreen extends StatelessWidget {
 
                           label: 'Date of Birth',
                           child: CustomText(
+                            textDirection: TextDirection.ltr,
                             (_.dateBirth == '') ? 'yyyy-MM-dd' : _.dateBirth,
                             color:
                                 (_.dateBirth == '')

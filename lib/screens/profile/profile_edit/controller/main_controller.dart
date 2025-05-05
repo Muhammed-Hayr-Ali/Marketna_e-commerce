@@ -131,18 +131,21 @@ class EditProfileMainController {
           subtitle: 'Choose Your Date of Birth',
         ),
 
-        DatePickerWidget(
-          locale: _getLocale(),
-          looping: false,
-          firstDate: DateTime(1920),
-          lastDate: DateTime.now().subtract(const Duration(days: 365 * 10)),
-          initialDate:
-              initialDate != null
-                  ? DateTime.tryParse(initialDate)
-                  : DateTime.now(),
-          dateFormat: ConstantsText.DATE_FORMAT,
-          pickerTheme: DateTimePickerTheme(),
-          onChange: (date, _) => selectedDate = date,
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DatePickerWidget(
+            locale: _getLocale(),
+            looping: false,
+            firstDate: DateTime(1920),
+            lastDate: DateTime.now().subtract(const Duration(days: 365 * 10)),
+            initialDate:
+                initialDate != null
+                    ? DateTime.tryParse(initialDate)
+                    : DateTime.now(),
+            dateFormat: ConstantsText.DATE_FORMAT,
+            pickerTheme: DateTimePickerTheme(),
+            onChange: (date, _) => selectedDate = date,
+          ),
         ),
         CustomButton(
           backgroundColor: AppColors.grey,

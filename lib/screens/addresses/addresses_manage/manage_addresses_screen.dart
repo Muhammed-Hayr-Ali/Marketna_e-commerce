@@ -46,7 +46,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                     children: [
                                       const Icon(
                                         Icons.add,
-                                        color: AppColors.primaryColor,
+                                        color: AppColors.rurikonBlue,
                                         size: 28,
                                       ),
                                       const SizedBox(width: 8.0),
