@@ -58,6 +58,7 @@ class PhoneTextFieldController extends GetxController {
             CustomPageTitle(
               title: 'Country Code',
               subtitle: 'Select your country code',
+              padding: const EdgeInsets.only(bottom: 16.0),
             ),
             Divider(),
             Flexible(

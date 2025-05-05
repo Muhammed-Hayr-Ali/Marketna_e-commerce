@@ -7,7 +7,7 @@ class ProfileMainController {
             CustomPageTitle(
               title: 'Logout',
               subtitle: 'Are you sure you want to logout?',
-              padding: EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(bottom: 30.0),
             ),
             CustomButton(
               backgroundColor: AppColors.grey,

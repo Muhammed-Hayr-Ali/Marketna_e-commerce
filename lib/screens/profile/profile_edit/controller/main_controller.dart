@@ -10,7 +10,7 @@ class EditProfileMainController {
         CustomPageTitle(
           title: 'Select Image',
           subtitle: 'Choose Profile Image Source',
-          padding: EdgeInsets.only(bottom: 16.0),
+          padding: EdgeInsets.only(bottom: 30.0),
         ),
 
         CustomButton(
@@ -84,7 +84,7 @@ class EditProfileMainController {
         CustomPageTitle(
           title: 'Gender',
           subtitle: 'Select your gender',
-          padding: EdgeInsets.only(bottom: 16.0),
+          padding: EdgeInsets.only(bottom: 30.0),
         ),
 
         TextButton(

@@ -4,7 +4,20 @@ class SettingsMainController {
   Future<String?> openLanguage(String? localCode) async {
     return await custombottomSheet(
       children: [
-        CustomPageTitle(title: 'Language', subtitle: 'Select your language'),
+        CustomPageTitle(
+          title: 'Language',
+          subtitle: 'Choose your preferred language',
+          padding: EdgeInsets.only(bottom: 30.0),
+        ),
+        TextButton(
+          onPressed: () => Get.back(result: 'auto'),
+          style: TextButton.styleFrom(
+            backgroundColor:
+                localCode == 'auto' ? Colors.grey.shade200 : Colors.white,
+          ),
+          child: Row(children: [CustomText('Depending on the device system')]),
+        ),
+
         TextButton(
           onPressed: () => Get.back(result: 'ar'),
           style: TextButton.styleFrom(

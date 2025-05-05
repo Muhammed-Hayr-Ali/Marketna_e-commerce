@@ -5,7 +5,7 @@ class English {
     'Powered by PST': 'Powered by PST',
 
     ///===========================================================================
-    /// Onboarding Screen  
+    /// Onboarding Screen
     'Language': 'Language',
 
     'onboarding_title_1':
@@ -115,7 +115,7 @@ class English {
         'Select your country from the list below',
 
     'State / Province': 'State / Province',
-'Address Details' : 'Address Details',
+    'Address Details': 'Address Details',
     'Select Province': 'Select Province',
     'Select your province from the list below':
         'Select your province from the list below',
@@ -152,7 +152,9 @@ class English {
 
     ///===========================================================================
     /// Settings
-    'Select your language': 'Select your language',
+    'Choose your preferred language': 'Choose your preferred language',
+    'Depending on the device system': 'Depending on the device system',
+
     ///===========================================================================
     /// App Exception
     'Invalid login credentials': 'Invalid login credentials',

@@ -8,7 +8,7 @@ class ManageAddressesMainController {
               title: 'Delete Address',
               subtitle:
                   '${'Are you sure you want to delete this address?'.tr} $addressName',
-              padding: EdgeInsets.only(bottom: 16.0),
+              padding: EdgeInsets.only(bottom: 30.0),
             ),
 
             CustomButton(
@@ -30,9 +30,7 @@ class ManageAddressesMainController {
   void openAddressDetails(AddressModel address) {
     custombottomSheet(
       children: [
-        CustomPageTitle(title: 'Address Details',
-        
-        ),
+        CustomPageTitle(title: 'Address Details'),
 
         const SizedBox(height: 16),
 
