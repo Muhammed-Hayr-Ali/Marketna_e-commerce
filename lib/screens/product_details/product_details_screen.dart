@@ -1,4 +1,3 @@
-import 'package:application/screens/product_details/widgets/images_viewr.dart';
 import 'package:application/utils/import.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -18,11 +17,8 @@ class ProductDetailsScreen extends StatelessWidget {
                     ? CircularProgressIndicator()
                     : controller.errorMessage != '' ||
                         controller.product == null
-                    ? CustomText(controller.errorMessage)
-                    : _productDetails(
-                      images: controller.images,
-                      product: controller.product!,
-                    ),
+                    ? ErrorScreen(message: controller.errorMessage)
+                    : ProductDetails(),
           ),
         ),
       ),

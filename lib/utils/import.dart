@@ -75,6 +75,9 @@ export 'package:application/services/app_exception.dart';
 export 'package:application/services/data_converter.dart';
 export 'package:application/screens/settings/controller/main.dart';
 export 'package:application/screens/settings/controller/controller.dart';
+export 'package:application/screens/product_details/product_details.dart';
+export 'package:application/screens/product_details/widgets/error_screene.dart';
+export 'package:application/screens/product_details/widgets/images_viewr.dart';
 
 // ==============================
 // **Services**
