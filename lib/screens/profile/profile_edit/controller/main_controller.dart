@@ -12,7 +12,6 @@ class EditProfileMainController {
           subtitle: 'Choose Profile Image Source',
           padding: EdgeInsets.only(bottom: 16.0),
         ),
-        SizedBox(height: 16),
 
         CustomButton(
           backgroundColor: AppColors.grey,
@@ -130,7 +129,6 @@ class EditProfileMainController {
         CustomPageTitle(
           title: 'Date of Birth',
           subtitle: 'Choose Your Date of Birth',
-          padding: EdgeInsets.only(bottom: 16.0),
         ),
 
         DatePickerWidget(

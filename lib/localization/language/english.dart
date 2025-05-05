@@ -160,10 +160,16 @@ class English {
     'Street Address': 'Street Address',
     'Country': 'Country',
     'Select Country': 'Select Country',
+'Select your country from the list below' : 'Select your country from the list below',
+
     'State / Province': 'State / Province',
+
     'Select Province': 'Select Province',
+    'Select your province from the list below' : 'Select your province from the list below',
     'City': 'City',
     'Select City': 'Select City',
+    'Select your city from the list below':
+            'Select your city from the list below',
     'Notes': 'Notes',
     'Save Address': 'Save Address',
     'Update Address': 'Update Address',

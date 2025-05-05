@@ -22,7 +22,7 @@ class CustomPageTitle extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         children: [
-          title != '' ? CustomText(title, fontSize: 22) : SizedBox(),
+          title != '' ? CustomText(title, fontSize: 18) : SizedBox(),
           SizedBox(height: subtitle != '' ? 12.0 : 0),
           subtitle != ''
               ? CustomText(
