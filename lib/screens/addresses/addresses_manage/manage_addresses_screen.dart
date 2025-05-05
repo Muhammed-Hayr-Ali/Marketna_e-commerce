@@ -3,6 +3,11 @@ import 'package:application/utils/import.dart';
 class ManageAddressesScreen extends StatelessWidget {
   const ManageAddressesScreen({super.key});
 
+  String _getLocale() {
+    String locale = Get.locale!.languageCode;
+    return locale;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,48 +76,37 @@ class ManageAddressesScreen extends StatelessWidget {
                                         address.id.toString(),
                                       ), // تحديد مفتاح فريد لكل عنصر
                                       background: Container(
+                                        alignment:
+                                            _getLocale() == 'ar'
+                                                ? Alignment.centerRight
+                                                : Alignment.centerLeft,
+
                                         color:
                                             AppColors
                                                 .primaryColor, // خلفية زرقاء عند التمرير من اليسار إلى اليمين
                                         padding: EdgeInsets.symmetric(
                                           horizontal: 20,
                                         ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-
-                                          children: [
-                                            Icon(
-                                              Icons.edit,
-                                              color: Colors.white,
-                                            ),
-                                            Icon(
-                                              Icons.edit,
-                                              color: Colors.white,
-                                            ),
-                                          ],
+                                        child: Icon(
+                                          Icons.edit,
+                                          color: Colors.white,
                                         ), // أيقونة التعديل
                                       ),
                                       secondaryBackground: Container(
+                                        alignment:
+                                            _getLocale() == 'ar'
+                                                ? Alignment.centerLeft
+                                                : Alignment.centerRight,
                                         color:
                                             Colors
                                                 .red, // خلفية حمراء عند التمرير من اليمين إلى اليسار
                                         padding: EdgeInsets.symmetric(
-                                          horizontal: 20.0,
+                                          horizontal: 20,
                                         ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
-                                            ),
-                                            Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
-                                            ),
-                                          ],
+
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: Colors.white,
                                         ), // أيقونة الحذف
                                       ),
 
