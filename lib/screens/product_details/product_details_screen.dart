@@ -18,25 +18,21 @@ class ProductDetailsScreen extends StatelessWidget {
                     : controller.errorMessage != '' ||
                         controller.product == null
                     ? ErrorScreen(message: controller.errorMessage)
-                    : ProductDetails(),
+                    : SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ImageViewer(images: controller.images),
+                          ProductDetails(),
+                        ],
+                      ),
+                    ),
           ),
         ),
       ),
     );
   }
-}
-
-Widget _productDetails({
-  required List<String> images,
-  required ProductModel product,
-}) {
-  return Column(
-    children: [
-      ImageViewer(images: images),
-      SizedBox(),
-      CustomText(product.name ?? ''),
-    ],
-  );
 }
 
 // // ==============================

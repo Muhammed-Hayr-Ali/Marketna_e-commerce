@@ -7,13 +7,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ImageViewer(images: controller.images ),
-        SizedBox(),
-        CustomText(controller.product!.name ?? ''),
-      ],
-    );
+    return CustomText(controller.product!.name ?? '');
     
   }
 }

@@ -6,7 +6,7 @@ class ProductDetailsController extends GetxController {
 
   /// Instance
   final _supabase = Supabase.instance.client;
-  // final _storage = GetStorage();
+  final _storage = GetStorage();
 
   ///General Variables
   final RxBool _isLoading = true.obs;
@@ -16,9 +16,13 @@ class ProductDetailsController extends GetxController {
 
   ProductModel? product;
   List<String> images = [];
-  List<ReviewModel> reviews = [];
-
   RxInt currentImageIndex = 0.obs;
+
+  ///
+  final RxBool _isFavourite = false.obs;
+  bool get isFavourite => _isFavourite.value;
+  List<int> favouriteList = [];
+  List<ReviewModel> reviews = [];
 
   @override
   void onInit() {
@@ -52,6 +56,12 @@ class ProductDetailsController extends GetxController {
         this.images.addAll(images);
       }
 
+      /// Fetch Favourites
+      final isFavourite = await isUserFavourite();
+      if (isFavourite != null) {
+        _isFavourite.value = isFavourite;
+      }
+
       /// Fetch Reviews
       final reviews = await _fetchProductReviews();
       if (reviews != null) {
@@ -60,9 +70,7 @@ class ProductDetailsController extends GetxController {
 
       ///
     } on Exception catch (error) {
-      CustomNotification.showSnackbar(
-        message: 'Something has gone wrong somewhere',
-      );
+      _errorMessage.value = 'Something has gone wrong somewhere';
       debugPrint(error.toString());
     } finally {
       _isLoading.value = false;
@@ -99,6 +107,37 @@ class ProductDetailsController extends GetxController {
     return response.map((e) => ReviewModel.fromJson(e)).toList();
   }
 
+  /// Check if a product is in the user's favorites
+  ///
+  /// Return true if the product is in the user's favorites, false otherwise
+  Future<bool?> isUserFavourite() async {
+    final currentUser = _supabase.auth.currentUser;
+    if (currentUser == null) return null;
+
+    final data = _storage.read('favorite${currentUser.id}') ?? [];
+    favouriteList = List<int>.from(jsonDecode(data));
+
+    return favouriteList.contains(productId);
+  }
+
+  /// Toggle favorite
+  ///
+  /// Add or remove a product from the user's favorites
+  Future<void> toggleFavorite(bool isFavorite) async {
+    final currentUser = _supabase.auth.currentUser;
+    if (currentUser == null) return;
+
+    if (isFavorite) {
+      favouriteList.remove(productId);
+    } else {
+      favouriteList.add(productId);
+    }
+
+    _isFavourite.value = !isFavorite;
+    _storage.write('favorite${currentUser.id}', jsonEncode(favouriteList));
+  }
+
+  /// onClose
   Future<void> _updateProductViews() async {
     try {
       if (product == null) return;
