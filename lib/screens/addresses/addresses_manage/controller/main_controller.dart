@@ -14,13 +14,13 @@ class ManageAddressesMainController {
             CustomButton(
               backgroundColor: AppColors.grey,
               onPressed: () => Get.back(result: false),
-              child: CustomText('NO', fontSize: 12),
+              child: CustomText('No', fontSize: 12),
             ),
             const SizedBox(height: 16),
             CustomButton(
               backgroundColor: AppColors.grey,
               onPressed: () => Get.back(result: true),
-              child: CustomText('YES', fontSize: 12),
+              child: CustomText('Yes', fontSize: 12),
             ),
           ],
         ) ??
@@ -30,7 +30,10 @@ class ManageAddressesMainController {
   void openAddressDetails(AddressModel address) {
     custombottomSheet(
       children: [
-        CustomPageTitle(title: 'Address Details'),
+        CustomPageTitle(title: 'Address Details',
+        
+        ),
+
         const SizedBox(height: 16),
 
         Divider(),

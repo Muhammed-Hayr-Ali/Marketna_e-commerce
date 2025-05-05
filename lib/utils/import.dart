@@ -73,6 +73,9 @@ export 'package:application/screens/splash_screen/controller/splash_screen_contr
 export 'package:application/screens/splash_screen/splashscreen.dart';
 export 'package:application/services/app_exception.dart';
 export 'package:application/services/data_converter.dart';
+export 'package:application/screens/settings/controller/main.dart';
+export 'package:application/screens/settings/controller/controller.dart';
+
 // ==============================
 // **Services**
 // ==============================

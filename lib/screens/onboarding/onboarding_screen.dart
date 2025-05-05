@@ -35,7 +35,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             onPressed: _.selectLanguage,
-            child: CustomText('language', color: Colors.black),
+            child: CustomText('Language', color: Colors.black),
           ),
         ],
       ),

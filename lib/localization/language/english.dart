@@ -2,12 +2,12 @@ class English {
   Map<String, String> get keys => {
     ///===========================================================================
     /// Splash Screen
-    'language': 'Language',
-    'Retry': 'Retry',
     'Powered by PST': 'Powered by PST',
 
     ///===========================================================================
-    /// Onboarding Screen
+    /// Onboarding Screen  
+    'Language': 'Language',
+
     'onboarding_title_1':
         'Discover a new way to shop, faster and easier than ever!',
     'onboarding_sub_title_1':
@@ -65,6 +65,95 @@ class English {
     'Privacy Policy': 'Privacy Policy',
 
     ///===========================================================================
+    /// Profile Screen
+    'Profile': 'Profile',
+    'Welcome': 'Welcome',
+    'Edit Profile': 'Edit Profile',
+    'My Addresses': 'My Addresses',
+    'My Orders': 'My Orders',
+    'Settings': 'Settings',
+    'Help': 'Help',
+    'Logout': 'Logout',
+    'Are you sure you want to logout?': 'Are you sure you want to logout?',
+    'Logout Now': 'Logout Now',
+
+    ///===========================================================================
+    /// Edit Profile Screen
+    'Select Image': 'Select Image',
+    'Choose Profile Image Source': 'Choose Profile Image Source',
+    'Camera': 'Camera',
+    'Gallery': 'Gallery',
+    'Delete': 'Delete',
+    'Status Message': 'Status Message',
+    'Email copied to clipboard': 'Email copied to clipboard',
+    'Phone Number': 'Phone Number',
+    '963': '963',
+    '0987654321': '0987654321',
+    'Country Code': 'Country Code',
+    'Select your country code': 'Select your country code',
+    'Gender': 'Gender',
+    'Select your gender': 'Select your gender',
+    'Male': 'Male',
+    'Female': 'Female',
+    'Not Specified': 'Not Specified',
+    'Date of Birth': 'Date of Birth',
+    'Choose Your Date of Birth': 'Choose Your Date of Birth',
+    'Select Date': 'Select Date',
+    'Confirm': 'Confirm',
+
+    ///===========================================================================
+    /// My Address Screen
+    'Manage Addresses': 'Manage Addresses',
+    'You don\'t have an address yet. Add your shipping addresses.':
+        'You don\'t have an address yet. Add your shipping addresses.',
+    'Add New Address': 'Add New Address',
+    'Address Name': 'Address Name',
+    'Street Address': 'Street Address',
+    'Country': 'Country',
+    'Select Country': 'Select Country',
+    'Select your country from the list below':
+        'Select your country from the list below',
+
+    'State / Province': 'State / Province',
+'Address Details' : 'Address Details',
+    'Select Province': 'Select Province',
+    'Select your province from the list below':
+        'Select your province from the list below',
+    'City': 'City',
+    'Select City': 'Select City',
+    'Select your city from the list below':
+        'Select your city from the list below',
+    'Notes': 'Notes',
+    'Save Address': 'Save Address',
+    'Update Address': 'Update Address',
+    'Edit Address': 'Edit Address',
+    'Are you sure you want to delete this address?':
+        'Are you sure you want to delete this address?',
+    'Delete Address': 'Delete Address',
+    'Address deleted successfully.': 'Address deleted successfully.',
+
+    ///===========================================================================
+    ///  General
+    'Yes': 'Yes',
+    'No': 'No',
+    'OK': 'OK',
+    'Cancel': 'Cancel',
+    'Close': 'Close',
+    'Done': 'Done',
+    'Next': 'Next',
+    'Previous': 'Previous',
+    'Submit': 'Submit',
+    'Save': 'Save',
+    'Continue': 'Continue',
+    'Skip': 'Skip',
+    'Back': 'Back',
+    'Retry': 'Retry',
+    'Update': 'Update',
+
+    ///===========================================================================
+    /// Settings
+    'Select your language': 'Select your language',
+    ///===========================================================================
     /// App Exception
     'Invalid login credentials': 'Invalid login credentials',
     'Google sign in failed': 'Google sign in failed',
@@ -111,73 +200,5 @@ class English {
     'Invalid phone number': 'Invalid phone number',
     'Country code cannot be empty': 'Country code cannot be empty',
     'Invalid country code': 'Invalid country code',
-
-    ///===========================================================================
-    /// Profile Screen
-    'Profile': 'Profile',
-    'Welcome': 'Welcome',
-    'Edit Profile': 'Edit Profile',
-    'My Addresses': 'My Addresses',
-    'My Orders': 'My Orders',
-    'Settings': 'Settings',
-    'Help': 'Help',
-    'Logout': 'Logout',
-    'Are you sure you want to logout?': 'Are you sure you want to logout?',
-    'Logout Now': 'Logout Now',
-    'Cancel': 'Cancel',
-
-    ///===========================================================================
-    /// Edit Profile Screen
-    'Select Image': 'Select Image',
-    'Choose Profile Image Source': 'Choose Profile Image Source',
-    'Camera': 'Camera',
-    'Gallery': 'Gallery',
-    'Delete': 'Delete',
-    'Status Message': 'Status Message',
-    'Email copied to clipboard': 'Email copied to clipboard',
-    'Phone Number': 'Phone Number',
-    '963': '963',
-    '0987654321': '0987654321',
-    'Country Code': 'Country Code',
-    'Select your country code': 'Select your country code',
-    'Gender': 'Gender',
-    'Select your gender': 'Select your gender',
-    'Male': 'Male',
-    'Female': 'Female',
-    'Not Specified': 'Not Specified',
-    'Date of Birth': 'Date of Birth',
-    'Choose Your Date of Birth': 'Choose Your Date of Birth',
-    'Select Date': 'Select Date',
-    'Confirm': 'Confirm',
-
-    ///===========================================================================
-    /// My Address Screen
-    'Manage Addresses': 'Manage Addresses',
-    'You don\'t have an address yet. Add your shipping addresses.':
-        'You don\'t have an address yet. Add your shipping addresses.',
-    'Add New Address': 'Add New Address',
-    'Address Name': 'Address Name',
-    'Street Address': 'Street Address',
-    'Country': 'Country',
-    'Select Country': 'Select Country',
-'Select your country from the list below' : 'Select your country from the list below',
-
-    'State / Province': 'State / Province',
-
-    'Select Province': 'Select Province',
-    'Select your province from the list below' : 'Select your province from the list below',
-    'City': 'City',
-    'Select City': 'Select City',
-    'Select your city from the list below':
-            'Select your city from the list below',
-    'Notes': 'Notes',
-    'Save Address': 'Save Address',
-    'Update Address': 'Update Address',
-    'Edit Address': 'Edit Address',
-    'Are you sure you want to delete this address?':
-        'Are you sure you want to delete this address?',
-    'Delete Address': 'Delete Address',
-    'Address deleted successfully.': 'Address deleted successfully.',
-    'Close': 'Close',
   };
 }

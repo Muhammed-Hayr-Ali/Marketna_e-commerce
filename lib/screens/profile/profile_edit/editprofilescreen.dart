@@ -185,10 +185,7 @@ class EditProfileScreen extends StatelessWidget {
                     isLoading: _.isUpdateLoading,
                     onPressed: _.updateUserProfile,
                     progressColor: AppColors.white,
-                    child: CustomText(
-                      ConstantsText.UPDATE,
-                      color: AppColors.white,
-                    ),
+                    child: CustomText('Update', color: AppColors.white),
                   ),
                 ),
               ],
