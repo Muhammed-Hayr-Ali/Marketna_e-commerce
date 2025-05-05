@@ -6,7 +6,7 @@ class ProductDetailsController extends GetxController {
 
   /// Instance
   final _supabase = Supabase.instance.client;
-  final _storage = GetStorage();
+  // final _storage = GetStorage();
 
   ///General Variables
   final RxBool _isLoading = true.obs;
@@ -17,6 +17,8 @@ class ProductDetailsController extends GetxController {
   ProductModel? product;
   List<String> images = [];
   List<ReviewModel> reviews = [];
+
+  RxInt currentImageIndex = 0.obs;
 
   @override
   void onInit() {
@@ -99,7 +101,7 @@ class ProductDetailsController extends GetxController {
 
   Future<void> _updateProductViews() async {
     try {
-      if(product == null) return;
+      if (product == null) return;
       await _supabase
           .from('products')
           .update({'views_count': product!.viewsCount! + 1})

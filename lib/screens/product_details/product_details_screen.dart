@@ -35,7 +35,11 @@ Widget _productDetails({
   required ProductModel product,
 }) {
   return Column(
-    children: [ImageViewer(images: images), CustomText(product.name ?? '')],
+    children: [
+      ImageViewer(images: images),
+      SizedBox(),
+      CustomText(product.name ?? ''),
+    ],
   );
 }
 
