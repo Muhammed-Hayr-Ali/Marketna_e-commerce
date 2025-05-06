@@ -7,11 +7,13 @@ class ImageViewer extends StatelessWidget {
   final c = Get.find<ProductDetailsController>();
   @override
   Widget build(BuildContext context) {
+    /// image widget
     return SizedBox(
       height: Get.width * 1.1,
       width: double.maxFinite,
       child: Stack(
         children: [
+          /// Images
           SizedBox(
             child:
                 images.isEmpty
@@ -23,16 +25,19 @@ class ImageViewer extends StatelessWidget {
                       children: [
                         PageView.builder(
                           itemCount: images.length,
-                          // onPageChanged: (value) {
-                          //   _.currentImageIndex.value = value;
-                          // },
+                          onPageChanged:
+                              (value) => c.currentImageIndex.value = value,
                           itemBuilder:
                               (c, i) => _imageBuilder(imageUrl: images[i]),
                         ),
                       ],
                     ),
           ),
+
+          /// Appbar
           AppBarWidget(),
+
+          /// Indicator
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(

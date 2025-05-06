@@ -14,15 +14,28 @@ class ProductDetailsController extends GetxController {
   final RxString _errorMessage = ''.obs;
   String get errorMessage => _errorMessage.value;
 
+  /// Product
   ProductModel? product;
+
+  /// Images
   List<String> images = [];
   RxInt currentImageIndex = 0.obs;
 
-  ///
+  /// Reviews
+  List<ReviewModel> reviewsList = [];
+  final RxInt _reviewCount = 0.obs;
+  int get reviewCount => _reviewCount.value;
+  final RxDouble _reviewScore = 0.0.obs;
+  double get reviewScore => _reviewScore.value;
+  final RxBool _hasReview = false.obs;
+  bool get hasReview => _hasReview.value;
+
+  /// Favourite
+  List<int> favouriteList = [];
+  final RxInt _favouriteCount = 0.obs;
+  int get favouriteCount => _favouriteCount.value;
   final RxBool _isFavourite = false.obs;
   bool get isFavourite => _isFavourite.value;
-  List<int> favouriteList = [];
-  List<ReviewModel> reviews = [];
 
   @override
   void onInit() {
@@ -47,28 +60,26 @@ class ProductDetailsController extends GetxController {
         CustomNotification.showSnackbar(message: 'Product not found');
         return;
       }
+
+      /// Set Product
       this.product = product;
-      this.images.insert(0, product.imageUrl!);
 
-      /// Fetch Images
-      final images = await _fetchProductImages();
-      if (images != null) {
-        this.images.addAll(images);
+      /// Set Images
+      if (product.imageUrl != null) {
+        images.insert(0, product.imageUrl!);
       }
 
-      /// Fetch Favourites
-      final isFavourite = await isUserFavourite();
-      if (isFavourite != null) {
-        _isFavourite.value = isFavourite;
-      }
+      /// Futuer await
+      Future.wait([
+        /// Fetch Images
+        _fetchProductImages(),
 
-      /// Fetch Reviews
-      final reviews = await _fetchProductReviews();
-      if (reviews != null) {
-        this.reviews.addAll(reviews);
-      }
+        /// Fetch Reviews
+        _fetchProductReviews(),
 
-      ///
+        /// Fetch Favourites
+        _fetchProductFavourite(),
+      ]);
     } on Exception catch (error) {
       _errorMessage.value = 'Something has gone wrong somewhere';
       debugPrint(error.toString());
@@ -89,33 +100,50 @@ class ProductDetailsController extends GetxController {
     return ProductModel.fromJson(response);
   }
 
-  Future<List<String>?> _fetchProductImages() async {
-    final response = await _supabase
+  Future<void> _fetchProductImages() async {
+    List<Map<String, dynamic>> response = await _supabase
         .from('products_images')
         .select('*')
         .eq('id', productId);
-    if (response == []) return null;
-    return response.map((e) => e['image_url'] as String).toList();
+    if (response == []) return;
+    List<String> images =
+        response.map((e) => e['image_url'] as String).toList();
+    this.images.addAll(images);
   }
 
-  Future<List<ReviewModel>?> _fetchProductReviews() async {
-    final response = await _supabase
+  Future<void> _fetchProductReviews() async {
+    final user = _supabase.auth.currentUser;
+    if (user == null) return;
+
+    List<Map<String, dynamic>> response = await _supabase
         .from('products_reviews')
         .select('*')
         .eq('id', productId);
-    if (response == []) return null;
-    return response.map((e) => ReviewModel.fromJson(e)).toList();
+    if (response == []) return;
+    List<ReviewModel> reviewsList =
+        response.map((e) => ReviewModel.fromJson(e)).toList();
+
+    /// reviews collection
+    this.reviewsList = reviewsList;
+    _reviewCount.value = response.length;
+    _reviewScore.value =
+        reviewsList.map((e) => e.ratingValue ?? 0.0).reduce((a, b) => a + b) /
+        reviewsList.length;
+    _hasReview.value = reviewsList.any((e) => e.userId == user.id);
   }
 
   /// Check if a product is in the user's favorites
   ///
   /// Return true if the product is in the user's favorites, false otherwise
-  Future<bool?> isUserFavourite() async {
-    final currentUser = _supabase.auth.currentUser;
-    if (currentUser == null) return null;
+  Future<void> _fetchProductFavourite() async {
+    final user = _supabase.auth.currentUser;
+    if (user == null) return;
 
-    final favouriteList = _storage.read('favorite${currentUser.id}') ?? <int>[];
-    return favouriteList.contains(productId);
+    List<int> favouriteList =
+        _storage.read('favorite${user.id}') ?? <int>[];
+    this.favouriteList = favouriteList;
+    _favouriteCount.value = product?.favoriteCount ?? 0;
+    _isFavourite.value = favouriteList.contains(productId);
   }
 
   /// Toggle favorite
