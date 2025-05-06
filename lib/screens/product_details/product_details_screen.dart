@@ -11,24 +11,21 @@ class ProductDetailsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Obx(
-          () => Center(
-            child:
-                controller.isLoading
-                    ? CircularProgressIndicator()
-                    : controller.errorMessage != '' ||
-                        controller.product == null
-                    ? ErrorScreen(message: controller.errorMessage)
-                    : SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ImageViewer(images: controller.images),
-                          ProductDetails(),
-                        ],
-                      ),
+          () =>
+              controller.isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : controller.errorMessage != '' || controller.product == null
+                  ? ErrorScreen(message: controller.errorMessage)
+                  : SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ImageViewer(images: controller.images),
+                        ProductDetails(),
+                      ],
                     ),
-          ),
+                  ),
         ),
       ),
     );

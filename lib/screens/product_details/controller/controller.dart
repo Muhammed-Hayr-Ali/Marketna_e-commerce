@@ -114,9 +114,7 @@ class ProductDetailsController extends GetxController {
     final currentUser = _supabase.auth.currentUser;
     if (currentUser == null) return null;
 
-    final data = _storage.read('favorite${currentUser.id}') ?? [];
-    favouriteList = List<int>.from(jsonDecode(data));
-
+    final favouriteList = _storage.read('favorite${currentUser.id}') ?? <int>[];
     return favouriteList.contains(productId);
   }
 
@@ -134,7 +132,7 @@ class ProductDetailsController extends GetxController {
     }
 
     _isFavourite.value = !isFavorite;
-    _storage.write('favorite${currentUser.id}', jsonEncode(favouriteList));
+    _storage.write('favorite${currentUser.id}', favouriteList);
   }
 
   /// onClose
