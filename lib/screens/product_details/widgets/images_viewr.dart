@@ -7,6 +7,7 @@ class ImageViewer extends StatelessWidget {
   final c = Get.find<ProductDetailsController>();
   @override
   Widget build(BuildContext context) {
+
     /// image widget
     return SizedBox(
       height: Get.width * 1.1,

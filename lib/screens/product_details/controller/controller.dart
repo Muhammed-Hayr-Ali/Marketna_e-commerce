@@ -18,7 +18,8 @@ class ProductDetailsController extends GetxController {
   ProductModel? product;
 
   /// Images
-  List<String> images = [];
+  RxList<String> imagesList = <String>[].obs;
+
   RxInt currentImageIndex = 0.obs;
 
   /// Reviews
@@ -66,7 +67,7 @@ class ProductDetailsController extends GetxController {
 
       /// Set Images
       if (product.imageUrl != null) {
-        images.insert(0, product.imageUrl!);
+        imagesList.insert(0, product.imageUrl!);
       }
 
       /// Futuer await
@@ -75,10 +76,10 @@ class ProductDetailsController extends GetxController {
         _fetchProductImages(),
 
         /// Fetch Reviews
-        _fetchProductReviews(),
+        // _fetchProductReviews(),
 
-        /// Fetch Favourites
-        _fetchProductFavourite(),
+        // /// Fetch Favourites
+        // _fetchProductFavourite(),
       ]);
     } on Exception catch (error) {
       _errorMessage.value = 'Something has gone wrong somewhere';
@@ -103,12 +104,16 @@ class ProductDetailsController extends GetxController {
   Future<void> _fetchProductImages() async {
     List<Map<String, dynamic>> response = await _supabase
         .from('products_images')
-        .select('*')
+        .select('image_url')
         .eq('id', productId);
+    debugPrint('response : $response');
+
     if (response == []) return;
-    List<String> images =
+    List<String> imagesList =
         response.map((e) => e['image_url'] as String).toList();
-    this.images.addAll(images);
+    debugPrint('imagesList : $imagesList');
+    this.imagesList.addAll(imagesList);
+    debugPrint('this.imagesList : ${this.imagesList}');
   }
 
   Future<void> _fetchProductReviews() async {
@@ -139,8 +144,7 @@ class ProductDetailsController extends GetxController {
     final user = _supabase.auth.currentUser;
     if (user == null) return;
 
-    List<int> favouriteList =
-        _storage.read('favorite${user.id}') ?? <int>[];
+    List<int> favouriteList = _storage.read('favorite${user.id}') ?? <int>[];
     this.favouriteList = favouriteList;
     _favouriteCount.value = product?.favoriteCount ?? 0;
     _isFavourite.value = favouriteList.contains(productId);
