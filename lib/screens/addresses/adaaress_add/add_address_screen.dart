@@ -1,6 +1,5 @@
-import 'package:application/utils/import.dart';
-import 'package:application/widgets/custom_country_picker.dart';
-import 'package:application/widgets/phone_text_field.dart';
+
+import 'package:application/constants/import.dart';
 
 class AddAddressScreen extends StatelessWidget {
   AddAddressScreen({super.key});

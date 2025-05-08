@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class CustomAvatar extends StatelessWidget {
   final String? imageUrl;

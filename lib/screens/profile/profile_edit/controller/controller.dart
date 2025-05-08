@@ -1,6 +1,8 @@
 import 'dart:io';
 
-import 'package:application/utils/import.dart';
+import 'package:application/constants/attributes.dart';
+import 'package:application/constants/bucket_names.dart';
+import 'package:application/constants/import.dart';
 
 class EditProfileController extends GetxController {
   /// Instances
@@ -87,8 +89,8 @@ class EditProfileController extends GetxController {
         final String folderName = _supabase.auth.currentUser!.id;
 
         await _supabase.storage
-            .from(KEYS.USERS_BUCKET)
-            .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
+            .from(BucketNames.users)
+            .remove(['${BucketNames.profile}/$folderName/$fileName'])
             .whenComplete(
               () async => await _supabase.auth.updateUser(
                 UserAttributes(data: {Attributes.avatar: null}),
@@ -139,7 +141,7 @@ class EditProfileController extends GetxController {
       initialDate: _dateBirth.value,
     );
     if (selectedDate != null) {
-      _dateBirth.value = DateFormat('yyyy-MM-dd').format(selectedDate);
+      _dateBirth.value = DateFormat(AppStrings.dateFormat).format(selectedDate);
     }
   }
 
@@ -152,16 +154,16 @@ class EditProfileController extends GetxController {
 
       // Upload the image to the Supabase Storage
       await _supabase.storage
-          .from(KEYS.USERS_BUCKET)
+          .from(BucketNames.users)
           .upload(
-            '${KEYS.PROFILE_FOLDER}/$folderName/$fileName',
+            '${BucketNames.profile}/$folderName/$fileName',
             File(imagePath),
           );
 
       // Update the user's avatar with the new image
       String url = _supabase.storage
-          .from(KEYS.USERS_BUCKET)
-          .getPublicUrl('${KEYS.PROFILE_FOLDER}/$folderName/$fileName');
+          .from(BucketNames.users)
+          .getPublicUrl('${BucketNames.profile}/$folderName/$fileName');
 
       _imagePath.value = '';
       return url;
@@ -183,8 +185,8 @@ class EditProfileController extends GetxController {
       final String folderName = _supabase.auth.currentUser!.id;
 
       await _supabase.storage
-          .from(KEYS.USERS_BUCKET)
-          .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
+          .from(BucketNames.users)
+          .remove(['${BucketNames.profile}/$folderName/$fileName'])
           .whenComplete(
             () async => await _supabase.auth.updateUser(
               UserAttributes(data: {Attributes.avatar: null}),

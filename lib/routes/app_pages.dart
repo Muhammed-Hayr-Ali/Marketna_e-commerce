@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class RouteGet {
   static final List<GetPage> getPages = [

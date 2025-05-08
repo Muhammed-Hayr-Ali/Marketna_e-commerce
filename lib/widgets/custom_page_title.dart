@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class CustomPageTitle extends StatelessWidget {
   final String title, subtitle;

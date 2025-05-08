@@ -1,5 +1,8 @@
-import 'package:application/utils/import.dart';
 
+
+import 'package:application/constants/import.dart';
+import 'package:application/constants/table_names.dart';
+// 
 class PhoneTextFieldController extends GetxController {
   final SupabaseClient _supabase = Supabase.instance.client;
   final GetStorage _storage = GetStorage();
@@ -11,7 +14,7 @@ class PhoneTextFieldController extends GetxController {
   final RxBool isLoading = false.obs;
 
   String getLocalCode() {
-    final locale = _storage.read(StorageKey.locale);
+    final locale = _storage.read(StorageKeys.localeCode);
     return locale ?? Get.deviceLocale?.languageCode ?? 'en';
   }
 
@@ -279,7 +282,7 @@ class PhoneTextField extends StatelessWidget {
                       suffix: _clearTextWidget(),
                       hintText: hintPhone,
                       hintStyle: TextStyle(
-                        fontFamily: fontFamily ?? ConstantsText.fontFamily,
+                        fontFamily: fontFamily ?? AppStrings.fontFamily,
                         fontSize: fontSize ?? 14,
                         fontWeight: fontWeight ?? FontWeight.w500,
                         color: Colors.grey.shade400,

@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Run app
     return GetMaterialApp(
-      title: ConstantsText.appName,
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
 
       // Theme configuration

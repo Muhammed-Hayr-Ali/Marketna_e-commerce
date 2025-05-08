@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class ManageAddressesController extends GetxController {
   final _supabase = Supabase.instance.client;
@@ -23,9 +23,9 @@ class ManageAddressesController extends GetxController {
     try {
       // Query the database for addresses linked to the current user
       final response = await _supabase
-          .from(KEYS.ADDRESSES_TABLE)
+          .from(TableNames.addresses)
           .select()
-          .eq(KEYS.USER_ID, currentUser.id);
+          .eq(ColumnNames.userId, currentUser.id);
 
       // Check if the response is empty
       if (response.isEmpty) {

@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class SplashScreenController extends GetxController {
   /// Variables
@@ -54,9 +54,9 @@ class SplashScreenController extends GetxController {
 
   Future<void> _checkFirstLaunch() async {
     final isFirstLaunch =
-        _storage.read<bool>(StorageKey.firstLaunch) ?? true;
+        _storage.read<bool>(StorageKeys.firstLaunch) ?? true;
     if (isFirstLaunch) {
-      await _storage.write(StorageKey.firstLaunch, false);
+      await _storage.write(StorageKeys.firstLaunch, false);
       Get.offAllNamed(Routes.ONBOARDING_SCREEN);
     } else {
       Get.offAllNamed(Routes.SIGN_IN_SCREEN);

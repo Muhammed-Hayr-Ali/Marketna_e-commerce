@@ -1,10 +1,11 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class SettingsController extends GetxController {
   final _storage = GetStorage();
   final _main = SettingsMainController();
   Future<void> updateLanguage() async {
-    final String? savedLocale = _storage.read<String>(StorageKey.locale);
+    final String? savedLocale = _storage.read<String>(StorageKeys.localeCode);
     debugPrint('Saved locale: $savedLocale');
     final String? selectedLocale = await _main.openLanguage(savedLocale);
     if (selectedLocale == 'auto') {
@@ -13,6 +14,6 @@ class SettingsController extends GetxController {
       Get.updateLocale(Locale(selectedLocale));
     }
     if (selectedLocale == null) return;
-    await _storage.write(StorageKey.locale, selectedLocale);
+    await _storage.write(StorageKeys.localeCode, selectedLocale);
   }
 }

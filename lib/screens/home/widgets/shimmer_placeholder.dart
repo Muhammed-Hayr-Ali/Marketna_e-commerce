@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class ShimmerPlaceholder extends StatelessWidget {
   final double aspectRatio;

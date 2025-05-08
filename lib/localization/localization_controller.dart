@@ -1,9 +1,9 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class LocalizationController {
   final GetStorage _storage = GetStorage();
   /// The key used to store the user's locale preference in the device's storage.
-  static const String _localeKey = 'locale';
 
 
   Locale? get language {
@@ -19,7 +19,7 @@ class LocalizationController {
   /// [locale] is the two-letter [ISO 639-1] language code for the locale.
   /// For example, 'en' or 'ar'.
   void updateLocale(String localeCode) {
-    _storage.write(_localeKey, localeCode);
+    _storage.write(StorageKeys.localeCode, localeCode);
   }
 
 }

@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class Indicator extends StatelessWidget {
   final int selected;

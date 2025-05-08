@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class MenuItem extends StatelessWidget {
   final String? icon;

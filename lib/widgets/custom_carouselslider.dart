@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class CustomCarouselSlider extends StatefulWidget {
   /// List of products to be displayed in the carousel slider.

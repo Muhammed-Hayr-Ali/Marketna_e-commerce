@@ -1,4 +1,4 @@
-import '../../../../utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class ForgotPasswordController extends GetxController {
   /// Variables

@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   UpdatePasswordScreen({super.key});
@@ -68,7 +69,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       autoHideKeyboard: false,
                       borderColor: Colors.black12,
                       textStyle: TextStyle(
-                        fontFamily: ConstantsText.fontFamily,
+                        fontFamily: AppStrings.fontFamily,
                         fontSize: 22.0,
                         fontWeight: FontWeight.w500,
                       ),

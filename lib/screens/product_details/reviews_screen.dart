@@ -1,5 +1,6 @@
 
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class ReviewsScreen extends StatelessWidget {
   const ReviewsScreen({super.key});

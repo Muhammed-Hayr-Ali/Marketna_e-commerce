@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class FavoriteController extends GetxService {
   final _supabase = Supabase.instance.client;

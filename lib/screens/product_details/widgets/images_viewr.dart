@@ -1,5 +1,5 @@
+import 'package:application/constants/import.dart';
 import 'package:application/screens/product_details/widgets/appbar_widget.dart';
-import 'package:application/utils/import.dart';
 
 class ImageViewer extends StatelessWidget {
   final List<String> images;

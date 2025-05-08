@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 /// A customizable button widget that supports various styles and states.
 /// It can display a loading indicator, has customizable dimensions, colors, and margins.
@@ -87,7 +88,7 @@ class CustomButton extends StatelessWidget {
         ),
         elevation: elevation ?? 0, // Default elevation
         textStyle: const TextStyle(
-          fontFamily: ConstantsText.fontFamily,
+          fontFamily: AppStrings.fontFamily,
           color: Colors.white,
           fontSize: 14,
           fontWeight: FontWeight.w500,

@@ -1,5 +1,5 @@
 
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class ErrorScreen extends StatelessWidget {
   final String message;

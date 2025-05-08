@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 /// A customizable text field widget that supports various styles and functionalities.
 /// It can be used for password fields, multi-line input, and more.
@@ -161,7 +161,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             validator: widget.validator, // Validation logic
             onChanged: widget.onChanged, // Callback on text change
             style: TextStyle(
-              fontFamily: ConstantsText.fontFamily,
+              fontFamily: AppStrings.fontFamily,
               color: Colors.black,
               fontSize: 16,
               fontWeight: FontWeight.normal,
@@ -184,7 +184,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
               hintText: widget.hintText, // Placeholder text
               hintStyle: TextStyle(
-                fontFamily: ConstantsText.fontFamily,
+                fontFamily: AppStrings.fontFamily,
                 color: Colors.grey.shade400,
                 fontSize: 16,
                 fontWeight: FontWeight.normal,

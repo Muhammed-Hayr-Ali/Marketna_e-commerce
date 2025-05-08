@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class HomeController extends GetxController {
   final supabase = Supabase.instance.client;
@@ -18,10 +18,10 @@ class HomeController extends GetxController {
       debugPrint('Fetching products...');
       final response = await supabase
           .from(TableNames.productsDetails)
-          .select('${KEYS.ID}, ${KEYS.IMAGE_URL}')
-          .eq(KEYS.COLUMN_QUALITY, KEYS.PREMIUM)
+          .select('${ColumnNames.id}, ${FieldValues.imageUrl}')
+          .eq(ColumnNames.quantity, FieldValues.premium)
           .limit(10)
-          .order(KEYS.CREATED_AT, ascending: false);
+          .order(ColumnNames.createdAt, ascending: false);
 
       if (response.isEmpty) {
         debugPrint('No products found');

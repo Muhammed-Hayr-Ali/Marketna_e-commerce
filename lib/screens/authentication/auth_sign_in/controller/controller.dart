@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
-
-import '../../../../utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class SignInScreenController extends GetxController {
   /// Variables
@@ -31,7 +29,7 @@ class SignInScreenController extends GetxController {
   Future<void> signInWithGoogle() async {
     try {
       _isLoadingGoogle.value = true;
-      final googleSignIn = GoogleSignIn(serverClientId: KEYS.WEB_CLIENT_ID);
+      final googleSignIn = GoogleSignIn(serverClientId: AppKeys.webClientId);
       final user = await googleSignIn.signIn();
 
       if (user == null) {

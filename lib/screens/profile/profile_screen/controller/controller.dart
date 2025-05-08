@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class ProfileController extends GetxController {
   final _supabase = Supabase.instance.client;

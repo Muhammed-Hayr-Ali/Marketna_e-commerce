@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:application/utils/import.dart';
-import 'package:application/widgets/phone_text_field.dart';
+import 'package:application/constants/import.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});

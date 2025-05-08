@@ -1,5 +1,5 @@
 import 'package:application/myapp.dart';
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,6 +8,6 @@ void main() async {
   await GetStorage.init();
 
   /// Initialize Supabase
-  await Supabase.initialize(url: KEYS.URL, anonKey: KEYS.ANON_KEY);
+  await Supabase.initialize(url: AppKeys.url, anonKey: AppKeys.anonKey);
   runApp(const MyApp());
 }

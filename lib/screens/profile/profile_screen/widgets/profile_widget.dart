@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class ProfileWidget extends StatelessWidget {
   final bool isLoading;

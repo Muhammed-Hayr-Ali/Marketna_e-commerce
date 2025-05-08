@@ -1,9 +1,10 @@
-import '../../../../utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class SignUpController extends GetxController {
   /// Variables
   final _supabase = Supabase.instance.client;
-  final Uri _url = Uri.parse(ConstantsText.PRIVACY_POLICY_URL);
+  final Uri _url = Uri.parse(AppStrings.privacyPolicy);
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
 

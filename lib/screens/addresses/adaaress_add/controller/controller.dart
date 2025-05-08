@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class AddAddressController extends GetxController {
   // AddAddressController({this.addressId});
@@ -38,7 +39,7 @@ class AddAddressController extends GetxController {
   @override
   void onInit() async {
     local =
-        _storage.read(StorageKey.locale) ?? Get.deviceLocale!.languageCode;
+        _storage.read(StorageKeys.localeCode) ?? Get.deviceLocale!.languageCode;
 
     super.onInit();
   }
@@ -157,7 +158,7 @@ class AddAddressController extends GetxController {
 
       if (addressId != null) {
         await _supabase
-            .from(KEYS.ADDRESSES_TABLE)
+            .from(TableNames.addresses)
             .update(newAddress.toJson())
             .eq('id', addressId!);
       } else {

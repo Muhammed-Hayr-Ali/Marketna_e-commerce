@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class LocationPermissionScreen extends StatelessWidget {
   LocationPermissionScreen({super.key});
@@ -34,7 +34,8 @@ class LocationPermissionScreen extends StatelessWidget {
               const SizedBox(height: 48),
               CustomPageTitle(
                 title: 'What is your location?',
-                subtitle: 'Allow us to access your location to show you the nearest stores.',
+                subtitle:
+                    'Allow us to access your location to show you the nearest stores.',
               ),
               const SizedBox(height: 24),
               TextButton(

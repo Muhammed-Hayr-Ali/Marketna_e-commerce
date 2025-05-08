@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class SettingsScreen extends StatelessWidget {
    SettingsScreen({super.key});
@@ -28,7 +28,7 @@ final _ = Get.put(SettingsController());
           const Spacer(),
           Center(
             child: CustomText(
-              'version ${ConstantsText.VERSION}',
+              'version ${AppStrings.version}',
               fontSize: 12,
               color: Colors.grey,
             ),

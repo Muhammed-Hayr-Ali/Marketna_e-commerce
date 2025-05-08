@@ -1,4 +1,5 @@
-import 'package:application/utils/import.dart';
+
+import 'package:application/constants/import.dart';
 
 class EditProfileMainController {
   final supabase = Supabase.instance.client;
@@ -59,7 +60,7 @@ class EditProfileMainController {
   /// Retrieves the locale setting for the DateTimePicker.
   DateTimePickerLocale _getLocale() {
     final String localeCode =
-        _storage.read<String>(StorageKey.locale) ??
+        _storage.read<String>(StorageKeys.localeCode) ??
         Get.deviceLocale!.languageCode;
 
     switch (localeCode) {
@@ -142,7 +143,7 @@ class EditProfileMainController {
                 initialDate != null
                     ? DateTime.tryParse(initialDate)
                     : DateTime.now(),
-            dateFormat: ConstantsText.DateBirthFormat,
+            dateFormat: AppStrings.dateFormat,
             pickerTheme: DateTimePickerTheme(),
             onChange: (date, _) => selectedDate = date,
           ),

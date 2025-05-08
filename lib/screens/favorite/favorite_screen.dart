@@ -1,5 +1,4 @@
-import 'package:application/screens/favorite/controller/controller.dart';
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class FavoriteScreen extends StatelessWidget {
   FavoriteScreen({super.key});

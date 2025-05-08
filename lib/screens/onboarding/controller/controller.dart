@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class OnboardingController extends GetxController {
   final _storage = GetStorage();
@@ -43,12 +43,12 @@ class OnboardingController extends GetxController {
   /// code to storage.
   Future<void> selectLanguage() async {
     final oldLanguageCode =
-        _storage.read<String>(StorageKey.locale) ??
+        _storage.read<String>(StorageKeys.localeCode) ??
         Get.deviceLocale!.languageCode;
 
     final newLanguageCode = await _main.openLanguage(oldLanguageCode);
     if (newLanguageCode == null) return;
     Get.updateLocale(Locale(newLanguageCode));
-    _storage.write(StorageKey.locale, newLanguageCode);
+    _storage.write(StorageKeys.localeCode, newLanguageCode);
   }
 }

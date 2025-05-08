@@ -1,4 +1,4 @@
-import 'package:application/utils/import.dart';
+import 'package:application/constants/import.dart';
 
 class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
@@ -55,13 +55,13 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     // Retrieve locale from storage or default to device locale
     local =
-        _storage.read(StorageKey.locale) ??
+        _storage.read(StorageKeys.localeCode) ??
         Get.deviceLocale?.languageCode ??
         'en';
 
     try {
       // Fetch countries sorted by name from the database
-      final List<dynamic> response = await _supabase.from(TableNames.countries).select();
+      final List<dynamic> response = await _supabase.from('countries').select();
 
       // Return false if no countries are found
       if (response.isEmpty) return false;
