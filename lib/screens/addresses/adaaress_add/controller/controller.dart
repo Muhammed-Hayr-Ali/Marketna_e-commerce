@@ -25,7 +25,7 @@ class AddAddressController extends GetxController {
   String? selectedProvince;
   String? selectedCity;
 
-  String? local = 'en';
+  String? local = FieldValues.en;
   RxBool isLoading = false.obs;
 
   int? addressId;
@@ -63,7 +63,7 @@ class AddAddressController extends GetxController {
   }
 
   Future<void> onChangedCountry(CountryModel value) async {
-    selectedCountry = local != 'ar' ? value.name : value.nameAr;
+    selectedCountry = local != FieldValues.ar ? value.name : value.nameAr;
     selectedCountryCode = value.code;
     selectedCountryFlag = value.flag;
     selectedProvince = null;
@@ -72,7 +72,7 @@ class AddAddressController extends GetxController {
   }
 
   void onChangedProvince(Province value) {
-    selectedProvince = local != 'ar' ? value.name : value.nameAr;
+    selectedProvince = local != FieldValues.ar ? value.name : value.nameAr;
     selectedCity = null;
     update();
   }
@@ -92,19 +92,19 @@ class AddAddressController extends GetxController {
   Future<Position> _determinePosition() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw 'Location services are disabled.';
+      throw NotificationMessage.locationDisabled;
     }
 
     final permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       final requestedPermission = await Geolocator.requestPermission();
       if (requestedPermission == LocationPermission.denied) {
-        throw 'Location permissions are denied';
+        throw NotificationMessage.locationDenied;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw 'Location permissions are permanently denied, we cannot request permissions.';
+      throw NotificationMessage.locationDeniedForever;
     }
 
     return await Geolocator.getCurrentPosition();
@@ -151,8 +151,8 @@ class AddAddressController extends GetxController {
         flag: selectedCountryFlag,
         notes: notesController.text,
         location: {
-          'latitude': currentPosition.latitude, 
-          'longitude': currentPosition.longitude,
+          FieldValues.latitude: currentPosition.latitude, 
+          FieldValues.longitude: currentPosition.longitude,
         },
       );
 
@@ -160,7 +160,7 @@ class AddAddressController extends GetxController {
         await _supabase
             .from(TableNames.addresses)
             .update(newAddress.toJson())
-            .eq('id', addressId!);
+            .eq(ColumnNames.id, addressId!);
       } else {
         await _supabase.from(TableNames.addresses).insert(newAddress.toJson());
       }
@@ -172,7 +172,7 @@ class AddAddressController extends GetxController {
       }
     } catch (error) {
       CustomNotification.showSnackbar(
-        message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
+        message: NotificationMessage.somethingWentWrong,
       );
       debugPrint(error.toString());
     } finally {

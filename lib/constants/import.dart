@@ -18,6 +18,7 @@ export 'package:application/constants/table_names.dart';
 export 'package:application/constants/column_names.dart';
 export 'package:application/constants/field_values.dart';
 export 'package:application/constants/attributes.dart';
+export 'package:application/constants/notification_message.dart';
 
 // ==============================
 // **Data Models**

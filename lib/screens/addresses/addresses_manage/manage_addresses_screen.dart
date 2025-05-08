@@ -21,7 +21,7 @@ class ManageAddressesScreen extends StatelessWidget {
               vertical: 10.0,
             ),
             child: const CustomText(
-              'Manage Addresses',
+              AppStrings.manageAddresses,
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
@@ -56,7 +56,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 8.0),
                                       const CustomText(
-                                        'Add New Address',
+                                        AppStrings.addNewAddress,
                                         fontSize: 14,
                                         color: Colors.grey,
                                       ),
@@ -77,7 +77,7 @@ class ManageAddressesScreen extends StatelessWidget {
                                       ), // تحديد مفتاح فريد لكل عنصر
                                       background: Container(
                                         alignment:
-                                            _getLocale() == 'ar'
+                                            _getLocale() == FieldValues.ar
                                                 ? Alignment.centerRight
                                                 : Alignment.centerLeft,
 
@@ -89,24 +89,24 @@ class ManageAddressesScreen extends StatelessWidget {
                                         ),
                                         child: Icon(
                                           Icons.edit,
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                         ), // أيقونة التعديل
                                       ),
                                       secondaryBackground: Container(
                                         alignment:
-                                            _getLocale() == 'ar'
+                                            _getLocale() == FieldValues.ar
                                                 ? Alignment.centerLeft
                                                 : Alignment.centerRight,
                                         color:
-                                            Colors
-                                                .red, // خلفية حمراء عند التمرير من اليمين إلى اليسار
+                                            AppColors
+                                                .errorRed, // خلفية حمراء عند التمرير من اليمين إلى اليسار
                                         padding: EdgeInsets.symmetric(
                                           horizontal: 20,
                                         ),
 
                                         child: Icon(
                                           Icons.delete,
-                                          color: Colors.white,
+                                          color: AppColors.white,
                                         ), // أيقونة الحذف
                                       ),
 

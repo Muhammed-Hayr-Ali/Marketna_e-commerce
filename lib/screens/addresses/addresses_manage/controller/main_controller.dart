@@ -5,22 +5,21 @@ class ManageAddressesMainController {
     return await custombottomSheet<bool>(
           children: [
             CustomPageTitle(
-              title: 'Delete Address',
-              subtitle:
-                  '${'Are you sure you want to delete this address?'.tr} $addressName',
+              title: AppStrings.deleteAddress,
+              subtitle: '${AppStrings.deleteAddressMessage.tr} $addressName',
               padding: EdgeInsets.only(bottom: 30.0),
             ),
 
             CustomButton(
               backgroundColor: AppColors.grey,
               onPressed: () => Get.back(result: false),
-              child: CustomText('No', fontSize: 12),
+              child: CustomText(AppStrings.no, fontSize: 12),
             ),
             const SizedBox(height: 16),
             CustomButton(
               backgroundColor: AppColors.grey,
               onPressed: () => Get.back(result: true),
-              child: CustomText('Yes', fontSize: 12),
+              child: CustomText(AppStrings.yes, fontSize: 12),
             ),
           ],
         ) ??
@@ -30,7 +29,7 @@ class ManageAddressesMainController {
   void openAddressDetails(AddressModel address) {
     custombottomSheet(
       children: [
-        CustomPageTitle(title: 'Address Details'),
+        CustomPageTitle(title: AppStrings.addressDetails),
 
         const SizedBox(height: 16),
 
@@ -44,7 +43,7 @@ class ManageAddressesMainController {
                 children: [
                   /// address name
                   CustomText(
-                    '${'Address Name'.tr} : ',
+                    '${AppStrings.addressName.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -60,7 +59,7 @@ class ManageAddressesMainController {
 
                   /// street address
                   CustomText(
-                    '${'Street Address'.tr} : ',
+                    '${AppStrings.streetAddress.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -76,7 +75,7 @@ class ManageAddressesMainController {
 
                   /// location
                   CustomText(
-                    '${'Country'.tr} : ',
+                    '${AppStrings.country.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -90,7 +89,7 @@ class ManageAddressesMainController {
                   ),
                   Divider(color: Colors.grey.shade200),
                   CustomText(
-                    '${'State / Province'.tr} : ',
+                    '${AppStrings.stateProvince.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -104,7 +103,7 @@ class ManageAddressesMainController {
                   ),
                   Divider(color: Colors.grey.shade200),
                   CustomText(
-                    '${'City'.tr} : ',
+                    '${AppStrings.city.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -120,7 +119,7 @@ class ManageAddressesMainController {
 
                   /// Phone
                   CustomText(
-                    '${'Phone Number'.tr} : ',
+                    '${AppStrings.phoneNumber.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -137,7 +136,7 @@ class ManageAddressesMainController {
 
                   /// Notes
                   CustomText(
-                    '${'Notes'.tr} : ',
+                    '${AppStrings.notes.tr} : ',
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 12,
@@ -160,7 +159,7 @@ class ManageAddressesMainController {
           width: double.infinity,
           backgroundColor: AppColors.grey,
           onPressed: () => Get.back(),
-          child: const CustomText('Close'),
+          child: CustomText(AppStrings.cancel),
         ),
       ],
     );

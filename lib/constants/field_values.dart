@@ -4,4 +4,8 @@ class FieldValues {
   static const String newProduct = 'new';
   static const String popular = 'popular';
   static const String normal = 'normal';
+  static const String en = 'en';
+  static const String ar = 'ar';
+  static const String latitude = 'latitude';
+  static const String longitude = 'longitude';
 }

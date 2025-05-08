@@ -17,7 +17,7 @@ class ManageAddressesController extends GetxController {
     final currentUser = _supabase.auth.currentUser;
 
     if (currentUser == null) {
-      throw AppException('user ID is null. Cannot load addresses.');
+      throw NotificationMessage.userNull;
     }
 
     try {
@@ -41,8 +41,7 @@ class ManageAddressesController extends GetxController {
       CustomNotification.showSnackbar(message: error.message);
     } on Exception {
       CustomNotification.showSnackbar(
-        message:
-            'Something has gone wrong somewhere, and we will try to fix it right away.',
+        message: NotificationMessage.somethingWentWrong,
       );
     } finally {
       isLoading = false;
@@ -51,19 +50,25 @@ class ManageAddressesController extends GetxController {
   }
 
   Future<void> dateAddress(int addressId, String addressName) async {
-
     bool result = await _main.shouldDeleteAddress(addressName);
     if (!result) return; // User chose not to delete the address
     try {
       // Update the address in the database
-      await _supabase.from(TableNames.addresses).delete().eq('id', addressId);
+      await _supabase
+          .from(TableNames.addresses)
+          .delete()
+          .eq(ColumnNames.id, addressId);
       addresses.removeWhere((address) => address.id == addressId);
-      CustomNotification .showSnackbar(message: 'Address deleted successfully.');
+      CustomNotification.showSnackbar(
+        message: NotificationMessage.addressDeletedSuccess,
+      );
       update(); // Notify listeners about the change
     } catch (error) {
       // Handle errors and show error notification
-      CustomNotification.showSnackbar(message: 'Something has gone wrong somewhere, and we will try to fix it right away.');
+      CustomNotification.showSnackbar(
+        message: NotificationMessage.somethingWentWrong,
+      );
       debugPrint(error.toString());
-    } 
+    }
   }
 }
