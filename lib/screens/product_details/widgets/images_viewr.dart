@@ -7,7 +7,6 @@ class ImageViewer extends StatelessWidget {
   final c = Get.find<ProductDetailsController>();
   @override
   Widget build(BuildContext context) {
-
     /// image widget
     return SizedBox(
       height: Get.width * 1.1,
@@ -95,7 +94,7 @@ Widget errorWidget(double margin) {
     margin: EdgeInsets.symmetric(horizontal: margin),
     alignment: Alignment.center,
     decoration: BoxDecoration(
-      color: Colors.grey,
+      color: Colors.grey.shade100,
       borderRadius: BorderRadius.circular(28.0),
     ),
     child: Icon(Icons.error, color: Colors.red),

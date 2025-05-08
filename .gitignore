@@ -45,3 +45,5 @@ app.*.map.json
 /android/app/release
 /lib/utils/keys.dart
 /lib/utils/storage_key.dart
+/lib/utils/table_names.dart
+/lib/utils/column_names.dart

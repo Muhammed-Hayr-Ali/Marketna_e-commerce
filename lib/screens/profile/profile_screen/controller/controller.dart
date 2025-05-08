@@ -18,9 +18,7 @@ class ProfileController extends GetxController {
   Future<void> initializeUser() async {
     try {
       _isLoading.value = true;
-      final currentUser = _supabase.auth.currentUser;
-      User? user = currentUser;
-
+      final user = _supabase.auth.currentUser;
       if (user == null || user.userMetadata == null) return;
       _metadata.value = UserMetaDataModel.fromJson(user.userMetadata ?? {});
       _metadata.value.email = user.email ?? '';

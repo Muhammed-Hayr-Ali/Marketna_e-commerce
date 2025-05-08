@@ -75,8 +75,6 @@ class UserMetaDataModel {
     return data;
   }
 
-  /// to String
-
   @override
   String toString() {
     return 'user_meta_data_model{'
@@ -96,4 +94,6 @@ class UserMetaDataModel {
         'phoneVerified: $phoneVerified, '
         'preferredUsername: $preferredUsername}';
   }
+
+  
 }

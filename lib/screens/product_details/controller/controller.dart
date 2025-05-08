@@ -65,22 +65,22 @@ class ProductDetailsController extends GetxController {
       /// Set Product
       this.product = product;
 
-      /// Set Images
-      if (product.imageUrl != null) {
-        imagesList.insert(0, product.imageUrl!);
-      }
+      // /// Set Images
+      // if (product.imageUrl != null) {
+      //   imagesList.insert(0, product.imageUrl!);
+      // }
 
-      /// Futuer await
-      Future.wait([
-        /// Fetch Images
-        _fetchProductImages(),
+      // /// Futuer await
+      // Future.wait([
+      /// Fetch Images
+      //    _fetchProductImages(),
 
-        /// Fetch Reviews
-        // _fetchProductReviews(),
+      /// Fetch Reviews
+      // _fetchProductReviews(),
 
-        // /// Fetch Favourites
-        // _fetchProductFavourite(),
-      ]);
+      // /// Fetch Favourites
+      // _fetchProductFavourite(),
+      //    ])
     } on Exception catch (error) {
       _errorMessage.value = 'Something has gone wrong somewhere';
       debugPrint(error.toString());
@@ -94,10 +94,14 @@ class ProductDetailsController extends GetxController {
     final response =
         await _supabase
             .from('products')
-            .select('*')
+            .select(
+              '*, products_images(image_url), products_reviews(rating_value, comment , profiles(name, full_name, user_name, avatar, avatar_url))',
+            ) // جلب المنتج مع الصور المرتبطة
             .eq('id', productId)
             .maybeSingle();
     if (response == null) return null;
+    String res = jsonEncode(response);
+    debugPrint(res);
     return ProductModel.fromJson(response);
   }
 

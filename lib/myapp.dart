@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       locale: LocalizationController().language,
 
       // Route configuration
-      
       getPages: RouteGet.getPages,
       initialRoute: Routes.SPLASH_SCREEN,
     );
