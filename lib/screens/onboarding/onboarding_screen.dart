@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -8,18 +7,18 @@ class OnboardingScreen extends StatelessWidget {
   final List<Widget> pages = <Widget>[
     pageBuilder(
       image: AppAssets.onBoarding_1,
-      title: 'onboarding_title_1',
-      subtitle: 'onboarding_sub_title_1',
+      title: AppStrings.onboardingTitle_1,
+      subtitle: AppStrings.onboardingSubTitle_1,
     ),
     pageBuilder(
       image: AppAssets.onBoarding_2,
-      title: 'onboarding_title_2',
-      subtitle: 'onboarding_sub_title_2',
+      title: AppStrings.onboardingTitle_2,
+      subtitle: AppStrings.onboardingSubTitle_2,
     ),
     pageBuilder(
       image: AppAssets.onBoarding_3,
-      title: 'onboarding_title_3',
-      subtitle: 'onboarding_sub_title_3',
+      title: AppStrings.onboardingTitle_3,
+      subtitle: AppStrings.onboardingSubTitle_3,
     ),
   ];
   @override
@@ -36,7 +35,10 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             onPressed: _.selectLanguage,
-            child: CustomText('Language', color: Colors.black),
+            child: CustomText(
+              AppStrings.onboardingLanguage,
+              color: Colors.black,
+            ),
           ),
         ],
       ),

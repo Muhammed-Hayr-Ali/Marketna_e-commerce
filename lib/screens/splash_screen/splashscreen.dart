@@ -1,5 +1,3 @@
-
-
 import 'package:application/constants/import.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -50,22 +48,26 @@ class SplashScreen extends StatelessWidget {
                             TextButton(
                               onPressed: () => _.initializeApp(),
                               style: TextButton.styleFrom(
-                                backgroundColor: Colors.grey.shade100,
+                                backgroundColor: AppColors.grey,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(99),
                                 ),
                               ),
                               child: CustomText(
-                                'Retry',
+                                AppStrings.retry,
                                 fontSize: 10.0,
-                                color: Colors.blueGrey,
+                                color: AppColors.blueGrey,
                               ),
                             ),
                           ],
                         ),
               ),
             ),
-            CustomText('Powered by PST', fontSize: 8, color: Colors.black),
+            CustomText(
+              AppStrings.poweredBy,
+              fontSize: 8,
+              color: AppColors.black,
+            ),
           ],
         ),
       ),

@@ -8,4 +8,5 @@ class AppColors {
   static const Color rurikonBlue = Color(0xFF1C274C);
   static const Color errorRed = Color.fromARGB(255, 224, 25, 25);
   static const Color grey = Color(0xFFEEEEEE);
+  static const Color blueGrey = Color(0xFF607D8B);
 }

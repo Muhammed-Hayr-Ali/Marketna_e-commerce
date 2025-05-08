@@ -1,4 +1,5 @@
 import 'package:application/constants/import.dart';
+import 'package:application/constants/notification_message.dart';
 
 class SplashScreenController extends GetxController {
   /// Variables
@@ -28,14 +29,14 @@ class SplashScreenController extends GetxController {
       );
 
       if (!hasInternetConnection) {
-        _errorMessage.value = 'No Internet Connection Available';
+        _errorMessage.value = NotificationMessage.noInternet;
       } else {
         await _checkAuthenticationStatus();
       }
     } on TimeoutException {
-      _errorMessage.value = 'Connection Time Out Please try again';
+      _errorMessage.value = NotificationMessage.timeOut;
     } catch (e) {
-      _errorMessage.value = 'Something has gone wrong somewhere, and we will try to fix it right away.';
+      _errorMessage.value = NotificationMessage.somethingWentWrong;
     }
   }
 
