@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class UpdatePasswordController extends GetxController {
@@ -12,11 +11,12 @@ class UpdatePasswordController extends GetxController {
 
   bool isVerificationCodeValid(String verificationCode) {
     if (verificationCode.isEmpty) {
-      _verificationCodeErrorMessage.value = 'Verification code cannot be empty';
+      _verificationCodeErrorMessage.value =
+          ValidatorMessage.verificationCodeEmptyErrorMessage;
       return false;
     } else if (verificationCode.length != 6) {
       _verificationCodeErrorMessage.value =
-          'Verification code must be 6 digits';
+          ValidatorMessage.verificationCodeLengthErrorMessage;
       return false;
     }
     _verificationCodeErrorMessage.value = '';
@@ -49,7 +49,7 @@ class UpdatePasswordController extends GetxController {
 
       // Show a success message
       CustomNotification.showSnackbar(
-        message: 'Password updated successfully',
+        message: NotificationMessage.passwordUpdatedSuccess,
       );
     } on AuthException catch (error) {
       // Show an error message

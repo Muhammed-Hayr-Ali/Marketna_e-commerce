@@ -1,10 +1,9 @@
-
 import 'package:application/constants/import.dart';
 
 class SignUpController extends GetxController {
   /// Variables
   final _supabase = Supabase.instance.client;
-  final Uri _url = Uri.parse(AppStrings.privacyPolicy);
+  final Uri _url = Uri.parse(AppStrings.privacyPolicyUrl);
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
 
@@ -46,7 +45,7 @@ class SignUpController extends GetxController {
       CustomNotification.showSnackbar(message: error.message);
     } catch (error) {
       CustomNotification.showSnackbar(
-        message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
+        message: NotificationMessage.somethingWentWrong,
       );
     } finally {
       _isLoading.value = false;
@@ -64,6 +63,6 @@ class SignUpController extends GetxController {
     }
 
     /// If the URL cannot be launched, throw an exception.
-    throw Exception('Privacy policy URL could not be launched.');
+    throw Exception(NotificationMessage.somethingWentWrong);
   }
 }

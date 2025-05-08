@@ -1,5 +1,4 @@
 import 'package:application/constants/import.dart';
-import 'package:application/constants/notification_message.dart';
 
 class SplashScreenController extends GetxController {
   /// Variables

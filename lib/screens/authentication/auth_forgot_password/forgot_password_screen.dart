@@ -33,8 +33,8 @@ class ForgotPasswordScreen extends StatelessWidget {
             Column(
               children: [
                 CustomPageTitle(
-                  title: 'Forgot Password',
-                  subtitle: 'Enter your email to reset your password',
+                  title: AppStrings.forgotPassword,
+                  subtitle: AppStrings.forgotPasswordSubTitle,
                   padding: EdgeInsets.symmetric(vertical: Get.width * 0.15),
                 ),
 
@@ -42,8 +42,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                 Form(
                   key: _formKey,
                   child: CustomTextField(
-                    label: 'Email',
-                    hintText: 'example@email.com',
+                    label: AppStrings.email,
+                    hintText: AppStrings.emailHint,
                     controller: _emailController,
                     validator: (value) => Validators.email(value!),
                     keyboardType: TextInputType.emailAddress,
@@ -59,7 +59,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     progressColor: AppColors.white,
                     onPressed: _sendOTP,
                     child: CustomText(
-                      'Send Reset Code',
+                      AppStrings.sendResetCode,
                       color: AppColors.white,
                     ),
                   ),

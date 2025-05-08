@@ -9,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'Profile'),
+      appBar: customAppBar(title: AppStrings.profile),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
@@ -26,30 +26,30 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   MenuItem(
-                    title: 'Edit Profile',
+                    title: AppStrings.editProfile,
                     icon: AppAssets.avatar,
                     onTap: () => _.navigateToScreen(Routes.EDIT_PROFILE_SCREEN),
                   ),
                   MenuItem(
-                    title: 'My Addresses',
+                    title: AppStrings.myAddresses,
                     icon: AppAssets.mapPoint,
                     onTap:
                         () =>
                             _.navigateToScreen(Routes.MANAGER_ADDRESSES_SCREEN),
                   ),
                   MenuItem(
-                    title: 'My Orders',
+                    title: AppStrings.myOrders,
                     icon: AppAssets.delivery,
                     onTap: () {},
                   ),
                   MenuItem(
-                    title: 'Settings',
+                    title: AppStrings.settings,
                     icon: AppAssets.settings,
                     onTap: () => _.navigateToScreen(Routes.SETTINGS_SCREEN),
                   ),
-                  MenuItem(title: 'Help', icon: AppAssets.help, onTap: () {}),
+                  MenuItem(title: AppStrings.help, icon: AppAssets.help, onTap: () {}),
                   MenuItem(
-                    title: 'Logout',
+                    title:AppStrings.logout,
                     icon: AppAssets.logout,
                     divider: false,
                     onTap: _.signOut,

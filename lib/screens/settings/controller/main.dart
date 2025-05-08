@@ -5,62 +5,76 @@ class SettingsMainController {
     return await custombottomSheet(
       children: [
         CustomPageTitle(
-          title: 'Language',
-          subtitle: 'Choose your preferred language',
+          title: AppStrings.language,
+          subtitle: AppStrings.languageSubTitle,
           padding: EdgeInsets.only(bottom: 30.0),
         ),
         TextButton(
-          onPressed: () => Get.back(result: 'auto'),
+          onPressed: () => Get.back(result: FieldValues.auto),
           style: TextButton.styleFrom(
             backgroundColor:
-                localCode == 'auto' ? Colors.grey.shade200 : Colors.white,
+                localCode == FieldValues.auto
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
-          child: Row(children: [CustomText('Depending on the device system')]),
+          child: Row(
+            children: [CustomText(AppStrings.dependingOnTheDeviceSystem)],
+          ),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'ar'),
+          onPressed: () => Get.back(result: FieldValues.ar),
           style: TextButton.styleFrom(
             backgroundColor:
-                localCode == 'ar' ? Colors.grey.shade200 : Colors.white,
+                localCode == FieldValues.ar
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
-          child: Row(children: [CustomText('العربية')]),
+          child: Row(children: [CustomText(AppStrings.arabic)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'en'),
+          onPressed: () => Get.back(result: FieldValues.en),
           style: TextButton.styleFrom(
             backgroundColor:
-                localCode == 'en' ? Colors.grey.shade200 : Colors.white,
+                localCode == FieldValues.en
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
-          child: Row(children: [CustomText('English')]),
+          child: Row(children: [CustomText(AppStrings.english)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'de'),
+          onPressed: () => Get.back(result: FieldValues.de),
           style: TextButton.styleFrom(
             backgroundColor:
-                localCode == 'de' ? Colors.grey.shade200 : Colors.white,
+                localCode == FieldValues.de
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
-          child: Row(children: [CustomText('Deutsch')]),
+          child: Row(children: [CustomText(AppStrings.german)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'fr'),
+          onPressed: () => Get.back(result: FieldValues.fr),
           style: TextButton.styleFrom(
             backgroundColor:
-                localCode == 'fr' ? Colors.grey.shade200 : Colors.white,
+                localCode == FieldValues.fr
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
-          child: Row(children: [CustomText('Français')]),
+          child: Row(children: [CustomText(AppStrings.francis)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'tr'),
+          onPressed: () => Get.back(result: FieldValues.tr),
           style: TextButton.styleFrom(
             backgroundColor:
-                localCode == 'tr' ? Colors.grey.shade200 : Colors.white,
+                localCode == FieldValues.tr
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
-          child: Row(children: [CustomText('Türkçe')]),
+          child: Row(children: [CustomText(AppStrings.turkish)]),
         ),
       ],
     );

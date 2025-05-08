@@ -37,12 +37,9 @@ class ManageAddressesController extends GetxController {
         response.map((address) => AddressModel.fromJson(address)),
       );
       // Update the state to notify listeners
-    } on AppException catch (error) {
-      CustomNotification.showSnackbar(message: error.message);
-    } on Exception {
-      CustomNotification.showSnackbar(
-        message: NotificationMessage.somethingWentWrong,
-      );
+    } on Exception catch (e) {
+      CustomNotification.showSnackbar(message: e.toString());
+      debugPrint(e.toString());
     } finally {
       isLoading = false;
       update();

@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -37,8 +36,8 @@ class SignUpScreen extends StatelessWidget {
             children: [
               /// Title
               CustomPageTitle(
-                title: 'Create New Account',
-                subtitle: 'Fill your details to continue',
+                title: AppStrings.createNewAccount,
+                subtitle: AppStrings.createNewAccountSubTitle,
                 padding: EdgeInsets.only(bottom: Get.width * 0.15),
               ),
 
@@ -48,24 +47,24 @@ class SignUpScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      label: 'Full Name',
-                      hintText: 'John Doe',
+                      label: AppStrings.fullName,
+                      hintText: AppStrings.nameExample,
                       controller: _nameController,
                       validator: (value) => Validators.name(value!),
                       keyboardType: TextInputType.name,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: 'Email',
-                      hintText: 'example@email.com',
+                      label: AppStrings.email,
+                      hintText: AppStrings.emailExample,
                       controller: _emailController,
                       validator: (value) => Validators.email(value!),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: 'Password',
-                      hintText: '●●●●●●●●●',
+                      label: AppStrings.password,
+                      hintText: AppStrings.passwordHint,
                       controller: _passwordController,
                       validator:
                           (value) => Validators.password(
@@ -77,8 +76,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextField(
-                      label: 'Confirm Password',
-                      hintText: '●●●●●●●●●',
+                      label: AppStrings.confirmPassword,
+                      hintText: AppStrings.passwordHint,
                       controller: _confirmPasswordController,
                       validator:
                           (value) => Validators.confirmPassword(
@@ -103,21 +102,21 @@ class SignUpScreen extends StatelessWidget {
                     child: Icon(Icons.check, color: Colors.white, size: 12),
                   ),
                   const SizedBox(width: 2),
-                  CustomText('I agree to the', fontSize: 10),
+                  CustomText(AppStrings.iAgree, fontSize: 10),
                   const SizedBox(width: 2),
                   GestureDetector(
                     onTap: _.openPrivacyPolicy,
                     child: CustomText(
-                      'Terms of Use',
+                      AppStrings.termsOfUse,
                       fontSize: 10,
                       color: AppColors.primaryColor,
                     ),
                   ),
-                  CustomText(' and ', fontSize: 10),
+                  CustomText(AppStrings.and, fontSize: 10),
                   GestureDetector(
                     onTap: _.openPrivacyPolicy,
                     child: CustomText(
-                      'Privacy Policy',
+                      AppStrings.privacyPolicy,
                       fontSize: 10,
                       color: AppColors.primaryColor,
                     ),
@@ -133,7 +132,7 @@ class SignUpScreen extends StatelessWidget {
                   width: double.infinity,
                   progressColor: Colors.white,
                   onPressed: _signUp,
-                  child: CustomText('Sign Up', color: AppColors.white),
+                  child: CustomText(AppStrings.signUpButtonText, color: AppColors.white),
                 ),
               ),
               const SizedBox(height: 16.0),

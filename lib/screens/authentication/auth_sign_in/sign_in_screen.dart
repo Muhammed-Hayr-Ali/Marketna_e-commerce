@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -29,8 +28,8 @@ class SignInScreen extends StatelessWidget {
           children: [
             /// Screen Title
             CustomPageTitle(
-              title: 'Sign In',
-              subtitle: 'Hi! Welcome Back, you\'ve been missed',
+              title: AppStrings.signIn,
+              subtitle: AppStrings.signInSubTitle,
               padding: EdgeInsets.symmetric(vertical: Get.width * 0.15),
             ),
 
@@ -40,16 +39,16 @@ class SignInScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomTextField(
-                    label: 'Email',
-                    hintText: 'example@email.com',
+                    label: AppStrings.email,
+                    hintText: AppStrings.emailExample,
                     controller: _emailController,
                     validator: (value) => Validators.email(value!),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
-                    label: 'Password',
-                    hintText: '●●●●●●●●●',
+                    label: AppStrings.password,
+                    hintText: AppStrings.passwordHint,
                     controller: _passwordController,
                     validator: (value) => Validators.passwordOnly(value!),
                     isPasswordField: true,
@@ -64,7 +63,7 @@ class SignInScreen extends StatelessWidget {
                         ),
                         onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
                         child: CustomText(
-                          'Forgot Password?',
+                          AppStrings.forgotPasswordButtonText,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryColor,
@@ -86,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                 backgroundColor: AppColors.primaryColor,
                 progressColor: AppColors.white,
                 onPressed: _login,
-                child: CustomText('Sign In', color: AppColors.white),
+                child: CustomText(AppStrings.signIn, color: AppColors.white),
               ),
             ),
             const SizedBox(height: 32.0),
@@ -166,7 +165,7 @@ class SignInScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText('Don\'t have an account?', fontSize: 12),
+                    CustomText(AppStrings.dontHaveAccount, fontSize: 12),
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 6),
@@ -174,7 +173,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                       onPressed: () => Get.toNamed(Routes.REGISTER_SCREEN),
                       child: CustomText(
-                        'Sign Up',
+                        AppStrings.signUpButtonText,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: AppColors.primaryColor,

@@ -1,8 +1,6 @@
-
-
 import 'package:application/constants/import.dart';
-import 'package:application/constants/table_names.dart';
-// 
+
+//
 class PhoneTextFieldController extends GetxController {
   final SupabaseClient _supabase = Supabase.instance.client;
   final GetStorage _storage = GetStorage();

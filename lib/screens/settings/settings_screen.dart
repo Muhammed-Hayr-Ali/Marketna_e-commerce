@@ -1,12 +1,12 @@
 import 'package:application/constants/import.dart';
 
 class SettingsScreen extends StatelessWidget {
-   SettingsScreen({super.key});
-final _ = Get.put(SettingsController());
+  SettingsScreen({super.key});
+  final _ = Get.put(SettingsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(backButton: true, title: 'Settings'),
+      appBar: customAppBar(backButton: true, title: AppStrings.settings),
 
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -17,10 +17,9 @@ final _ = Get.put(SettingsController());
           ListTile(
             leading: const Icon(Icons.language),
             title: const CustomText(
-              'Language',
+              AppStrings.language,
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              
             ),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: _.updateLanguage,
@@ -28,7 +27,7 @@ final _ = Get.put(SettingsController());
           const Spacer(),
           Center(
             child: CustomText(
-              'version ${AppStrings.version}',
+              '${AppStrings.version} ${AppStrings.appVersion}',
               fontSize: 12,
               color: Colors.grey,
             ),

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 
       // Localization configuration
       translations: Localization(),
-      fallbackLocale: const Locale('ar'),
+      fallbackLocale: const Locale(FieldValues.ar),
       locale: LocalizationController().language,
 
       // Route configuration

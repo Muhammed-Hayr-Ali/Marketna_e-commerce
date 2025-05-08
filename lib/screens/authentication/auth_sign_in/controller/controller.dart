@@ -33,7 +33,7 @@ class SignInScreenController extends GetxController {
       final user = await googleSignIn.signIn();
 
       if (user == null) {
-        throw AppException('Google sign in failed');
+        throw NotificationMessage.googleSigninFailed;
       }
 
       final auth = await user.authentication;
@@ -42,7 +42,7 @@ class SignInScreenController extends GetxController {
       final idToken = auth.idToken;
 
       if (accessToken == null || idToken == null) {
-        throw AppException('Missing access or ID token');
+        throw 'missingTokenError';
       }
 
       final session = await _supabase.auth.signInWithIdToken(
@@ -52,16 +52,14 @@ class SignInScreenController extends GetxController {
       );
 
       if (session.user == null) {
-        throw AppException('User Not Found In Session');
+        throw NotificationMessage.userNotFound;
       }
 
       Get.offAllNamed(Routes.MAIN_SCREEN);
-    } on AppException catch (error) {
-      _exptectError(error.message);
     } on AuthException catch (error) {
       _exptectError(error.message);
     } on Exception {
-      _exptectError('Something has gone wrong somewhere, and we will try to fix it right away.');
+      _exptectError(NotificationMessage.somethingWentWrong);
     } finally {
       _isLoadingGoogle.value = false;
     }
@@ -76,7 +74,7 @@ class SignInScreenController extends GetxController {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
     } on Exception {
-      _exptectError('Something has gone wrong somewhere, and we will try to fix it right away.');
+      _exptectError(NotificationMessage.somethingWentWrong);
     }
   }
 
@@ -89,7 +87,7 @@ class SignInScreenController extends GetxController {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
     } on Exception {
-      _exptectError('Something has gone wrong somewhere, and we will try to fix it right away.');
+      _exptectError(NotificationMessage.somethingWentWrong);
     }
   }
 

@@ -20,7 +20,7 @@ class LocationPermissionScreen extends StatelessWidget {
                 width: Get.width * 0.5,
                 padding: EdgeInsets.all(Get.width * 0.1),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
+                  color: AppColors.grey,
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: SvgPicture.asset(
@@ -33,16 +33,16 @@ class LocationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               CustomPageTitle(
-                title: 'What is your location?',
+                title: AppStrings.locationPermission,
                 subtitle:
-                    'Allow us to access your location to show you the nearest stores.',
+                   AppStrings.locationPermissionSubTitle,
               ),
               const SizedBox(height: 24),
               TextButton(
                 onPressed: _.checkLocationPermission,
                 // buttonColor: AppColors.primaryColor,
                 child: CustomText(
-                  'Allow Location Access',
+                  AppStrings.locationPermissionButtonText,
                   color: AppColors.primaryColor,
                 ),
               ),

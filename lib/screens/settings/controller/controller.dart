@@ -8,7 +8,7 @@ class SettingsController extends GetxController {
     final String? savedLocale = _storage.read<String>(StorageKeys.localeCode);
     debugPrint('Saved locale: $savedLocale');
     final String? selectedLocale = await _main.openLanguage(savedLocale);
-    if (selectedLocale == 'auto') {
+    if (selectedLocale == FieldValues.auto) {
       Get.updateLocale(Locale(Get.deviceLocale!.languageCode));
     } else if (selectedLocale != null) {
       Get.updateLocale(Locale(selectedLocale));

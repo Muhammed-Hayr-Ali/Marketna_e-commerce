@@ -9,7 +9,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(backButton: true, title: 'Edit Profile'),
+      appBar: customAppBar(backButton: true, title: AppStrings.editProfile),
       body: Form(
         key: _.formKey,
         child: Padding(
@@ -92,8 +92,8 @@ class EditProfileScreen extends StatelessWidget {
 
                 /// name
                 CustomTextField(
-                  label: 'Full Name',
-                  hintText: 'John Doe',
+                  label: AppStrings.fullName,
+                  hintText: AppStrings.nameExample,
                   controller: _.nameController,
                   validator: (value) => Validators.name(value!),
                   keyboardType: TextInputType.name,
@@ -102,8 +102,8 @@ class EditProfileScreen extends StatelessWidget {
 
                 /// status message
                 CustomTextField(
-                  label: 'Status Message',
-                  hintText: 'Hello world!',
+                  label: AppStrings.statusMessage,
+                  hintText: AppStrings.statusMessageHint,
                   controller: _.statusMessageController,
                   keyboardType: TextInputType.text,
                 ),
@@ -112,7 +112,7 @@ class EditProfileScreen extends StatelessWidget {
                 /// email
                 CustomButton(
                   backgroundColor: AppColors.grey,
-                  label: 'Email',
+                  label: AppStrings.email,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -133,9 +133,9 @@ class EditProfileScreen extends StatelessWidget {
                 /// phone number
                 Obx(
                   () => PhoneTextField(
-                    labelText: 'Phone Number',
-                    hintCode: '963',
-                    hintPhone: '0987654321',
+                    labelText: AppStrings.phoneNumber,
+                    hintCode: AppStrings.countryCodeHint,
+                    hintPhone: AppStrings.phoneNumberHint,
                     selectedCode: _.countryCode,
                     phoneController: _.phoneController,
                     onSelectedCode: (cc) => _.updateCountryCode(cc!),
@@ -152,9 +152,9 @@ class EditProfileScreen extends StatelessWidget {
                         flex: 1,
                         child: CustomButton(
                           backgroundColor: AppColors.grey,
-                          label: 'Gender',
+                          label: AppStrings.gender,
                           child: CustomText(
-                            _.gender == '' ? 'Not Specified' : _.gender,
+                            _.gender == '' ? AppStrings.notSpecified : _.gender,
                             color: _.gender == '' ? Colors.grey : Colors.black,
                             fontWeight: FontWeight.w500,
                           ),
@@ -169,10 +169,12 @@ class EditProfileScreen extends StatelessWidget {
                         child: CustomButton(
                           backgroundColor: AppColors.grey,
 
-                          label: 'Date of Birth',
+                          label: AppStrings.dateOfBirth,
                           child: CustomText(
                             textDirection: TextDirection.ltr,
-                            (_.dateBirth == '') ? 'yyyy-MM-dd' : _.dateBirth,
+                            (_.dateBirth == '')
+                                ? AppStrings.dateFormat
+                                : _.dateBirth,
                             color:
                                 (_.dateBirth == '')
                                     ? Colors.grey
@@ -194,7 +196,10 @@ class EditProfileScreen extends StatelessWidget {
                     isLoading: _.isUpdateLoading,
                     onPressed: _.updateUserProfile,
                     progressColor: AppColors.white,
-                    child: CustomText('Update', color: AppColors.white),
+                    child: CustomText(
+                      AppStrings.updateButtonText,
+                      color: AppColors.white,
+                    ),
                   ),
                 ),
               ],

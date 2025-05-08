@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class EditProfileMainController {
@@ -9,17 +8,17 @@ class EditProfileMainController {
     return await custombottomSheet<String?>(
       children: [
         CustomPageTitle(
-          title: 'Select Image',
-          subtitle: 'Choose Profile Image Source',
+          title: AppStrings.selectImage,
+          subtitle: AppStrings.selectImageSubTitle,
           padding: EdgeInsets.only(bottom: 30.0),
         ),
 
         CustomButton(
           backgroundColor: AppColors.grey,
-          onPressed: () => Get.back(result: 'camera'),
+          onPressed: () => Get.back(result: FieldValues.camera),
           child: Row(
             children: [
-              CustomText('Camera'),
+              CustomText(AppStrings.camera),
               const Spacer(),
               SvgPicture.asset(AppAssets.camera),
             ],
@@ -29,10 +28,10 @@ class EditProfileMainController {
 
         CustomButton(
           backgroundColor: AppColors.grey,
-          onPressed: () => Get.back(result: 'gallery'),
+          onPressed: () => Get.back(result: FieldValues.gallery),
           child: Row(
             children: [
-              CustomText('Gallery'),
+              CustomText(AppStrings.gallery),
               const Spacer(),
               SvgPicture.asset(AppAssets.gallery),
             ],
@@ -43,10 +42,10 @@ class EditProfileMainController {
         isDelete
             ? CustomButton(
               backgroundColor: AppColors.grey,
-              onPressed: () => Get.back(result: 'delete'),
+              onPressed: () => Get.back(result: FieldValues.delete),
               child: Row(
                 children: [
-                  CustomText('Delete'),
+                  CustomText(AppStrings.delete),
                   const Spacer(),
                   SvgPicture.asset(AppAssets.trashBin),
                 ],
@@ -64,15 +63,15 @@ class EditProfileMainController {
         Get.deviceLocale!.languageCode;
 
     switch (localeCode) {
-      case 'ar':
+      case FieldValues.ar:
         return DateTimePickerLocale.ar;
-      case 'en':
+      case FieldValues.en:
         return DateTimePickerLocale.en_us;
-      case 'fr':
+      case FieldValues.fr:
         return DateTimePickerLocale.fr;
-      case 'de':
+      case FieldValues.de:
         return DateTimePickerLocale.de;
-      case 'tr':
+      case FieldValues.tr:
         return DateTimePickerLocale.tr;
       default:
         return DateTimePickerLocale.en_us;
@@ -83,43 +82,42 @@ class EditProfileMainController {
     return await custombottomSheet<String?>(
       children: [
         CustomPageTitle(
-          title: 'Gender',
-          subtitle: 'Select your gender',
+          title: AppStrings.gender,
+          subtitle: AppStrings.genderSubTitle,
           padding: EdgeInsets.only(bottom: 30.0),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'Male'),
+          onPressed: () => Get.back(result: FieldValues.male),
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(
-              value == 'Male' ? Colors.grey.shade200 : Colors.white,
+              value == FieldValues.male ? Colors.grey.shade200 : Colors.white,
             ),
           ),
-          child: Row(children: [CustomText('Male')]),
+          child: Row(children: [CustomText(AppStrings.male)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'Female'),
+          onPressed: () => Get.back(result: FieldValues.female),
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(
-              value == 'Female' ? Colors.grey.shade200 : Colors.white,
+              value == FieldValues.female ? Colors.grey.shade200 : Colors.white,
             ),
           ),
-          child: Row(children: [CustomText('Female')]),
+          child: Row(children: [CustomText(AppStrings.female)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: 'Not Specified'),
+          onPressed: () => Get.back(result:FieldValues.notSpecified),
           style: TextButton.styleFrom(
             backgroundColor:
-                value == 'Not Specified' ? Colors.grey.shade200 : Colors.white,
+                value == FieldValues.notSpecified ? Colors.grey.shade200 : Colors.white,
           ),
-          child: Row(children: [CustomText('Not Specified')]),
+          child: Row(children: [CustomText(AppStrings.notSpecified)]),
         ),
       ],
     );
   }
-
   /// Opens a bottom sheet with a date picker and a confirm button.
   Future<DateTime?> openDateOfBirth({String? initialDate}) {
     final completer = Completer<DateTime>();
@@ -128,8 +126,8 @@ class EditProfileMainController {
     custombottomSheet(
       children: [
         CustomPageTitle(
-          title: 'Date of Birth',
-          subtitle: 'Choose Your Date of Birth',
+          title: AppStrings.dateOfBirth,
+          subtitle: AppStrings.dateOfBirthSubTitle,
         ),
 
         Directionality(
@@ -157,7 +155,7 @@ class EditProfileMainController {
             }
             Get.back();
           },
-          child: CustomText('Confirm'),
+          child: CustomText(AppStrings.confirm),
         ),
       ],
     );

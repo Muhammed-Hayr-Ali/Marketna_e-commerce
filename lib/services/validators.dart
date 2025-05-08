@@ -5,22 +5,22 @@ class Validators {
 
   static String? email(String email) {
     if (email.isEmpty) {
-      return 'Email cannot be empty'.tr;
+      return ValidatorMessage.emailRequired.tr;
     }
     if (!RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(email)) {
-      return 'Invalid email'.tr;
+      return ValidatorMessage.invalidEmail.tr;
     }
     return null;
   }
 
   static String? passwordOnly(String password) {
     if (password.isEmpty) {
-      return 'Password cannot be empty'.tr;
+      return ValidatorMessage.passwordRequired.tr;
     }
     if (password.length < 6) {
-      return 'Password must be at least 6 characters'.tr;
+      return ValidatorMessage.passwordLength.tr;
     }
 
     return null;
@@ -28,13 +28,13 @@ class Validators {
 
   static String? password(String password, String confirmPassword) {
     if (password.isEmpty) {
-      return 'Password cannot be empty'.tr;
+      return ValidatorMessage.passwordRequired.tr;
     }
     if (password.length < 6) {
-      return 'Password must be at least 6 characters'.tr;
+      return ValidatorMessage.passwordLength.tr;
     }
     if (password != confirmPassword) {
-      return 'Passwords do not match'.tr;
+      return ValidatorMessage.passwordNotMatch.tr;
     }
 
     return null;
@@ -42,13 +42,13 @@ class Validators {
 
   static String? confirmPassword(String confirmPassword, String password) {
     if (confirmPassword.isEmpty) {
-      return 'Confirm password cannot be empty'.tr;
+      return ValidatorMessage.confirmPasswordRequired.tr;
     }
     if (confirmPassword.length < 6) {
-      return 'Confirm password must be at least 6 characters'.tr;
+      return ValidatorMessage.confirmPasswordLength.tr;
     }
     if (password != confirmPassword) {
-      return 'Passwords do not match'.tr;
+      return ValidatorMessage.confirmPasswordNotMatch.tr;
     }
 
     return null;
@@ -56,10 +56,10 @@ class Validators {
 
   static String? verificationCode(String verificationCode) {
     if (verificationCode.isEmpty) {
-      return 'Verification code cannot be empty'.tr;
+      return ValidatorMessage.verificationCodeRequired.tr;
     }
     if (verificationCode.length != 6) {
-      return 'Verification code must be 6 digits'.tr;
+      return ValidatorMessage.verificationCodeLength.tr;
     }
 
     return null;
@@ -67,42 +67,42 @@ class Validators {
 
   static String? name(String name) {
     if (name.isEmpty) {
-      return 'Name cannot be empty'.tr;
+      return ValidatorMessage.nameRequired.tr;
     }
     return null;
   }
 
   static String? phone(String phone) {
     if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phone)) {
-      return 'Invalid phone number'.tr;
+      return ValidatorMessage.invalidPhone.tr;
     }
     return null;
   }
 
   static String? addressName(String streetAddress) {
     if (streetAddress.isEmpty) {
-      return 'Address name cannot be empty'.tr;
+      return ValidatorMessage.addressNameRequired.tr;
     }
     return null;
   }
 
   static String? streetAddress(String streetAddress) {
     if (streetAddress.isEmpty) {
-      return 'Street address cannot be empty'.tr;
+      return ValidatorMessage.streetAddressRequired.tr;
     }
     return null;
   }
 
   static String? city(String city) {
     if (city.isEmpty) {
-      return 'Select city required'.tr;
+      return ValidatorMessage.cityRequired.tr;
     }
     return null;
   }
 
   static String? province(String stateProvince) {
     if (stateProvince.isEmpty) {
-      return 'Select state or province required'.tr;
+      return ValidatorMessage.stateProvinceRequired.tr;
     }
     return null;
   }
@@ -111,29 +111,29 @@ class Validators {
 
   static String? country(String country) {
     if (country.isEmpty) {
-      return 'Select country required'.tr;
+      return ValidatorMessage.countryRequired.tr;
     }
     return null;
   }
 
   static String? phoneNumber(String phoneNumber) {
     if (phoneNumber.isEmpty) {
-      return 'Phone number cannot be empty'.tr;
+      return ValidatorMessage.phoneNumberRequired.tr;
     }
 
     if (!RegExp(r'^[0-9]{4,12}$').hasMatch(phoneNumber)) {
-      return 'Invalid phone number'.tr;
+      return ValidatorMessage.invalidPhone.tr;
     }
     return null;
   }
 
   static String? countryCode(String countryCode) {
     if (countryCode.isEmpty) {
-      return 'Country code cannot be empty'.tr;
+      return ValidatorMessage.countryCodeRequired.tr;
     }
 
     if (!RegExp(r'^\+[0-9]{1,4}$').hasMatch(countryCode)) {
-      return 'Invalid country code'.tr;
+      return ValidatorMessage.invalidCountryCode.tr;
     }
     return null;
   }

@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class NotificationPermissionScreen extends StatelessWidget {
@@ -34,15 +33,15 @@ class NotificationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               CustomPageTitle(
-                title: 'Access notifications',
-                subtitle: 'Allow us to access your notifications.',
+                title: AppStrings.notificationPermission,
+                subtitle: AppStrings.notificationPermissionSubTitle,
               ),
               const SizedBox(height: 24),
               TextButton(
                 onPressed: _.checkNotificationPermission,
                 // buttonColor: AppColors.primaryColor,
                 child: CustomText(
-                  'Allow Notifications Access',
+                  AppStrings.notificationPermissionButtonText,
                   color: AppColors.primaryColor,
                 ),
               ),

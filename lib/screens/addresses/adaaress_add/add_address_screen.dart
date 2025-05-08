@@ -77,7 +77,7 @@ class AddAddressScreen extends StatelessWidget {
                       builder:
                           (_) => PhoneTextField(
                             enableCode: false,
-                            hintPhone:AppStrings.phoneHint,
+                            hintPhone:AppStrings.phoneNumberHint,
                             hintCode: AppStrings.countryCodeHint,
                             labelText: AppStrings.phoneNumber,
                             selectedCode: _.selectedCountryCode,

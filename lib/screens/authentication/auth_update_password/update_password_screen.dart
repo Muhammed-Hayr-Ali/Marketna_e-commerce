@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
@@ -37,8 +36,8 @@ class UpdatePasswordScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CustomPageTitle(
-              title: 'Update Password',
-              subtitle: 'Enter your verification code and new password',
+              title: AppStrings.updatePassword,
+              subtitle: AppStrings.updatePasswordSubTitle,
               padding: EdgeInsets.only(bottom: Get.width * 0.15),
             ),
 
@@ -103,8 +102,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
-                    label: 'Password',
-                    hintText: '●●●●●●●●●',
+                    label: AppStrings.password,
+                    hintText: AppStrings.passwordHint,
                     controller: _passwordController,
                     validator:
                         (value) => Validators.password(
@@ -116,8 +115,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
-                    label: 'Confirm Password',
-                    hintText: '●●●●●●●●●',
+                    label: AppStrings.confirmPassword,
+                    hintText: AppStrings.passwordHint,
                     controller: _confirmPasswordController,
                     validator:
                         (value) => Validators.confirmPassword(
@@ -137,7 +136,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       progressColor: Colors.white,
                       onPressed: _updatePassword,
                       child: CustomText(
-                        'Update Password',
+                        AppStrings.updatePasswordButtonText,
                         color: AppColors.white,
                       ),
                     ),

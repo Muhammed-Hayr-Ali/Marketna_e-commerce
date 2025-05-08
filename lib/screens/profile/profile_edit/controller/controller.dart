@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:application/constants/attributes.dart';
-import 'package:application/constants/bucket_names.dart';
 import 'package:application/constants/import.dart';
 
 class EditProfileController extends GetxController {
@@ -58,7 +55,7 @@ class EditProfileController extends GetxController {
       _avatar.value = metadata.avatar ?? metadata.avatarUrl ?? '';
       _email.value = currentUser.email ?? '';
       _countryCode.value = metadata.countryCode ?? '';
-      _gender.value = metadata.gender ?? 'Not Specified';
+      _gender.value = metadata.gender ?? FieldValues.notSpecified;
       _dateBirth.value = metadata.dateBirth ?? '';
       nameController.text = metadata.name ?? '';
       statusMessageController.text = metadata.statusMessage ?? '';
@@ -71,17 +68,17 @@ class EditProfileController extends GetxController {
   Future<void> pickImage(bool isDelete) async {
     final result = await _mainController.openImageSource(isDelete);
     if (result == null) return;
-    if (result == 'camera') {
+    if (result == FieldValues.camera) {
       final image = await _picker.pickImage(source: ImageSource.camera);
       if (image != null) {
         updateImagePath(image.path);
       }
-    } else if (result == 'gallery') {
+    } else if (result == FieldValues.gallery) {
       final image = await _picker.pickImage(source: ImageSource.gallery);
       if (image != null) {
         updateImagePath(image.path);
       }
-    } else if (result == 'delete') {
+    } else if (result == FieldValues.delete) {
       try {
         _isImageLoading.value = true;
         if (_avatar.value.isEmpty) return;
@@ -104,8 +101,7 @@ class EditProfileController extends GetxController {
         CustomNotification.showSnackbar(message: error.message);
       } catch (error) {
         CustomNotification.showSnackbar(
-          message:
-              'Something has gone wrong somewhere, and we will try to fix it right away.',
+          message:NotificationMessage.somethingWentWrong,
         );
       } finally {
         _isImageLoading.value = false;
@@ -121,7 +117,7 @@ class EditProfileController extends GetxController {
   void copyEmailToClipboard(String? email) {
     if (email == null) return;
     Clipboard.setData(ClipboardData(text: email));
-    CustomNotification.showToast(message: 'Email copied to clipboard');
+    CustomNotification.showToast(message: NotificationMessage.emailCopied);
   }
 
   void updateCountryCode(String countryCode) {
@@ -169,7 +165,7 @@ class EditProfileController extends GetxController {
       return url;
     } on Exception catch (error) {
       CustomNotification.showToast(
-        message: 'An error occurred while uploading the image',
+        message: NotificationMessage.imageUploadFailed,
       );
       debugPrint(error.toString());
       return null;
@@ -197,7 +193,7 @@ class EditProfileController extends GetxController {
       debugPrint('Image deleted successfully');
     } on Exception catch (error) {
       CustomNotification.showToast(
-        message: 'An error occurred while deleting the image',
+        message: NotificationMessage.imageDeleteFailed,
       );
       debugPrint(error.toString());
     } finally {
@@ -210,10 +206,10 @@ class EditProfileController extends GetxController {
       _isUpdateLoading.value = true;
 
       if (_countryCode.value.isEmpty) {
-        _countryCodeErrorMessage.value = 'Country code is required';
+        _countryCodeErrorMessage.value = ValidatorMessage.countryCodeRequired;
       }
       if (phoneController.text.isEmpty) {
-        _countryCodeErrorMessage.value = 'Phone number is required';
+        _countryCodeErrorMessage.value = ValidatorMessage.phoneNumberRequired;
       }
 
       final isValid = formKey.currentState!.validate();
