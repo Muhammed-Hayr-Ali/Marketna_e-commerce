@@ -65,6 +65,7 @@ class English {
     AppStrings.forgotPasswordButtonText: 'Forgot Password?',
     AppStrings.dontHaveAccount: "Don't have an account?",
     AppStrings.signInButtonText: 'Sign In',
+    AppStrings.orSignInWith: 'Or Sign In With',
     AppStrings.createNewAccount: 'Create New Account',
     AppStrings.createNewAccountSubTitle: 'Fill your details to continue',
     AppStrings.fullName: 'Full Name',

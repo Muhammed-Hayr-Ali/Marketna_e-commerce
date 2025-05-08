@@ -64,6 +64,7 @@ class Turkish {
     AppStrings.forgotPasswordButtonText: 'Şifremi unuttum?',
     AppStrings.dontHaveAccount: 'Hesabınız yok mu?',
     AppStrings.signInButtonText: 'Giriş Yap',
+    AppStrings.orSignInWith: 'Veya Giriş Yap',
     AppStrings.createNewAccount: 'Yeni Hesap Oluştur',
     AppStrings.createNewAccountSubTitle:
         'Devam etmek için bilgilerinizi doldurun',

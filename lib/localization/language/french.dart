@@ -68,6 +68,7 @@ class French {
     AppStrings.forgotPasswordButtonText: 'Mot de passe oublié ?',
     AppStrings.dontHaveAccount: 'Vous n’avez pas de compte ?',
     AppStrings.signInButtonText: 'Se connecter',
+    AppStrings.orSignInWith: 'Ou se connecter avec',
     AppStrings.createNewAccount: 'Créer un nouveau compte',
     AppStrings.createNewAccountSubTitle:
         'Remplissez vos coordonnées pour continuer',

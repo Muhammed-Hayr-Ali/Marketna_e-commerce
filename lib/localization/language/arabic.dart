@@ -63,6 +63,7 @@ class Arabic {
     AppStrings.forgotPasswordButtonText: 'نسيت كلمة المرور؟',
     AppStrings.dontHaveAccount: 'ليس لديك حساب؟',
     AppStrings.signInButtonText: 'تسجيل الدخول',
+    AppStrings.orSignInWith : 'او تسجيل الدخول بواسطة',
     AppStrings.createNewAccount: 'إنشاء حساب جديد',
     AppStrings.createNewAccountSubTitle: 'املأ تفاصيلك للمتابعة',
     AppStrings.fullName: 'الاسم الكامل',

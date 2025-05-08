@@ -103,7 +103,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                     CustomText(
-                      'Or Sign In With',
+                      AppStrings.orSignInWith,
                       color: Colors.grey,
                       fontSize: 10.0,
                     ),

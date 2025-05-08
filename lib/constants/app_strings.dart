@@ -67,6 +67,7 @@ class AppStrings {
   static const String forgotPasswordButtonText = 'Forgot Password?';
   static const String dontHaveAccount = 'Don\'t have an account?';
   static const String signInButtonText = 'Sign In';
+  static const String orSignInWith = 'Or Sign In With';
   static const String createNewAccount = 'Create New Account';
   static const String createNewAccountSubTitle =
       'Fill your details to continue';

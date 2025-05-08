@@ -67,6 +67,7 @@ class German {
     AppStrings.forgotPasswordButtonText: 'Passwort vergessen?',
     AppStrings.dontHaveAccount: 'Du hast kein Konto?',
     AppStrings.signInButtonText: 'Anmelden',
+    AppStrings.orSignInWith: 'Oder anmelden mit',
     AppStrings.createNewAccount: 'Neues Konto erstellen',
     AppStrings.createNewAccountSubTitle:
         'Fülle deine Daten aus, um fortzufahren',
