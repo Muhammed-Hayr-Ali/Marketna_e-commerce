@@ -11,7 +11,7 @@ class PhoneTextFieldController extends GetxController {
   final RxBool isLoading = false.obs;
 
   String getLocalCode() {
-    final locale = _storage.read(STORAGE_KEYS.LOCALE);
+    final locale = _storage.read(StorageKey.locale);
     return locale ?? Get.deviceLocale?.languageCode ?? 'en';
   }
 

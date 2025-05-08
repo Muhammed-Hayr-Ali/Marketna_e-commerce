@@ -55,7 +55,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     // Retrieve locale from storage or default to device locale
     local =
-        _storage.read(STORAGE_KEYS.LOCALE) ??
+        _storage.read(StorageKey.locale) ??
         Get.deviceLocale?.languageCode ??
         'en';
 
