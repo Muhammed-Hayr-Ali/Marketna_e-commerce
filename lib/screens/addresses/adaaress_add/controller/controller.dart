@@ -1,5 +1,4 @@
 import 'package:application/utils/import.dart';
-import 'package:application/utils/table_names.dart';
 
 class AddAddressController extends GetxController {
   // AddAddressController({this.addressId});
@@ -39,7 +38,7 @@ class AddAddressController extends GetxController {
   @override
   void onInit() async {
     local =
-        _storage.read(STORAGE_KEYS.LOCALE) ?? Get.deviceLocale!.languageCode;
+        _storage.read(StorageKey.locale) ?? Get.deviceLocale!.languageCode;
 
     super.onInit();
   }

@@ -43,12 +43,12 @@ class OnboardingController extends GetxController {
   /// code to storage.
   Future<void> selectLanguage() async {
     final oldLanguageCode =
-        _storage.read<String>(STORAGE_KEYS.LOCALE) ??
+        _storage.read<String>(StorageKey.locale) ??
         Get.deviceLocale!.languageCode;
 
     final newLanguageCode = await _main.openLanguage(oldLanguageCode);
     if (newLanguageCode == null) return;
     Get.updateLocale(Locale(newLanguageCode));
-    _storage.write(STORAGE_KEYS.LOCALE, newLanguageCode);
+    _storage.write(StorageKey.locale, newLanguageCode);
   }
 }

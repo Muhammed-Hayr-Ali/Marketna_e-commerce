@@ -59,7 +59,7 @@ class EditProfileMainController {
   /// Retrieves the locale setting for the DateTimePicker.
   DateTimePickerLocale _getLocale() {
     final String localeCode =
-        _storage.read<String>(STORAGE_KEYS.LOCALE) ??
+        _storage.read<String>(StorageKey.locale) ??
         Get.deviceLocale!.languageCode;
 
     switch (localeCode) {

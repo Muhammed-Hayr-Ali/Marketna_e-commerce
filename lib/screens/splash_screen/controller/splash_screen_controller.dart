@@ -54,9 +54,9 @@ class SplashScreenController extends GetxController {
 
   Future<void> _checkFirstLaunch() async {
     final isFirstLaunch =
-        _storage.read<bool>(STORAGE_KEYS.FIRST_LAUNCH) ?? true;
+        _storage.read<bool>(StorageKey.firstLaunch) ?? true;
     if (isFirstLaunch) {
-      await _storage.write(STORAGE_KEYS.FIRST_LAUNCH, false);
+      await _storage.write(StorageKey.firstLaunch, false);
       Get.offAllNamed(Routes.ONBOARDING_SCREEN);
     } else {
       Get.offAllNamed(Routes.SIGN_IN_SCREEN);
