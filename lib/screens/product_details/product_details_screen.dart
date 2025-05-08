@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class ProductDetailsScreen extends StatelessWidget {

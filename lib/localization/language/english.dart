@@ -1,218 +1,179 @@
+// ignore_for_file: equal_keys_in_map
+
+import 'package:application/constants/import.dart';
+
 class English {
   Map<String, String> get keys => {
-    ///===========================================================================
-    /// Splash Screen
-    'Powered by PST': 'Powered by PST',
-
-    ///===========================================================================
-    /// Onboarding Screen
-    'Language': 'Language',
-
-    'onboarding_title_1':
+    // --- AppStrings ---
+    AppStrings.onboardingTitle_1:
         'Discover a new way to shop, faster and easier than ever!',
-    'onboarding_sub_title_1':
-        'Shop from thousands of products with just a few clicks, and enjoy a personalized experience that suits your needs, anytime, anywhere.',
-
-    'onboarding_title_2':
+    AppStrings.onboardingTitle_2:
         'Receive your orders wherever you are, at a time that suits you!',
-    'onboarding_sub_title_2':
-        'We offer fast and secure delivery options, with real-time tracking of order status and live updates until it reaches your door.',
-
-    'onboarding_title_3':
+    AppStrings.onboardingTitle_3:
         'Control every order intelligently, from order to receipt!',
-    'onboarding_sub_title_3':
+    AppStrings.onboardingSubTitle_1:
+        'Shop from thousands of products with just a few clicks, and enjoy a personalized experience that suits your needs, anytime, anywhere.',
+    AppStrings.onboardingSubTitle_2:
+        'We offer fast and secure delivery options, with real-time tracking of order status and live updates until it reaches your door.',
+    AppStrings.onboardingSubTitle_3:
         'Track your orders, edit details, or reorder easily through a clear interface, with 24/7 technical support available to resolve any inquiries.',
-
-    ///===========================================================================
-    /// Sign In
-    'Sign In': 'Sign In',
-    'Hi! Welcome Back, you\'ve been missed':
-        'Hi! Welcome Back, you\'ve been missed',
-    'Email': 'Email',
-    'example@email.com': 'example@email.com',
-    'Password': 'Password',
-    '●●●●●●●●●': '●●●●●●●●●',
-    'Forgot Password?': 'Forgot Password?',
-    'Or Sign In With': 'Or Sign In With',
-    'Don\'t have an account?': 'Don\'t have an account?',
-    'Sign Up': 'Sign Up',
-    'Login with': 'Login with',
-
-    ///===========================================================================
-    /// Forgot Password
-    'Forgot Password': 'Forgot Password',
-    'Enter your email to reset your password':
-        'Enter your email to reset your password',
-    'Send Reset Code': 'Send Reset Code',
-
-    ///===========================================================================
-    /// Update Password
-    'Update Password': 'Update Password',
-    'Confirm Password': 'Confirm Password',
-    'Enter your verification code and new password':
-        'Enter your verification code and new password',
-    'Password updated successfully': 'Password updated successfully',
-
-    ///===========================================================================
-    /// Sign Up
-    'Create New Account': 'Create New Account',
-    'Fill your details to continue': 'Fill your details to continue',
-    'Full Name': 'Full Name',
-    'John Doe': 'John Doe',
-    'I agree to the': 'I agree to the',
-    'Terms of Use': 'Terms of Use',
-    ' and ': ' and ',
-    'Privacy Policy': 'Privacy Policy',
-    'Open Settings': 'Open Settings',
-    'What is your location?': 'What is your location?',
-    'Allow us to access your location to show you the nearest stores.':
-        'Allow us to access your location to show you the nearest stores.',
-    'Allow Location Access': 'Allow Location Access',
-    'Allow Notifications Access': 'Allow Notifications Access',
-
-    ///===========================================================================
-    /// Profile Screen
-    'Profile': 'Profile',
-    'Welcome': 'Welcome',
-    'Edit Profile': 'Edit Profile',
-    'My Addresses': 'My Addresses',
-    'My Orders': 'My Orders',
-    'Settings': 'Settings',
-    'Help': 'Help',
-    'Logout': 'Logout',
-    'Are you sure you want to logout?': 'Are you sure you want to logout?',
-    'Logout Now': 'Logout Now',
-
-    ///===========================================================================
-    /// Edit Profile Screen
-    'Select Image': 'Select Image',
-    'Choose Profile Image Source': 'Choose Profile Image Source',
-    'Camera': 'Camera',
-    'Gallery': 'Gallery',
-    'Delete': 'Delete',
-    'Status Message': 'Status Message',
-    'Email copied to clipboard': 'Email copied to clipboard',
-    'Phone Number': 'Phone Number',
-    '963': '963',
-    '0987654321': '0987654321',
-    'Country Code': 'Country Code',
-    'Select your country code': 'Select your country code',
-    'Gender': 'Gender',
-    'Select your gender': 'Select your gender',
-    'Male': 'Male',
-    'Female': 'Female',
-    'Not Specified': 'Not Specified',
-    'Date of Birth': 'Date of Birth',
-    'Choose Your Date of Birth': 'Choose Your Date of Birth',
-    'Select Date': 'Select Date',
-    'Confirm': 'Confirm',
-
-    ///===========================================================================
-    /// My Address Screen
-    'Manage Addresses': 'Manage Addresses',
-    'You don\'t have an address yet. Add your shipping addresses.':
-        'You don\'t have an address yet. Add your shipping addresses.',
-    'Add New Address': 'Add New Address',
-    'Address Name': 'Address Name',
-    'Street Address': 'Street Address',
-    'Country': 'Country',
-    'Select Country': 'Select Country',
-    'Select your country from the list below':
-        'Select your country from the list below',
-
-    'State / Province': 'State / Province',
-    'Address Details': 'Address Details',
-    'Select Province': 'Select Province',
-    'Select your province from the list below':
-        'Select your province from the list below',
-    'City': 'City',
-    'Select City': 'Select City',
-    'Select your city from the list below':
-        'Select your city from the list below',
-    'Notes': 'Notes',
-    'Save Address': 'Save Address',
-    'Update Address': 'Update Address',
-    'Edit Address': 'Edit Address',
-    'Are you sure you want to delete this address?':
+    AppStrings.language: 'Language',
+    AppStrings.poweredBy: 'Powered by PST',
+    AppStrings.addNewAddress: 'Add New Address',
+    AppStrings.editAddress: 'Edit Address',
+    AppStrings.addressName: 'Address Name',
+    AppStrings.streetAddress: 'Street Address',
+    AppStrings.phoneNumberHint: '0987654321',
+    AppStrings.countryCodeHint: '963',
+    AppStrings.phoneNumber: 'Phone Number',
+    AppStrings.notes: 'Notes',
+    AppStrings.updateAddress: 'Update Address',
+    AppStrings.saveAddress: 'Save Address',
+    AppStrings.deleteAddress: 'Delete Address',
+    AppStrings.deleteAddressMessage:
         'Are you sure you want to delete this address?',
-    'Delete Address': 'Delete Address',
-    'Address deleted successfully.': 'Address deleted successfully.',
-
-    ///===========================================================================
-    ///  General
-    'Yes': 'Yes',
-    'No': 'No',
-    'OK': 'OK',
-    'Cancel': 'Cancel',
-    'Close': 'Close',
-    'Done': 'Done',
-    'Next': 'Next',
-    'Previous': 'Previous',
-    'Submit': 'Submit',
-    'Save': 'Save',
-    'Continue': 'Continue',
-    'Skip': 'Skip',
-    'Back': 'Back',
-    'Retry': 'Retry',
-    'Update': 'Update',
-
-    ///===========================================================================
-    /// Settings
-    'Choose your preferred language': 'Choose your preferred language',
-    'Depending on the device system': 'Depending on the device system',
-
-    ///===========================================================================
-    /// App Exception
-    'Invalid login credentials': 'Invalid login credentials',
-    'Google sign in failed': 'Google sign in failed',
-    'Missing access or ID token': 'Missing access or ID token',
-    'User Not Found In Session': 'User Not Found In Session',
-    'No Internet Connection Available': 'No Internet Connection Available',
-    'Connection Time Out Please try again':
-        'Connection Time Out Please try again',
-    'Something has gone wrong somewhere, and we will try to fix it right away.':
-        'Something has gone wrong somewhere, and we will try to fix it right away.',
-    'security_code_request':
-        'You can request a security code again in %s seconds.',
-    'Unable to send password reset code at this time. Please try again later.':
-        'Unable to send password reset code at this time. Please try again later.',
-    'Privacy policy URL could not be launched.':
-        'Privacy policy URL could not be launched.',
-    'An error occurred while uploading the image':
-        'An error occurred while uploading the image',
-    'An error occurred while deleting the image':
-        'An error occurred while deleting the image',
-    'Location services are disabled.': 'Location services are disabled.',
-    'Location permissions are denied': 'Location permissions are denied',
-    'Location permissions are permanently denied, we cannot request permissions.':
-        'Location permissions are permanently denied, we cannot request permissions.',
-    'Notification services are disabled.':
+    AppStrings.addressDetails: 'Address Details',
+    AppStrings.country: 'Country',
+    AppStrings.stateProvince: 'State / Province',
+    AppStrings.city: 'City',
+    AppStrings.noAddressesErrorMessage:
+        "You don't have an address yet. Add your shipping addresses.",
+    AppStrings.manageAddresses: 'Manage Addresses',
+    AppStrings.forgotPassword: 'Forgot Password',
+    AppStrings.forgotPasswordSubTitle:
+        'Enter your email to reset your password',
+    AppStrings.email: 'Email',
+    AppStrings.emailHint: 'Enter your email',
+    AppStrings.emailExample: 'example@email.com',
+    AppStrings.sendResetCode: 'Send Reset Code',
+    AppStrings.locationServicesDisabled: 'Location services are disabled.',
+    AppStrings.notificationServicesDisabled:
         'Notification services are disabled.',
+    AppStrings.openSettings: 'Open Settings',
+    AppStrings.locationPermission: 'What is your location?',
+    AppStrings.locationPermissionSubTitle:
+        'Allow us to access your location to show you the nearest stores.',
+    AppStrings.locationPermissionButtonText: 'Allow Location Access',
+    AppStrings.notificationPermission: 'Access notifications',
+    AppStrings.notificationPermissionSubTitle:
+        'Allow us to access your notifications.',
+    AppStrings.notificationPermissionButtonText: 'Allow Notification Access',
+    AppStrings.signIn: 'Sign In',
+    AppStrings.signInSubTitle: "Hi! Welcome Back, you've been missed",
+    AppStrings.password: 'Password',
+    AppStrings.passwordHint: '●●●●●●●●●',
+    AppStrings.forgotPasswordButtonText: 'Forgot Password?',
+    AppStrings.dontHaveAccount: "Don't have an account?",
+    AppStrings.signInButtonText: 'Sign In',
+    AppStrings.createNewAccount: 'Create New Account',
+    AppStrings.createNewAccountSubTitle: 'Fill your details to continue',
+    AppStrings.fullName: 'Full Name',
+    AppStrings.nameExample: 'John Doe',
+    AppStrings.confirmPassword: 'Confirm Password',
+    AppStrings.iAgree: 'I agree to the',
+    AppStrings.termsOfUse: 'Terms of Use',
+    AppStrings.and: ' & ',
+    AppStrings.privacyPolicy: 'Privacy Policy',
+    AppStrings.signUpButtonText: 'Sign Up',
+    AppStrings.updatePassword: 'Update Password',
+    AppStrings.updatePasswordSubTitle:
+        'Enter your verification code and new password',
+    AppStrings.updatePasswordButtonText: 'Update Password',
+    AppStrings.dateOfBirth: 'Date of Birth',
+    AppStrings.dateOfBirthSubTitle: 'Choose Your Date of Birth',
+    AppStrings.selectImage: 'Select Image',
+    AppStrings.selectImageSubTitle: 'Choose Profile Image Source',
+    AppStrings.camera: 'Camera',
+    AppStrings.gallery: 'Gallery',
+    AppStrings.delete: 'Delete',
+    AppStrings.gender: 'Gender',
+    AppStrings.genderSubTitle: 'Select your gender',
+    AppStrings.notSpecified: 'Not Specified',
+    AppStrings.male: 'Male',
+    AppStrings.female: 'Female',
+    AppStrings.editProfile: 'Edit Profile',
+    AppStrings.statusMessage: 'Status Message',
+    AppStrings.statusMessageHint: 'Hello world!',
+    AppStrings.updateButtonText: 'Update',
+    AppStrings.logout: 'Logout',
+    AppStrings.logoutSubTitle: 'Are you sure you want to logout?',
+    AppStrings.logoutButtonText: 'Logout Now',
+    AppStrings.profile: 'Profile',
+    AppStrings.myAddresses: 'My Addresses',
+    AppStrings.myOrders: 'My Orders',
+    AppStrings.settings: 'Settings',
+    AppStrings.help: 'Help',
+    AppStrings.languageSubTitle: 'Choose your preferred language',
+    AppStrings.dependingOnTheDeviceSystem: 'Depending on the device system',
+    AppStrings.arabic: 'العربية',
+    AppStrings.english: 'English',
+    AppStrings.german: 'Deutsch',
+    AppStrings.francis: 'Français',
+    AppStrings.turkish: 'Türkçe',
+    AppStrings.version: 'version',
+    AppStrings.retry: 'Retry',
+    AppStrings.no: 'No',
+    AppStrings.yes: 'Yes',
+    AppStrings.ok: 'Ok',
+    AppStrings.cancel: 'Cancel',
+    AppStrings.continueText: 'Continue',
+    AppStrings.next: 'Next',
+    AppStrings.back: 'Back',
+    AppStrings.skip: 'Skip',
+    AppStrings.confirm: 'Confirm',
 
-    ///===========================================================================
-    /// Validators
-    'Email cannot be empty': 'Email cannot be empty',
-    'Invalid email': 'Invalid email',
-    'Password cannot be empty': 'Password cannot be empty',
-    'Password must be at least 6 characters':
-        'Password must be at least 6 characters',
-    'Verification code cannot be empty': 'Verification code cannot be empty',
-    'Verification code must be 6 digits': 'Verification code must be 6 digits',
-    'Passwords do not match': 'Passwords do not match',
-    'Confirm password cannot be empty': 'Confirm password cannot be empty',
-    'Confirm password must be at least 6 characters':
+    ValidatorMessage.verificationCodeEmptyErrorMessage:
+        'Verification code cannot be empty',
+    ValidatorMessage.verificationCodeLengthErrorMessage:
+        'Verification code must be 6 digits',
+    ValidatorMessage.countryCodeRequired: 'Country code is required',
+    ValidatorMessage.phoneNumberRequired: 'Phone number is required',
+    ValidatorMessage.emailRequired: 'Email cannot be empty',
+    ValidatorMessage.invalidEmail: 'Invalid email',
+    ValidatorMessage.passwordRequired: 'Password cannot be empty',
+    ValidatorMessage.passwordLength: 'Password must be at least 6 characters',
+    ValidatorMessage.passwordNotMatch: 'Passwords do not match',
+    ValidatorMessage.confirmPasswordRequired:
+        'Confirm password cannot be empty',
+    ValidatorMessage.confirmPasswordLength:
         'Confirm password must be at least 6 characters',
-    'Name cannot be empty': 'Name cannot be empty',
-    'Country code is required': 'Country code is required',
-    'Phone number is required': 'Phone number is required',
-    'Address name cannot be empty': 'Address name cannot be empty',
-    'Street address cannot be empty': 'Street address cannot be empty',
-    'Select city required': 'Select city required',
-    'Select state or province required': 'Select state or province required',
-    'Select country required': 'Select country required',
-    'Phone number cannot be empty': 'Phone number cannot be empty',
-    'Invalid phone number': 'Invalid phone number',
-    'Country code cannot be empty': 'Country code cannot be empty',
-    'Invalid country code': 'Invalid country code',
+    ValidatorMessage.confirmPasswordNotMatch: 'Passwords do not match',
+    ValidatorMessage.verificationCodeRequired:
+        'Verification code cannot be empty',
+    ValidatorMessage.verificationCodeLength:
+        'Verification code must be 6 digits',
+    ValidatorMessage.nameRequired: 'Name cannot be empty',
+    ValidatorMessage.invalidPhone: 'Invalid phone number',
+
+    ValidatorMessage.addressNameRequired: 'Address name cannot be empty',
+    ValidatorMessage.streetAddressRequired: 'Street address cannot be empty',
+    ValidatorMessage.cityRequired: 'Select city required',
+    ValidatorMessage.stateProvinceRequired: 'Select state or province required',
+    ValidatorMessage.countryRequired: 'Select country required',
+    ValidatorMessage.invalidCountryCode: 'Invalid country code',
+
+    NotificationMessage.noInternet: 'No Internet Connection Available',
+    NotificationMessage.timeOut: 'Connection Time Out Please try again',
+    NotificationMessage.somethingWentWrong:
+        'Something has gone wrong somewhere, and we will try to fix it right away.',
+    NotificationMessage.locationDisabled: 'Location services are disabled.',
+    NotificationMessage.locationDenied: 'Location permissions are denied',
+    NotificationMessage.locationDeniedForever:
+        'Location permissions are permanently denied, we cannot request permissions.',
+    NotificationMessage.userNull: 'user ID is null. Cannot load addresses.',
+    NotificationMessage.addressDeletedSuccess: 'Address deleted successfully.',
+    NotificationMessage.unableToSendCode:
+        'Unable to send password reset code at this time. Please try again later.',
+    NotificationMessage.securityCodeRequest:
+        'You can request a security code again in %s seconds.',
+    NotificationMessage.googleSigninFailed: 'Google sign in failed',
+    NotificationMessage.missingTokenError: 'Missing access or ID token',
+    NotificationMessage.userNotFound: 'User Not Found In Session',
+    NotificationMessage.passwordUpdatedSuccess: 'Password updated successfully',
+    NotificationMessage.emailCopied: 'Email copied to clipboard',
+    NotificationMessage.imageUploadFailed:
+        'An error occurred while uploading the image',
+    NotificationMessage.imageDeleteFailed:
+        'An error occurred while deleting the image',
   };
 }

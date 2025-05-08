@@ -9,12 +9,12 @@ class AppStrings {
 
   static const String dateFormat = 'yyyy-MM-dd';
 
-  static const String onboardingTitle_1 = 'onboarding_title_1';
-  static const String onboardingTitle_2 = 'onboarding_title_1';
-  static const String onboardingTitle_3 = 'onboarding_title_1';
-  static const String onboardingSubTitle_1 = 'onboarding_sub_title_1';
-  static const String onboardingSubTitle_2 = 'onboarding_sub_title_1';
-  static const String onboardingSubTitle_3 = 'onboarding_sub_title_1';
+  static const String onboardingTitle_1 =  'Discover a new way to shop, faster and easier than ever!';
+  static const String onboardingTitle_2 = 'Receive your orders wherever you are, at a time that suits you!';
+  static const String onboardingTitle_3 = 'Control every order intelligently, from order to receipt!';
+  static const String onboardingSubTitle_1 = 'Shop from thousands of products with just a few clicks, and enjoy a personalized experience that suits your needs, anytime, anywhere.';
+  static const String onboardingSubTitle_2 = 'We offer fast and secure delivery options, with real-time tracking of order status and live updates until it reaches your door.';
+  static const String onboardingSubTitle_3 = 'Track your orders, edit details, or reorder easily through a clear interface, with 24/7 technical support available to resolve any inquiries.';
   static const String language = 'Language';
   static const String poweredBy = 'Powered by PST';
   static const String addNewAddress = 'Add New Address';
@@ -126,4 +126,6 @@ class AppStrings {
   static const String back = 'Back';
   static const String skip = 'Skip';
   static const String confirm = 'Confirm';
+
+  static var cityRequired;
 }

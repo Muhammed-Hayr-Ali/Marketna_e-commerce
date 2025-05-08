@@ -88,36 +88,39 @@ class EditProfileMainController {
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: FieldValues.male),
+          onPressed: () => Get.back(result: AppStrings.male),
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(
-              value == FieldValues.male ? Colors.grey.shade200 : Colors.white,
+              value == AppStrings.male ? Colors.grey.shade200 : Colors.white,
             ),
           ),
           child: Row(children: [CustomText(AppStrings.male)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result: FieldValues.female),
+          onPressed: () => Get.back(result: AppStrings.female),
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(
-              value == FieldValues.female ? Colors.grey.shade200 : Colors.white,
+              value == AppStrings.female ? Colors.grey.shade200 : Colors.white,
             ),
           ),
           child: Row(children: [CustomText(AppStrings.female)]),
         ),
 
         TextButton(
-          onPressed: () => Get.back(result:FieldValues.notSpecified),
+          onPressed: () => Get.back(result: AppStrings.notSpecified),
           style: TextButton.styleFrom(
             backgroundColor:
-                value == FieldValues.notSpecified ? Colors.grey.shade200 : Colors.white,
+                value == AppStrings.notSpecified
+                    ? Colors.grey.shade200
+                    : Colors.white,
           ),
           child: Row(children: [CustomText(AppStrings.notSpecified)]),
         ),
       ],
     );
   }
+
   /// Opens a bottom sheet with a date picker and a confirm button.
   Future<DateTime?> openDateOfBirth({String? initialDate}) {
     final completer = Completer<DateTime>();

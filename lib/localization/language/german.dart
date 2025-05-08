@@ -1,182 +1,192 @@
+// ignore_for_file: equal_keys_in_map
+
+import 'package:application/constants/import.dart';
+
 class German {
   Map<String, String> get keys => {
-    ///===========================================================================
-    /// Splash Screen
-    'language': 'Sprache',
-    'Retry': 'Erneut versuchen',
-    'Powered by PST': 'Unterstützt von PST',
+    // --- AppStrings ---
+    AppStrings.onboardingTitle_1:
+        'Entdecke eine neue Art einzukaufen – schneller und einfacher denn je!',
+    AppStrings.onboardingTitle_2:
+        'Empfange deine Bestellungen überall dort, wo du bist – zu einer Zeit, die dir passt!',
+    AppStrings.onboardingTitle_3:
+        'Behalte jede Bestellung intelligent im Blick – vom Auftrag bis zur Lieferung!',
+    AppStrings.onboardingSubTitle_1:
+        'Einkaufen aus Tausenden von Produkten mit nur wenigen Klicks und genieße ein personalisiertes Erlebnis, das perfekt zu dir passt – jederzeit und überall.',
+    AppStrings.onboardingSubTitle_2:
+        'Wir bieten schnelle und sichere Lieferoptionen mit Echtzeit-Tracking des Bestellstatus und Live-Updates, bis die Lieferung vor deiner Tür eintrifft.',
+    AppStrings.onboardingSubTitle_3:
+        'Verfolge deine Bestellungen, passe Details an oder bestelle erneut ganz einfach über eine klare Oberfläche. Unser technischer Support steht dir rund um die Uhr zur Verfügung, um alle Anfragen zu klären.',
+    AppStrings.language: 'Sprache',
+    AppStrings.poweredBy: 'Angetrieben von PST',
+    AppStrings.addNewAddress: 'Neue Adresse hinzufügen',
+    AppStrings.editAddress: 'Adresse bearbeiten',
+    AppStrings.addressName: 'Adressname',
+    AppStrings.streetAddress: 'Straßenadresse',
+    AppStrings.phoneNumberHint: '0987654321',
+    AppStrings.countryCodeHint: '963',
+    AppStrings.phoneNumber: 'Telefonnummer',
+    AppStrings.notes: 'Notizen',
+    AppStrings.updateAddress: 'Adresse aktualisieren',
+    AppStrings.saveAddress: 'Adresse speichern',
+    AppStrings.deleteAddress: 'Adresse löschen',
+    AppStrings.deleteAddressMessage:
+        'Bist du sicher, dass du diese Adresse löschen möchtest?',
+    AppStrings.addressDetails: 'Adressdetails',
+    AppStrings.country: 'Land',
+    AppStrings.stateProvince: 'Bundesland / Provinz',
+    AppStrings.city: 'Stadt',
+    AppStrings.noAddressesErrorMessage:
+        'Du hast noch keine Adresse. Füge deine Lieferadressen hinzu.',
+    AppStrings.manageAddresses: 'Adressen verwalten',
+    AppStrings.forgotPassword: 'Passwort vergessen',
+    AppStrings.forgotPasswordSubTitle:
+        'Gib deine E-Mail-Adresse ein, um dein Passwort zurückzusetzen',
+    AppStrings.email: 'E-Mail',
+    AppStrings.emailHint: 'Gib deine E-Mail-Adresse ein',
+    AppStrings.emailExample: 'beispiel@email.com',
+    AppStrings.sendResetCode: 'Zurücksetz-Code senden',
+    AppStrings.locationServicesDisabled: 'Standortdienste sind deaktiviert.',
+    AppStrings.notificationServicesDisabled:
+        'Benachrichtigungsdienste sind deaktiviert.',
+    AppStrings.openSettings: 'Einstellungen öffnen',
+    AppStrings.locationPermission: 'Wo befindest du dich?',
+    AppStrings.locationPermissionSubTitle:
+        'Erlaube uns Zugriff auf deinen Standort, um dir die nächstgelegenen Geschäfte anzuzeigen.',
+    AppStrings.locationPermissionButtonText: 'Standortzugriff erlauben',
+    AppStrings.notificationPermission: 'Benachrichtigungen aktivieren',
+    AppStrings.notificationPermissionSubTitle:
+        'Erlaube uns Zugriff auf deine Benachrichtigungen.',
+    AppStrings.notificationPermissionButtonText:
+        'Benachrichtigungszugriff erlauben',
+    AppStrings.signIn: 'Anmelden',
+    AppStrings.signInSubTitle:
+        'Hallo! Willkommen zurück, wir haben dich vermisst!',
+    AppStrings.password: 'Passwort',
+    AppStrings.passwordHint: '●●●●●●●●●',
+    AppStrings.forgotPasswordButtonText: 'Passwort vergessen?',
+    AppStrings.dontHaveAccount: 'Du hast kein Konto?',
+    AppStrings.signInButtonText: 'Anmelden',
+    AppStrings.createNewAccount: 'Neues Konto erstellen',
+    AppStrings.createNewAccountSubTitle:
+        'Fülle deine Daten aus, um fortzufahren',
+    AppStrings.fullName: 'Vollständiger Name',
+    AppStrings.nameExample: 'Max Mustermann',
+    AppStrings.confirmPassword: 'Passwort bestätigen',
+    AppStrings.iAgree: 'Ich akzeptiere die',
+    AppStrings.termsOfUse: 'Nutzungsbedingungen',
+    AppStrings.and: ' und ',
+    AppStrings.privacyPolicy: 'Datenschutzerklärung',
+    AppStrings.signUpButtonText: 'Registrieren',
+    AppStrings.updatePassword: 'Passwort aktualisieren',
+    AppStrings.updatePasswordSubTitle:
+        'Gib deinen Verifizierungscode und dein neues Passwort ein',
+    AppStrings.updatePasswordButtonText: 'Passwort aktualisieren',
+    AppStrings.dateOfBirth: 'Geburtsdatum',
+    AppStrings.dateOfBirthSubTitle: 'Wähle dein Geburtsdatum',
+    AppStrings.selectImage: 'Bild auswählen',
+    AppStrings.selectImageSubTitle: 'Wähle die Quelle für dein Profilbild',
+    AppStrings.camera: 'Kamera',
+    AppStrings.gallery: 'Galerie',
+    AppStrings.delete: 'Löschen',
+    AppStrings.gender: 'Geschlecht',
+    AppStrings.genderSubTitle: 'Wähle dein Geschlecht',
+    AppStrings.notSpecified: 'Nicht angegeben',
+    AppStrings.male: 'Männlich',
+    AppStrings.female: 'Weiblich',
+    AppStrings.editProfile: 'Profil bearbeiten',
+    AppStrings.statusMessage: 'Statusnachricht',
+    AppStrings.statusMessageHint: 'Hallo Welt!',
+    AppStrings.updateButtonText: 'Aktualisieren',
+    AppStrings.logout: 'Abmelden',
+    AppStrings.logoutSubTitle: 'Bist du sicher, dass du dich abmelden willst?',
+    AppStrings.logoutButtonText: 'Jetzt abmelden',
+    AppStrings.profile: 'Profil',
+    AppStrings.myAddresses: 'Meine Adressen',
+    AppStrings.myOrders: 'Meine Bestellungen',
+    AppStrings.settings: 'Einstellungen',
+    AppStrings.help: 'Hilfe',
+    AppStrings.languageSubTitle: 'Wähle deine bevorzugte Sprache',
+    AppStrings.dependingOnTheDeviceSystem: 'Je nach Gerätesystem',
+    AppStrings.arabic: 'العربية',
+    AppStrings.english: 'Englisch',
+    AppStrings.german: 'Deutsch',
+    AppStrings.francis: 'Französisch',
+    AppStrings.turkish: 'Türkisch',
+    AppStrings.version: 'Version',
 
-    ///===========================================================================
-    /// Onboarding Screen
-    'onboarding_title_1':
-        'Entdecke eine neue Art einzukaufen, schneller und einfacher denn je!',
-    'onboarding_sub_title_1':
-        'Kaufen Sie Tausende von Produkten mit nur wenigen Klicks und genießen Sie ein personalisiertes Erlebnis, das Ihre Bedürfnisse anytime und anywhere erfüllt.',
+    AppStrings.retry: 'Erneut versuchen',
+    AppStrings.no: 'Nein',
+    AppStrings.yes: 'Ja',
+    AppStrings.ok: 'OK',
+    AppStrings.cancel: 'Abbrechen',
+    AppStrings.continueText: 'Weiter',
+    AppStrings.next: 'Weiter',
+    AppStrings.back: 'Zurück',
+    AppStrings.skip: 'Überspringen',
+    AppStrings.confirm: 'Bestätigen',
 
-    'onboarding_title_2':
-        'Empfangen Sie Ihre Bestellungen, wo immer Sie sind – zu einem Zeitpunkt, der Ihnen passt!',
-    'onboarding_sub_title_2':
-        'Wir bieten schnelle und sichere Lieferoptionen mit Echtzeit-Tracking des Bestellstatus und Live-Updates bis an Ihre Haustür.',
+    // --- ValidatorMessage ---
+    ValidatorMessage.verificationCodeEmptyErrorMessage:
+        'Der Verifizierungscode darf nicht leer sein',
+    ValidatorMessage.verificationCodeLengthErrorMessage:
+        'Der Verifizierungscode muss aus 6 Ziffern bestehen',
+    ValidatorMessage.countryCodeRequired: 'Ländercode ist erforderlich',
+    ValidatorMessage.phoneNumberRequired: 'Telefonnummer ist erforderlich',
+    ValidatorMessage.emailRequired: 'E-Mail darf nicht leer sein',
+    ValidatorMessage.invalidEmail: 'Ungültige E-Mail-Adresse',
+    ValidatorMessage.passwordRequired: 'Passwort darf nicht leer sein',
+    ValidatorMessage.passwordLength:
+        'Das Passwort muss mindestens 6 Zeichen lang sein',
+    ValidatorMessage.passwordNotMatch: 'Die Passwörter stimmen nicht überein',
+    ValidatorMessage.confirmPasswordRequired:
+        'Passwortbestätigung ist erforderlich',
+    ValidatorMessage.confirmPasswordLength:
+        'Die Passwortbestätigung muss mindestens 6 Zeichen lang sein',
+    ValidatorMessage.confirmPasswordNotMatch:
+        'Die Passwörter stimmen nicht überein',
+    ValidatorMessage.verificationCodeRequired:
+        'Der Verifizierungscode darf nicht leer sein',
+    ValidatorMessage.verificationCodeLength:
+        'Der Verifizierungscode muss aus 6 Ziffern bestehen',
+    ValidatorMessage.nameRequired: 'Name darf nicht leer sein',
+    ValidatorMessage.invalidPhone: 'Ungültige Telefonnummer',
 
-    'onboarding_title_3':
-        'Steuern Sie jede Bestellung intelligent – vom Auftrag bis zur Lieferung!',
-    'onboarding_sub_title_3':
-        'Verfolgen Sie Ihre Bestellungen, bearbeiten Sie Details oder bestellen Sie einfach über eine klare Oberfläche erneut. Unser technischer Support steht Ihnen rund um die Uhr zur Verfügung, um Fragen zu klären.',
+    ValidatorMessage.addressNameRequired: 'Adressname darf nicht leer sein',
+    ValidatorMessage.streetAddressRequired:
+        'Straßenadresse darf nicht leer sein',
+    ValidatorMessage.cityRequired: 'Stadt ist erforderlich',
+    ValidatorMessage.stateProvinceRequired:
+        'Bundesland oder Provinz ist erforderlich',
+    ValidatorMessage.countryRequired: 'Land ist erforderlich',
+    ValidatorMessage.invalidCountryCode: 'Ungültiger Ländercode',
 
-    ///===========================================================================
-    /// Sign In
-    'Sign In': 'Anmelden',
-    'Hi! Welcome Back, you\'ve been missed':
-        'Hallo! Willkommen zurück, wir haben Sie vermisst',
-    'Email': 'E-Mail',
-    'example@email.com': 'beispiel@email.de',
-    'Password': 'Passwort',
-    '●●●●●●●●●': '●●●●●●●●●',
-    'Forgot Password?': 'Passwort vergessen?',
-    'Or Sign In With': 'Oder melden Sie sich mit an',
-    'Don\'t have an account?': 'Sie haben noch kein Konto?',
-    'Sign Up': 'Registrieren',
-    'Login with': 'Einloggen mit',
-
-    ///===========================================================================
-    /// Forgot Password
-    'Forgot Password': 'Passwort vergessen',
-    'Enter your email to reset your password':
-        'Geben Sie Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen',
-    'Send Reset Code': 'Zurücksetz-Code senden',
-
-    ///===========================================================================
-    /// Update Password
-    'Update Password': 'Passwort aktualisieren',
-    'Confirm Password': 'Passwort bestätigen',
-    'Enter your verification code and new password':
-        'Geben Sie Ihren Verifizierungscode und ein neues Passwort ein',
-    'Password updated successfully': 'Passwort erfolgreich aktualisiert',
-
-    ///===========================================================================
-    /// Sign Up
-    'Create New Account': 'Neues Konto erstellen',
-    'Fill your details to continue':
-        'Füllen Sie Ihre Daten aus, um fortzufahren',
-    'Full Name': 'Vollständiger Name',
-    'John Doe': 'Max Mustermann',
-    'I agree to the': 'Ich akzeptiere die',
-    'Terms of Use': 'Nutzungsbedingungen',
-    ' and ': ' und ',
-    'Privacy Policy': 'Datenschutzerklärung',
-
-    ///===========================================================================
-    /// App Exception
-    'Invalid login credentials': 'Ungültige Anmeldeinformationen',
-    'Google sign in failed': 'Google-Anmeldung fehlgeschlagen',
-    'Missing access or ID token': 'Zugriffs- oder ID-Token fehlt',
-    'User Not Found In Session': 'Benutzer nicht in der Sitzung gefunden',
-    'No Internet Connection Available': 'Keine Internetverbindung verfügbar',
-    'Connection Time Out Please try again':
-        'Verbindungstimeout – bitte erneut versuchen',
-    'Something has gone wrong somewhere, and we will try to fix it right away.':
-        'Etwas ist schiefgelaufen, wir werden es umgehend beheben.',
-    'security_code_request':
-        'Sie können einen Sicherheitscode erneut in %s Sekunden anfordern.',
-    'Unable to send password reset code at this time. Please try again later.':
-        'Kann den Passwort-Reset-Code jetzt nicht senden. Bitte später erneut versuchen.',
-    'Privacy policy URL could not be launched.':
-        'URL der Datenschutzerklärung konnte nicht geöffnet werden.',
-    'An error occurred while uploading the image':
+    // --- NotificationMessage ---
+    NotificationMessage.noInternet: 'Keine Internetverbindung verfügbar',
+    NotificationMessage.timeOut:
+        'Verbindungszeit abgelaufen. Bitte versuche es erneut.',
+    NotificationMessage.somethingWentWrong:
+        'Etwas ist schiefgelaufen. Wir werden unser Bestes tun, um es schnellstmöglich zu beheben.',
+    NotificationMessage.locationDisabled: 'Standortdienste sind deaktiviert.',
+    NotificationMessage.locationDenied: 'Standortzugriff wurde verweigert.',
+    NotificationMessage.locationDeniedForever:
+        'Standortzugriff wurde dauerhaft verweigert. Wir können keine Berechtigungen mehr anfordern.',
+    NotificationMessage.userNull:
+        'Benutzer-ID ist leer. Adressen können nicht geladen werden.',
+    NotificationMessage.addressDeletedSuccess: 'Adresse erfolgreich gelöscht.',
+    NotificationMessage.unableToSendCode:
+        'Derzeit kann kein Passwort-Reset-Code gesendet werden. Bitte versuche es später erneut.',
+    NotificationMessage.securityCodeRequest:
+        'Du kannst in %s Sekunden einen neuen Sicherheitscode anfordern.',
+    NotificationMessage.googleSigninFailed: 'Google-Anmeldung fehlgeschlagen',
+    NotificationMessage.missingTokenError: 'Zugriffs- oder ID-Token fehlt',
+    NotificationMessage.userNotFound: 'Benutzer nicht in der Sitzung gefunden',
+    NotificationMessage.passwordUpdatedSuccess:
+        'Passwort erfolgreich aktualisiert',
+    NotificationMessage.emailCopied: 'E-Mail in die Zwischenablage kopiert',
+    NotificationMessage.imageUploadFailed:
         'Beim Hochladen des Bildes ist ein Fehler aufgetreten',
-    'An error occurred while deleting the image':
+    NotificationMessage.imageDeleteFailed:
         'Beim Löschen des Bildes ist ein Fehler aufgetreten',
-
-    ///===========================================================================
-    /// Validators
-    'Email cannot be empty': 'E-Mail darf nicht leer sein',
-    'Invalid email': 'Ungültige E-Mail',
-    'Password cannot be empty': 'Passwort darf nicht leer sein',
-    'Password must be at least 6 characters':
-        'Passwort muss mindestens 6 Zeichen enthalten',
-    'Verification code cannot be empty':
-        'Verifizierungscode darf nicht leer sein',
-    'Verification code must be 6 digits':
-        'Verifizierungscode muss 6 Ziffern sein',
-    'Passwords do not match': 'Passwörter stimmen nicht überein',
-    'Confirm password cannot be empty':
-        'Passwortbestätigung darf nicht leer sein',
-    'Confirm password must be at least 6 characters':
-        'Passwortbestätigung muss mindestens 6 Zeichen enthalten',
-    'Name cannot be empty': 'Name darf nicht leer sein',
-    'Country code is required': 'Ländercode ist erforderlich',
-    'Phone number is required': 'Telefonnummer ist erforderlich',
-    'Address name cannot be empty': 'Adressname darf nicht leer sein',
-    'Street address cannot be empty': 'Straßenadresse darf nicht leer sein',
-    'Select city required': 'Stadt auswählen ist erforderlich',
-    'Select state or province required':
-        'Bundesland/Provinz auswählen ist erforderlich',
-    'Select country required': 'Land auswählen ist erforderlich',
-    'Phone number cannot be empty': 'Telefonnummer darf nicht leer sein',
-    'Invalid phone number': 'Ungültige Telefonnummer',
-    'Country code cannot be empty': 'Ländercode darf nicht leer sein',
-    'Invalid country code': 'Ungültiger Ländercode',
-
-    ///===========================================================================
-    /// Profile Screen
-    'Profile': 'Profil',
-    'Welcome': 'Willkommen',
-    'Edit Profile': 'Profil bearbeiten',
-    'My Addresses': 'Meine Adressen',
-    'My Orders': 'Meine Bestellungen',
-    'Settings': 'Einstellungen',
-    'Help': 'Hilfe',
-    'Logout': 'Abmelden',
-    'Are you sure you want to logout?': 'Möchten Sie sich wirklich abmelden?',
-    'Logout Now': 'Jetzt abmelden',
-    'Cancel': 'Abbrechen',
-
-    ///===========================================================================
-    /// Edit Profile Screen
-    'Select Image': 'Bild auswählen',
-    'Choose Profile Image Source': 'Profilbildquelle auswählen',
-    'Camera': 'Kamera',
-    'Gallery': 'Galerie',
-    'Delete': 'Löschen',
-    'Status Message': 'Statusmeldung',
-    'Email copied to clipboard': 'E-Mail in Zwischenablage kopiert',
-    'Phone Number': 'Telefonnummer',
-    '963': '49',
-    '0987654321': '015212345678',
-    'Country Code': 'Ländercode',
-    'Select your country code': 'Wählen Sie Ihren Ländercode',
-    'Gender': 'Geschlecht',
-    'Select your gender': 'Wählen Sie Ihr Geschlecht',
-    'Male': 'Männlich',
-    'Female': 'Weiblich',
-    'Not Specified': 'Nicht angegeben',
-    'Date of Birth': 'Geburtsdatum',
-    'Choose Your Date of Birth': 'Wählen Sie Ihr Geburtsdatum',
-    'Select Date': 'Datum auswählen',
-    'Confirm': 'Bestätigen',
-
-    ///===========================================================================
-    /// My Address Screen
-    'Manage Addresses': 'Adressen verwalten',
-    'You don\'t have an address yet. Add your shipping addresses.':
-        'Sie haben noch keine Adresse. Fügen Sie Ihre Lieferadressen hinzu.',
-    'Add New Address': 'Neue Adresse hinzufügen',
-    'Address Name': 'Adressname',
-    'Street Address': 'Straßenadresse',
-    'Country': 'Land',
-    'Select Country': 'Land auswählen',
-    'State / Province': 'Bundesland/Provinz',
-    'Select Province': 'Bundesland auswählen',
-    'City': 'Stadt',
-    'Select City': 'Stadt auswählen',
-    'Notes': 'Anmerkungen',
-    'Save Address': 'Adresse speichern',
-    'Update Address': 'Adresse aktualisieren',
-    'Edit Address': 'Adresse bearbeiten',
-    'Are you sure you want to delete this address?':
-        'Möchten Sie diese Adresse wirklich löschen?',
-    'Delete Address': 'Adresse löschen',
-    'Address deleted successfully.': 'Adresse erfolgreich gelöscht.',
-    'Close': 'Schließen',
   };
 }
