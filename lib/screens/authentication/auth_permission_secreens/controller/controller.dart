@@ -32,9 +32,9 @@ void _openSettings(PermissionType permissionType) {
         child: CustomText(
           textAlign: TextAlign.center,
           permissionType == PermissionType.location
-              ? ConstantsText.LOCATION_PERMISSIONS_DENIED
+              ? 'Location services are disabled.'
               : permissionType == PermissionType.notification
-              ? ConstantsText.NOTIFICATION_PERMISSION_Denied
+              ? 'Notification services are disabled.'
               : '',
         ),
       ),
@@ -44,7 +44,7 @@ void _openSettings(PermissionType permissionType) {
           Get.back();
         },
         width: double.infinity,
-        child: CustomText(ConstantsText.GO_TO_SETTINGS),
+        child: CustomText('Open Settings'),
       ),
       SizedBox(height: 16),
       CustomButton(
@@ -54,7 +54,7 @@ void _openSettings(PermissionType permissionType) {
                     ? Get.offAllNamed(Routes.NOTIFICATION_PERMISSION_SCREEN)
                     : Get.offAllNamed(Routes.MAIN_SCREEN),
         width: double.infinity,
-        child: CustomText(ConstantsText.SKIP),
+        child: CustomText('Skip'),
       ),
     ],
   );

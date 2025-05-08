@@ -19,7 +19,7 @@ class PhoneTextFieldController extends GetxController {
     try {
       isLoading.value = true;
       debugPrint('Fetching country codes...');
-      final response = await _supabase.from(KEYS.COUNTRIES_TABLE).select();
+      final response = await _supabase.from(TableNames.countries).select();
 
       /// Check if the response is not null and contains data
       if (response.isEmpty) {

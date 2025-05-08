@@ -63,6 +63,12 @@ class English {
     'Terms of Use': 'Terms of Use',
     ' and ': ' and ',
     'Privacy Policy': 'Privacy Policy',
+    'Open Settings': 'Open Settings',
+    'What is your location?': 'What is your location?',
+    'Allow us to access your location to show you the nearest stores.':
+        'Allow us to access your location to show you the nearest stores.',
+    'Allow Location Access': 'Allow Location Access',
+    'Allow Notifications Access': 'Allow Notifications Access',
 
     ///===========================================================================
     /// Profile Screen
@@ -176,6 +182,12 @@ class English {
         'An error occurred while uploading the image',
     'An error occurred while deleting the image':
         'An error occurred while deleting the image',
+    'Location services are disabled.': 'Location services are disabled.',
+    'Location permissions are denied': 'Location permissions are denied',
+    'Location permissions are permanently denied, we cannot request permissions.':
+        'Location permissions are permanently denied, we cannot request permissions.',
+    'Notification services are disabled.':
+        'Notification services are disabled.',
 
     ///===========================================================================
     /// Validators

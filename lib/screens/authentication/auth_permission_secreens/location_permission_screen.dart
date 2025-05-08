@@ -33,15 +33,15 @@ class LocationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               CustomPageTitle(
-                title: ConstantsText.WHAT_IS_YOUR_LOCATION,
-                subtitle: ConstantsText.WHAT_IS_YOUR_LOCATION_DESC,
+                title: 'What is your location?',
+                subtitle: 'Allow us to access your location to show you the nearest stores.',
               ),
               const SizedBox(height: 24),
               TextButton(
                 onPressed: _.checkLocationPermission,
                 // buttonColor: AppColors.primaryColor,
                 child: CustomText(
-                  ConstantsText.ALLOW_LOCATION_ACCESS,
+                  'Allow Location Access',
                   color: AppColors.primaryColor,
                 ),
               ),

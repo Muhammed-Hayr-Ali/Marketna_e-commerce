@@ -1,4 +1,5 @@
 import 'package:application/utils/import.dart';
+import 'package:application/utils/table_names.dart';
 
 class AddAddressController extends GetxController {
   // AddAddressController({this.addressId});
@@ -91,19 +92,19 @@ class AddAddressController extends GetxController {
   Future<Position> _determinePosition() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw ConstantsText.UNABLE_LOCATION_SERVICES;
+      throw 'Location services are disabled.';
     }
 
     final permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       final requestedPermission = await Geolocator.requestPermission();
       if (requestedPermission == LocationPermission.denied) {
-        throw ConstantsText.LOCATION_PERMISSIONS_DENIED;
+        throw 'Location permissions are denied';
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw ConstantsText.LOCATION_PERMISSIONS_DENIED_REQUEST_PERMISSIONS;
+      throw 'Location permissions are permanently denied, we cannot request permissions.';
     }
 
     return await Geolocator.getCurrentPosition();
@@ -150,8 +151,8 @@ class AddAddressController extends GetxController {
         flag: selectedCountryFlag,
         notes: notesController.text,
         location: {
-          ConstantsText.LATITUDE: currentPosition.latitude,
-          ConstantsText.LONGITUDE: currentPosition.longitude,
+          'latitude': currentPosition.latitude, 
+          'longitude': currentPosition.longitude,
         },
       );
 
@@ -161,7 +162,7 @@ class AddAddressController extends GetxController {
             .update(newAddress.toJson())
             .eq('id', addressId!);
       } else {
-        await _supabase.from(KEYS.ADDRESSES_TABLE).insert(newAddress.toJson());
+        await _supabase.from(TableNames.addresses).insert(newAddress.toJson());
       }
 
       _.loadAddresses();
@@ -171,7 +172,7 @@ class AddAddressController extends GetxController {
       }
     } catch (error) {
       CustomNotification.showSnackbar(
-        message: ConstantsText.DATA_SENDING_ERROR,
+        message: 'Something has gone wrong somewhere, and we will try to fix it right away.',
       );
       debugPrint(error.toString());
     } finally {

@@ -17,7 +17,7 @@ class HomeController extends GetxController {
     try {
       debugPrint('Fetching products...');
       final response = await supabase
-          .from(KEYS.PRODUCTS_TABLE)
+          .from(TableNames.productsDetails)
           .select('${KEYS.ID}, ${KEYS.IMAGE_URL}')
           .eq(KEYS.COLUMN_QUALITY, KEYS.PREMIUM)
           .limit(10)

@@ -22,8 +22,8 @@ class SignUpController extends GetxController {
         email: email,
         password: password,
         data: {
-          ConstantsText.DISPLAY_NAME: standardizedDisplayName,
-          ConstantsText.USER_NAME: extractedUserName,
+          Attributes.displayName: standardizedDisplayName,
+          Attributes.userName: extractedUserName,
         },
       );
 

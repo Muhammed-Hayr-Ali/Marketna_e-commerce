@@ -33,15 +33,15 @@ class NotificationPermissionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               CustomPageTitle(
-                title: ConstantsText.WHAT_IS_YOUR_NOTIFICATION,
-                subtitle: ConstantsText.WHAT_IS_YOUR_NOTIFICATION_DESC,
+                title: 'Access notifications',
+                subtitle: 'Allow us to access your notifications.',
               ),
               const SizedBox(height: 24),
               TextButton(
                 onPressed: _.checkNotificationPermission,
                 // buttonColor: AppColors.primaryColor,
                 child: CustomText(
-                  ConstantsText.ALLOW_NOTIFICATION_ACCESS,
+                  'Allow Notifications Access',
                   color: AppColors.primaryColor,
                 ),
               ),

@@ -56,7 +56,7 @@ class ManageAddressesController extends GetxController {
     if (!result) return; // User chose not to delete the address
     try {
       // Update the address in the database
-      await _supabase.from(KEYS.ADDRESSES_TABLE).delete().eq('id', addressId);
+      await _supabase.from(TableNames.addresses).delete().eq('id', addressId);
       addresses.removeWhere((address) => address.id == addressId);
       CustomNotification .showSnackbar(message: 'Address deleted successfully.');
       update(); // Notify listeners about the change

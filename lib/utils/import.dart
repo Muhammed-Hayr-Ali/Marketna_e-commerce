@@ -103,6 +103,8 @@ export 'package:application/utils/storage_key.dart';
 export 'package:application/widgets/animation/fade_animation_dx.dart';
 export 'package:application/widgets/animation/fade_animation_dy.dart';
 export 'package:application/widgets/custom_appbar.dart';
+export 'package:application/utils/table_names.dart';
+export 'package:application/utils/attributes.dart';
 // ==============================
 // **Widgets**
 // ==============================

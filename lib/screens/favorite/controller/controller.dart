@@ -20,7 +20,7 @@ class FavoriteController extends GetxService {
       );
 
       final response = await _supabase
-          .from(TABLES.COUNTRIES)
+          .from(TableNames.countries)
           .insert(country.toJson());
       debugPrint('response : $response');
     } on Exception catch (error) {

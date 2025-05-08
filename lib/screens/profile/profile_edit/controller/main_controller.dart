@@ -142,7 +142,7 @@ class EditProfileMainController {
                 initialDate != null
                     ? DateTime.tryParse(initialDate)
                     : DateTime.now(),
-            dateFormat: ConstantsText.DATE_FORMAT,
+            dateFormat: ConstantsText.DateBirthFormat,
             pickerTheme: DateTimePickerTheme(),
             onChange: (date, _) => selectedDate = date,
           ),

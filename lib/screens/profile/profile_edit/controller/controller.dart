@@ -91,7 +91,7 @@ class EditProfileController extends GetxController {
             .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
             .whenComplete(
               () async => await _supabase.auth.updateUser(
-                UserAttributes(data: {ConstantsText.AVATAR: null}),
+                UserAttributes(data: {Attributes.avatar: null}),
               ),
             );
 
@@ -187,7 +187,7 @@ class EditProfileController extends GetxController {
           .remove(['${KEYS.PROFILE_FOLDER}/$folderName/$fileName'])
           .whenComplete(
             () async => await _supabase.auth.updateUser(
-              UserAttributes(data: {ConstantsText.AVATAR: null}),
+              UserAttributes(data: {Attributes.avatar: null}),
             ),
           );
 
