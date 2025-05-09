@@ -17,9 +17,9 @@ class HomeController extends GetxController {
     try {
       debugPrint('Fetching products...');
       final response = await supabase
-          .from(TableNames.productsDetails)
-          .select('${ColumnNames.id}, ${FieldValues.imageUrl}')
-          .eq(ColumnNames.quality, FieldValues.premium)
+          .from(TableNames.productDetails)
+          .select('${ColumnNames.id}, ${TableNames.productImages}(image_url)')
+          .eq(ColumnNames.qualityId, 1)
           .limit(10)
           .order(ColumnNames.createdAt, ascending: false);
 

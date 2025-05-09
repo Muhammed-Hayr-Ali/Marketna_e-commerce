@@ -1,47 +1,43 @@
-
 import 'package:application/constants/import.dart';
+import 'package:application/models/product_details.dart';
 
 class FavoriteController extends GetxService {
   final _supabase = Supabase.instance.client;
   RxBool isLoading = false.obs;
 
-  Future<void> addNewCountry() async {
+  Future<void> fetchProducts() async {
     try {
-      CountryModel country = CountryModel(
-        name: 'test',
-        nameAr: 'test',
-        code: 'test',
-        flag: 'test',
-        emoji: 'test',
-        emojiU: 'test',
-        isoCode: 'test',
-        province: [
-          Province(name: 'test', nameAr: 'test', city: [City(name: 'test')]),
-        ],
+      debugPrint('Fetching products...');
+      final response = await _supabase.from(TableNames.productDetails).select(
+        '''id,
+          name,
+          description,
+          price, old_price,
+          quantity,
+          favorite_count,
+          views_count,
+          product_attributes(key, value),
+          product_categories(name),
+          product_quality(name),
+          product_images(image_url),
+          products_reviews(rating_value, comment, user_profiles(*)),
+          user_purchases(user_id),
+        ''',
       );
 
-      final response = await _supabase
-          .from(TableNames.countries)
-          .insert(country.toJson());
-      debugPrint('response : $response');
-    } on Exception catch (error) {
-      CustomNotification.showSnackbar(message: error.toString());
-      debugPrint(error.toString());
-    }
-  }
+      if (response.isEmpty) {
+        debugPrint('No products found');
+        return;
+      }
+      ProductDetails product = ProductDetails.fromJson(response[0]);
 
-  Future<void> loginUser() async {
-    try {
-      final response = await _supabase.auth.signInWithPassword(
-        email: 'm.thelord963@gmail.com',
-        password: 'Aa99009900',
-      );
-      debugPrint('response : $response');
-    } on Exception catch (error) {
-      CustomNotification.showSnackbar(
-        message: 'Something has gone wrong somewhere',
-      );
-      debugPrint(error.toString());
+      debugPrint('Products fetched successfully');
+      debugPrint(product.name);
+      debugPrint(product.favoriteCount.toString());
+    } catch (error) {
+      debugPrint('Error fetching products: $error');
+    } finally {
+      isLoading.value = false;
     }
   }
 }

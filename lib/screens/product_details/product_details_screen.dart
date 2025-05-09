@@ -22,7 +22,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ImageViewer(images: controller.imagesList.value),
-                        ProductDetails(),
+                        ProductDetailsWidget(),
                       ],
                     ),
                   ),

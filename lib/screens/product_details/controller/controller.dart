@@ -93,7 +93,7 @@ class ProductDetailsController extends GetxController {
   Future<ProductModel?> _fetchProductDetails() async {
     final response =
         await _supabase
-            .from(TableNames.productsDetails)
+            .from(TableNames.productDetails)
             .select(
               '*, products_images(image_url), products_reviews(rating_value, comment , profiles(name, full_name, user_name, avatar, avatar_url))',
             ) // جلب المنتج مع الصور المرتبطة
@@ -107,7 +107,7 @@ class ProductDetailsController extends GetxController {
 
   Future<void> _fetchProductImages() async {
     List<Map<String, dynamic>> response = await _supabase
-        .from(TableNames.productsImages)
+        .from(TableNames.productImages)
         .select('image_url')
         .eq('id', productId);
     debugPrint('response : $response');

@@ -20,7 +20,7 @@ class FavoriteScreen extends StatelessWidget {
             Center(
               child: CustomButton(
                 isLoading: _.isLoading.value,
-                onPressed: _.addNewCountry,
+                onPressed: _.fetchProducts,
                 width: Get.width * 0.5,
                 backgroundColor: AppColors.grey,
                 child: CustomText('Get Product'),

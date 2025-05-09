@@ -31,11 +31,16 @@ dependencies:
   flutter_rating_bar: ^4.0.1 # Flutter Rating Bar
   date_time_format: ^2.0.1 # Date Time Format
   intl: ^0.20.2
+  freezed_annotation: ^2.4.0
+  json_annotation: ^4.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0 # Lints
+  build_runner: ^2.3.3
+  freezed: ^2.5.0
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true
