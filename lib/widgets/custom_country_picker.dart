@@ -16,17 +16,16 @@ class CustomCountryPicker extends StatefulWidget {
 
     this.countryErrorMessage,
     this.provinceErrorMessage,
-    this.cityErrorMessage,
+    this.cityErrorMessage, this.countryHintText, this.provinceHintText, this.cityHintText,
   });
 
-  final String? selectedCountry;
-  final String? selectedCountryCode;
-  final String? selectedCountryFlag;
-  final String? selectedProvince;
-  final String? selectedCity;
-  final String? countryErrorMessage;
-  final String? provinceErrorMessage;
-  final String? cityErrorMessage;
+  final String? selectedCountry,
+      selectedCountryCode,
+      selectedCountryFlag,
+      selectedProvince,
+      selectedCity;
+  final String? countryErrorMessage, provinceErrorMessage, cityErrorMessage;
+  final String? countryHintText, provinceHintText, cityHintText;
   final void Function(CountryModel)? onChangedCountry;
   final void Function(Province)? onChangedProvince;
   final void Function(City)? onChangedCity;
@@ -57,11 +56,11 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     local =
         _storage.read(StorageKeys.localeCode) ??
         Get.deviceLocale?.languageCode ??
-        'en';
+        FieldValues.en;
 
     try {
       // Fetch countries sorted by name from the database
-      final List<dynamic> response = await _supabase.from('countries').select();
+      final List<dynamic> response = await _supabase.from(TableNames.countries).select();
 
       // Return false if no countries are found
       if (response.isEmpty) return false;
@@ -100,7 +99,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       cities = province.city!;
     } else {
       String provinceName =
-          (local == 'ar' ? province.nameAr : province.name) ?? 'null';
+          (local == FieldValues.ar ? province.nameAr : province.name) ?? 'null';
       cities = [City(name: provinceName)];
     }
     Get.back();
@@ -129,8 +128,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     custombottomSheet(
       children: [
         CustomPageTitle(
-          title: 'Select Country',
-          subtitle: 'Select your country from the list below',
+          title: AppStrings.selectCountry,
+          subtitle: AppStrings.selectCountrySubTitle,
         ),
         Divider(),
 
@@ -160,7 +159,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                           ),
                           SizedBox(width: 8),
                           CustomText(
-                            (local == 'ar'
+                            (local == FieldValues.ar
                                     ? countries[index].nameAr
                                     : countries[index].name) ??
                                 '',
@@ -191,8 +190,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     custombottomSheet(
       children: [
         CustomPageTitle(
-          title: 'Select Province',
-          subtitle: 'Select your province from the list below',
+          title: AppStrings.selectProvince,
+          subtitle: AppStrings.selectProvinceSubTitle,
         ),
         Divider(),
 
@@ -213,7 +212,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                   child: Row(
                     children: [
                       CustomText(
-                        (local == 'ar'
+                        (local == FieldValues.ar
                                 ? provinces[index].nameAr
                                 : provinces[index].name) ??
                             '',
@@ -230,7 +229,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Open City picker
   /// This function is called when the city button is pressed.
   /// It opens a bottom sheet with a list of cities to select from.
-  void _openCityPicker() {
+  void _openCityPicker(String? city) {
     /// Check if cities are loaded, if not load them
     if (cities.isEmpty || widget.selectedProvince == null) {
       return;
@@ -240,8 +239,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     custombottomSheet(
       children: [
         CustomPageTitle(
-          title: 'Select City',
-          subtitle: 'Select your city from the list below',
+          title: AppStrings.selectCity,
+          subtitle: AppStrings.selectCitySubTitle,
         ),
         Divider(),
 
@@ -252,7 +251,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                 (context, index) => TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor:
-                        'city' == cities[index].name
+                        city == cities[index].name
                             ? Colors.grey.shade200
                             : Colors.white,
                   ),
@@ -277,7 +276,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
       children: [
         ///country
         CustomButton(
-          label: 'Country',
+          label: AppStrings.country,
           backgroundColor: AppColors.grey,
           errorMessage: widget.countryErrorMessage,
           isLoading: isLoading,
@@ -307,7 +306,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                             ),
                   ),
                   SizedBox(width: 8),
-                  CustomText(widget.selectedCountry ?? 'Select Country'),
+                  CustomText(widget.selectedCountry ?? AppStrings.selectCountry),
                 ],
               ),
               Icon(Icons.keyboard_arrow_down_rounded),
@@ -323,7 +322,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
             children: [
               Expanded(
                 child: CustomButton(
-                  label: 'State / Province',
+                  label: AppStrings.selectProvince,
                   backgroundColor: AppColors.grey,
                   errorMessage: widget.provinceErrorMessage,
                   onPressed:
@@ -336,7 +335,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                     children: [
                       Flexible(
                         child: CustomText(
-                          widget.selectedProvince ?? 'Select Province',
+                          widget.selectedProvince ?? AppStrings.selectProvince,
                         ),
                       ),
 
@@ -348,7 +347,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
               SizedBox(width: 16),
               Expanded(
                 child: CustomButton(
-                  label: 'City',
+                  label: AppStrings.city,
                   errorMessage: widget.cityErrorMessage,
                   backgroundColor: AppColors.grey,
                   onPressed:
@@ -357,13 +356,13 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                               ? _openCountrypicker(widget.selectedCountryCode)
                               : widget.selectedProvince == null
                               ? _openProvincePicker(widget.selectedProvince)
-                              : _openCityPicker(),
+                              : _openCityPicker(widget.selectedCity),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Flexible(
-                        child: CustomText(widget.selectedCity ?? 'Select City'),
+                        child: CustomText(widget.selectedCity ?? AppStrings.selectCity),
                       ),
                       Icon(Icons.keyboard_arrow_down_rounded),
                     ],

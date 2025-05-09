@@ -128,5 +128,13 @@ class AppStrings {
   static const String skip = 'Skip';
   static const String confirm = 'Confirm';
 
-  static var cityRequired;
+
+
+  static const String selectCountry =  'Select Country';
+  static const String selectCountrySubTitle =  'Select your country from the list below';
+  static const String selectProvince =  'Select Province';
+  static const String selectProvinceSubTitle =  'Select your province from the list below';
+  static const String selectCity =  'Select City';
+  static const String selectCitySubTitle =  'Select your city from the list below';
+
 }

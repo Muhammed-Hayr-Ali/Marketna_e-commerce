@@ -15,7 +15,7 @@ class CustomNotification {
 
   static showSnackbar({String? title, required String message}) {
     if (message.contains('ClientException with SocketException')) {
-      CustomNotification.showSnackbar(message: 'network_error');
+      CustomNotification.showSnackbar(message: NotificationMessage.noInternet);
     }
 
     Get.snackbar(
