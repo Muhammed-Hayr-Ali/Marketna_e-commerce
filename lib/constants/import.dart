@@ -3,30 +3,30 @@
 // ==============================
 export 'dart:async';
 export 'dart:convert';
-export 'package:application/localization/localization_controller.dart';
-export 'package:application/localization/translation.dart';
 
+export 'package:application/constants/app_assets.dart';
+export 'package:application/constants/app_colors.dart';
+export 'package:application/constants/app_keys.dart';
 // ==============================
 // **App Constants**
 // ==============================
 export 'package:application/constants/app_strings.dart';
-export 'package:application/constants/storage_keys.dart';
-export 'package:application/constants/app_keys.dart';
-export 'package:application/constants/app_colors.dart';
-export 'package:application/constants/app_assets.dart';
-export 'package:application/constants/table_names.dart';
+export 'package:application/constants/attributes.dart';
+export 'package:application/constants/bucket_names.dart';
 export 'package:application/constants/column_names.dart';
 export 'package:application/constants/field_values.dart';
-export 'package:application/constants/attributes.dart';
 export 'package:application/constants/notification_message.dart';
-export 'package:application/constants/bucket_names.dart';
+export 'package:application/constants/storage_keys.dart';
+export 'package:application/constants/table_names.dart';
 export 'package:application/constants/validator_message.dart';
-
+export 'package:application/localization/localization_controller.dart';
+export 'package:application/localization/translation.dart';
+export 'package:application/models/address_model.dart';
+export 'package:application/models/country_model.dart';
 // ==============================
 // **Data Models**
 // ==============================
-export 'package:application/models/address_model.dart';
-export 'package:application/models/country_model.dart';
+export 'package:application/models/product_details.dart';
 export 'package:application/models/product_model.dart';
 export 'package:application/models/review_model.dart';
 export 'package:application/models/user_meta_data_model.dart';
@@ -58,6 +58,7 @@ export 'package:application/screens/authentication/auth_sign_up/sign_up_screen.d
 export 'package:application/screens/authentication/auth_update_password/controller/update_password_controller.dart';
 export 'package:application/screens/authentication/auth_update_password/update_password_screen.dart';
 export 'package:application/screens/cart/cart_screen.dart';
+export 'package:application/screens/favorite/controller/controller.dart';
 export 'package:application/screens/favorite/favorite_screen.dart';
 export 'package:application/screens/home/controller/controller.dart';
 export 'package:application/screens/home/home_screen.dart';
@@ -92,7 +93,6 @@ export 'package:application/screens/settings/controller/main.dart';
 export 'package:application/screens/settings/settings_screen.dart';
 export 'package:application/screens/splash_screen/controller/splash_screen_controller.dart';
 export 'package:application/screens/splash_screen/splashscreen.dart';
-export 'package:application/screens/favorite/controller/controller.dart';
 export 'package:application/services/data_converter.dart';
 // ==============================
 // **Services**
@@ -118,6 +118,7 @@ export 'package:application/widgets/custom_bottom_sheet.dart';
 export 'package:application/widgets/custom_button.dart';
 export 'package:application/widgets/custom_carouselslider.dart';
 export 'package:application/widgets/custom_circular_button.dart';
+export 'package:application/widgets/custom_country_picker.dart';
 export 'package:application/widgets/custom_direction.dart';
 export 'package:application/widgets/custom_indicator.dart';
 export 'package:application/widgets/custom_inkk.dart';
@@ -126,11 +127,10 @@ export 'package:application/widgets/custom_page_title.dart';
 export 'package:application/widgets/custom_placeholder.dart';
 export 'package:application/widgets/custom_text.dart';
 export 'package:application/widgets/custom_text_field.dart';
+export 'package:application/widgets/phone_text_field.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:date_time_format/date_time_format.dart';
-export 'package:application/widgets/phone_text_field.dart';
-export 'package:application/widgets/custom_country_picker.dart';
-
+export 'package:flutter/foundation.dart';
 // ==============================
 // **External Packages**
 // ==============================
@@ -154,6 +154,5 @@ export 'package:shimmer/shimmer.dart';
 export 'package:supabase_flutter/supabase_flutter.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:uuid/uuid.dart';
-export 'package:flutter/foundation.dart';
 
 // ==============================
