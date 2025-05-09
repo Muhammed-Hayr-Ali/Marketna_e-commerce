@@ -7,7 +7,7 @@ class SettingsMainController {
         CustomPageTitle(
           title: AppStrings.language,
           subtitle: AppStrings.languageSubTitle,
-          padding: EdgeInsets.only(bottom: 30.0),
+          // padding: EdgeInsets.only(bottom: 30.0),
         ),
         TextButton(
           onPressed: () => Get.back(result: FieldValues.auto),
