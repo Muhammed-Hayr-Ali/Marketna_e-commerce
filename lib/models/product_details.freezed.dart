@@ -21,20 +21,31 @@ ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductDetails {
+  // الحقول العادية
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError; // التسعير
+  @JsonKey(name: 'price')
   int? get price => throw _privateConstructorUsedError;
-  double? get oldPrice => throw _privateConstructorUsedError;
-  int? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_price')
+  double? get oldPrice => throw _privateConstructorUsedError; // الكميات
+  int? get quantity => throw _privateConstructorUsedError; // الإحصائيات
+  @JsonKey(name: 'favorite_count')
   int? get favoriteCount => throw _privateConstructorUsedError;
-  int? get viewsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'views_count')
+  int? get viewsCount => throw _privateConstructorUsedError; // العلاقات
+  @JsonKey(name: 'product_attributes')
   List<ProductAttribute> get productAttributes =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'product_categories')
   CategoryModel? get productCategories => throw _privateConstructorUsedError;
+  @JsonKey(name: 'product_quality')
   CategoryModel? get productQuality => throw _privateConstructorUsedError;
+  @JsonKey(name: 'products_images')
   List<ProductImage> get productsImages => throw _privateConstructorUsedError;
+  @JsonKey(name: 'products_reviews')
   List<ProductReview> get productsReviews => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_purchases')
   List<UserPurchase> get userPurchases => throw _privateConstructorUsedError;
 
   /// Serializes this ProductDetails to a JSON map.
@@ -58,17 +69,18 @@ abstract class $ProductDetailsCopyWith<$Res> {
     int? id,
     String? name,
     String? description,
-    int? price,
-    double? oldPrice,
+    @JsonKey(name: 'price') int? price,
+    @JsonKey(name: 'old_price') double? oldPrice,
     int? quantity,
-    int? favoriteCount,
-    int? viewsCount,
+    @JsonKey(name: 'favorite_count') int? favoriteCount,
+    @JsonKey(name: 'views_count') int? viewsCount,
+    @JsonKey(name: 'product_attributes')
     List<ProductAttribute> productAttributes,
-    CategoryModel? productCategories,
-    CategoryModel? productQuality,
-    List<ProductImage> productsImages,
-    List<ProductReview> productsReviews,
-    List<UserPurchase> userPurchases,
+    @JsonKey(name: 'product_categories') CategoryModel? productCategories,
+    @JsonKey(name: 'product_quality') CategoryModel? productQuality,
+    @JsonKey(name: 'products_images') List<ProductImage> productsImages,
+    @JsonKey(name: 'products_reviews') List<ProductReview> productsReviews,
+    @JsonKey(name: 'user_purchases') List<UserPurchase> userPurchases,
   });
 }
 
@@ -193,17 +205,18 @@ abstract class _$$ProductDetailsImplCopyWith<$Res>
     int? id,
     String? name,
     String? description,
-    int? price,
-    double? oldPrice,
+    @JsonKey(name: 'price') int? price,
+    @JsonKey(name: 'old_price') double? oldPrice,
     int? quantity,
-    int? favoriteCount,
-    int? viewsCount,
+    @JsonKey(name: 'favorite_count') int? favoriteCount,
+    @JsonKey(name: 'views_count') int? viewsCount,
+    @JsonKey(name: 'product_attributes')
     List<ProductAttribute> productAttributes,
-    CategoryModel? productCategories,
-    CategoryModel? productQuality,
-    List<ProductImage> productsImages,
-    List<ProductReview> productsReviews,
-    List<UserPurchase> userPurchases,
+    @JsonKey(name: 'product_categories') CategoryModel? productCategories,
+    @JsonKey(name: 'product_quality') CategoryModel? productQuality,
+    @JsonKey(name: 'products_images') List<ProductImage> productsImages,
+    @JsonKey(name: 'products_reviews') List<ProductReview> productsReviews,
+    @JsonKey(name: 'user_purchases') List<UserPurchase> userPurchases,
   });
 }
 
@@ -322,16 +335,20 @@ class _$ProductDetailsImpl
     this.id,
     this.name,
     this.description,
-    this.price,
-    this.oldPrice,
+    @JsonKey(name: 'price') this.price,
+    @JsonKey(name: 'old_price') this.oldPrice,
     this.quantity,
-    this.favoriteCount,
-    this.viewsCount,
+    @JsonKey(name: 'favorite_count') this.favoriteCount,
+    @JsonKey(name: 'views_count') this.viewsCount,
+    @JsonKey(name: 'product_attributes')
     final List<ProductAttribute> productAttributes = const <ProductAttribute>[],
-    this.productCategories,
-    this.productQuality,
+    @JsonKey(name: 'product_categories') this.productCategories,
+    @JsonKey(name: 'product_quality') this.productQuality,
+    @JsonKey(name: 'products_images')
     final List<ProductImage> productsImages = const <ProductImage>[],
+    @JsonKey(name: 'products_reviews')
     final List<ProductReview> productsReviews = const <ProductReview>[],
+    @JsonKey(name: 'user_purchases')
     final List<UserPurchase> userPurchases = const <UserPurchase>[],
   }) : _productAttributes = productAttributes,
        _productsImages = productsImages,
@@ -341,25 +358,35 @@ class _$ProductDetailsImpl
   factory _$ProductDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductDetailsImplFromJson(json);
 
+  // الحقول العادية
   @override
   final int? id;
   @override
   final String? name;
   @override
   final String? description;
+  // التسعير
   @override
+  @JsonKey(name: 'price')
   final int? price;
   @override
+  @JsonKey(name: 'old_price')
   final double? oldPrice;
+  // الكميات
   @override
   final int? quantity;
+  // الإحصائيات
   @override
+  @JsonKey(name: 'favorite_count')
   final int? favoriteCount;
   @override
+  @JsonKey(name: 'views_count')
   final int? viewsCount;
+  // العلاقات
   final List<ProductAttribute> _productAttributes;
+  // العلاقات
   @override
-  @JsonKey()
+  @JsonKey(name: 'product_attributes')
   List<ProductAttribute> get productAttributes {
     if (_productAttributes is EqualUnmodifiableListView)
       return _productAttributes;
@@ -368,12 +395,14 @@ class _$ProductDetailsImpl
   }
 
   @override
+  @JsonKey(name: 'product_categories')
   final CategoryModel? productCategories;
   @override
+  @JsonKey(name: 'product_quality')
   final CategoryModel? productQuality;
   final List<ProductImage> _productsImages;
   @override
-  @JsonKey()
+  @JsonKey(name: 'products_images')
   List<ProductImage> get productsImages {
     if (_productsImages is EqualUnmodifiableListView) return _productsImages;
     // ignore: implicit_dynamic_type
@@ -382,7 +411,7 @@ class _$ProductDetailsImpl
 
   final List<ProductReview> _productsReviews;
   @override
-  @JsonKey()
+  @JsonKey(name: 'products_reviews')
   List<ProductReview> get productsReviews {
     if (_productsReviews is EqualUnmodifiableListView) return _productsReviews;
     // ignore: implicit_dynamic_type
@@ -391,7 +420,7 @@ class _$ProductDetailsImpl
 
   final List<UserPurchase> _userPurchases;
   @override
-  @JsonKey()
+  @JsonKey(name: 'user_purchases')
   List<UserPurchase> get userPurchases {
     if (_userPurchases is EqualUnmodifiableListView) return _userPurchases;
     // ignore: implicit_dynamic_type
@@ -506,49 +535,62 @@ abstract class _ProductDetails implements ProductDetails {
     final int? id,
     final String? name,
     final String? description,
-    final int? price,
-    final double? oldPrice,
+    @JsonKey(name: 'price') final int? price,
+    @JsonKey(name: 'old_price') final double? oldPrice,
     final int? quantity,
-    final int? favoriteCount,
-    final int? viewsCount,
+    @JsonKey(name: 'favorite_count') final int? favoriteCount,
+    @JsonKey(name: 'views_count') final int? viewsCount,
+    @JsonKey(name: 'product_attributes')
     final List<ProductAttribute> productAttributes,
-    final CategoryModel? productCategories,
-    final CategoryModel? productQuality,
-    final List<ProductImage> productsImages,
+    @JsonKey(name: 'product_categories') final CategoryModel? productCategories,
+    @JsonKey(name: 'product_quality') final CategoryModel? productQuality,
+    @JsonKey(name: 'products_images') final List<ProductImage> productsImages,
+    @JsonKey(name: 'products_reviews')
     final List<ProductReview> productsReviews,
-    final List<UserPurchase> userPurchases,
+    @JsonKey(name: 'user_purchases') final List<UserPurchase> userPurchases,
   }) = _$ProductDetailsImpl;
 
   factory _ProductDetails.fromJson(Map<String, dynamic> json) =
       _$ProductDetailsImpl.fromJson;
 
+  // الحقول العادية
   @override
   int? get id;
   @override
   String? get name;
   @override
-  String? get description;
+  String? get description; // التسعير
   @override
+  @JsonKey(name: 'price')
   int? get price;
   @override
-  double? get oldPrice;
+  @JsonKey(name: 'old_price')
+  double? get oldPrice; // الكميات
   @override
-  int? get quantity;
+  int? get quantity; // الإحصائيات
   @override
+  @JsonKey(name: 'favorite_count')
   int? get favoriteCount;
   @override
-  int? get viewsCount;
+  @JsonKey(name: 'views_count')
+  int? get viewsCount; // العلاقات
   @override
+  @JsonKey(name: 'product_attributes')
   List<ProductAttribute> get productAttributes;
   @override
+  @JsonKey(name: 'product_categories')
   CategoryModel? get productCategories;
   @override
+  @JsonKey(name: 'product_quality')
   CategoryModel? get productQuality;
   @override
+  @JsonKey(name: 'products_images')
   List<ProductImage> get productsImages;
   @override
+  @JsonKey(name: 'products_reviews')
   List<ProductReview> get productsReviews;
   @override
+  @JsonKey(name: 'user_purchases')
   List<UserPurchase> get userPurchases;
 
   /// Create a copy of ProductDetails

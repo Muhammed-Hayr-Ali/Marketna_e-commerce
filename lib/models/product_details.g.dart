@@ -12,39 +12,39 @@ _$ProductDetailsImpl _$$ProductDetailsImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       description: json['description'] as String?,
       price: (json['price'] as num?)?.toInt(),
-      oldPrice: (json['oldPrice'] as num?)?.toDouble(),
+      oldPrice: (json['old_price'] as num?)?.toDouble(),
       quantity: (json['quantity'] as num?)?.toInt(),
-      favoriteCount: (json['favoriteCount'] as num?)?.toInt(),
-      viewsCount: (json['viewsCount'] as num?)?.toInt(),
+      favoriteCount: (json['favorite_count'] as num?)?.toInt(),
+      viewsCount: (json['views_count'] as num?)?.toInt(),
       productAttributes:
-          (json['productAttributes'] as List<dynamic>?)
+          (json['product_attributes'] as List<dynamic>?)
               ?.map((e) => ProductAttribute.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <ProductAttribute>[],
       productCategories:
-          json['productCategories'] == null
+          json['product_categories'] == null
               ? null
               : CategoryModel.fromJson(
-                json['productCategories'] as Map<String, dynamic>,
+                json['product_categories'] as Map<String, dynamic>,
               ),
       productQuality:
-          json['productQuality'] == null
+          json['product_quality'] == null
               ? null
               : CategoryModel.fromJson(
-                json['productQuality'] as Map<String, dynamic>,
+                json['product_quality'] as Map<String, dynamic>,
               ),
       productsImages:
-          (json['productsImages'] as List<dynamic>?)
+          (json['products_images'] as List<dynamic>?)
               ?.map((e) => ProductImage.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <ProductImage>[],
       productsReviews:
-          (json['productsReviews'] as List<dynamic>?)
+          (json['products_reviews'] as List<dynamic>?)
               ?.map((e) => ProductReview.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <ProductReview>[],
       userPurchases:
-          (json['userPurchases'] as List<dynamic>?)
+          (json['user_purchases'] as List<dynamic>?)
               ?.map((e) => UserPurchase.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <UserPurchase>[],
@@ -57,14 +57,14 @@ Map<String, dynamic> _$$ProductDetailsImplToJson(
   'name': instance.name,
   'description': instance.description,
   'price': instance.price,
-  'oldPrice': instance.oldPrice,
+  'old_price': instance.oldPrice,
   'quantity': instance.quantity,
-  'favoriteCount': instance.favoriteCount,
-  'viewsCount': instance.viewsCount,
-  'productAttributes': instance.productAttributes,
-  'productCategories': instance.productCategories,
-  'productQuality': instance.productQuality,
-  'productsImages': instance.productsImages,
-  'productsReviews': instance.productsReviews,
-  'userPurchases': instance.userPurchases,
+  'favorite_count': instance.favoriteCount,
+  'views_count': instance.viewsCount,
+  'product_attributes': instance.productAttributes,
+  'product_categories': instance.productCategories,
+  'product_quality': instance.productQuality,
+  'products_images': instance.productsImages,
+  'products_reviews': instance.productsReviews,
+  'user_purchases': instance.userPurchases,
 };

@@ -1,4 +1,6 @@
 // product_details.dart
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -15,21 +17,42 @@ part 'product_details.g.dart';
 @freezed
 class ProductDetails with _$ProductDetails {
   const factory ProductDetails({
+    // الحقول العادية
     int? id,
     String? name,
     String? description,
-    int? price,
-    double? oldPrice,
-    int? quantity,
-    int? favoriteCount,
-    int? viewsCount,
 
-    @Default(<ProductAttribute>[]) List<ProductAttribute> productAttributes,
-    CategoryModel? productCategories,
-    CategoryModel? productQuality,
-    @Default(<ProductImage>[]) List<ProductImage> productsImages,
-    @Default(<ProductReview>[]) List<ProductReview> productsReviews,
-    @Default(<UserPurchase>[]) List<UserPurchase> userPurchases,
+    // التسعير
+    @JsonKey(name: 'price') int? price,
+    @JsonKey(name: 'old_price') double? oldPrice,
+
+    // الكميات
+    int? quantity,
+
+    // الإحصائيات
+    @JsonKey(name: 'favorite_count') int? favoriteCount,
+    @JsonKey(name: 'views_count') int? viewsCount,
+
+    // العلاقات
+    @Default(<ProductAttribute>[])
+    @JsonKey(name: 'product_attributes')
+    List<ProductAttribute> productAttributes,
+
+    @JsonKey(name: 'product_categories') CategoryModel? productCategories,
+
+    @JsonKey(name: 'product_quality') CategoryModel? productQuality,
+
+    @Default(<ProductImage>[])
+    @JsonKey(name: 'products_images')
+    List<ProductImage> productsImages,
+
+    @Default(<ProductReview>[])
+    @JsonKey(name: 'products_reviews')
+    List<ProductReview> productsReviews,
+
+    @Default(<UserPurchase>[])
+    @JsonKey(name: 'user_purchases')
+    List<UserPurchase> userPurchases,
   }) = _ProductDetails;
 
   factory ProductDetails.fromJson(Map<String, Object?> json) =>

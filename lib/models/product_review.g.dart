@@ -9,18 +9,18 @@ part of 'product_review.dart';
 ProductReview _$ProductReviewFromJson(Map<String, dynamic> json) =>
     ProductReview(
       comment: json['comment'] as String?,
-      ratingValue: (json['ratingValue'] as num?)?.toDouble(),
+      ratingValue: (json['rating_value'] as num?)?.toDouble(),
       userProfiles:
-          json['userProfiles'] == null
+          json['user_profiles'] == null
               ? null
               : UserProfile.fromJson(
-                json['userProfiles'] as Map<String, dynamic>,
+                json['user_profiles'] as Map<String, dynamic>,
               ),
     );
 
 Map<String, dynamic> _$ProductReviewToJson(ProductReview instance) =>
     <String, dynamic>{
       'comment': instance.comment,
-      'ratingValue': instance.ratingValue,
-      'userProfiles': instance.userProfiles,
+      'rating_value': instance.ratingValue,
+      'user_profiles': instance.userProfiles,
     };

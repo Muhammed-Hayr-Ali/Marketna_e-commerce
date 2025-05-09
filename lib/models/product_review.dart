@@ -6,8 +6,13 @@ part 'product_review.g.dart';
 
 @JsonSerializable()
 class ProductReview {
+  @JsonKey(name: 'comment')
   final String? comment;
+
+  @JsonKey(name: 'rating_value')
   final double? ratingValue;
+
+  @JsonKey(name: 'user_profiles')
   final UserProfile? userProfiles;
 
   ProductReview({this.comment, this.ratingValue, this.userProfiles});
