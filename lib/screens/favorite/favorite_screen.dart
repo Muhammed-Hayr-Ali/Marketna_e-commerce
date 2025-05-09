@@ -23,17 +23,7 @@ class FavoriteScreen extends StatelessWidget {
                 onPressed: _.addNewCountry,
                 width: Get.width * 0.5,
                 backgroundColor: AppColors.grey,
-                child: CustomText('Add New Country'),
-              ),
-            ),
-            SizedBox(height: 30),
-            Center(
-              child: CustomButton(
-                isLoading: _.isLoading.value,
-                onPressed: _.loginUser,
-                width: Get.width * 0.5,
-                backgroundColor: AppColors.grey,
-                child: CustomText('Login User'),
+                child: CustomText('Get Product'),
               ),
             ),
           ],

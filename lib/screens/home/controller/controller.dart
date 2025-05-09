@@ -19,7 +19,7 @@ class HomeController extends GetxController {
       final response = await supabase
           .from(TableNames.productsDetails)
           .select('${ColumnNames.id}, ${FieldValues.imageUrl}')
-          .eq(ColumnNames.quantity, FieldValues.premium)
+          .eq(ColumnNames.quality, FieldValues.premium)
           .limit(10)
           .order(ColumnNames.createdAt, ascending: false);
 
