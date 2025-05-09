@@ -63,7 +63,7 @@ class Arabic {
     AppStrings.forgotPasswordButtonText: 'نسيت كلمة المرور؟',
     AppStrings.dontHaveAccount: 'ليس لديك حساب؟',
     AppStrings.signInButtonText: 'تسجيل الدخول',
-    AppStrings.orSignInWith : 'او تسجيل الدخول بواسطة',
+    AppStrings.orSignInWith: 'او تسجيل الدخول بواسطة',
     AppStrings.createNewAccount: 'إنشاء حساب جديد',
     AppStrings.createNewAccountSubTitle: 'املأ تفاصيلك للمتابعة',
     AppStrings.fullName: 'الاسم الكامل',
@@ -177,5 +177,12 @@ class Arabic {
     NotificationMessage.emailCopied: 'تم نسخ البريد الإلكتروني إلى الحافظة',
     NotificationMessage.imageUploadFailed: 'حدث خطأ أثناء رفع الصورة',
     NotificationMessage.imageDeleteFailed: 'حدث خطأ أثناء حذف الصورة',
+
+    AppStrings.selectCountry: 'اختر الدولة',
+    AppStrings.selectCountrySubTitle: 'اختر دولتك من القائمة أدناه',
+    AppStrings.selectProvince: 'اختر المحافظة',
+    AppStrings.selectProvinceSubTitle: 'اختر محافظتك من القائمة أدناه',
+    AppStrings.selectCity: 'اختر المدينة',
+    AppStrings.selectCitySubTitle: 'اختر مدينتك من القائمة أدناه',
   };
 }

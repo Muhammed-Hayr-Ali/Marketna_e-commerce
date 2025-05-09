@@ -189,5 +189,15 @@ class German {
         'Beim Hochladen des Bildes ist ein Fehler aufgetreten',
     NotificationMessage.imageDeleteFailed:
         'Beim Löschen des Bildes ist ein Fehler aufgetreten',
+
+    AppStrings.selectCountry: 'Land auswählen',
+    AppStrings.selectCountrySubTitle:
+        'Wählen Sie Ihr Land aus der Liste unten aus',
+    AppStrings.selectProvince: 'Bundesland auswählen',
+    AppStrings.selectProvinceSubTitle:
+        'Wählen Sie Ihr Bundesland aus der Liste unten aus',
+    AppStrings.selectCity: 'Stadt auswählen',
+    AppStrings.selectCitySubTitle:
+        'Wählen Sie Ihre Stadt aus der Liste unten aus',
   };
 }

@@ -176,5 +176,13 @@ class English {
         'An error occurred while uploading the image',
     NotificationMessage.imageDeleteFailed:
         'An error occurred while deleting the image',
+
+    AppStrings.selectCountry: 'Select Country',
+    AppStrings.selectCountrySubTitle: 'Select your country from the list below',
+    AppStrings.selectProvince: 'Select Province',
+    AppStrings.selectProvinceSubTitle:
+        'Select your province from the list below',
+    AppStrings.selectCity: 'Select City',
+    AppStrings.selectCitySubTitle: 'Select your city from the list below',
   };
 }

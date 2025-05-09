@@ -177,5 +177,12 @@ class Turkish {
     NotificationMessage.emailCopied: 'E-posta panoya kopyalandı',
     NotificationMessage.imageUploadFailed: 'Resim yüklenirken bir hata oluştu',
     NotificationMessage.imageDeleteFailed: 'Resim silinirken bir hata oluştu',
+
+    AppStrings.selectCountry: 'Ülke Seçin',
+    AppStrings.selectCountrySubTitle: 'Lütfen ülkenizi aşağıdan seçin',
+    AppStrings.selectProvince: 'İli Seçin',
+    AppStrings.selectProvinceSubTitle: 'Lütfen ilinizi aşağıdan seçin',
+    AppStrings.selectCity: 'Şehri Seçin',
+    AppStrings.selectCitySubTitle: 'Lütfen şehrinizi aşağıdan seçin',
   };
 }

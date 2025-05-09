@@ -193,5 +193,15 @@ class French {
         'Une erreur s’est produite lors du téléchargement de l’image',
     NotificationMessage.imageDeleteFailed:
         'Une erreur s’est produite lors de la suppression de l’image',
+
+    AppStrings.selectCountry: 'Sélectionnez le pays',
+    AppStrings.selectCountrySubTitle:
+        'Sélectionnez votre pays dans la liste ci-dessous',
+    AppStrings.selectProvince: 'Sélectionnez la province',
+    AppStrings.selectProvinceSubTitle:
+        'Sélectionnez votre province dans la liste ci-dessous',
+    AppStrings.selectCity: 'Sélectionnez la ville',
+    AppStrings.selectCitySubTitle:
+        'Sélectionnez votre ville dans la liste ci-dessous',
   };
 }
