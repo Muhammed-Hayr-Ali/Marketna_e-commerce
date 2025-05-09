@@ -203,5 +203,8 @@ class French {
     AppStrings.selectCity: 'Sélectionnez la ville',
     AppStrings.selectCitySubTitle:
         'Sélectionnez votre ville dans la liste ci-dessous',
+
+    AppStrings.countryCode: 'Code pays',
+    AppStrings.countryCodeSubTitle: 'Sélectionnez votre code pays',
   };
 }

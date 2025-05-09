@@ -184,5 +184,8 @@ class Arabic {
     AppStrings.selectProvinceSubTitle: 'اختر محافظتك من القائمة أدناه',
     AppStrings.selectCity: 'اختر المدينة',
     AppStrings.selectCitySubTitle: 'اختر مدينتك من القائمة أدناه',
+
+    AppStrings.countryCode: 'كود الدولة',
+    AppStrings.countryCodeSubTitle: 'اختر كود الدولة من القائمة أدناه',
   };
 }

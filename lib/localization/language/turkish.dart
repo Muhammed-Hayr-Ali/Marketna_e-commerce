@@ -184,5 +184,8 @@ class Turkish {
     AppStrings.selectProvinceSubTitle: 'Lütfen ilinizi aşağıdan seçin',
     AppStrings.selectCity: 'Şehri Seçin',
     AppStrings.selectCitySubTitle: 'Lütfen şehrinizi aşağıdan seçin',
+
+    AppStrings.countryCode: 'Ülke Kodu',
+    AppStrings.countryCodeSubTitle: 'Lütfen ülkenizin kodunu aşağıdan seçin',
   };
 }

@@ -199,5 +199,9 @@ class German {
     AppStrings.selectCity: 'Stadt auswählen',
     AppStrings.selectCitySubTitle:
         'Wählen Sie Ihre Stadt aus der Liste unten aus',
+
+            AppStrings.countryCode: 'Landescode',
+    AppStrings.countryCodeSubTitle: 'Wählen Sie Ihre Landescode aus der Liste unten aus',
+
   };
 }

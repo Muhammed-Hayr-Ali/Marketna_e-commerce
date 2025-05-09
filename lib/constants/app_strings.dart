@@ -9,12 +9,18 @@ class AppStrings {
 
   static const String dateFormat = 'yyyy-MM-dd';
 
-  static const String onboardingTitle_1 =  'Discover a new way to shop, faster and easier than ever!';
-  static const String onboardingTitle_2 = 'Receive your orders wherever you are, at a time that suits you!';
-  static const String onboardingTitle_3 = 'Control every order intelligently, from order to receipt!';
-  static const String onboardingSubTitle_1 = 'Shop from thousands of products with just a few clicks, and enjoy a personalized experience that suits your needs, anytime, anywhere.';
-  static const String onboardingSubTitle_2 = 'We offer fast and secure delivery options, with real-time tracking of order status and live updates until it reaches your door.';
-  static const String onboardingSubTitle_3 = 'Track your orders, edit details, or reorder easily through a clear interface, with 24/7 technical support available to resolve any inquiries.';
+  static const String onboardingTitle_1 =
+      'Discover a new way to shop, faster and easier than ever!';
+  static const String onboardingTitle_2 =
+      'Receive your orders wherever you are, at a time that suits you!';
+  static const String onboardingTitle_3 =
+      'Control every order intelligently, from order to receipt!';
+  static const String onboardingSubTitle_1 =
+      'Shop from thousands of products with just a few clicks, and enjoy a personalized experience that suits your needs, anytime, anywhere.';
+  static const String onboardingSubTitle_2 =
+      'We offer fast and secure delivery options, with real-time tracking of order status and live updates until it reaches your door.';
+  static const String onboardingSubTitle_3 =
+      'Track your orders, edit details, or reorder easily through a clear interface, with 24/7 technical support available to resolve any inquiries.';
   static const String language = 'Language';
   static const String poweredBy = 'Powered by PST';
   static const String addNewAddress = 'Add New Address';
@@ -103,19 +109,19 @@ class AppStrings {
   static const String logoutSubTitle = 'Are you sure you want to logout?';
   static const String logoutButtonText = 'Logout Now';
   static const String profile = 'Profile';
-  static const String myAddresses =  'My Addresses';
-  static const String myOrders =  'My Orders';
-  static const String settings =  'Settings';
-  static const String help =  'Help';
-  static const String languageSubTitle =  'Choose your preferred language';
-  static const String dependingOnTheDeviceSystem =  'Depending on the device system';
-  static const String arabic =  'العربية';
-  static const String english =  'English';
-  static const String german =  'Deutsch';
-  static const String francis =  'Français';
-  static const String turkish =  'Türkçe';
-  static const String version =  'version';
-
+  static const String myAddresses = 'My Addresses';
+  static const String myOrders = 'My Orders';
+  static const String settings = 'Settings';
+  static const String help = 'Help';
+  static const String languageSubTitle = 'Choose your preferred language';
+  static const String dependingOnTheDeviceSystem =
+      'Depending on the device system';
+  static const String arabic = 'العربية';
+  static const String english = 'English';
+  static const String german = 'Deutsch';
+  static const String francis = 'Français';
+  static const String turkish = 'Türkçe';
+  static const String version = 'version';
 
   static const String retry = 'Retry';
   static const String no = 'No';
@@ -128,13 +134,17 @@ class AppStrings {
   static const String skip = 'Skip';
   static const String confirm = 'Confirm';
 
+  static const String selectCountry = 'Select Country';
+  static const String selectCountrySubTitle =
+      'Select your country from the list below';
+  static const String selectProvince = 'Select Province';
+  static const String selectProvinceSubTitle =
+      'Select your province from the list below';
+  static const String selectCity = 'Select City';
+  static const String selectCitySubTitle =
+      'Select your city from the list below';
 
-
-  static const String selectCountry =  'Select Country';
-  static const String selectCountrySubTitle =  'Select your country from the list below';
-  static const String selectProvince =  'Select Province';
-  static const String selectProvinceSubTitle =  'Select your province from the list below';
-  static const String selectCity =  'Select City';
-  static const String selectCitySubTitle =  'Select your city from the list below';
-
+  static const String countryCode = 'Country Code';
+  static const String countryCodeSubTitle =
+      'Select your country code';
 }

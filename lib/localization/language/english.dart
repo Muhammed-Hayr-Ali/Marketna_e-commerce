@@ -184,5 +184,9 @@ class English {
         'Select your province from the list below',
     AppStrings.selectCity: 'Select City',
     AppStrings.selectCitySubTitle: 'Select your city from the list below',
+
+    AppStrings.countryCode: 'Country Code',
+    AppStrings.countryCodeSubTitle:
+        'Select your country code from the list below',
   };
 }

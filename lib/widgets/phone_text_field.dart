@@ -13,7 +13,7 @@ class PhoneTextFieldController extends GetxController {
 
   String getLocalCode() {
     final locale = _storage.read(StorageKeys.localeCode);
-    return locale ?? Get.deviceLocale?.languageCode ?? 'en';
+    return locale ?? Get.deviceLocale?.languageCode ?? FieldValues.en;
   }
 
   Future<List<CountryModel>?> fetchCountryCodes() async {
@@ -57,8 +57,8 @@ class PhoneTextFieldController extends GetxController {
         await custombottomSheet(
           children: [
             CustomPageTitle(
-              title: 'Country Code',
-              subtitle: 'Select your country code',
+              title: AppStrings.countryCode,
+              subtitle: AppStrings.countryCodeSubTitle,
               padding: const EdgeInsets.only(bottom: 16.0),
             ),
             Divider(),
@@ -89,7 +89,7 @@ class PhoneTextFieldController extends GetxController {
                               ),
                               SizedBox(width: 8),
                               CustomText(
-                                (getLocalCode() == 'ar'
+                                (getLocalCode() == FieldValues.ar
                                         ? countriesList[index].nameAr
                                         : countriesList[index].name) ??
                                     '',
