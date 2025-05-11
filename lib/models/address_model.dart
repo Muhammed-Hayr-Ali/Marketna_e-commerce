@@ -1,79 +1,98 @@
 class AddressModel {
-  // Fields
   int? id;
   String? userId;
-  String? email;
   String? addressName;
-  String? country;
-  String? flag;
-  String? province;
-  String? city;
   String? street;
-  String? countryCode;
+  String? city;
+  String? province;
+  String? country;
   String? phoneNumber;
   String? notes;
-  Map<String, dynamic>? location;
+  Location? location;
+  String? countryCode;
+  String? flag;
   String? createdAt;
 
-  // Constructor to initialize the fields
   AddressModel({
     this.id,
     this.userId,
-    this.email,
     this.addressName,
-    this.country,
-    this.flag,
-    this.province,
-    this.city,
     this.street,
-    this.countryCode,
+    this.city,
+    this.province,
+    this.country,
     this.phoneNumber,
     this.notes,
     this.location,
+    this.countryCode,
+    this.flag,
     this.createdAt,
   });
 
-  // Factory method to create an instance from a map
-  factory AddressModel.fromJson(Map<String, dynamic> json) {
-    return AddressModel(
-      id: json['id'],
-      userId: json['user_id'],
-      email: json['email'],
-      addressName: json['address_name'],
-      country: json['country'],
-      flag: json['flag'],
-      province: json['province'],
-      city: json['city'],
-      street: json['street'],
-      countryCode: json['country_code'],
-      phoneNumber: json['phone_number'],
-      notes: json['notes'],
-      location: json['location'],
-      createdAt: json['created_at'],
-    );
+  AddressModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    addressName = json['address_name'];
+    street = json['street'];
+    city = json['city'];
+    province = json['province'];
+    country = json['country'];
+    phoneNumber = json['phone_number'];
+    notes = json['notes'];
+    location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
+    countryCode = json['country_code'];
+    flag = json['flag'];
+    createdAt = json['created_at'];
   }
 
-  // Method to convert the object to a JSON map
   Map<String, dynamic> toJson() {
-    return {
-      'user_id': userId,
-      'email': email,
-      'address_name': addressName,
-      'country': country,
-      'flag': flag,
-      'province': province,
-      'city': city,
-      'street': street,
-      'country_code': countryCode,
-      'phone_number': phoneNumber,
-      'notes': notes,
-      'location': location,
-      'created_at': createdAt,
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['address_name'] = addressName;
+    data['street'] = street;
+    data['city'] = city;
+    data['province'] = province;
+    data['country'] = country;
+    data['phone_number'] = phoneNumber;
+    data['notes'] = notes;
+    if (location != null) {
+      data['location'] = location!.toJson();
+    }
+    data['country_code'] = countryCode;
+    data['flag'] = flag;
+    data['created_at'] = createdAt;
+    return data;
+  }
+
+  @override
+  @override
+  String toString() {
+    return 'AddressModel(id: $id, userId: $userId, addressName: $addressName, street: $street, city: $city, province: $province, country: $country, phoneNumber: $phoneNumber, notes: $notes, location: $location, countryCode: $countryCode, flag: $flag, createdAt: $createdAt)';
+  }
+}
+
+class Location {
+  double? latitude;
+  double? longitude;
+
+  Location({this.latitude, this.longitude});
+
+  Location.fromJson(Map<String, dynamic> json) {
+    latitude = json['latitude'].toDouble();
+    longitude = json['longitude'].toDouble();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    return data;
   }
 
   @override
   String toString() {
-    return 'AddressModel{id: $id, user_id: $userId, email: $email, addressName: $addressName, country: $country, flag: $flag, province: $province, city: $city, streetAddress: $street, countryCode: $countryCode, phoneNumber: $phoneNumber, notes: $notes, location: $location, createdAt: $createdAt}';
+    return 'Location(latitude: $latitude, longitude: $longitude)';
   }
 }

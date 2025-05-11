@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class AddAddressController extends GetxController {
@@ -116,7 +115,6 @@ class AddAddressController extends GetxController {
       return;
     }
     String userId = currentUser.id;
-    final email = currentUser.email;
     countryErrorMessage = Validators.country(selectedCountry ?? '');
     provinceErrorMessage = Validators.province(selectedProvince ?? '');
     cityErrorMessage = Validators.city(selectedCity ?? '');
@@ -140,20 +138,19 @@ class AddAddressController extends GetxController {
 
       final newAddress = AddressModel(
         userId: userId,
-        email: email,
         addressName: addressNameController.text,
         street: streetAddressController.text,
-        country: selectedCountry,
-        province: selectedProvince,
-        city: selectedCity,
-        countryCode: selectedCountryCode,
+        country: selectedCountry??'',
+        province: selectedProvince??'',
+        city: selectedCity??'',
+        countryCode: selectedCountryCode??'',
         phoneNumber: phoneNumberController.text,
-        flag: selectedCountryFlag,
+        flag: selectedCountryFlag??'',
         notes: notesController.text,
-        location: {
-          FieldValues.latitude: currentPosition.latitude, 
-          FieldValues.longitude: currentPosition.longitude,
-        },
+        location: Location(
+          latitude: currentPosition.latitude,
+          longitude: currentPosition.longitude,
+        ),
       );
 
       if (addressId != null) {

@@ -1,10 +1,9 @@
-
 import 'package:application/constants/import.dart';
 
 class CustomCarouselSlider extends StatefulWidget {
   /// List of products to be displayed in the carousel slider.
   /// Each product should contain an `id` and `imageUrl` for displaying the image.
-  final List<ProductModel> products;
+  final List<Map<String, dynamic>> products;
 
   /// Placeholder widget to display while the carousel is loading.
   final Widget shimmerPlaceholder;
@@ -68,7 +67,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
 
   /// Processed list of products after applying the `reverseOrder` logic.
   /// If `reverseOrder` is true, the list is reversed; otherwise, it remains as is.
-  late List<ProductModel> _processedProducts;
+  late List<Map<String, dynamic>> _processedProducts;
 
   @override
   void initState() {
@@ -138,7 +137,8 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                 onTap: () {
                   if (widget.onTap != null) {
                     widget.onTap!.call(
-                          _processedProducts[index % _processedProducts.length].id!,
+                      _processedProducts[index %
+                          _processedProducts.length]['id'],
                     ); // Trigger the onTap callback with the product ID.
                   }
                   setState(() {
@@ -147,13 +147,14 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                 },
                 child: Hero(
                   tag:
-                      _processedProducts[index % _processedProducts.length].id!,
+                      _processedProducts[index %
+                          _processedProducts.length]['id'],
                   transitionOnUserGestures: true,
                   // Use CachedNetworkImage to load and cache images.
                   child: CachedNetworkImage(
                     imageUrl:
-                        _processedProducts[index % _processedProducts.length]
-                            .imageUrl!,
+                        _processedProducts[index %
+                            _processedProducts.length]['imageUrl'],
                     imageBuilder:
                         (context, imageProvider) => Container(
                           margin: const EdgeInsets.symmetric(horizontal: 10.0),

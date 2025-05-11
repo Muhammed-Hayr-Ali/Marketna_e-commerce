@@ -6,8 +6,8 @@ class ProfileController extends GetxController {
 
   final RxBool _isLoading = true.obs;
   bool get isLoading => _isLoading.value;
-  final Rx<UserMetaDataModel> _metadata = UserMetaDataModel().obs;
-  UserMetaDataModel get metadata => _metadata.value;
+  final Rx<UserMetadata> _metadata = UserMetadata().obs;
+  UserMetadata get metadata => _metadata.value;
 
   @override
   void onInit() {
@@ -20,8 +20,7 @@ class ProfileController extends GetxController {
       _isLoading.value = true;
       final user = _supabase.auth.currentUser;
       if (user == null || user.userMetadata == null) return;
-      _metadata.value = UserMetaDataModel.fromJson(user.userMetadata ?? {});
-      _metadata.value.email = user.email ?? '';
+      _metadata.value = UserMetadata.fromJson(user.userMetadata ?? {});
     } finally {
       _isLoading.value = false;
     }

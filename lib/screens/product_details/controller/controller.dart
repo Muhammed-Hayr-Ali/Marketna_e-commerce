@@ -1,5 +1,6 @@
 import 'package:application/constants/import.dart';
-import 'package:application/models/product_review.dart';
+import 'package:application/models/product_detail_model.dart';
+import 'package:application/models/product_review_model.dart';
 
 class ProductDetailsController extends GetxController {
   final int productId;
@@ -16,7 +17,7 @@ class ProductDetailsController extends GetxController {
   String get errorMessage => _errorMessage.value;
 
   /// Product
-  ProductDetails? product;
+  ProductDetailModel? product;
 
   /// Images
   RxList<String> imagesList = <String>[].obs;
@@ -24,7 +25,7 @@ class ProductDetailsController extends GetxController {
   RxInt currentImageIndex = 0.obs;
 
   /// Reviews
-  List<ProductReview> reviewsList = [];
+  List<ProductReviewModel> reviewsList = [];
   final RxInt _reviewCount = 0.obs;
   int get reviewCount => _reviewCount.value;
   final RxDouble _reviewScore = 0.0.obs;
@@ -64,7 +65,7 @@ class ProductDetailsController extends GetxController {
       /// Set Product
       this.product = product;
 
-      await _collectionProductReviews(product.productsReviews);
+      // await _collectionProductReviews(product.reviews ?? []);
 
       await _fetchProductFavourite();
     } on Exception catch (error) {
@@ -75,7 +76,7 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  Future<ProductDetails?> _fetchProductDetails() async {
+  Future<ProductDetailModel?> _fetchProductDetails() async {
     try {
       debugPrint('Fetching products...');
       final response = await _supabase
@@ -89,25 +90,25 @@ class ProductDetailsController extends GetxController {
         throw 'Product not found';
       }
       debugPrint('Products fetched successfully');
-      return ProductDetails.fromJson(response[0]);
+      return ProductDetailModel.fromJson(response[0]);
     } catch (error) {
       debugPrint('Error fetching products: $error');
     }
     return null;
   }
 
-  Future<void> _collectionProductReviews(List<ProductReview>? reviews) async {
-    final user = _supabase.auth.currentUser;
-    if (reviews == null || reviews == []) return;
+  // Future<void> _collectionProductReviews(List<ProductReview> reviewsList) async {
+  //   final user = _supabase.auth.currentUser;
+  //  // if (reviews == null || reviews == []) return;
 
-    /// reviews collection
-    reviewsList = reviews;
-    _reviewCount.value = reviews.length;
-    _reviewScore.value =
-        reviews.map((e) => e.ratingValue ?? 0.0).reduce((a, b) => a + b) /
-        reviews.length;
-    _hasReview.value = reviews.any((e) => e.userProfiles?.userId == user?.id);
-  }
+  //   /// reviews collection
+  //   reviewsList = reviews;
+  //   _reviewCount.value = reviews.length;
+  //   _reviewScore.value =
+  //       reviews.map((e) => e.ratingValue ?? 0.0).reduce((a, b) => a + b) /
+  //       reviews.length;
+  //   _hasReview.value = reviews.any((e) => e.userProfiles?.userId == user?.id);
+  // }
 
   /// Check if a product is in the user's favorites
   ///

@@ -4,7 +4,7 @@ import 'package:application/constants/import.dart';
 class ProfileWidget extends StatelessWidget {
   final bool isLoading;
   final double size;
-  final UserMetaDataModel? metadata;
+  final UserMetadata? metadata;
   const ProfileWidget({
     super.key,
     this.isLoading = true,

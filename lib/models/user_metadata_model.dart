@@ -1,4 +1,4 @@
-class UserMetaDataModel {
+class UserMetadata {
   String? name;
   String? email;
   String? phone;
@@ -9,6 +9,7 @@ class UserMetaDataModel {
   String? userName;
   String? avatarUrl;
   String? dateBirth;
+  String? providerId;
   String? countryCode;
   String? displayName;
   bool? emailVerified;
@@ -16,7 +17,7 @@ class UserMetaDataModel {
   String? statusMessage;
   String? preferredUsername;
 
-  UserMetaDataModel({
+  UserMetadata({
     this.name,
     this.email,
     this.phone,
@@ -27,6 +28,7 @@ class UserMetaDataModel {
     this.userName,
     this.avatarUrl,
     this.dateBirth,
+    this.providerId,
     this.countryCode,
     this.displayName,
     this.emailVerified,
@@ -35,7 +37,7 @@ class UserMetaDataModel {
     this.preferredUsername,
   });
 
-  UserMetaDataModel.fromJson(Map<String, dynamic> json) {
+  UserMetadata.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     email = json['email'];
     phone = json['phone'];
@@ -46,6 +48,7 @@ class UserMetaDataModel {
     userName = json['user_name'];
     avatarUrl = json['avatar_url'];
     dateBirth = json['date_birth'];
+    providerId = json['provider_id'];
     countryCode = json['country_code'];
     displayName = json['display_name'];
     emailVerified = json['email_verified'];
@@ -66,18 +69,22 @@ class UserMetaDataModel {
     data['user_name'] = userName;
     data['avatar_url'] = avatarUrl;
     data['date_birth'] = dateBirth;
+    data['provider_id'] = providerId;
     data['country_code'] = countryCode;
-    data['display_name'] = displayName;
     data['email_verified'] = emailVerified;
     data['phone_verified'] = phoneVerified;
     data['status_message'] = statusMessage;
     data['preferred_username'] = preferredUsername;
+ 
+
     return data;
   }
 
+  /// to String
+  @override
   @override
   String toString() {
-    return 'user_meta_data_model{'
+    return 'UserMetadataModel('
         'name: $name, '
         'email: $email, '
         'phone: $phone, '
@@ -88,12 +95,12 @@ class UserMetaDataModel {
         'userName: $userName, '
         'avatarUrl: $avatarUrl, '
         'dateBirth: $dateBirth, '
+        'providerId: $providerId, '
         'countryCode: $countryCode, '
         'displayName: $displayName, '
         'emailVerified: $emailVerified, '
         'phoneVerified: $phoneVerified, '
-        'preferredUsername: $preferredUsername}';
+        'statusMessage: $statusMessage, '
+        'preferredUsername: $preferredUsername)';
   }
-
-  
 }

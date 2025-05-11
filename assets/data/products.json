@@ -1,302 +1,432 @@
 [
     {
-        "id": "1",
-        "name": "Wireless Bluetooth Earbuds",
-        "description": "High-quality wireless earbuds with noise cancellation and long battery life.",
-        "price": 79.99,
-        "image_url": "https://images.unsplash.com/photo-1636100007422-4d77bdd15a6b",
+        "id": 1,
+        "name": "هاتف ذكي",
+        "description": "هاتف أندرويد بشاشة 6.5 بوصة وكاميرا خلفية ثلاثية.",
+        "price": 399,
+        "old_price": 499.0,
         "quantity": 50,
-        "category": "Electronics",
-        "quality": "Premium"
+        "favorite_count": 120,
+        "views_count": 300,
+        "product_attributes": [
+            {
+                "key": "color",
+                "value": "أسود"
+            },
+            {
+                "key": "storage",
+                "value": "128GB"
+            }
+        ],
+        "product_categories": {
+            "name": "إلكترونيات"
+        },
+        "product_quality": {
+            "name": "أصلي"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/phone1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "ممتاز!",
+                "rating_value": 4.5,
+                "user_profiles": {
+                    "full_name": "محمد أحمد",
+                    "avatar_url": "https://example.com/avatars/user1.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_001"
+            },
+            {
+                "user_id": "user_002"
+            }
+        ]
     },
     {
-        "id": "2",
-        "name": "Smartphone X Pro",
-        "description": "Latest smartphone with 120Hz display, 5G support, and quad-camera setup.",
-        "price": 899.99,
-        "image_url": "https://images.unsplash.com/photo-1551789028-47bd9d06b118",
-        "quantity": 20,
-        "category": "Electronics",
-        "quality": "Premium"
-    },
-    {
-        "id": "3",
-        "name": "Coffee Maker Deluxe",
-        "description": "Automatic coffee maker with programmable settings and built-in grinder.",
-        "price": 149.99,
-        "image_url": "https://images.unsplash.com/photo-1595259601701-ccc4aa91c073",
-        "quantity": 30,
-        "category": "Home Appliances",
-        "quality": "Premium"
-    },
-    {
-        "id": "4",
-        "name": "Leather Backpack",
-        "description": "Durable leather backpack with multiple compartments and USB charging port.",
-        "price": 129.99,
-        "image_url": "https://images.unsplash.com/photo-1587395925079-4bfbb0488fa2",
-        "quantity": 40,
-        "category": "Fashion",
-        "quality": "Premium"
-    },
-    {
-        "id": "5",
-        "name": "LED Desk Lamp",
-        "description": "Adjustable LED desk lamp with touch controls and multiple brightness levels.",
-        "price": 39.99,
-        "image_url": "https://images.unsplash.com/photo-1708513427809-728a7913fc9f",
-        "quantity": 100,
-        "category": "Home Appliances",
-        "quality": "Premium"
-    },
-    {
-        "id": "6",
-        "name": "Yoga Mat Premium",
-        "description": "Non-slip yoga mat with extra cushioning for comfort during workouts.",
-        "price": 29.99,
-        "image_url": "https://images.unsplash.com/photo-1584978085537-5ca97c5a205b",
-        "quantity": 60,
-        "category": "Sports",
-        "quality": "new"
-    },
-    {
-        "id": "7",
-        "name": "Air Fryer Pro",
-        "description": "Compact air fryer with digital touch controls and multiple cooking presets.",
-        "price": 199.99,
-        "image_url": "https://images.unsplash.com/photo-1601286756147-f5b693aaaf15",
-        "quantity": 25,
-        "category": "Home Appliances",
-        "quality": "new"
-    },
-    {
-        "id": "8",
-        "name": "Men's Running Shoes",
-        "description": "Lightweight running shoes with breathable mesh and shock absorption.",
-        "price": 89.99,
-        "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-        "quantity": 70,
-        "category": "Fashion",
-        "quality": "new"
-    },
-    {
-        "id": "9",
-        "name": "Portable Power Bank",
-        "description": "Compact power bank with 20,000mAh capacity and fast charging support.",
-        "price": 49.99,
-        "image_url": "https://images.unsplash.com/photo-1588882312187-863c53071144",
-        "quantity": 80,
-        "category": "Electronics",
-        "quality": "new"
-    },
-    {
-        "id": "10",
-        "name": "Stainless Steel Water Bottle",
-        "description": "Insulated stainless steel water bottle keeps drinks cold for 24 hours.",
-        "price": 19.99,
-        "image_url": "https://images.unsplash.com/photo-1563612116625-301442dbcb72",
-        "quantity": 150,
-        "category": "Sports",
-        "quality": "new"
-    },
-    {
-        "id": "11",
-        "name": "Gaming Headset Pro",
-        "description": "Surround sound gaming headset with noise-canceling microphone.",
-        "price": 69.99,
-        "image_url": "https://images.unsplash.com/photo-1583324113626-70df0f4deaab",
-        "quantity": 35,
-        "category": "Electronics",
-        "quality": "popular"
-    },
-    {
-        "id": "12",
-        "name": "Women's Winter Jacket",
-        "description": "Waterproof winter jacket with thermal insulation and detachable hood.",
-        "price": 119.99,
-        "image_url": "https://images.unsplash.com/photo-1588305244592-8da74226d928",
-        "quantity": 45,
-        "category": "Fashion",
-        "quality": "popular"
-    },
-    {
-        "id": "13",
-        "name": "Electric Toothbrush",
-        "description": "Rechargeable electric toothbrush with timer and multiple brushing modes.",
-        "price": 59.99,
-        "image_url": "https://images.unsplash.com/photo-1578985545062-6992bd0815cc",
-        "quantity": 120,
-        "category": "Health",
-        "quality": "popular"
-    },
-    {
-        "id": "14",
-        "name": "Bluetooth Speaker Mini",
-        "description": "Compact Bluetooth speaker with 10-hour battery life and waterproof design.",
-        "price": 34.99,
-        "image_url": "https://images.unsplash.com/photo-1584736793009-40ddf2dd7842",
-        "quantity": 90,
-        "category": "Electronics",
-        "quality": "popular"
-    },
-    {
-        "id": "15",
-        "name": "Men's Casual Watch",
-        "description": "Analog men's watch with leather strap and water-resistant design.",
-        "price": 89.99,
-        "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-        "quantity": 55,
-        "category": "Fashion",
-        "quality": "popular"
-    },
-    {
-        "id": "16",
-        "name": "Wireless Charging Pad",
-        "description": "Fast wireless charging pad compatible with all Qi-enabled devices.",
-        "price": 24.99,
-        "image_url": "https://images.unsplash.com/photo-1593305841991-05c1bf4b9b6b",
-        "quantity": 110,
-        "category": "Electronics",
-        "quality": "normal"
-    },
-    {
-        "id": "17",
-        "name": "Kids' Educational Toy",
-        "description": "Interactive educational toy to enhance creativity and problem-solving skills.",
-        "price": 39.99,
-        "image_url": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73",
-        "quantity": 65,
-        "category": "Toys",
-        "quality": "normal"
-    },
-    {
-        "id": "18",
-        "name": "Smart Fitness Tracker",
-        "description": "Fitness tracker with heart rate monitor, step counter, and sleep tracking.",
-        "price": 49.99,
-        "image_url": "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
-        "quantity": 85,
-        "category": "Sports",
-        "quality": "normal"
-    },
-    {
-        "id": "19",
-        "name": "Laptop Cooling Pad",
-        "description": "Adjustable laptop cooling pad with dual fans and ergonomic design.",
-        "price": 59.99,
-        "image_url": "https://images.unsplash.com/photo-1593640406902-ed0ba75a5787",
-        "quantity": 75,
-        "category": "Electronics",
-        "quality": "normal"
-    },
-    {
-        "id": "20",
-        "name": "Women's Sunglasses",
-        "description": "UV-protected sunglasses with stylish frame and polarized lenses.",
-        "price": 29.99,
-        "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-        "quantity": 130,
-        "category": "Fashion",
-        "quality": "normal"
-    },
-    {
-        "id": "21",
-        "name": "Smart Home Camera",
-        "description": "Wi-Fi enabled home security camera with night vision and motion detection.",
-        "price": 129.99,
-        "image_url": "https://images.unsplash.com/photo-1588305244592-8da74226d928",
-        "quantity": 40,
-        "category": "Electronics",
-        "quality": "normal"
-    },
-    {
-        "id": "22",
-        "name": "Men's Leather Wallet",
-        "description": "Slim minimalist leather wallet with RFID blocking technology.",
-        "price": 49.99,
-        "image_url": "https://images.unsplash.com/photo-1563612116625-301442dbcb72",
-        "quantity": 100,
-        "category": "Fashion",
-        "quality": "normal"
-    },
-    {
-        "id": "23",
-        "name": "Reusable Shopping Bags",
-        "description": "Set of reusable shopping bags made from eco-friendly materials.",
-        "price": 14.99,
-        "image_url": "https://images.unsplash.com/photo-1586871201204-6e90d4c3f4b6",
+        "id": 2,
+        "name": "سماعات بلوتوث",
+        "description": "سماعات لاسلكية مع إلغاء الضوضاء ومدة تشغيل 20 ساعة.",
+        "price": 89,
+        "old_price": 100.0,
         "quantity": 200,
-        "category": "Home Appliances",
-        "quality": "normal"
+        "favorite_count": 75,
+        "views_count": 400,
+        "product_attributes": [
+            {
+                "key": "type",
+                "value": "Over Ear"
+            },
+            {
+                "key": "connectivity",
+                "value": "Bluetooth 5.0"
+            }
+        ],
+        "product_categories": {
+            "name": "إكسسوارات"
+        },
+        "product_quality": {
+            "name": "مستورد"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/headphones1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "صوت رائع وراحة كبيرة.",
+                "rating_value": 4.7,
+                "user_profiles": {
+                    "full_name": "سارة علي",
+                    "avatar_url": "https://example.com/avatars/user2.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_003"
+            }
+        ]
     },
     {
-        "id": "24",
-        "name": "Digital Kitchen Scale",
-        "description": "Precision digital kitchen scale with LCD display and tare function.",
-        "price": 29.99,
-        "image_url": "https://images.unsplash.com/photo-1588882312187-863c53071144",
-        "quantity": 95,
-        "category": "Home Appliances",
-        "quality": "normal"
+        "id": 3,
+        "name": "كاميرا DSLR",
+        "description": "كاميرا احترافية بدقة 24 ميجا بيكسل مع عدسة 18-55 ملم.",
+        "price": 699,
+        "old_price": null,
+        "quantity": 15,
+        "favorite_count": 200,
+        "views_count": 800,
+        "product_attributes": [
+            {
+                "key": "megapixels",
+                "value": "24MP"
+            },
+            {
+                "key": "lens",
+                "value": "18-55mm"
+            }
+        ],
+        "product_categories": {
+            "name": "تصوير"
+        },
+        "product_quality": {
+            "name": "جديد"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/camera1.jpg "
+            }
+        ],
+        "products_reviews": [],
+        "user_purchases": []
     },
     {
-        "id": "25",
-        "name": "Travel Pillow",
-        "description": "Memory foam travel pillow with soft cover for neck support.",
-        "price": 19.99,
-        "image_url": "https://images.unsplash.com/photo-1584978085537-5ca97c5a205b",
-        "quantity": 150,
-        "category": "Travel",
-        "quality": "normal"
-    },
-    {
-        "id": "26",
-        "name": "Smart Doorbell",
-        "description": "Video doorbell with two-way audio and mobile app notifications.",
-        "price": 199.99,
-        "image_url": "https://images.unsplash.com/photo-1601286756147-f5b693aaaf15",
+        "id": 4,
+        "name": "شاشة LED",
+        "description": "شاشة 4K UHD مقاس 55 بوصة مع دعم HDR.",
+        "price": 599,
+        "old_price": 650.0,
         "quantity": 30,
-        "category": "Electronics",
-        "quality": "normal"
+        "favorite_count": 90,
+        "views_count": 600,
+        "product_attributes": [
+            {
+                "key": "size",
+                "value": "55 inch"
+            },
+            {
+                "key": "resolution",
+                "value": "4K"
+            }
+        ],
+        "product_categories": {
+            "name": "تلفزيونات"
+        },
+        "product_quality": {
+            "name": "أصلي"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/tv1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "رائعة للألعاب والفيديوهات.",
+                "rating_value": 4.6,
+                "user_profiles": {
+                    "full_name": "خالد نبيل",
+                    "avatar_url": "https://example.com/avatars/user4.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_004"
+            },
+            {
+                "user_id": "user_005"
+            }
+        ]
     },
     {
-        "id": "27",
-        "name": "Women's Handbag",
-        "description": "Stylish handbag with multiple compartments and adjustable strap.",
-        "price": 79.99,
-        "image_url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-        "quantity": 50,
-        "category": "Fashion",
-        "quality": "normal"
+        "id": 5,
+        "name": "ماوس لاسلكي",
+        "description": "ماوس لاسلكي صغير مناسب للأجهزة المحمولة.",
+        "price": 25,
+        "old_price": null,
+        "quantity": 300,
+        "favorite_count": 40,
+        "views_count": 200,
+        "product_attributes": [
+            {
+                "key": "type",
+                "value": "Wireless"
+            },
+            {
+                "key": "dpi",
+                "value": "1600"
+            }
+        ],
+        "product_categories": {
+            "name": "أجهزة كمبيوتر"
+        },
+        "product_quality": {
+            "name": "اقتصادي"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/mouse1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "خفيف وسهل الحمل.",
+                "rating_value": 4.2,
+                "user_profiles": {
+                    "full_name": "نادية محمد",
+                    "avatar_url": "https://example.com/avatars/user5.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_006"
+            }
+        ]
     },
     {
-        "id": "28",
-        "name": "Smart Bulb RGB",
-        "description": "Wi-Fi enabled smart bulb with color-changing and voice control features.",
-        "price": 29.99,
-        "image_url": "https://images.unsplash.com/photo-1542089280-7d73ae0e0d4f",
-        "quantity": 120,
-        "category": "Electronics",
-        "quality": "normal"
+        "id": 6,
+        "name": "تابلت",
+        "description": "تابلت بشاشة 10 بوصة ومعالج ثماني النواة.",
+        "price": 299,
+        "old_price": 349.0,
+        "quantity": 45,
+        "favorite_count": 110,
+        "views_count": 500,
+        "product_attributes": [
+            {
+                "key": "screen_size",
+                "value": "10 inch"
+            },
+            {
+                "key": "battery",
+                "value": "7000mAh"
+            }
+        ],
+        "product_categories": {
+            "name": "إلكترونيات"
+        },
+        "product_quality": {
+            "name": "جديد"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/tablet1.jpg "
+            }
+        ],
+        "products_reviews": [],
+        "user_purchases": []
     },
     {
-        "id": "29",
-        "name": "Men's Polo Shirt",
-        "description": "Comfortable polo shirt made from breathable cotton fabric.",
-        "price": 39.99,
-        "image_url": "https://images.unsplash.com/photo-1588305844592-8da74226d928",
+        "id": 7,
+        "name": "فرشاة أسنان كهربائية",
+        "description": "فرشاة أسنان كهربائية مع شحن لاسلكي ووضعيات تنظيف متعددة.",
+        "price": 60,
+        "old_price": null,
         "quantity": 100,
-        "category": "Fashion",
-        "quality": "normal"
+        "favorite_count": 85,
+        "views_count": 450,
+        "product_attributes": [
+            {
+                "key": "type",
+                "value": "Rotating"
+            },
+            {
+                "key": "charge",
+                "value": "USB"
+            }
+        ],
+        "product_categories": {
+            "name": "صحة"
+        },
+        "product_quality": {
+            "name": "عالي الجودة"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/toothbrush1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "تحسين كبير في نظافة الأسنان.",
+                "rating_value": 4.8,
+                "user_profiles": {
+                    "full_name": "حسن سعيد",
+                    "avatar_url": "https://example.com/avatars/user7.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_007"
+            }
+        ]
     },
     {
-        "id": "30",
-        "name": "Smart Plug Mini",
-        "description": "Compact smart plug to control appliances remotely via mobile app.",
-        "price": 19.99,
-        "image_url": "https://images.unsplash.com/photo-1593305841991-05c1bf4b9b6b",
-        "quantity": 150,
-        "category": "Electronics" ,
-        "quality": "normal"
+        "id": 8,
+        "name": "محمصة كهربائية",
+        "description": "محمصة كهربائية ذاتية الرفع بسعتين.",
+        "price": 35,
+        "old_price": 40.0,
+        "quantity": 80,
+        "favorite_count": 25,
+        "views_count": 180,
+        "product_attributes": [
+            {
+                "key": "slots",
+                "value": "2"
+            },
+            {
+                "key": "material",
+                "value": "ستانلس ستيل"
+            }
+        ],
+        "product_categories": {
+            "name": "منزل"
+        },
+        "product_quality": {
+            "name": "اقتصادي"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/toaster1.jpg "
+            }
+        ],
+        "products_reviews": [],
+        "user_purchases": []
+    },
+    {
+        "id": 9,
+        "name": "مكبر صوت بلوتوث",
+        "description": "مكبر صوت محمول مع بلوتوث ومضخم صوت داخلي.",
+        "price": 75,
+        "old_price": 90.0,
+        "quantity": 60,
+        "favorite_count": 65,
+        "views_count": 370,
+        "product_attributes": [
+            {
+                "key": "power",
+                "value": "20W"
+            },
+            {
+                "key": "waterproof",
+                "value": "IPX6"
+            }
+        ],
+        "product_categories": {
+            "name": "صوتيات"
+        },
+        "product_quality": {
+            "name": "مستورد"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/speaker1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "صوت واضح وعالي الجودة.",
+                "rating_value": 4.4,
+                "user_profiles": {
+                    "full_name": "عبد الرحمن أحمد",
+                    "avatar_url": "https://example.com/avatars/user9.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_008"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "حقيبة ظهر",
+        "description": "حقيبة ظهر مقاومة للماء وتحتوي على جيب للكمبيوتر المحمول.",
+        "price": 45,
+        "old_price": null,
+        "quantity": 120,
+        "favorite_count": 50,
+        "views_count": 310,
+        "product_attributes": [
+            {
+                "key": "capacity",
+                "value": "30L"
+            },
+            {
+                "key": "material",
+                "value": "نايلون"
+            }
+        ],
+        "product_categories": {
+            "name": "حقائب"
+        },
+        "product_quality": {
+            "name": "اقتصادي"
+        },
+        "products_images": [
+            {
+                "image_url": "https://example.com/images/backpack1.jpg "
+            }
+        ],
+        "products_reviews": [
+            {
+                "comment": "عملية وخفيفة الوزن.",
+                "rating_value": 4.3,
+                "user_profiles": {
+                    "full_name": "ليلى عمر",
+                    "avatar_url": "https://example.com/avatars/user10.png "
+                }
+            }
+        ],
+        "user_purchases": [
+            {
+                "user_id": "user_009"
+            },
+            {
+                "user_id": "user_010"
+            }
+        ]
     }
 ]

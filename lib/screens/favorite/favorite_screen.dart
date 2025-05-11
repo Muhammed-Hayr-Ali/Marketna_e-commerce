@@ -13,20 +13,24 @@ class FavoriteScreen extends StatelessWidget {
         title: const CustomText('Favorite'),
       ),
       body: Obx(
-        () => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: CustomButton(
-                isLoading: _.isLoading.value,
-                onPressed: _.fetchProducts,
-                width: Get.width * 0.5,
-                backgroundColor: AppColors.grey,
-                child: CustomText('Get Product'),
-              ),
+        () => SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomText(_.json.value),
+                SizedBox(height: 10.0),
+                CustomButton(
+                  isLoading: _.isLoading.value,
+                  onPressed: _.fetchData,
+                  width: Get.width * 0.5,
+                  backgroundColor: AppColors.grey,
+                  child: CustomText('Get Product'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

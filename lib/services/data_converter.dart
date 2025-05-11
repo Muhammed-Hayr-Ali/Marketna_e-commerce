@@ -31,7 +31,7 @@ class DataConverter {
   /// [userMetadata] A map containing user metadata as returned by the Supabase client.
   /// [returns] The user's name or null if no name is available.
 
-  static String getUserName(UserMetaDataModel metadata) =>
+  static String getUserName(UserMetadata metadata) =>
       metadata.displayName ??
       metadata.name ??
       metadata.fullName ??

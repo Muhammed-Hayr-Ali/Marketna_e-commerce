@@ -8,7 +8,6 @@ class CountryModel {
   String? isoCode;
   String? flag;
   List<Province>? province;
-  String? createdAt;
 
   CountryModel({
     this.id,
@@ -20,7 +19,6 @@ class CountryModel {
     this.isoCode,
     this.flag,
     this.province,
-    this.createdAt,
   });
 
   CountryModel.fromJson(Map<String, dynamic> json) {
@@ -38,11 +36,11 @@ class CountryModel {
         province!.add(Province.fromJson(v));
       });
     }
-    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['name'] = name;
     data['name_ar'] = nameAr;
     data['emoji'] = emoji;
@@ -53,13 +51,12 @@ class CountryModel {
     if (province != null) {
       data['province'] = province!.map((v) => v.toJson()).toList();
     }
-    data['created_at'] = createdAt;
     return data;
   }
 
   @override
   String toString() {
-    return 'CountryModel{id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province, createdAt: $createdAt}';
+    return 'CountryModel(id: $id, name: $name, nameAr: $nameAr, emoji: $emoji, emojiU: $emojiU, code: $code, isoCode: $isoCode, flag: $flag, province: $province)';
   }
 }
 
@@ -99,7 +96,7 @@ class Province {
 
   @override
   String toString() {
-    return 'Province{id: $id, name: $name, nameAr: $nameAr, countryId: $countryId, city: $city}';
+    return 'Province(id: $id, name: $name, nameAr: $nameAr, countryId: $countryId, city: $city)';
   }
 }
 
@@ -126,6 +123,6 @@ class City {
 
   @override
   String toString() {
-    return 'City{id: $id, name: $name, provinceId: $provinceId}';
+    return 'City(id: $id, name: $name, provinceId: $provinceId)';
   }
 }

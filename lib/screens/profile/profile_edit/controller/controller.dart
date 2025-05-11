@@ -49,7 +49,7 @@ class EditProfileController extends GetxController {
       _isLoading.value = true;
       final currentUser = _supabase.auth.currentUser;
       if (currentUser == null) return;
-      final metadata = UserMetaDataModel.fromJson(
+      final metadata = UserMetadata.fromJson(
         currentUser.userMetadata ?? {},
       );
       _avatar.value = metadata.avatar ?? metadata.avatarUrl ?? '';
@@ -225,7 +225,7 @@ class EditProfileController extends GetxController {
         _avatar.value = await _uploadImage(_imagePath.value) ?? _avatar.value;
       }
 
-      final metadata = UserMetaDataModel(
+      final metadata = UserMetadata(
         avatar: _avatar.value,
         name: nameController.text.trim(),
         statusMessage: statusMessageController.text.trim(),

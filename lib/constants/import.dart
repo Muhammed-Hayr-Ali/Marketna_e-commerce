@@ -21,15 +21,13 @@ export 'package:application/constants/table_names.dart';
 export 'package:application/constants/validator_message.dart';
 export 'package:application/localization/localization_controller.dart';
 export 'package:application/localization/translation.dart';
-export 'package:application/models/address_model.dart';
-export 'package:application/models/country_model.dart';
 // ==============================
 // **Data Models**
 // ==============================
-export 'package:application/models/product_details.dart';
-export 'package:application/models/product_model.dart';
-export 'package:application/models/review_model.dart';
-export 'package:application/models/user_meta_data_model.dart';
+export 'package:application/models/address_model.dart';
+export 'package:application/models/country_model.dart';
+export 'package:application/models/user_metadata_model.dart';
+
 // ==============================
 // **Routes**
 // ==============================

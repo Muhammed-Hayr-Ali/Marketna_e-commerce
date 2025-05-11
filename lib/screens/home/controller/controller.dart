@@ -4,7 +4,7 @@ class HomeController extends GetxController {
   final supabase = Supabase.instance.client;
 
   bool isLoading = true;
-  List<ProductModel> premiumProducts = [];
+  List<Map<String, dynamic>> premiumProducts = [];
 
   @override
   void onInit() {
@@ -28,9 +28,6 @@ class HomeController extends GetxController {
         return;
       }
 
-      premiumProducts = List<ProductModel>.from(
-        response.map((product) => ProductModel.fromJson(product)),
-      );
 
       debugPrint('Products fetched successfully');
     } catch (error) {

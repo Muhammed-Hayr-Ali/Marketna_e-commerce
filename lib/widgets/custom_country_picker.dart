@@ -1,5 +1,4 @@
 import 'package:application/constants/import.dart';
-
 class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
     super.key,
@@ -16,7 +15,10 @@ class CustomCountryPicker extends StatefulWidget {
 
     this.countryErrorMessage,
     this.provinceErrorMessage,
-    this.cityErrorMessage, this.countryHintText, this.provinceHintText, this.cityHintText,
+    this.cityErrorMessage,
+    this.countryHintText,
+    this.provinceHintText,
+    this.cityHintText,
   });
 
   final String? selectedCountry,
@@ -60,7 +62,8 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
     try {
       // Fetch countries sorted by name from the database
-      final List<dynamic> response = await _supabase.from(TableNames.countries).select();
+      final List<dynamic> response =
+          await _supabase.from(TableNames.countries).select();
 
       // Return false if no countries are found
       if (response.isEmpty) return false;
@@ -85,7 +88,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// This function is called when a country is selected from the picker.
   void _onCountryChanged(CountryModel selectedCountry) {
     widget.onChangedCountry?.call(selectedCountry);
-    provinces = selectedCountry.province ?? [];
+    provinces = selectedCountry.province!;
     cities = [];
     Get.back();
   }
@@ -95,7 +98,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   void _onProvinceChanged(Province province) {
     widget.onChangedProvince?.call(province);
     // cities = province.city ?? [];
-    if (province.city != null && province.city!.isNotEmpty) {
+    if (province.city != [] && province.city != null) {
       cities = province.city!;
     } else {
       String provinceName =
@@ -306,7 +309,9 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                             ),
                   ),
                   SizedBox(width: 8),
-                  CustomText(widget.selectedCountry ?? AppStrings.selectCountry),
+                  CustomText(
+                    widget.selectedCountry ?? AppStrings.selectCountry,
+                  ),
                 ],
               ),
               Icon(Icons.keyboard_arrow_down_rounded),
@@ -362,7 +367,9 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Flexible(
-                        child: CustomText(widget.selectedCity ?? AppStrings.selectCity),
+                        child: CustomText(
+                          widget.selectedCity ?? AppStrings.selectCity,
+                        ),
                       ),
                       Icon(Icons.keyboard_arrow_down_rounded),
                     ],
