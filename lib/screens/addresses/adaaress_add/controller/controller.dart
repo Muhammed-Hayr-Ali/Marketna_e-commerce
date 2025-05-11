@@ -24,7 +24,6 @@ class AddAddressController extends GetxController {
   String? selectedProvince;
   String? selectedCity;
 
-  String? local = FieldValues.en;
   RxBool isLoading = false.obs;
 
   int? addressId;
@@ -35,12 +34,15 @@ class AddAddressController extends GetxController {
   String? countryCodeErrorMessage;
   String? phoneErrorMessage;
 
-  @override
-  void onInit() async {
-    local =
-        _storage.read(StorageKeys.localeCode) ?? Get.deviceLocale!.languageCode;
+  String _getLocale() {
+    final deviceLocale = Get.deviceLocale!.languageCode;
+    String locale =
+        _storage.read<String>(StorageKeys.localeCode) ?? deviceLocale;
 
-    super.onInit();
+    if (locale == FieldValues.auto) {
+      locale = deviceLocale;
+    }
+    return locale;
   }
 
   /// Initializes the controller and sets the initial values for the address fields.
@@ -62,7 +64,8 @@ class AddAddressController extends GetxController {
   }
 
   Future<void> onChangedCountry(CountryModel value) async {
-    selectedCountry = local != FieldValues.ar ? value.name : value.nameAr;
+    selectedCountry =
+        _getLocale() != FieldValues.ar ? value.name : value.nameAr;
     selectedCountryCode = value.code;
     selectedCountryFlag = value.flag;
     selectedProvince = null;
@@ -71,7 +74,8 @@ class AddAddressController extends GetxController {
   }
 
   void onChangedProvince(Province value) {
-    selectedProvince = local != FieldValues.ar ? value.name : value.nameAr;
+    selectedProvince =
+        _getLocale() != FieldValues.ar ? value.name : value.nameAr;
     selectedCity = null;
     update();
   }
@@ -140,12 +144,12 @@ class AddAddressController extends GetxController {
         userId: userId,
         addressName: addressNameController.text,
         street: streetAddressController.text,
-        country: selectedCountry??'',
-        province: selectedProvince??'',
-        city: selectedCity??'',
-        countryCode: selectedCountryCode??'',
+        country: selectedCountry ?? '',
+        province: selectedProvince ?? '',
+        city: selectedCity ?? '',
+        countryCode: selectedCountryCode ?? '',
         phoneNumber: phoneNumberController.text,
-        flag: selectedCountryFlag??'',
+        flag: selectedCountryFlag ?? '',
         notes: notesController.text,
         location: Location(
           latitude: currentPosition.latitude,

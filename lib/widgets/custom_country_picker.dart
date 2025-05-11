@@ -1,4 +1,5 @@
 import 'package:application/constants/import.dart';
+
 class CustomCountryPicker extends StatefulWidget {
   const CustomCountryPicker({
     super.key,
@@ -40,14 +41,25 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
   /// Variables
   final _supabase = Supabase.instance.client;
   final GetStorage _storage = GetStorage();
-  String? local;
+  // String? local;
   bool isLoading = false;
 
   List<CountryModel> countries = [];
   List<Province> provinces = [];
   List<City> cities = [];
 
-  /// Functions
+  /// Retrieves the locale setting from storage or defaults to the device locale.
+  String _getLocale() {
+    final deviceLocale = Get.deviceLocale!.languageCode;
+    String locale =
+        _storage.read<String>(StorageKeys.localeCode) ?? deviceLocale;
+
+    if (locale == FieldValues.auto) {
+      locale = deviceLocale;
+    }
+    return locale;
+  }
+
   /// Load countries
   Future<bool> _loadCountries() async {
     setState(() {
@@ -55,11 +67,6 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
     });
 
     // Retrieve locale from storage or default to device locale
-    local =
-        _storage.read(StorageKeys.localeCode) ??
-        Get.deviceLocale?.languageCode ??
-        FieldValues.en;
-
     try {
       // Fetch countries sorted by name from the database
       final List<dynamic> response =
@@ -95,16 +102,19 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
 
   /// On province changed
   /// This function is called when a province is selected from the picker.
-  void _onProvinceChanged(Province province) {
-    widget.onChangedProvince?.call(province);
-    // cities = province.city ?? [];
-    if (province.city != [] && province.city != null) {
-      cities = province.city!;
-    } else {
-      String provinceName =
-          (local == FieldValues.ar ? province.nameAr : province.name) ?? 'null';
+  void _onProvinceChanged(Province selectedProvince) {
+    final provinceName =
+        _getLocale() != FieldValues.ar
+            ? selectedProvince.name
+            : selectedProvince.nameAr;
+
+    if (selectedProvince.city == null || selectedProvince.city!.isEmpty) {
       cities = [City(name: provinceName)];
+    } else {
+      cities = selectedProvince.city!;
     }
+
+    widget.onChangedProvince?.call(selectedProvince);
     Get.back();
   }
 
@@ -162,7 +172,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                           ),
                           SizedBox(width: 8),
                           CustomText(
-                            (local == FieldValues.ar
+                            (_getLocale() == FieldValues.ar
                                     ? countries[index].nameAr
                                     : countries[index].name) ??
                                 '',
@@ -215,7 +225,7 @@ class _CustomCountryPickerState extends State<CustomCountryPicker> {
                   child: Row(
                     children: [
                       CustomText(
-                        (local == FieldValues.ar
+                        (_getLocale() == FieldValues.ar
                                 ? provinces[index].nameAr
                                 : provinces[index].name) ??
                             '',
