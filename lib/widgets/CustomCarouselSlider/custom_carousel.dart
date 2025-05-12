@@ -34,6 +34,7 @@ class CustomCarousel extends StatelessWidget {
         animationDuration: animationDuration,
       ),
     );
+
     final controller = Get.find<CustomCarouselSliderController>();
 
     return AspectRatio(
@@ -54,36 +55,18 @@ class CustomCarousel extends StatelessWidget {
                           (index) =>
                               controller.currentPage =
                                   index % controller.products.length,
-
                       itemBuilder: (context, index) {
                         final productIndex = index % controller.products.length;
                         final product = controller.products[productIndex];
-
                         return Padding(
                           padding: EdgeInsets.symmetric(horizontal: padding),
                           child: CustomInkk(
-                            onTap: () {
-                              if (onTap != null && product.id != null) {
-                                onTap!(product.id!);
-                              }
-                            },
+                            onTap: () => onTap!(product.id!),
                             onLongPress: controller.togglePause,
                             child: _imageBuilder(imageUrl: product.imageUrl),
                           ),
                         );
                       },
-                    ),
-
-                    Align(
-                      alignment: Alignment.center,
-                      child:
-                          controller.isPaused
-                              ? Icon(
-                                PhosphorIconsFill.playPause,
-                                size: 32.0,
-                                color: AppColors.grey,
-                              )
-                              : null,
                     ),
 
                     //// Indicator
@@ -102,20 +85,46 @@ class CustomCarousel extends StatelessWidget {
   }
 }
 
+Widget _paused({double padding = 0.0}) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: padding),
+    child: Container(
+      decoration: BoxDecoration(
+        color: Colors.black45,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: const Center(
+        child: Icon(
+          PhosphorIconsFill.playPause,
+          size: 32.0,
+          color: AppColors.white,
+        ),
+      ),
+    ),
+  );
+}
+
 Widget _imageBuilder({required String? imageUrl}) {
   if (imageUrl == null) return _emptyImagePlaceholder();
-  return CachedNetworkImage(
-    imageUrl: imageUrl,
-    cacheKey: imageUrl,
-    placeholder: (context, __) => _shimmerPlaceholder(),
-    errorWidget: (context, __, ___) => _errorPlaceholder(),
-    imageBuilder:
-        (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-          ),
-        ),
+  final controller = Get.find<CustomCarouselSliderController>();
+
+  return Stack(
+    children: [
+      CachedNetworkImage(
+        imageUrl: imageUrl,
+        cacheKey: imageUrl,
+        placeholder: (context, __) => _shimmerPlaceholder(),
+        errorWidget: (context, __, ___) => _errorPlaceholder(),
+        imageBuilder:
+            (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
+            ),
+      ),
+      Obx(() => SizedBox(child: controller.isPaused ? _paused() : null)),
+    ],
   );
 }
 

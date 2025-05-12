@@ -19,6 +19,7 @@ class CustomCarouselSliderController extends GetxController {
 
   final RxBool _isLoading = true.obs;
   bool get isLoading => _isLoading.value;
+
   final RxList<ProductPreview> _products = <ProductPreview>[].obs;
   List<ProductPreview> get products => _products;
 
@@ -26,29 +27,30 @@ class CustomCarouselSliderController extends GetxController {
 
   final RxInt _currentPage = 0.obs;
   int get currentPage => _currentPage.value;
-  /// seeter
   set currentPage(int value) => _currentPage.value = value;
-
 
   final RxBool _isPaused = false.obs;
   bool get isPaused => _isPaused.value;
-  
-
 
   Timer? _autoPlayTimer;
 
   @override
   void onInit() {
     super.onInit();
-    fetchProducts(qualityId: 2, limit: limit, isAscending: reverseOrder);
+    _loadProducts(
+      qualityId: qualityId,
+      limit: limit,
+      isAscending: reverseOrder,
+    );
   }
 
-  Future<void> fetchProducts({
+  Future<void> _loadProducts({
     required int qualityId,
-    int limit = 10,
-    bool isAscending = false,
+    required bool isAscending,
+    required int limit,
   }) async {
     try {
+      _isLoading.value = true;
       final response = await _supabase
           .from(TableNames.productDetails)
           .select('${ColumnNames.id}, ${TableNames.productImages}(image_url)')
@@ -57,18 +59,14 @@ class CustomCarouselSliderController extends GetxController {
           .order(ColumnNames.createdAt, ascending: isAscending);
 
       if (response.isEmpty) return;
-
       _products.value = response.map(ProductPreview.fromJson).toList();
-      startAutoPlayTimer();
-    } catch (error) {
-      debugPrint('Error fetching products: $error');
+      _startAutoPlayTimer();
     } finally {
       _isLoading.value = false;
     }
   }
 
-  void startAutoPlayTimer() {
-    /// Cancel the auto play timer if it's already running
+  void _startAutoPlayTimer() {
     if (_autoPlayTimer != null) {
       _autoPlayTimer!.cancel();
     }
@@ -80,21 +78,13 @@ class CustomCarouselSliderController extends GetxController {
         duration: animationDuration,
         curve: Curves.easeInOut,
       );
-      startAutoPlayTimer();
+      _startAutoPlayTimer();
     });
   }
 
   void togglePause() {
     _isPaused.value = !isPaused;
-    update();
-    startAutoPlayTimer();
-  }
-
-  void onTapProduct(void Function(int)? onTap, int? productId) {
-    if (onTap != null && productId != null) {
-      onTap(productId);
-    }
-    togglePause();
+    _startAutoPlayTimer();
   }
 
   @override
