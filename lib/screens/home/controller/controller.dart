@@ -4,7 +4,7 @@ class HomeController extends GetxController {
   final supabase = Supabase.instance.client;
 
   bool isLoading = true;
-  List<Map<String, dynamic>> premiumProducts = [];
+  List<ProductPreview> premiumProducts = [];
 
   @override
   void onInit() {
@@ -19,7 +19,7 @@ class HomeController extends GetxController {
       final response = await supabase
           .from(TableNames.productDetails)
           .select('${ColumnNames.id}, ${TableNames.productImages}(image_url)')
-          .eq(ColumnNames.qualityId, 1)
+          .eq(ColumnNames.qualityId, 2)
           .limit(10)
           .order(ColumnNames.createdAt, ascending: false);
 
@@ -28,8 +28,11 @@ class HomeController extends GetxController {
         return;
       }
 
-
-      debugPrint('Products fetched successfully');
+      premiumProducts =
+          response.map((product) => ProductPreview.fromJson(product)).toList();
+      debugPrint(
+        'fetching products completed: ${premiumProducts.first.toString()}',
+      );
     } catch (error) {
       debugPrint('Error fetching products: $error');
     } finally {

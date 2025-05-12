@@ -3,54 +3,205 @@ import 'package:application/constants/import.dart';
 class FavoriteController extends GetxService {
   final _supabase = Supabase.instance.client;
   RxBool isLoading = false.obs;
-  RxString json = ''.obs;
+  RxString message = ''.obs;
 
-  // Future<void> fetchProducts() async {
-  //   try {
-  //     debugPrint('Fetching products...');
-  //     final response = await _supabase
-  //         .from(TableNames.productDetails)
-  //         .select(
-  //           'id, name, description, price, old_price, quantity, favorite_count, views_count, product_attributes(key, value), product_categories(name), product_qualities(name), product_images(image_url), product_reviews(rating_value, comment, user_profiles(*)), user_purchases(user_id)',
-  //         );
-
-  //     if (response.isEmpty) {
-  //       debugPrint('No products found');
-  //       return;
-  //     }
-  //     ProductDetails product = ProductDetails.fromJson(response[0]);
-
-  //     debugPrint('Products fetched successfully');
-  //     debugPrint(product.name);
-  //     debugPrint(product.favoriteCount.toString());
-  //   } catch (error) {
-  //     debugPrint('Error fetching products: $error');
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  // }
-
-  Future<void> fetchData() async {
-    String tableName = TableNames.userPurchases;
+  Future<void> upload() async {
+    final data = [
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 1,
+        "rating_value": 4.5,
+        "comment": "جيد جدًا وطازج",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 1,
+        "rating_value": 5.0,
+        "comment": "ممتاز، أنصح به",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 2,
+        "rating_value": 4.0,
+        "comment": "جيد ولكن كان يمكن الأفضل",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 2,
+        "rating_value": 3.5,
+        "comment": "مقبول",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 3,
+        "rating_value": 5.0,
+        "comment": "أفضل ما استخدمته",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 4,
+        "rating_value": 4.0,
+        "comment": "جودة ممتازة",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 4,
+        "rating_value": 4.5,
+        "comment": "سأشتريه مرة أخرى",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 5,
+        "rating_value": 3.0,
+        "comment": "كالمعتاد",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 6,
+        "rating_value": 5.0,
+        "comment": "رائع",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 6,
+        "rating_value": 4.0,
+        "comment": "ممتاز للخبز اليومي",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 7,
+        "rating_value": 4.5,
+        "comment": "جودة عالية",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 8,
+        "rating_value": 4.0,
+        "comment": "لقد أعجبني كثيرًا",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 8,
+        "rating_value": 3.5,
+        "comment": "سعره مرتفع بعض الشيء",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 9,
+        "rating_value": 5.0,
+        "comment": "ممتاز جدًا",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 10,
+        "rating_value": 4.0,
+        "comment": "جيد",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 10,
+        "rating_value": 4.5,
+        "comment": "نكهة رائعة",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 11,
+        "rating_value": 3.0,
+        "comment": "كما هو متوقع",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 12,
+        "rating_value": 5.0,
+        "comment": "من أفضل المنتجات",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 12,
+        "rating_value": 4.0,
+        "comment": "جودة ممتازة",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 13,
+        "rating_value": 3.5,
+        "comment": "مقبول",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 14,
+        "rating_value": 4.5,
+        "comment": "جميل وسهل الاستخدام",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 14,
+        "rating_value": 5.0,
+        "comment": "أفضل من المتوقع",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 15,
+        "rating_value": 4.0,
+        "comment": "جيد",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 16,
+        "rating_value": 5.0,
+        "comment": "ممتاز",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 17,
+        "rating_value": 4.5,
+        "comment": "نكهته جميلة",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 17,
+        "rating_value": 4.0,
+        "comment": "جيدة لكن تحتاج لتحديث",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 18,
+        "rating_value": 3.5,
+        "comment": "لم يعجبني تمامًا",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 19,
+        "rating_value": 5.0,
+        "comment": "ممتاز، أنصح به",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 20,
+        "rating_value": 4.0,
+        "comment": "جودة جيدة",
+      },
+      {
+        "user_id": "b200d43e-59eb-40e0-8102-45af8e415c12",
+        "product_id": 20,
+        "rating_value": 4.5,
+        "comment": "رائع",
+      },
+    ];
     try {
-      debugPrint('Fetching products...');
-      final response = await _supabase.from(tableName).select();
+      isLoading.value = true;
+      message.value = '';
+      final response = await _supabase
+          .from(TableNames.productsReviews)
+          .insert(data);
 
-      if (response.isEmpty) {
-        debugPrint('No found');
-        return;
+      if (response == null) {
+        message.value = response.error!.message;
+      } else {
+        message.value = 'uploaded Data Successfully';
       }
-
-      String json = jsonEncode(response.first);
-      debugPrint('fetched successfully');
-      debugPrint('>>>>>>>>>>>>>>>>>\n');
-      debugPrint(
-        'Table Name : ${tableName}_model  ${tableName}Model Data : $json',
-      );
-      debugPrint('\n>>>>>>>>>>>>>>>>>');
-      this.json('Table Name : $tableName Data : $json');
-    } catch (error) {
-      debugPrint('Error fetching products: $error');
+    } catch (e) {
+      message.value = e.toString();
     } finally {
       isLoading.value = false;
     }

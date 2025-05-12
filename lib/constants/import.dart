@@ -27,6 +27,7 @@ export 'package:application/localization/translation.dart';
 export 'package:application/models/address_model.dart';
 export 'package:application/models/country_model.dart';
 export 'package:application/models/user_metadata_model.dart';
+export 'package:application/models/product_preview.dart';
 
 // ==============================
 // **Routes**
@@ -60,8 +61,6 @@ export 'package:application/screens/favorite/controller/controller.dart';
 export 'package:application/screens/favorite/favorite_screen.dart';
 export 'package:application/screens/home/controller/controller.dart';
 export 'package:application/screens/home/home_screen.dart';
-export 'package:application/screens/home/widgets/error_placeholder.dart';
-export 'package:application/screens/home/widgets/shimmer_placeholder.dart';
 export 'package:application/screens/main/controllrt/generate_route.dart';
 export 'package:application/screens/main/controllrt/main_controller.dart';
 export 'package:application/screens/main/main_screen.dart';
@@ -115,7 +114,7 @@ export 'package:application/widgets/custom_appbar.dart';
 export 'package:application/widgets/custom_bottom_sheet.dart';
 export 'package:application/widgets/custom_button.dart';
 export 'package:application/widgets/custom_carouselslider.dart';
-export 'package:application/widgets/custom_circular_button.dart';
+export 'package:application/widgets/animation/custom_circular_button.dart';
 export 'package:application/widgets/custom_country_picker.dart';
 export 'package:application/widgets/custom_direction.dart';
 export 'package:application/widgets/custom_indicator.dart';

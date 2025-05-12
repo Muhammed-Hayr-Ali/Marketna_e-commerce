@@ -1,7 +1,9 @@
 import 'package:application/constants/import.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -10,26 +12,18 @@ class HomeScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomText('HomeScreen'),
-          // GetBuilder<HomeController>(
-          //   init: HomeController(),
-          //   builder:
-          //       (controller) =>
-          //           controller.isLoading
-          //               ? ShimmerPlaceholder()
-          //               : controller.premiumProducts.isEmpty
-          //               ? ErrorPlaceholder()
-          //               : CustomCarouselSlider(
-          //                 products: controller.premiumProducts,
-          //                 shimmerPlaceholder: ShimmerPlaceholder(),
-          //                 errorPlaceholder: ErrorPlaceholder(),
-          //                 onTap:
-          //                     (productId) => Get.toNamed(
-          //                       Routes.PRODUCT_DETAILS,
-          //                       arguments: productId,
-          //                     ),
-          //               ),
-          // ),
-  
+
+          GetBuilder<HomeController>(
+            init: HomeController(),
+            builder:
+                (controller) => CustomCarouselSlider(
+                  onTap:
+                      (productId) => Get.toNamed(
+                        Routes.PRODUCT_DETAILS,
+                        arguments: productId,
+                      ),
+                ),
+          ),
         ],
       ),
     );

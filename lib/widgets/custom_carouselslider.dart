@@ -1,52 +1,21 @@
 import 'package:application/constants/import.dart';
 
 class CustomCarouselSlider extends StatefulWidget {
-  /// List of products to be displayed in the carousel slider.
-  /// Each product should contain an `id` and `imageUrl` for displaying the image.
-  final List<Map<String, dynamic>> products;
-
-  /// Placeholder widget to display while the carousel is loading.
-  final Widget shimmerPlaceholder;
-
-  /// Placeholder widget to display if there is an error loading the products.
-  final Widget errorPlaceholder;
-
-  /// Duration of the animation when switching between slides or dots.
   final Duration animationDuration;
-
-  /// Duration of the auto-play interval between slides.
   final Duration autoPlayDuration;
-
-  /// Aspect ratio of the carousel images (width / height).
-  /// Default value is 21 / 9, which gives a wide-screen look.
   final double aspectRatio;
-
-  /// Number of seconds to pause the auto-play when an image is tapped.
   final int pauseDurationInSeconds;
-
-  /// Callback function triggered when an image is tapped.
-  /// Provides the `productId` of the tapped product.
-  final void Function(int productId)? onTap;
-
-  /// Whether to reverse the order of the products in the carousel.
-  /// If `true`, the list of products will be displayed in reverse order.
   final bool reverseOrder;
+  final void Function(int productId)? onTap;
 
   const CustomCarouselSlider({
     super.key,
-    required this.products, // List of products to display
-    this.animationDuration = const Duration(
-      milliseconds: 300,
-    ), // Default animation duration
-    this.autoPlayDuration = const Duration(
-      seconds: 3,
-    ), // Default auto-play interval
-    this.aspectRatio = 21 / 9, // Default aspect ratio (wide-screen)
-    this.pauseDurationInSeconds = 5, // Default pause duration on tap
-    this.onTap, // Optional callback for image tap
+    this.onTap,
     this.reverseOrder = false,
-    required this.shimmerPlaceholder,
-    required this.errorPlaceholder, // Whether to reverse the product order
+    this.aspectRatio = 21 / 9,
+    this.pauseDurationInSeconds = 5,
+    this.autoPlayDuration = const Duration(seconds: 3),
+    this.animationDuration = const Duration(milliseconds: 300),
   });
 
   @override
@@ -54,127 +23,129 @@ class CustomCarouselSlider extends StatefulWidget {
 }
 
 class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
-  /// Current page index of the carousel.
-  /// This tracks the currently visible slide.
-  int _currentPage = 0;
+  final _supabase = Supabase.instance.client;
 
-  /// PageController to manage the carousel's page transitions.
+  List<ProductPreview> _processedProducts = [];
+
   late PageController _pageController;
-
-  /// Whether the auto-play is paused.
-  /// When true, the carousel stops auto-playing temporarily.
+  int _currentPage = 0;
   bool _isPaused = false;
-
-  /// Processed list of products after applying the `reverseOrder` logic.
-  /// If `reverseOrder` is true, the list is reversed; otherwise, it remains as is.
-  late List<Map<String, dynamic>> _processedProducts;
 
   @override
   void initState() {
     super.initState();
-
-    // Reverse the product list if `reverseOrder` is enabled.
-    _processedProducts =
-        widget.reverseOrder
-            ? List.from(widget.products.reversed)
-            : List.from(widget.products);
-
-    // Initialize the PageController with the processed list.
-    _pageController = PageController(
-      initialPage: _processedProducts.length * 100,
-    );
-    _startAutoPlay(); // Start the auto-play functionality.
+    _initializeProducts();
   }
 
-  /// Starts the auto-play timer for the carousel.
-  /// If `_isPaused` is true, the auto-play will wait for the specified pause duration.
-  void _startAutoPlay() {
-    Future.delayed(
-      _isPaused
-          ? Duration(seconds: widget.pauseDurationInSeconds)
-          : widget.autoPlayDuration,
-      () {
-        if (!_isPaused) {
-          _pageController.nextPage(
-            duration: widget.animationDuration,
-            curve: Curves.easeInOut,
-          );
-        }
-        _startAutoPlay(); // Recursively call to continue auto-play.
-      },
-    );
+  Future<void> _initializeProducts() async {
+    try {
+      final fetchedProducts = await _fetchProducts(
+        qualityId: 2,
+        isAscending: widget.reverseOrder,
+      );
+
+      setState(() {
+        _processedProducts = fetchedProducts;
+        _pageController = PageController(initialPage: _currentPage);
+      });
+
+      _startAutoPlayTimer();
+    } catch (error) {
+      debugPrint('Error initializing products: $error');
+    }
   }
+
+  Future<List<ProductPreview>> _fetchProducts({
+    required int qualityId,
+    int limit = 10,
+    bool isAscending = false,
+  }) async {
+    final table = _supabase.from(TableNames.productDetails);
+    final select = table.select('${ColumnNames.id}, ${TableNames.productImages}(image_url)')
+      .eq(ColumnNames.qualityId, qualityId)
+      .limit(limit)
+      .order(ColumnNames.createdAt, ascending: isAscending);
+
+    final response = await select;
+
+    return response.map(ProductPreview.fromJson).toList();
+  }
+
+  void _startAutoPlayTimer() {
+    final duration = _isPaused ? _pauseDuration : _autoPlayDuration;
+    Future.delayed(duration, () {
+      if (!mounted || _isPaused) return;
+
+      _pageController.nextPage(
+        duration: _animationDuration,
+        curve: Curves.easeInOut,
+      );
+      _startAutoPlayTimer();
+    });
+  }
+
+  Duration get _pauseDuration =>
+      Duration(seconds: widget.pauseDurationInSeconds);
+  Duration get _autoPlayDuration => widget.autoPlayDuration;
+  Duration get _animationDuration => widget.animationDuration;
 
   @override
   void dispose() {
-    _pageController
-        .dispose(); // Dispose of the PageController to free resources.
+    _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_processedProducts.isEmpty) {
+      return _shimmerPlaceholder(widget.aspectRatio);
+    }
+
     return AspectRatio(
-      aspectRatio: widget.aspectRatio, // Set the aspect ratio for the carousel.
+      aspectRatio: widget.aspectRatio,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           PageView.builder(
-            controller:
-                _pageController, // Use the PageController for navigation.
-            itemCount:
-                _processedProducts.length *
-                1000, // Repeat the list 1000 times for infinite scrolling.
+            controller: _pageController,
+            itemCount: _processedProducts.length * 1000, // Infinite scrolling effect
             onPageChanged: (index) {
               setState(() {
-                _currentPage =
-                    index %
-                    _processedProducts.length; // Update the current page index.
+                _currentPage = index % _processedProducts.length;
               });
             },
             itemBuilder: (context, index) {
+              final productIndex = index % _processedProducts.length;
+              final product = _processedProducts[productIndex];
+
               return GestureDetector(
                 onTap: () {
-                  if (widget.onTap != null) {
-                    widget.onTap!.call(
-                      _processedProducts[index %
-                          _processedProducts.length]['id'],
-                    ); // Trigger the onTap callback with the product ID.
+                  if (widget.onTap != null && product.id != null) {
+                    widget.onTap!(product.id!);
                   }
                   setState(() {
-                    _isPaused = !_isPaused; // Toggle the auto-play pause state.
+                    _isPaused = !_isPaused;
                   });
                 },
-                child: Hero(
-                  tag:
-                      _processedProducts[index %
-                          _processedProducts.length]['id'],
-                  transitionOnUserGestures: true,
-                  // Use CachedNetworkImage to load and cache images.
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        _processedProducts[index %
-                            _processedProducts.length]['imageUrl'],
-                    imageBuilder:
-                        (context, imageProvider) => Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                    placeholder: (context, url) => _shimmerPlaceholder(),
-                    errorWidget: (context, url, error) => _errorPlaceholder(),
-                    fit: BoxFit.cover, // Ensure the image covers the container.
+                child: CachedNetworkImage(
+                  imageUrl: product.imageUrl ?? '',
+                  cacheKey: product.imageUrl,
+                  placeholder: (_, __) => _shimmerPlaceholder(widget.aspectRatio),
+                  errorWidget: (_, __, ___) => _errorPlaceholder(widget.aspectRatio),
+                  imageBuilder: (context, imageProvider) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               );
             },
           ),
-          // Add animated dots at the bottom of the carousel.
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: CustomIndicator(
@@ -188,8 +159,10 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
     );
   }
 
-  Widget _shimmerPlaceholder() {
-    return Padding(
+  Widget _shimmerPlaceholder(double aspectRatio) {
+  return AspectRatio(
+    aspectRatio: aspectRatio,
+    child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Shimmer.fromColors(
         baseColor: const Color(0xFFF5F5F5),
@@ -201,18 +174,27 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
-  Widget _errorPlaceholder() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(10.0),
+  Widget _errorPlaceholder(double aspectRatio) {
+    return AspectRatio(
+      aspectRatio: aspectRatio,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: const Center(
+            child: Icon(
+              Icons.error,
+              color: Colors.grey,
+            ),
+          ),
         ),
-        child: Center(child: Icon(Icons.error, color: Colors.grey.shade400)),
       ),
     );
   }

@@ -19,11 +19,11 @@ class FavoriteScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CustomText(_.json.value),
+                CustomText(_.message.value),
                 SizedBox(height: 10.0),
                 CustomButton(
                   isLoading: _.isLoading.value,
-                  onPressed: _.fetchData,
+                  onPressed: _.upload,
                   width: Get.width * 0.5,
                   backgroundColor: AppColors.grey,
                   child: CustomText('Get Product'),
