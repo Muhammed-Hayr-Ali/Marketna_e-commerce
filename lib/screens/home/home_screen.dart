@@ -1,9 +1,8 @@
 import 'package:application/constants/import.dart';
+import 'package:application/widgets/CustomCarouselSlider/custom_carousel.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  final controller = Get.put(HomeController());
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +11,11 @@ class HomeScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomText('HomeScreen'),
-
-          GetBuilder<HomeController>(
-            init: HomeController(),
-            builder:
-                (controller) => CustomCarouselSlider(
-                  onTap:
-                      (productId) => Get.toNamed(
-                        Routes.PRODUCT_DETAILS,
-                        arguments: productId,
-                      ),
-                ),
+          CustomCarousel(
+            qualityId: 2,
+            onTap: (productId) {
+              debugPrint(productId.toString());
+            },
           ),
         ],
       ),

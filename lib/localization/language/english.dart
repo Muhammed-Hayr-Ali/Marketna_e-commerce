@@ -122,6 +122,8 @@ class English {
     AppStrings.back: 'Back',
     AppStrings.skip: 'Skip',
     AppStrings.confirm: 'Confirm',
+    AppStrings.pause: 'Pause',
+    AppStrings.resume: 'Resume',
 
     ValidatorMessage.verificationCodeEmptyErrorMessage:
         'Verification code cannot be empty',

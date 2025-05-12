@@ -133,7 +133,10 @@ class AppStrings {
   static const String back = 'Back';
   static const String skip = 'Skip';
   static const String confirm = 'Confirm';
+  static const String pause = 'Paused';
+  static const String resume = 'Resumed';
 
+  
   static const String selectCountry = 'Select Country';
   static const String selectCountrySubTitle =
       'Select your country from the list below';

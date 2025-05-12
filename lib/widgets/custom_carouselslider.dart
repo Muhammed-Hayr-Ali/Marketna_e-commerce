@@ -23,11 +23,11 @@ class CustomCarouselSlider extends StatefulWidget {
 }
 
 class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
+  /// variables
+
   final _supabase = Supabase.instance.client;
-
   List<ProductPreview> _processedProducts = [];
-
-  late PageController _pageController;
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   bool _isPaused = false;
 
@@ -38,21 +38,20 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
   }
 
   Future<void> _initializeProducts() async {
-    try {
-      final fetchedProducts = await _fetchProducts(
-        qualityId: 2,
-        isAscending: widget.reverseOrder,
-      );
+    final fetchedProducts = await _fetchProducts(
+      qualityId: 2,
+      isAscending: widget.reverseOrder,
+    );
 
-      setState(() {
-        _processedProducts = fetchedProducts;
-        _pageController = PageController(initialPage: _currentPage);
-      });
-
-      _startAutoPlayTimer();
-    } catch (error) {
-      debugPrint('Error initializing products: $error');
+    if (fetchedProducts.isEmpty) {
+      return;
     }
+
+    setState(() {
+      _processedProducts = fetchedProducts;
+    });
+
+    _startAutoPlayTimer();
   }
 
   Future<List<ProductPreview>> _fetchProducts({
@@ -61,19 +60,26 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
     bool isAscending = false,
   }) async {
     final table = _supabase.from(TableNames.productDetails);
-    final select = table.select('${ColumnNames.id}, ${TableNames.productImages}(image_url)')
-      .eq(ColumnNames.qualityId, qualityId)
-      .limit(limit)
-      .order(ColumnNames.createdAt, ascending: isAscending);
+    final select = table
+        .select('${ColumnNames.id}, ${TableNames.productImages}(image_url)')
+        .eq(ColumnNames.qualityId, qualityId)
+        .limit(limit)
+        .order(ColumnNames.createdAt, ascending: isAscending);
 
     final response = await select;
-
+    if (response.isEmpty) return [];
     return response.map(ProductPreview.fromJson).toList();
   }
 
+  Timer? _autoPlayTimer;
+
   void _startAutoPlayTimer() {
+    if (_autoPlayTimer != null) {
+      _autoPlayTimer!.cancel();
+    }
+
     final duration = _isPaused ? _pauseDuration : _autoPlayDuration;
-    Future.delayed(duration, () {
+    _autoPlayTimer = Timer(duration, () {
       if (!mounted || _isPaused) return;
 
       _pageController.nextPage(
@@ -92,13 +98,14 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
   @override
   void dispose() {
     _pageController.dispose();
+    _autoPlayTimer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     if (_processedProducts.isEmpty) {
-      return _shimmerPlaceholder(widget.aspectRatio);
+      return _emptyPlaceholder(widget.aspectRatio);
     }
 
     return AspectRatio(
@@ -108,7 +115,8 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
         children: [
           PageView.builder(
             controller: _pageController,
-            itemCount: _processedProducts.length * 1000, // Infinite scrolling effect
+            itemCount:
+                _processedProducts.length * 1000, // Infinite scrolling effect
             onPageChanged: (index) {
               setState(() {
                 _currentPage = index % _processedProducts.length;
@@ -123,25 +131,32 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                   if (widget.onTap != null && product.id != null) {
                     widget.onTap!(product.id!);
                   }
-                  setState(() {
-                    _isPaused = !_isPaused;
-                  });
+                },
+                onLongPress: () {
+                  _isPaused = !_isPaused;
+                  _startAutoPlayTimer();
+                  CustomNotification.showToast(
+                    message: _isPaused ? AppStrings.pause : AppStrings.resume,
+                  );
                 },
                 child: CachedNetworkImage(
                   imageUrl: product.imageUrl ?? '',
                   cacheKey: product.imageUrl,
-                  placeholder: (_, __) => _shimmerPlaceholder(widget.aspectRatio),
-                  errorWidget: (_, __, ___) => _errorPlaceholder(widget.aspectRatio),
-                  imageBuilder: (context, imageProvider) => Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+                  placeholder:
+                      (_, __) => _shimmerPlaceholder(widget.aspectRatio),
+                  errorWidget:
+                      (_, __, ___) => _errorPlaceholder(widget.aspectRatio),
+                  imageBuilder:
+                      (context, imageProvider) => Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                 ),
               );
             },
@@ -160,23 +175,23 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
   }
 
   Widget _shimmerPlaceholder(double aspectRatio) {
-  return AspectRatio(
-    aspectRatio: aspectRatio,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: Shimmer.fromColors(
-        baseColor: const Color(0xFFF5F5F5),
-        highlightColor: const Color(0xFFEEEEEE),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10.0),
+    return AspectRatio(
+      aspectRatio: aspectRatio,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Shimmer.fromColors(
+          baseColor: const Color(0xFFF5F5F5),
+          highlightColor: const Color(0xFFEEEEEE),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _errorPlaceholder(double aspectRatio) {
     return AspectRatio(
@@ -188,14 +203,24 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
             color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: const Center(
-            child: Icon(
-              Icons.error,
-              color: Colors.grey,
-            ),
-          ),
+          child: const Center(child: Icon(Icons.error, color: Colors.grey)),
         ),
       ),
     );
   }
+}
+
+Widget _emptyPlaceholder(double aspectRatio) {
+  return AspectRatio(
+    aspectRatio: aspectRatio,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    ),
+  );
 }
