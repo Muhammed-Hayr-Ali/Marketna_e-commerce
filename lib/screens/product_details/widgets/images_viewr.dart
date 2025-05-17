@@ -1,72 +1,61 @@
 import 'package:application/constants/import.dart';
-import 'package:application/screens/product_details/widgets/appbar_widget.dart';
 
 class ImageViewer extends StatelessWidget {
-  final List<String> images;
-  ImageViewer({super.key, required this.images});
-  final c = Get.find<ProductDetailsController>();
+  final List<ProductImages>? imagesList;
+  final double? height, width;
+  const ImageViewer({
+    super.key,
+    required this.imagesList,
+    this.height,
+    this.width,
+  });
+
   @override
   Widget build(BuildContext context) {
-    /// image widget
+    /// if images list is null
+    if (imagesList == null || imagesList == []) {
+      return _buildEmptyPlaceholder(horizontalMargin: 10.0);
+    }
+
+    /// if images list length is 1
+    if (imagesList?.length == 1) {
+      return SizedBox(
+        height: height ?? Get.width * 1.1,
+        width: width ?? Get.width,
+        child: _imageBuilder(
+          horizontalMargin: 10.0,
+          imageUrl: imagesList?.first.imageUrl ?? '',
+        ),
+      );
+    }
+
+    /// if images list length is greater than 1
     return SizedBox(
-      height: Get.width * 1.1,
-      width: double.maxFinite,
-      child: Stack(
-        children: [
-          /// Images
-          SizedBox(
-            child:
-                images.isEmpty
-                    ? errorWidget(10.0)
-                    : images.length == 1
-                    ? _imageBuilder(imageUrl: images.first)
-                    : Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        PageView.builder(
-                          itemCount: images.length,
-                          onPageChanged:
-                              (value) => c.currentImageIndex.value = value,
-                          itemBuilder:
-                              (c, i) => _imageBuilder(imageUrl: images[i]),
-                        ),
-                      ],
-                    ),
-          ),
-
-          /// Appbar
-          AppBarWidget(),
-
-          /// Indicator
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child:
-                  images.length > 1
-                      ? Obx(
-                        () => CustomIndicator(
-                          currentIndex: c.currentImageIndex.value,
-                          length: images.length,
-                        ),
-                      )
-                      : Container(),
+      height: height ?? Get.width * 1.1,
+      width: width ?? Get.width,
+      child: PageView.builder(
+        itemCount: imagesList?.length ?? 0,
+        onPageChanged: (value) {
+          debugPrint(value.toString());
+        },
+        itemBuilder:
+            (_, i) => _imageBuilder(
+              horizontalMargin: 10.0,
+              imageUrl: imagesList?[i].imageUrl ?? '',
             ),
-          ),
-        ],
       ),
     );
   }
 }
 
-Widget _imageBuilder({required String imageUrl}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+Widget _imageBuilder({required String imageUrl, double? horizontalMargin}) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: horizontalMargin ?? 0.0),
     child: CachedNetworkImage(
       fit: BoxFit.cover,
       imageUrl: imageUrl,
       placeholder: (c, s) => placeholder(),
-      errorWidget: (c, u, e) => errorWidget(0),
+      errorWidget: (c, u, e) => errorWidget(),
       imageBuilder:
           (context, imageProvider) => Container(
             decoration: BoxDecoration(
@@ -78,7 +67,7 @@ Widget _imageBuilder({required String imageUrl}) {
   );
 }
 
-Widget placeholder() {
+Widget placeholder({double? horizontalMargin}) {
   return CustomPlaceholder.loading(
     child: Container(
       decoration: BoxDecoration(
@@ -89,14 +78,30 @@ Widget placeholder() {
   );
 }
 
-Widget errorWidget(double margin) {
+Widget _buildEmptyPlaceholder({
+  double? height,
+  double? width,
+  double? horizontalMargin,
+}) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: margin),
+    height: height ?? Get.width * 1.1,
+    width: width ?? Get.width,
+    margin: EdgeInsets.symmetric(horizontal: horizontalMargin ?? 0.0),
     alignment: Alignment.center,
     decoration: BoxDecoration(
       color: Colors.grey.shade100,
       borderRadius: BorderRadius.circular(28.0),
     ),
-    child: Icon(Icons.error, color: Colors.red),
+    child: const Icon(Icons.image, color: Colors.grey),
+  );
+}
+
+Widget errorWidget({double? horizontalMargin}) {
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.grey.shade100,
+      borderRadius: BorderRadius.circular(28.0),
+    ),
+    child: Center(child: Icon(Icons.error, color: Colors.grey, size: 32.0)),
   );
 }

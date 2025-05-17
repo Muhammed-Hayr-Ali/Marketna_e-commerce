@@ -1,5 +1,5 @@
 import 'package:application/constants/import.dart';
-import 'package:application/widgets/CustomCarouselSlider/custom_carousel.dart';
+import 'package:application/widgets/custom_carousel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,9 +13,9 @@ class HomeScreen extends StatelessWidget {
           CustomText('HomeScreen'),
           CustomCarousel(
             qualityId: 2,
-            onTap: (productId) {
-              debugPrint(productId.toString());
-            },
+            onTap:
+                (productId) =>
+                    Get.toNamed(Routes.PRODUCT_DETAILS, arguments: productId),
           ),
         ],
       ),

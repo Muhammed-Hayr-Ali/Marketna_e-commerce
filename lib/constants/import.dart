@@ -28,6 +28,9 @@ export 'package:application/models/address_model.dart';
 export 'package:application/models/country_model.dart';
 export 'package:application/models/user_metadata_model.dart';
 export 'package:application/models/product_preview.dart';
+export 'package:application/models/product_detail_model.dart';
+export 'package:application/models/product_full_details_model.dart';
+export 'package:application/models/product_review_model.dart';
 
 // ==============================
 // **Routes**
@@ -72,9 +75,7 @@ export 'package:application/screens/onboarding/widgets/indicator.dart';
 export 'package:application/screens/onboarding/widgets/page_builder.dart';
 export 'package:application/screens/product_details/controller/controller.dart';
 export 'package:application/screens/product_details/controller/main_controller.dart';
-export 'package:application/screens/product_details/product_details.dart';
 export 'package:application/screens/product_details/product_details_screen.dart';
-export 'package:application/screens/product_details/reviews_screen.dart';
 export 'package:application/screens/product_details/widgets/error_screene.dart';
 export 'package:application/screens/product_details/widgets/images_viewr.dart';
 export 'package:application/screens/profile/profile_edit/controller/controller.dart';
@@ -113,8 +114,7 @@ export 'package:application/widgets/custom_appbar.dart';
 // ==============================
 export 'package:application/widgets/custom_bottom_sheet.dart';
 export 'package:application/widgets/custom_button.dart';
-export 'package:application/widgets/custom_carouselslider.dart';
-export 'package:application/widgets/animation/custom_circular_button.dart';
+export 'package:application/widgets/custom_circular_button.dart';
 export 'package:application/widgets/custom_country_picker.dart';
 export 'package:application/widgets/custom_direction.dart';
 export 'package:application/widgets/custom_indicator.dart';

@@ -7,25 +7,25 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProductDetailsController(productId: productId));
+    Get.put(ProductDetailsController(productId: productId));
     return Scaffold(
       body: SafeArea(
-        child: Obx(
-          () =>
-              controller.isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : controller.errorMessage != '' || controller.product == null
-                  ? ErrorScreen(message: controller.errorMessage)
-                  : SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ImageViewer(images: controller.imagesList.value),
-                        ProductDetailsWidget(),
-                      ],
-                    ),
-                  ),
+        child: GetBuilder<ProductDetailsController>(
+          builder: (controller) {
+            ///  Loading
+            if (controller.isLoading) {
+              return Center(child: CircularProgressIndicator(strokeWidth: 1.5));
+            }
+
+            /// Success
+            return Column(
+              children: [
+                ImageViewer(
+                  imagesList: controller.productDetails!.productImages!,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

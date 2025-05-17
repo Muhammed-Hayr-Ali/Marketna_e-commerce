@@ -1,4 +1,3 @@
-
 import 'package:application/constants/import.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -24,21 +23,20 @@ class AppBarWidget extends StatelessWidget {
               Get.back();
             },
           ),
-          Obx(
-            () => CustomCicularButton(
-              size: 40,
-              backgroundColor: Colors.black26,
-              onPressed:
-                  () => controller.toggleFavorite(controller.isFavourite),
-              child: Icon(
-                controller.isFavourite
-                    ? PhosphorIconsFill.heart
-                    : PhosphorIconsRegular.heart,
-                size: 20.0,
-                color: controller.isFavourite ? Colors.red : Colors.white,
-              ),
-            ),
-          ),
+          // CustomCicularButton(
+          //     size: 40,
+          //     backgroundColor: Colors.black26,
+          //     // onPressed:
+          //     //     () => controller.toggleFavorite(controller.isFavourite),
+          //     child: Icon(
+          //   //    controller.isFavourite
+          //           ? PhosphorIconsFill.heart
+          //           : PhosphorIconsRegular.heart,
+          //       size: 20.0,
+          //       color: controller.isFavourite ? Colors.red : Colors.white,
+          //     ),
+          // ),
+      
         ],
       ),
     );

@@ -1,5 +1,5 @@
-import 'package:application/myapp.dart';
 import 'package:application/constants/import.dart';
+import 'package:application/myapp.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
