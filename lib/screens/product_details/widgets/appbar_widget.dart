@@ -23,20 +23,21 @@ class AppBarWidget extends StatelessWidget {
               Get.back();
             },
           ),
-          // CustomCicularButton(
-          //     size: 40,
-          //     backgroundColor: Colors.black26,
-          //     // onPressed:
-          //     //     () => controller.toggleFavorite(controller.isFavourite),
-          //     child: Icon(
-          //   //    controller.isFavourite
-          //           ? PhosphorIconsFill.heart
-          //           : PhosphorIconsRegular.heart,
-          //       size: 20.0,
-          //       color: controller.isFavourite ? Colors.red : Colors.white,
-          //     ),
-          // ),
-      
+          GetBuilder<ProductDetailsController>(
+            builder:
+                (controller) => CustomCicularButton(
+                  size: 40,
+                  backgroundColor: Colors.black26,
+                  onPressed: controller.toggleFavoriteProduct,
+                  child: Icon(
+                    controller.isFavorite
+                        ? PhosphorIconsFill.heart
+                        : PhosphorIconsRegular.heart,
+                    size: 20.0,
+                    color: controller.isFavorite ? Colors.red : Colors.white,
+                  ),
+                ),
+          ),
         ],
       ),
     );

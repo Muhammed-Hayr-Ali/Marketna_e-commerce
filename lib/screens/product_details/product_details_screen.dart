@@ -1,4 +1,6 @@
 import 'package:application/constants/import.dart';
+import 'package:application/screens/product_details/widgets/appbar_widget.dart';
+import 'package:application/screens/product_details/widgets/product_overview_stats.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
@@ -20,10 +22,19 @@ class ProductDetailsScreen extends StatelessWidget {
             /// Success
             return Column(
               children: [
-                ImageViewer(
-                  imagesList: controller.productDetails!.productImages!,
+                Stack(
+                  children: [
+                    ImageViewer(
+                      width: Get.width,
+                      height: Get.width * 1.2,
+                      horizontalMargin: 10.0,
+                      imagesList: controller.productDetails!.productImages!,
+                    ),
+                    AppBarWidget(),
+                  ],
                 ),
-              ],
+                               ProductOverviewStats(),
+   ],
             );
           },
         ),

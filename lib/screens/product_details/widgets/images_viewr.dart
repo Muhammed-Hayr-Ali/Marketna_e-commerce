@@ -1,61 +1,107 @@
 import 'package:application/constants/import.dart';
 
 class ImageViewer extends StatelessWidget {
+  final double? height, width, horizontalMargin;
   final List<ProductImages>? imagesList;
-  final double? height, width;
-  const ImageViewer({
+  ImageViewer({
     super.key,
-    required this.imagesList,
     this.height,
     this.width,
+    this.horizontalMargin,
+    required this.imagesList,
   });
+
+  final controller = Get.find<ProductDetailsController>();
 
   @override
   Widget build(BuildContext context) {
+    /// calculate width and height
+    double calculatedWidth = width ?? Get.width;
+    double calculatedHeight = height ?? Get.width * 1.1;
+    double calculatedhorizontalMargin = horizontalMargin ?? 10.0;
+
     /// if images list is null
     if (imagesList == null || imagesList == []) {
-      return _buildEmptyPlaceholder(horizontalMargin: 10.0);
+      return _buildEmptyPlaceholder(
+        width: calculatedWidth,
+        height: calculatedHeight,
+        horizontalMargin: calculatedhorizontalMargin,
+      );
     }
 
     /// if images list length is 1
     if (imagesList?.length == 1) {
-      return SizedBox(
-        height: height ?? Get.width * 1.1,
-        width: width ?? Get.width,
-        child: _imageBuilder(
-          horizontalMargin: 10.0,
-          imageUrl: imagesList?.first.imageUrl ?? '',
-        ),
+      return _imageBuilder(
+        width: calculatedWidth,
+        height: calculatedHeight,
+        horizontalMargin: calculatedhorizontalMargin,
+        imageUrl: imagesList?.first.imageUrl ?? '',
       );
     }
 
     /// if images list length is greater than 1
     return SizedBox(
-      height: height ?? Get.width * 1.1,
-      width: width ?? Get.width,
-      child: PageView.builder(
-        itemCount: imagesList?.length ?? 0,
-        onPageChanged: (value) {
-          debugPrint(value.toString());
-        },
-        itemBuilder:
-            (_, i) => _imageBuilder(
-              horizontalMargin: 10.0,
-              imageUrl: imagesList?[i].imageUrl ?? '',
+      width: calculatedWidth,
+      height: calculatedHeight,
+      child: Stack(
+        children: [
+          PageView.builder(
+            itemCount: imagesList?.length ?? 0,
+            onPageChanged: (value) => controller.updateCurrentImage(value),
+            itemBuilder:
+                (_, i) => _imageBuilder(
+                  width: calculatedWidth,
+                  height: calculatedHeight,
+                  horizontalMargin: calculatedhorizontalMargin,
+                  imageUrl: imagesList?[i].imageUrl ?? '',
+                ),
+          ),
+
+          /// indicator
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GetBuilder<ProductDetailsController>(
+                builder:
+                    (controller) => CustomIndicator(
+                      currentIndex: controller.currentImageIndex,
+                      length: imagesList?.length ?? 0,
+                    ),
+              ),
             ),
+          ),
+        ],
       ),
     );
   }
 }
 
-Widget _imageBuilder({required String imageUrl, double? horizontalMargin}) {
+Widget _imageBuilder({
+  required String imageUrl,
+  required double height,
+  required double width,
+  required double horizontalMargin,
+}) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: horizontalMargin ?? 0.0),
+    width: width,
+    height: height,
+    margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
     child: CachedNetworkImage(
       fit: BoxFit.cover,
       imageUrl: imageUrl,
-      placeholder: (c, s) => placeholder(),
-      errorWidget: (c, u, e) => errorWidget(),
+      placeholder:
+          (c, s) => _buildPlaceholder(
+            height: height,
+            width: width,
+            horizontalMargin: 0,
+          ),
+      errorWidget:
+          (c, u, e) => _buildErrorWidget(
+            height: height,
+            width: width,
+            horizontalMargin: 0,
+          ),
       imageBuilder:
           (context, imageProvider) => Container(
             decoration: BoxDecoration(
@@ -67,9 +113,16 @@ Widget _imageBuilder({required String imageUrl, double? horizontalMargin}) {
   );
 }
 
-Widget placeholder({double? horizontalMargin}) {
+Widget _buildPlaceholder({
+  required double height,
+  required double width,
+  required double horizontalMargin,
+}) {
   return CustomPlaceholder.loading(
     child: Container(
+      width: width,
+      height: height,
+      margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
       decoration: BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.circular(28.0),
@@ -79,14 +132,14 @@ Widget placeholder({double? horizontalMargin}) {
 }
 
 Widget _buildEmptyPlaceholder({
-  double? height,
-  double? width,
-  double? horizontalMargin,
+  required double height,
+  required double width,
+  required double horizontalMargin,
 }) {
   return Container(
-    height: height ?? Get.width * 1.1,
-    width: width ?? Get.width,
-    margin: EdgeInsets.symmetric(horizontal: horizontalMargin ?? 0.0),
+    width: width,
+    height: height,
+    margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
     alignment: Alignment.center,
     decoration: BoxDecoration(
       color: Colors.grey.shade100,
@@ -96,8 +149,15 @@ Widget _buildEmptyPlaceholder({
   );
 }
 
-Widget errorWidget({double? horizontalMargin}) {
+Widget _buildErrorWidget({
+  required double height,
+  required double width,
+  required double horizontalMargin,
+}) {
   return Container(
+    width: width,
+    height: height,
+    margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
     decoration: BoxDecoration(
       color: Colors.grey.shade100,
       borderRadius: BorderRadius.circular(28.0),
